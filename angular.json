@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ajto-ablak"
+    }
+  },
+  "defaultProject": "ajto-ablak",
+  "cli": {
+    "analytics": "82be56cc-9f46-45a3-b4dc-33203e1bcbeb"
+  }
 }
