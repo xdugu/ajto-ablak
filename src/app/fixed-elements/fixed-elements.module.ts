@@ -1,15 +1,29 @@
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from '../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTreeModule} from '@angular/material/tree';
 
 
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SideBarComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    AppRoutingModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTreeModule
+  ],
+  exports: [HeaderComponent, FooterComponent, SideBarComponent]
 })
 export class FixedElementsModule { }
