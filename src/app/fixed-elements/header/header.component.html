@@ -2,10 +2,11 @@
 
     <!--Menu for hierarchy-->
     <mat-menu #hierarchyMenu="matMenu" yPosition="below">
-        <ng-template matMenuContent let-sub="sub">
-            <button mat-menu-item *ngFor="let item of sub">
-               {{item.text.en}}
-            </button>
+        <ng-template matMenuContent let-item="item">
+            <a mat-menu-item *ngFor="let child of item.sub"
+                [routerLink]="['category', item.name, child.name]">
+               {{child.text.en}}
+            </a>
         </ng-template>
     </mat-menu>
 
@@ -22,7 +23,7 @@
                     {{item.text.en}}
                 </a>
                 <button *ngIf="i < 2 && item.hasOwnProperty('sub')" mat-button color="accent" 
-                    [matMenuTriggerFor]="hierarchyMenu" [matMenuTriggerData]="item">
+                    [matMenuTriggerFor]="hierarchyMenu" [matMenuTriggerData]="{item: item}">
                     <span>{{item.text.en}}</span>
                     <mat-icon color="accent">
                         keyboard_arrow_down

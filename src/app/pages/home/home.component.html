@@ -1,1 +1,10 @@
-<p>home works!</p>
+
+<img src="assets/home/lander.jpg" style="width: 100%; height: auto;">
+<mat-grid-list [cols]="numOfCols" rowHeight="300px" gutterSize="8px">
+    <ng-container *ngFor="let h of hierarchy; index as i">
+      <mat-grid-tile  *ngIf="i < 2" [style.background]="'green'">
+        <a mat-button [routerLink]="['category', h.name]">{{h.text.en}}</a>
+      </mat-grid-tile>
+    </ng-container>
+    
+</mat-grid-list>

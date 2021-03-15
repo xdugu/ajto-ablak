@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 interface SideBarProductHierarchy extends ProductHierarchy{
   expanded: boolean;
+  link: Array<string>;
   sub?: SideBarProductHierarchy[];
 }
 
@@ -46,20 +47,28 @@ export class SideBarComponent implements OnInit, OnDestroy {
     }
  }
 
+  // updates current product hierarchy
   private updateProductHierarchy(newHierarchy: Array<ProductHierarchy>): void{
     this.productHierarchy = [];
 
     for (const h of newHierarchy){
-      this.productHierarchy.push(this.writeExpandedState(h, false));
+      this.productHierarchy.push(this.writeExpandedState(h, false, ['category']));
     }
     this.dataSource.data = this.productHierarchy;
   }
 
-  private writeExpandedState(item: ProductHierarchy, state: boolean): SideBarProductHierarchy{
+  // converts a 'ProductHierarchy' into 'SideBarProductHierarchy'
+  private writeExpandedState(item: ProductHierarchy, state: boolean, link: Array<string>): SideBarProductHierarchy{
     const newItem: SideBarProductHierarchy = {
       name: item.name,
-      expanded: state
+      expanded: state,
+      link: []
     };
+
+    // make copy of link
+    link = Object.assign([], link);
+    link.push(item.name);
+    newItem.link = link;
 
     if (item.hasOwnProperty('text')){
       newItem.text = item.text;
@@ -71,10 +80,10 @@ export class SideBarComponent implements OnInit, OnDestroy {
       if (Array.isArray(item.sub)){
           newItem.sub = [];
           for (const sub of item.sub){
-            newItem.sub.push(this.writeExpandedState(sub, state));
+            newItem.sub.push(this.writeExpandedState(sub, state, link));
           }
       }
-    }
+    } // if
 
     return newItem;
   }

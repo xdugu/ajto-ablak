@@ -1,0 +1,12 @@
+<!-- For hierarchies that have children -->
+<mat-grid-list *ngIf="currentHierarchy.hasOwnProperty('sub'); else lastChild" 
+        [cols]="2" rowHeight="300px" gutterSize="8px">
+    <mat-grid-tile *ngFor="let child of currentHierarchy.sub" [style.background]="'yellow'">
+        <a mat-button [routerLink]="child.name">{{child.text.en}}</a>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<!-- For hierarchies that don't have children -->
+<ng-template #lastChild>
+    <div>{{currentHierarchy.text.en}}</div>
+</ng-template>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 export interface ProductHierarchy {
   name: string;
@@ -13,7 +13,7 @@ export interface ProductHierarchy {
 export class ProductHierarchyService {
   constructor() {}
 
-  productHierarchy: Array<ProductHierarchy> = [
+  private productHierarchy: Array<ProductHierarchy> = [
     {
      name: 'Kutyalepcso',
      sub: [
@@ -90,13 +90,11 @@ export class ProductHierarchyService {
 
   // return product heirarchy
   getHierarchy(): Observable<Array<ProductHierarchy>>{
+
     return new Observable((observer) => {
       // return copy so not to have other modules pollute this source during manipulation
       observer.next(Object.assign([], this.productHierarchy));
     });
   }
-
-
-
 
 }
