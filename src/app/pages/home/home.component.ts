@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  numOfCols = 1;
-  hierarchy: ProductHierarchy[];
+  numOfCols = 1; // determines num of cols on page
+  hierarchy: ProductHierarchy[]; // determine hierarchy
   subscriptions: Subscription[] = [];
 
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService){
@@ -24,8 +24,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // reacts to changes in screen size
   private onScreenSizeChange(newScreenSize: string): void{

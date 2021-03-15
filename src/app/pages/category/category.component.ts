@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import {ProductHierarchy, ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
+import {ApiManagerService, API_METHOD, API_MODE} from '../../shared-services/api-manager.service';
+import {ConfigService} from '../../shared-services/config.service';
 
 
 @Component({
@@ -11,10 +14,16 @@ import {ProductHierarchy, ProductHierarchyService} from '../../shared-services/p
 })
 export class CategoryComponent implements OnInit {
   category: string;
-  currentHierarchy: ProductHierarchy;
+  currentHierarchy: ProductHierarchy = null;
   pHSubscription: Subscription;
+  categoryItems: [];
+  bucketUrl: string = null;
 
-  constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService) {
+  constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
+              private apiService: ApiManagerService, private configService: ConfigService) {
+    configService.getConfig('imgSrc').subscribe({
+      next: res => this.bucketUrl = res
+    });
   }
 
   ngOnInit(): void {
@@ -31,6 +40,11 @@ export class CategoryComponent implements OnInit {
           for (const h of res){
             if (h.name === categories[0]){
               this.currentHierarchy = this.getFinalHierarchy(h, categories);
+
+              // if we are at the tail-end of category, attempt to get items inside it
+              if (!this.currentHierarchy.hasOwnProperty('sub')){
+                this.getItemsInCategory();
+              } // if
               break;
             } // if
           } // for
@@ -40,7 +54,7 @@ export class CategoryComponent implements OnInit {
   }
 
   // Given array of names, returns the current hierarchy
-  getFinalHierarchy(currentHierarchy: ProductHierarchy, names: string[]): ProductHierarchy{
+  private getFinalHierarchy(currentHierarchy: ProductHierarchy, names: string[]): ProductHierarchy{
     if (currentHierarchy.name === names[0] && names.length > 1){
       for (const sub of currentHierarchy.sub){
         if (names[1] === sub.name){
@@ -56,6 +70,25 @@ export class CategoryComponent implements OnInit {
       return currentHierarchy;
     } // if
     return currentHierarchy;
+  }
+
+  private getItemsInCategory(): void{
+
+    this.configService.getConfig('storeId').subscribe({
+      next: storeId => {
+        const httpParams = new HttpParams()
+              .set('category', this.category)
+              .set('storeId', storeId + '>Product');
+
+        const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'category', httpParams);
+        resp.subscribe({
+          next: (data: any) => {
+            this.categoryItems = data;
+          },
+          error: (err) => console.log(err)
+        });
+      }
+    });
   }
 
 }

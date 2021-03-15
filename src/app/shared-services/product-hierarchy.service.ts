@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { Observable} from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+import { ConfigService } from './config.service';
+import { ApiManagerService, API_METHOD, API_MODE} from './api-manager.service';
+
 
 export interface ProductHierarchy {
   name: string;
@@ -11,89 +15,56 @@ export interface ProductHierarchy {
   providedIn: 'root'
 })
 export class ProductHierarchyService {
-  constructor() {}
+  private productHierarchy: Array<ProductHierarchy> = null;
+  private loading = false;
 
-  private productHierarchy: Array<ProductHierarchy> = [
-    {
-     name: 'Kutyalepcso',
-     sub: [
-      {
-       name: 'Rampak',
-       text: {
-        en: 'Ramps',
-        hu: 'Rámpák'
-       }
-      },
-      {
-       name: 'Lepcsok',
-       text: {
-        en: 'Stairs',
-        hu: 'Lépcsők'
-       }
-      },
-      {
-       name: 'Fekhelyek',
-       text: {
-        en: 'Bean bags, blankets and pillows',
-        hu: 'Fekhelyek'
-       }
-      },
-      {
-       name: 'Kutya-kanape',
-       text: {
-        en: 'Dog Sofas',
-        hu: 'Kutya kanape'
-       }
-      },
-      {
-       name: 'Galleria',
-       text: {
-        en: 'Dog Lofts',
-        hu: 'Kutya galéria'
-       }
-      },
-      {
-       name: 'Raktaron',
-       text: {
-        en: 'Items in stock',
-        hu: 'Raktáron'
-       }
-      }
-     ],
-     text: {
-      en: 'Dog Stairs and ramps',
-      hu: 'Kutya Lépcsők & Rámpák'
-     }
-    },
-    {
-     name: 'My-Bulldog',
-     text: {
-      en: 'MyBulldog',
-      hu: 'MyBulldog'
-     }
-    },
-    {
-     name: 'Ruhak',
-     text: {
-      en: 'Dog clothes',
-      hu: 'Ruhák'
-     }
-    },
-    {
-     name: 'Vegyes-termek',
-     text: {
-      en: 'Miscallaneous',
-      hu: 'Vegyes'
-     }
-    }
-   ];
+  constructor(private configService: ConfigService, private apiService: ApiManagerService) {
+    this.loadHierarchy();
+  }
+
 
   // return product heirarchy
   getHierarchy(): Observable<Array<ProductHierarchy>>{
 
     return new Observable((observer) => {
-      // return copy so not to have other modules pollute this source during manipulation
+      if (this.productHierarchy == null){
+        if (!this.loading){
+          this.loadHierarchy();
+        }
+
+        const interval = setInterval(() => {
+          if (this.productHierarchy != null){
+            clearInterval(interval);
+            // return copy so not to have other modules pollute this source during manipulation
+            observer.next(Object.assign([], this.productHierarchy));
+          }
+          else if (!this.loading){
+            clearInterval(interval);
+            observer.error('Getting hierarchy failed');
+          }
+        }, 50);
+      }
       observer.next(Object.assign([], this.productHierarchy));
+
+    });
+  }
+
+  private loadHierarchy(): void{
+    this.loading = true;
+    this.configService.getConfig('storeId').subscribe({
+      next: storeId => {
+        const hierarchyParams = new HttpParams()
+              .set('storeId', storeId)
+              .set('get', 'ProductHierarchy');
+
+        const hierarchyResp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET,
+                                  'settings', hierarchyParams);
+        hierarchyResp.subscribe({
+          next: (res: any) => {this.productHierarchy = res.ProductHierarchy; this.loading = false; },
+          error: (err) => {console.error(err); this.loading = false; }
+        });
+      },
+      error: (err) => {console.log(err); this.loading = false; }
     });
   }
 

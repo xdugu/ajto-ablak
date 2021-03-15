@@ -52,13 +52,13 @@ export class SideBarComponent implements OnInit, OnDestroy {
     this.productHierarchy = [];
 
     for (const h of newHierarchy){
-      this.productHierarchy.push(this.writeExpandedState(h, false, ['category']));
+      this.productHierarchy.push(this.convertProductHierarchy(h, false, ['category']));
     }
     this.dataSource.data = this.productHierarchy;
   }
 
   // converts a 'ProductHierarchy' into 'SideBarProductHierarchy'
-  private writeExpandedState(item: ProductHierarchy, state: boolean, link: Array<string>): SideBarProductHierarchy{
+  private convertProductHierarchy(item: ProductHierarchy, state: boolean, link: Array<string>): SideBarProductHierarchy{
     const newItem: SideBarProductHierarchy = {
       name: item.name,
       expanded: state,
@@ -80,7 +80,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
       if (Array.isArray(item.sub)){
           newItem.sub = [];
           for (const sub of item.sub){
-            newItem.sub.push(this.writeExpandedState(sub, state, link));
+            newItem.sub.push(this.convertProductHierarchy(sub, state, link));
           }
       }
     } // if
