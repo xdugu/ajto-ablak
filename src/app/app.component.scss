@@ -1,4 +1,24 @@
+app-header{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 2;
+}
+
+mat-sidenav-container{
+    margin-top: 58px;
+}
+
 /* done to prevent flickering of height on changes of views */
 mat-sidenav-content{
+    padding: 16px;
     min-height: 600px;
+}
+mat-sidenav{
+    position: fixed;
+    top: 58px;
+    max-height: calc(100vh - 58px);
+    overflow-y: auto;
+    width: 300px;
 }

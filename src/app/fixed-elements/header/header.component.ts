@@ -9,8 +9,9 @@ import { ScreenTypeService} from '../../shared-services/screen-type.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  screenState = 'mobile';
 
+  @Output() menuButtonClicked = new EventEmitter();
+  screenState = 'mobile';
   productHierarchy: any;
 
   constructor(screenTypeService: ScreenTypeService, private pHService: ProductHierarchyService) {
@@ -23,6 +24,11 @@ export class HeaderComponent implements OnInit {
      this.pHService.getHierarchy().subscribe({
        next: (res) => {this.productHierarchy = res; }
      });
+  }
+
+  // callback from view to register when menu button is clicked
+  onMenuButtonClicked(): void{
+    this.menuButtonClicked.emit();
   }
 
 }

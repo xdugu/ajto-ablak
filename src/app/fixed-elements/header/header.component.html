@@ -12,24 +12,35 @@
 
     <!--Desktops-->
     <mat-toolbar color="primary" *ngSwitchCase="'wideScreen'" class="center">
-            <a [routerLink]="['/']" style="height:100%"> <img src="assets/fixed/header/images/logo.jpg" style="height: 100%" 
-                        class="w3-padding w3-circle"></a>
-            
-            
+            <a [routerLink]="['/']" style="height:100%"> 
+                <img src="assets/fixed/header/images/logo.jpg" style="height: 100%" 
+                        class="w3-padding w3-circle">
+            </a>
+                       
             <ng-container *ngFor="let item of productHierarchy; index as i">
                 <!-- Show only first two items in first level hierarchy-->
-                <a mat-button color="accent" *ngIf="i < 2 && !item.hasOwnProperty('sub')"
+                <a mat-button *ngIf="i < 2 && !item.hasOwnProperty('sub')"
                     [routerLink]="['category', item.name]">
                     {{item.text.en}}
                 </a>
-                <button *ngIf="i < 2 && item.hasOwnProperty('sub')" mat-button color="accent" 
+                <button *ngIf="i < 2 && item.hasOwnProperty('sub')" mat-button
                     [matMenuTriggerFor]="hierarchyMenu" [matMenuTriggerData]="{item: item}">
                     <span>{{item.text.en}}</span>
                     <mat-icon color="accent">
                         keyboard_arrow_down
                     </mat-icon>
                 </button>
-            </ng-container>        
+            </ng-container>   
+            
+            <span class="fill-remaining-space"></span>
+
+            <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon" >
+                <mat-icon color="accent" [matBadge]="1" matBadgePosition="below after">
+                    shopping_basket
+                </mat-icon>
+            </a>
+            <a mat-button>Contact</a>
+            <a mat-button>About Us</a>
             
     </mat-toolbar>
 
@@ -67,26 +78,26 @@
     </mat-toolbar -->
 
     <!-- Mobile Screens-->
-    <!--mat-toolbar color="primary" *ngSwitchDefault>
+    <mat-toolbar color="primary" *ngSwitchDefault>
         <a [routerLink]="['/']" style="height:100%">
-             <img src="assets/images/logo.jpg" style="height: 100%" class="w3-padding w3-circle">
+             <img src="assets/fixed/header/images/logo.jpg" style="height: 100%" class="w3-padding w3-circle">
         </a>
         <span class="fill-remaining-space"></span>
         
         <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon" >
-            <mat-icon color="accent" [matBadge]="basketNumber" matBadgePosition="below after" class="basketNum">
+            <mat-icon color="accent" [matBadge]="1" matBadgePosition="below after">
                 shopping_basket
             </mat-icon>
         </a>
         <a mat-icon-button class="mobile-header-icon" [routerLink]="['/contact']">
             <mat-icon color="accent">email</mat-icon>
         </a>
-        <button mat-icon-button class="mobile-header-icon test_menu_icon" (click)="toggleMenu()">
+        <button mat-icon-button class="mobile-header-icon test_menu_icon" (click)="onMenuButtonClicked()">
             <mat-icon color="accent">
                 menu
             </mat-icon>
         </button>
-    </mat-toolbar-->
+    </mat-toolbar>
 </header>
 
 

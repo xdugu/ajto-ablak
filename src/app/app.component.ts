@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'ajto-ablak';
   sideBarVisible = false;
   sideBarMode = 'push';
+  currentView = 'mobile';
 
   constructor(screenTypeService: ScreenTypeService){
     screenTypeService.getScreenTypeUpdate().subscribe({
@@ -20,6 +21,7 @@ export class AppComponent {
 
   // reacts to changes in screen size
   private onScreenSizeChange(newScreenSize: string): void{
+    this.currentView = newScreenSize;
     switch (newScreenSize){
       case 'wideScreen':
         this.sideBarVisible = true;
@@ -36,5 +38,11 @@ export class AppComponent {
         this.sideBarMode = 'push';
         break;
     }
+  }
+
+  onMenuButtonClickedInNav(): void{
+    if (this.currentView === 'tablet' || this.currentView === 'mobile'){
+      this.sideBarVisible = !this.sideBarVisible;
+    } // if
   }
 }

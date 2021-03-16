@@ -1,7 +1,7 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mobile-menu w3-padding">
     <!-- This is the tree nodes that don't have children-->
     <mat-tree-node *matTreeNodeDef="let node;">
-      <a class="mat-tree-node" class="w3-margin-left" [routerLink]="node.link">
+      <a class="no-child-node" [routerLink]="node.link" mat-button>
         {{node.text.en}}
       </a>
     </mat-tree-node>
@@ -9,12 +9,12 @@
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
       <li>
         <div class="mat-tree-node" >
+          <a [routerLink]="node.link" mat-button>{{node.text.en}}</a>
           <button mat-icon-button (click)="toggleTreeNodes(node)">
             <mat-icon>
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          <a [routerLink]="node.link" mat-button>{{node.text.en}}</a>
         </div>
         <ul [hidden]="!treeControl.isExpanded(node)">
           <ng-container matTreeNodeOutlet></ng-container>

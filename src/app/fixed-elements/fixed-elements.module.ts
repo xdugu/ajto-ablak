@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -22,7 +24,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatTreeModule
+    MatTreeModule,
+    MatBadgeModule,
+    MatListModule
   ],
   exports: [HeaderComponent, FooterComponent, SideBarComponent]
 })
