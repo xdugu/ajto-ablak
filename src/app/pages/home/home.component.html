@@ -8,3 +8,10 @@
     </ng-container>
     
 </mat-grid-list>
+
+<ng-container *ngFor="let flow of pageFlow">
+  <app-product-gallery *ngIf="flow.type == 'product'" [title]="flow.title.en"
+    [products]="flow.items">
+  </app-product-gallery>
+
+</ng-container>

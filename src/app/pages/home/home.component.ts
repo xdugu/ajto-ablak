@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ScreenTypeService} from '../../shared-services/screen-type.service';
-import { ProductHierarchy, ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
+import { ScreenTypeService} from '@app/shared-services/screen-type.service';
+import { ProductHierarchy, ProductHierarchyService} from '@app/shared-services/product-hierarchy.service';
+import { ConfigService} from '@app/shared-services/config.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,8 +13,10 @@ export class HomeComponent implements OnInit {
   numOfCols = 1; // determines num of cols on page
   hierarchy: ProductHierarchy[]; // determine hierarchy
   subscriptions: Subscription[] = [];
+  pageFlow: [];
 
-  constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService){
+  constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
+              private configService: ConfigService){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.onScreenSizeChange(state)
     });
@@ -24,7 +27,13 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.configService.getConfig('pages').subscribe({
+      next: (res: any) => {
+        this.pageFlow = res.home.pageFlow;
+      }
+    });
+  }
 
   // reacts to changes in screen size
   private onScreenSizeChange(newScreenSize: string): void{

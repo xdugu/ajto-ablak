@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { HttpParams } from '@angular/common/http';
+
 import { Subscription } from 'rxjs';
-import {ProductHierarchy, ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
-import {ApiManagerService, API_METHOD, API_MODE} from '../../shared-services/api-manager.service';
-import {ConfigService} from '../../shared-services/config.service';
+import {ProductHierarchy, ProductHierarchyService} from '@app/shared-services/product-hierarchy.service';
+import {ConfigService} from '@app/shared-services/config.service';
+import { CategoryGetterService} from '@app/shared-services/category-getter.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
   bucketUrl: string = null;
 
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
-              private apiService: ApiManagerService, private configService: ConfigService) {
+              private categoryGetter: CategoryGetterService, configService: ConfigService) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
@@ -43,7 +43,9 @@ export class CategoryComponent implements OnInit {
 
               // if we are at the tail-end of category, attempt to get items inside it
               if (!this.currentHierarchy.hasOwnProperty('sub')){
-                this.getItemsInCategory();
+                this.categoryGetter.getCategory(this.category.split('>')).then(res => {
+                  this.categoryItems = res;
+                });
               } // if
               break;
             } // if
@@ -70,25 +72,6 @@ export class CategoryComponent implements OnInit {
       return currentHierarchy;
     } // if
     return currentHierarchy;
-  }
-
-  private getItemsInCategory(): void{
-
-    this.configService.getConfig('storeId').subscribe({
-      next: storeId => {
-        const httpParams = new HttpParams()
-              .set('category', this.category)
-              .set('storeId', storeId + '>Product');
-
-        const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'category', httpParams);
-        resp.subscribe({
-          next: (data: any) => {
-            this.categoryItems = data;
-          },
-          error: (err) => console.log(err)
-        });
-      }
-    });
   }
 
 }

@@ -1,0 +1,7 @@
+<div>{{title}}</div>
+<mat-grid-list [cols]="4" rowHeight="300px" gutterSize="8px">
+    <mat-grid-tile *ngFor="let product of finalProducts">
+        <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
+            [width]="300" style="height: 100%; width: auto; margin: auto">
+    </mat-grid-tile>
+</mat-grid-list>

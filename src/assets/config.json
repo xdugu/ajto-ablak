@@ -26,8 +26,40 @@
             "available": ["hu"]
         }
     },
-    "homePage":[
-        
-    ],
+    "pages":{
+        "general":{
+            "logoImg": "/assets/fixed/header/images/logo.jpg"
+        },
+        "home":{
+            "landerImg": "/assets/home/lander.jpg",
+            "pageFlow":[
+                {
+                    "title":{"en": "Our Other Products", "hu": "Egyéb termékeink"},
+                    "type": "product",
+                    "items": ["Benny-fekhely", "Cocco-bujozsak", "Masuta-babzsak", "kutya-kanape-szurke"],
+                    "showPrice": true
+                },
+                {
+                    "title":{"en": "Items in stock", "hu": "Raktáron"},
+                    "type": "category",
+                    "items": ["Kutyalepcso>Raktaron"],
+                    "showPrice": true
+                }
+            ]
+        },
+        "category":{
+            "arrangements":{
+                "mobile": {
+                    "numOfItemsPerRow": 2
+                },
+                "tablet":{
+                    "numOfItemsPerRow": 3
+                },
+                "wideScreen":{
+                    "numOfItemsPerRow": 3
+                }
+            }
+        }
+    },
     "version": 10
 }

@@ -11,6 +11,10 @@ import { ProductHierarchyService} from './shared-services/product-hierarchy.serv
 import { ScreenTypeService } from './shared-services/screen-type.service';
 import { ApiManagerService } from './shared-services/api-manager.service';
 import { ConfigService } from './shared-services/config.service';
+import { CategoryGetterService} from './shared-services/category-getter.service';
+import { ProductGetterService} from './shared-services/product-getter.service';
+
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
@@ -26,7 +30,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSidenavModule,
     HttpClientModule
   ],
-  providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService, ConfigService],
+  providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService,
+    ConfigService, CategoryGetterService, ProductGetterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

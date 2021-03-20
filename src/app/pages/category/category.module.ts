@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
+import { SharedModuleModule} from '@app/shared-module/shared-module.module';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+
 
 
 @NgModule({
@@ -13,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     CategoryRoutingModule,
+    SharedModuleModule,
     MatGridListModule,
     MatButtonModule
   ]
