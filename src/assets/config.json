@@ -42,7 +42,7 @@
                 {
                     "title":{"en": "Items in stock", "hu": "Raktáron"},
                     "type": "category",
-                    "items": ["Kutyalepcso>Raktaron"],
+                    "items": ["Kutyalepcso", "Raktaron"],
                     "showPrice": true
                 }
             ]

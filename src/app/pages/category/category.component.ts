@@ -4,7 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import { Subscription } from 'rxjs';
 import {ProductHierarchy, ProductHierarchyService} from '@app/shared-services/product-hierarchy.service';
 import {ConfigService} from '@app/shared-services/config.service';
-import { CategoryGetterService} from '@app/shared-services/category-getter.service';
+import { CategoryGetterService} from '@app/pages/services/category-getter.service';
+import { ScreenTypeService } from 'app/shared-services/screen-type.service';
 
 
 @Component({
@@ -19,8 +20,11 @@ export class CategoryComponent implements OnInit {
   categoryItems: [];
   bucketUrl: string = null;
 
+  numOfItemsPerRow = 2;
+
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
-              private categoryGetter: CategoryGetterService, configService: ConfigService) {
+              private categoryGetter: CategoryGetterService, configService: ConfigService,
+              private screenService: ScreenTypeService) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
@@ -43,8 +47,8 @@ export class CategoryComponent implements OnInit {
 
               // if we are at the tail-end of category, attempt to get items inside it
               if (!this.currentHierarchy.hasOwnProperty('sub')){
-                this.categoryGetter.getCategory(this.category.split('>')).then(res => {
-                  this.categoryItems = res;
+                this.categoryGetter.getCategory(this.category.split('>')).then(items => {
+                  this.categoryItems = items;
                 });
               } // if
               break;
@@ -52,6 +56,19 @@ export class CategoryComponent implements OnInit {
           } // for
         } // next
       });
+    });
+
+    this.screenService.getScreenTypeUpdate().subscribe({
+      next: type => {
+        switch (type){
+          case 'mobile':
+            this.numOfItemsPerRow = 2;
+            break;
+
+          default:
+            this.numOfItemsPerRow = 3;
+        }
+      }
     });
   }
 

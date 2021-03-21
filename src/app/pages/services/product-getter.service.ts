@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import {ApiManagerService, API_METHOD, API_MODE} from './api-manager.service';
-import {ConfigService} from './config.service';
+import {ApiManagerService, API_METHOD, API_MODE} from '@app/shared-services/api-manager.service';
+import {ConfigService} from '@app/shared-services/config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,11 @@ export class ProductGetterService {
   // returns an array of requested products. Note that they may not be in the order requested
   getProducts(products: Array<string>): Promise<any>{
     return new Promise((resolve, reject) => {
+      if (products.length === 0){
+        resolve([]);
+        return;
+      }
+
       const httpParams = new HttpParams()
       .set('items', products.join(','))
       .set('storeId', this.storeId);

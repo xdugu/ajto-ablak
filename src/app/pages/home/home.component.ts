@@ -14,11 +14,12 @@ export class HomeComponent implements OnInit {
   hierarchy: ProductHierarchy[]; // determine hierarchy
   subscriptions: Subscription[] = [];
   pageFlow: [];
+  screenType = 'mobile';
 
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
               private configService: ConfigService){
     screenTypeService.getScreenTypeUpdate().subscribe({
-      next: state => this.onScreenSizeChange(state)
+      next: state => {this.onScreenSizeChange(state); this.screenType = state; }
     });
 
     this.subscriptions.push(pHService.getHierarchy().subscribe({

@@ -1,1 +1,7 @@
-<p>category-gallery works!</p>
+<div>{{title}}</div>
+<mat-grid-list [cols]="itemsPerRow" rowHeight="300px" gutterSize="8px">
+    <mat-grid-tile *ngFor="let item of categoryItems">
+        <img [appImageSource]="bucketUrl + item.Images.path + item.Images.list[0].name"
+            [width]="300" style="height: 100%; width: auto; margin: auto">
+    </mat-grid-tile>
+</mat-grid-list>

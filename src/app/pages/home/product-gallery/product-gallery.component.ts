@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ProductGetterService} from '@app/shared-services/product-getter.service';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ProductGetterService} from '@app/pages/services/product-getter.service';
 import { ConfigService } from '@app/shared-services/config.service';
 
 
@@ -16,6 +16,7 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
 
   finalProducts = [];
   bucketUrl = null;
+  itemsPerRow = 2;
 
   constructor(private productGetter: ProductGetterService, private configService: ConfigService) { }
 
@@ -23,12 +24,25 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
     this.configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
-    this.productGetter.getProducts(this.products).then(res => {
-      this.products = res;
-    });
+    this.getProducts();
   }
 
-  ngOnChanges(): void{
+  ngOnChanges(changes: SimpleChanges): void{
+
+    if (changes.hasOwnProperty('products')){
+      this.getProducts();
+    }
+    switch (this.screenType){
+      case 'mobile':
+        this.itemsPerRow = 2;
+        break;
+
+      default:
+        this.itemsPerRow = 4;
+    }
+  }
+
+  private getProducts(): void{
     this.productGetter.getProducts(this.products).then(res => {
       this.finalProducts = res;
     });

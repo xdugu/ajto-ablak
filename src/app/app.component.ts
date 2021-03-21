@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { ScreenTypeService} from './shared-services/screen-type.service';
 
 @Component({
@@ -12,9 +13,18 @@ export class AppComponent {
   sideBarMode = 'push';
   currentView = 'mobile';
 
-  constructor(screenTypeService: ScreenTypeService){
+  constructor(screenTypeService: ScreenTypeService, router: Router){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.onScreenSizeChange(state)
+    });
+
+    // listen to route change events to hide sidebar in mobile devices
+    router.events.subscribe({
+      next: event => {
+        if (event instanceof NavigationStart && this.currentView === 'mobile'){
+          this.sideBarVisible = false;
+        }
+      }
     });
 
   }

@@ -10,8 +10,13 @@
 </mat-grid-list>
 
 <ng-container *ngFor="let flow of pageFlow">
-  <app-product-gallery *ngIf="flow.type == 'product'" [title]="flow.title.en"
-    [products]="flow.items">
-  </app-product-gallery>
+  <ng-container [ngSwitch]="flow.type">
+    <app-product-gallery *ngSwitchCase="'product'" [title]="flow.title.en"
+      [products]="flow.items" [screenType]="screenType">
+    </app-product-gallery>
+    <app-category-gallery *ngSwitchCase="'category'" [title]="flow.title.en"
+      [categoryName]="flow.items" [screenType]="screenType">
+    </app-category-gallery>
+  </ng-container>
 
 </ng-container>

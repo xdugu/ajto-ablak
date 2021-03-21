@@ -1,7 +1,8 @@
 <!-- For hierarchies that have children -->
 <ng-container *ngIf="currentHierarchy != null ">
+    <h1 mat-title class="w3-center">{{currentHierarchy.text.en}}</h1>
     <mat-grid-list *ngIf="currentHierarchy.hasOwnProperty('sub'); else lastChild" 
-            [cols]="2" rowHeight="300px" gutterSize="8px">
+            [cols]="numOfItemsPerRow" rowHeight="300px" gutterSize="8px">
         <mat-grid-tile *ngFor="let child of currentHierarchy.sub" [style.background]="'yellow'">
             <a mat-button [routerLink]="child.name">{{child.text.en}}</a>
         </mat-grid-tile>
@@ -10,10 +11,13 @@
     <!-- For hierarchies that don't have children -->
     <ng-template #lastChild>
         <mat-grid-list 
-            [cols]="3" rowHeight="300px" gutterSize="8px">
+            [cols]="numOfItemsPerRow" rowHeight="300px" gutterSize="8px">
         <mat-grid-tile *ngFor="let product of categoryItems">
-            <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
-                [width]="300" style="height: 100%; width: auto; margin: auto">
+            <a style="height: 100%; width: 100%; display: block" [routerLink]="['product', product.ItemId]">
+                <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
+                    [width]="300" style="height: 80%; width: auto; margin: auto; display:block">
+                <div class="w3-center"><b>{{product.Title.en}}</b><br>{{product.Price.huf | currency : 'HUF'}}</div>
+            </a>
         </mat-grid-tile>
     </mat-grid-list>
     </ng-template>

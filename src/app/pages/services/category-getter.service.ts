@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import {ApiManagerService, API_METHOD, API_MODE} from './api-manager.service';
-import {ConfigService} from './config.service';
+import {ApiManagerService, API_METHOD, API_MODE} from '@app/shared-services/api-manager.service';
+import {ConfigService} from '@app/shared-services/config.service';
 
 // This service will get category items
 
