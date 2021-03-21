@@ -1,0 +1,68 @@
+<ng-container *ngIf="product != null">
+    <div class="w3-row">
+        <div class="w3-col l11s">
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slickConfig" 
+                style="width: 100%;">
+                <div  ngxSlickItem *ngFor="let imgName of product.Images.list" 
+                        style="width:100%; overflow-y:hidden;">
+
+                    <img  [appImageSource]="basketUrl + product.Images.path + imgName.name" 
+                          [width]="500"
+                          class="w3-center"
+                          style="width:100%; height:auto;"> 
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+    <div>
+        <h2 class="w3-margin-top">{{product.Title.en}}</h2>
+        <div>
+          <div *ngIf="product.Price.original.discountEnabled" 
+                style="text-decoration: line-through;">
+                {{ product.Price.original.huf | currency : 'HUF'}}
+          </div>
+        <div #price class="price-total">{{ product.Price.huf | currency : 'HUF'}}</div>
+        </div><br>
+        <!--mat-form-field  *ngFor="let variant of product.Variants.variants; index as i">
+            <mat-label>{{variant.text.en}}</mat-label>
+            <mat-select matNativeControl [(value)]="pickedSpec[i]" (selectionChange)="updateProductPrice(price)">
+              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
+                [disabled]="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
+                {{option.text.en}}
+                <span *ngIf="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">(<span i18n="@@OutOfStock">Out Of Stock</span>)</span>
+              </mat-option>
+            </mat-select>
+        </mat-form-field--><br>
+        <button mat-raised-button color="primary">
+            Add To Basket
+        </button><br><br>
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Description
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div [innerHtml]="product.Description.en"></div>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="currentlyExpanded = 'sizeChart'">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Size Chart
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="currentlyExpanded = 'shipping'">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>Shipping</mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="currentlyExpanded = 'returns'">
+              <mat-expansion-panel-header>
+                <mat-panel-title>Returns</mat-panel-title>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div style="height:200px"></div>
+    </div>
+</ng-container>

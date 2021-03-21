@@ -7,3 +7,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a {
     text-decoration: none;
 }
+
+.slick-prev:before, .slick-next:before{
+  color: black;
+	font-size: 25px;
+}
+	
+.slick-prev {
+  z-index: 1;
+  left: 5px;
+}
+  .slick-next {
+  z-index: 1;
+  right: 5px;
+}

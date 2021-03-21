@@ -19,7 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FixedElementsModule,

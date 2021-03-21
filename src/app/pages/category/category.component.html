@@ -13,7 +13,7 @@
         <mat-grid-list 
             [cols]="numOfItemsPerRow" rowHeight="300px" gutterSize="8px">
         <mat-grid-tile *ngFor="let product of categoryItems">
-            <a style="height: 100%; width: 100%; display: block" [routerLink]="['product', product.ItemId]">
+            <a style="height: 100%; width: 100%; display: block" [routerLink]="['/product', product.ItemId]">
                 <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
                     [width]="300" style="height: 80%; width: auto; margin: auto; display:block">
                 <div class="w3-center"><b>{{product.Title.en}}</b><br>{{product.Price.huf | currency : 'HUF'}}</div>
