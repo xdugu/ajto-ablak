@@ -7,28 +7,30 @@ import {ConfigService} from '@app/shared-services/config.service';
   providedIn: 'root'
 })
 export class ProductGetterService {
-  private storeId = null;
 
-  constructor(configService: ConfigService, private apiService: ApiManagerService) {
-    configService.getConfig('storeId').subscribe({
-      next: res => this.storeId = res
-    });
-  }
+  constructor(private configService: ConfigService, private apiService: ApiManagerService) {}
 
   // returns a single requested product
   getProduct(productId: string): Promise<any>{
 
     return new Promise((resolve, reject) => {
-      const httpParams = new HttpParams()
-      .set('itemId', productId)
-      .set('storeId', this.storeId);
 
-      const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'product', httpParams);
-      resp.subscribe({
-        next: (evt: any) => resolve(evt.data),
+      this.configService.getConfig('storeId').subscribe({
+        next: storeId => {
+          const httpParams = new HttpParams()
+          .set('itemId', productId)
+          .set('storeId', storeId);
+
+          const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'product', httpParams);
+          resp.subscribe({
+            next: (evt: any) => resolve(evt.data),
+            error: err => reject(err)
+            }
+          );
+        },
         error: err => reject(err)
-        }
-      );
+      });
+
     });
   }
 
@@ -40,16 +42,22 @@ export class ProductGetterService {
         return;
       }
 
-      const httpParams = new HttpParams()
-      .set('items', products.join(','))
-      .set('storeId', this.storeId);
+      this.configService.getConfig('storeId').subscribe({
+        next: storeId => {
+          const httpParams = new HttpParams()
+          .set('items', products.join(','))
+          .set('storeId', storeId);
 
-      const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'products', httpParams);
-      resp.subscribe({
-        next: (evt: any) => resolve(evt),
+          const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'products', httpParams);
+          resp.subscribe({
+            next: (evt: any) => resolve(evt),
+            error: err => reject(err)
+            }
+          );
+        },
         error: err => reject(err)
-        }
-      );
+      });
+
     });
   }
 

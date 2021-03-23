@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -41,7 +42,7 @@ export class ConfigService {
   // performs network getting of config
   private getConfigFromNetwork(): void{
     this.requestInProgress = true;
-    this.http.get('assets/config.json').subscribe({
+    this.http.get(`${environment.url}/assets/config.json`).subscribe({
       next: res => {this.currentConfig = res; this.requestInProgress = false; },
       error: () => this.requestInProgress = false,
       complete: () => this.requestInProgress = false

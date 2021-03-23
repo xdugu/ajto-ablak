@@ -1,5 +1,13 @@
 service: serverless-common-web-template
 
+plugins:
+  - serverless-plugin-scripts
+custom:
+  scripts:
+    hooks:
+      #'before:deploy:deploy': 'npm run build:ssr' # build both app and sever
+      'deploy:finalize': 'node helper/assetsUploader.js' # upload assets to s3
+      
 resources:
   Resources:
     CloudFrontDistribution:
@@ -46,21 +54,36 @@ package:
 functions:
   myLambdaAtEdge:
     handler: lambda.ssrserverless
-    memorySize: 128
-    timeout: 5
+    memorySize: 1024
+    timeout: 3
     runtime: nodejs12.x
     events:
       - cloudFront:
-          eventType: origin-request
-          origin: s3://adugu-testing.s3.amazonaws.com
+          eventType: origin-response
+          pathPattern: '*.*'
+          origin: s3://adugu-testing.s3.amazonaws.com/webAssets
           cachePolicy:
             name: myCachePolicy
           behavior:
-            ViewerProtocolPolicy: https-only
+            ViewerProtocolPolicy: redirect-to-https
             AllowedMethods:
               - 'GET'
               - 'HEAD'
             CachedMethods:
               - 'GET'
               - 'HEAD'
+      - cloudFront:
+          eventType: origin-request
+          origin: s3://adugu-testing.s3.amazonaws.com/webAssets
+          cachePolicy:
+            name: myCachePolicy
+          behavior:
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods:
+              - 'GET'
+              - 'HEAD'
+            CachedMethods:
+              - 'GET'
+              - 'HEAD'
+
     
