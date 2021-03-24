@@ -17,6 +17,7 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
   finalProducts = [];
   bucketUrl = null;
   itemsPerRow = 2;
+  rowHeight = '200px';
 
   constructor(private productGetter: ProductGetterService, private configService: ConfigService) { }
 
@@ -35,10 +36,12 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
     switch (this.screenType){
       case 'mobile':
         this.itemsPerRow = 2;
+        this.rowHeight = '250px';
         break;
 
       default:
         this.itemsPerRow = 4;
+        this.rowHeight = '350px';
     }
   }
 

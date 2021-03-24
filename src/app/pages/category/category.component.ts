@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit {
   bucketUrl: string = null;
 
   numOfItemsPerRow = 2;
+  rowHeight = '250px';
 
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
               private categoryGetter: CategoryGetterService, configService: ConfigService,
@@ -63,10 +64,12 @@ export class CategoryComponent implements OnInit {
         switch (type){
           case 'mobile':
             this.numOfItemsPerRow = 2;
+            this.rowHeight = '300px';
             break;
 
           default:
             this.numOfItemsPerRow = 3;
+            this.rowHeight = '350px';
         }
       }
     });

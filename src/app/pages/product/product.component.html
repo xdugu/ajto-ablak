@@ -1,16 +1,20 @@
 <ng-container *ngIf="product != null">
     <div class="w3-row">
         <div class="w3-col l11s">
-            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slickConfig" 
-                style="width: 100%;">
-                <div  ngxSlickItem *ngFor="let imgName of product.Images.list" 
-                        style="width:100%; overflow-y:hidden;">
+            <ngx-slick-carousel  #slickModal="slick-carousel" [config]="slickConfig" 
+                style="width: 100%;" [style.height.px]="carouselHeight"
+                (afterChange)="onCarouselEvent($event)"
+                (init)="onCarouselEvent($event)">
+                <ng-container *ngFor="let imgName of product.Images.list" >
+                  <div  ngxSlickItem *ngIf="imgName.type == 'product'"
+                          style="width:100%; overflow-y:hidden;">
 
-                    <img  [appImageSource]="basketUrl + product.Images.path + imgName.name" 
-                          [width]="500"
-                          class="w3-center"
-                          style="width:100%; height:auto;"> 
-                </div>
+                      <img  [appImageSource]="basketUrl + product.Images.path + imgName.name" 
+                            [width]="500"
+                            class="w3-center"
+                            style="width:100%; height:auto;"> 
+                  </div>
+                </ng-container>
             </ngx-slick-carousel>
         </div>
     </div>

@@ -8,6 +8,12 @@ a {
     text-decoration: none;
 }
 
+.grow-on-hover{
+	overflow: hidden;
+}
+.grow-on-hover img{ transition: all .35s ease-in-out; }
+.grow-on-hover:hover img{ transform: scale(1.02); }
+
 .slick-prev:before, .slick-next:before{
   color: black;
 	font-size: 25px;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import { ConfigService } from '@app/shared-services/config.service';
@@ -10,6 +10,7 @@ import { ProductGetterService } from '../services/product-getter.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+  carouselHeight: number;
   product = null;
   basketUrl = null;
 
@@ -19,6 +20,7 @@ export class ProductComponent implements OnInit {
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
     });
+    this.carouselHeight = 600;
 
   }
 
@@ -47,8 +49,28 @@ export class ProductComponent implements OnInit {
       const productId = param.get('productId');
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
+        this.carouselHeight = this.getMinImageHeight(this.product.Images.list);
       });
     });
+  }
+
+  onCarouselEvent(event: any): void{
+    const currentSlideIndex = event.currentSlide || 0;
+
+    this.carouselHeight = ((event.slick.slideWidth * this.product.Images.list[currentSlideIndex].height) /
+                            this.product.Images.list[currentSlideIndex].width) + 30;
+  }
+
+  private getMinImageHeight(images: any): number{
+     let minHeight = 2000;
+
+     for (const image of images){
+       if (image.height < minHeight){
+         minHeight = image.height;
+       }
+     }
+
+     return minHeight;
   }
 
 }

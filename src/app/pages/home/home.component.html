@@ -1,14 +1,30 @@
 
-<img src="assets/home/lander.jpg" style="width: 100%; height: auto;">
+<img src="assets/home/lander.jpg" 
+  style="width: 100%; height: auto; min-height: 300px">
+
+<!-- Choose the first two main hierarchy items to be displayed -->
 <mat-grid-list [cols]="numOfCols" rowHeight="300px" gutterSize="8px">
-    <ng-container *ngFor="let h of hierarchy; index as i">
+    <!--ng-container *ngFor="let h of hierarchy; index as i">
       <mat-grid-tile  *ngIf="i < 2" [style.background]="'green'">
         <a mat-button [routerLink]="['category', h.name]">{{h.text.en}}</a>
       </mat-grid-tile>
-    </ng-container>
-    
+    </ng-container-->
+    <mat-grid-tile>
+      <a class="w3-display-container" [routerLink]="['/']">
+        <img src="/assets/home/door.jpg" class="main-category-pic" style="width: 100%; height: auto">
+        <h1 class="w3-display-middle w3-xxlarge home-category-text">Doors</h1>
+      </a>  
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a class="w3-display-container" [routerLink]="['/']">
+        <img src="/assets/home/window.jpg" class="main-category-pic" style="width: 100%; height: auto">
+        <h1 class="w3-display-middle w3-xxlarge home-category-text">Windows</h1>
+      </a>  
+    </mat-grid-tile>
+      
 </mat-grid-list>
 
+<!-- Implement the rest of the page flow -->
 <ng-container *ngFor="let flow of pageFlow">
   <ng-container [ngSwitch]="flow.type">
     <app-product-gallery *ngSwitchCase="'product'" [title]="flow.title.en"
