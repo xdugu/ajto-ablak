@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { ScreenTypeService} from './shared-services/screen-type.service';
+import { LanguageService } from './shared-services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,10 @@ export class AppComponent {
   sideBarMode = 'push';
   currentView = 'mobile';
 
-  constructor(screenTypeService: ScreenTypeService, router: Router){
+  siteLanguage = 'en';
+
+  constructor(screenTypeService: ScreenTypeService, router: Router,
+              langService: LanguageService){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.onScreenSizeChange(state)
     });
@@ -26,6 +30,8 @@ export class AppComponent {
         }
       }
     });
+
+    langService.getLang().then(lang => this.siteLanguage = lang);
 
   }
 

@@ -13,6 +13,7 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
   @Input() title;
   @Input() products: [];
   @Input() showPrice = false;
+  @Input() lang = 'en';
 
   finalProducts = [];
   bucketUrl = null;

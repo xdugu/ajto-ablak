@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ProductHierarchy, ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
@@ -16,6 +16,7 @@ interface SideBarProductHierarchy extends ProductHierarchy{
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit, OnDestroy {
+  @Input() lang: string;
   productHierarchy: Array<SideBarProductHierarchy>;
   private pHServiceSubscription: Subscription;
   treeControl = new NestedTreeControl<SideBarProductHierarchy>(node => node.sub);
@@ -39,12 +40,14 @@ export class SideBarComponent implements OnInit, OnDestroy {
   // called when a tree node is clicked
   // ensures that only one tree and its branches are visible at any time
   toggleTreeNodes(node: SideBarProductHierarchy): void{
+
     if (this.treeControl.isExpanded(node)){
        this.treeControl.collapse(node);
     }else{
-      this.treeControl.collapseAll();
+      // this.treeControl.collapseAll();
       this.treeControl.expand(node);
     }
+
  }
 
   // updates current product hierarchy

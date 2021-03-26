@@ -19,20 +19,20 @@
         </div>
     </div>
     <div>
-        <h2 class="w3-margin-top">{{product.Title.en}}</h2>
+        <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
         <div>
           <div *ngIf="product.Price.original.discountEnabled" 
                 style="text-decoration: line-through;">
                 {{ product.Price.original.huf | currency : 'HUF'}}
           </div>
-        <div #price class="price-total">{{ product.Price.huf | currency : 'HUF'}}</div>
+        <div #price class="accent-color">{{ product.Price.huf | currency : 'HUF'}}</div>
         </div><br>
         <!--mat-form-field  *ngFor="let variant of product.Variants.variants; index as i">
-            <mat-label>{{variant.text.en}}</mat-label>
+            <mat-label>{{variant.text[siteLang]}}</mat-label>
             <mat-select matNativeControl [(value)]="pickedSpec[i]" (selectionChange)="updateProductPrice(price)">
               <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
                 [disabled]="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
-                {{option.text.en}}
+                {{option.text[siteLang]}}
                 <span *ngIf="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">(<span i18n="@@OutOfStock">Out Of Stock</span>)</span>
               </mat-option>
             </mat-select>
@@ -47,7 +47,7 @@
                   Description
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <div [innerHtml]="product.Description.en"></div>
+              <div [innerHtml]="product.Description[siteLang]"></div>
             </mat-expansion-panel>
             <mat-expansion-panel (opened)="currentlyExpanded = 'sizeChart'">
                 <mat-expansion-panel-header>

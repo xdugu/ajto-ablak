@@ -2,16 +2,16 @@
     <!-- This is the tree nodes that don't have children-->
     <mat-tree-node *matTreeNodeDef="let node;">
       <a class="no-child-node" [routerLink]="node.link" mat-button>
-        {{node.text.en}}
+        {{node.text[lang]}}
       </a>
     </mat-tree-node>
     <!-- This is the tree nodes that have children -->
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
       <li>
         <div class="mat-tree-node" >
-          <a [routerLink]="node.link" mat-button>{{node.text.en}}</a>
+          <a [routerLink]="node.link" mat-button>{{node.text[lang]}}</a>
           <button mat-icon-button (click)="toggleTreeNodes(node)">
-            <mat-icon>
+            <mat-icon color="accent">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>

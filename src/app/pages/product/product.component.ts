@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 
 import { ConfigService } from '@app/shared-services/config.service';
 import { ProductGetterService } from '../services/product-getter.service';
+import { LanguageService } from 'app/shared-services/language.service';
 
 @Component({
   selector: 'app-product',
@@ -14,8 +15,10 @@ export class ProductComponent implements OnInit {
   product = null;
   basketUrl = null;
 
+  siteLang = 'en';
+
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
-              config: ConfigService) {
+              config: ConfigService, private langService: LanguageService) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
@@ -52,6 +55,10 @@ export class ProductComponent implements OnInit {
         this.carouselHeight = this.getMinImageHeight(this.product.Images.list);
       });
     });
+
+    this.langService.getLang().then(lang => this.siteLang = lang);
+
+
   }
 
   onCarouselEvent(event: any): void{

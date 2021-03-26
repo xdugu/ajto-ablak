@@ -6,7 +6,7 @@
                 <img [appImageSource]="bucketUrl + item.Images.path + item.Images.list[0].name"
                         [width]="300" style="margin: auto; display: block; height: 100%">              
             </div>
-            <div class="w3-center">{{item.Title.en}}</div>
+            <div class="w3-center">{{item.Title[lang]}}</div>
         </a>
     </mat-grid-tile>
 </mat-grid-list>

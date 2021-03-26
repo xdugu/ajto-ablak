@@ -12,6 +12,7 @@ export class CategoryGalleryComponent implements OnInit, OnChanges {
   @Input() title;
   @Input() categoryName: [];
   @Input() maxItems = 4;
+  @Input() lang = 'en';
 
   categoryItems = [];
   bucketUrl = null;

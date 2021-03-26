@@ -1,13 +1,13 @@
 <!-- For hierarchies that have children -->
 <ng-container *ngIf="currentHierarchy != null ">
-    <h1 mat-title class="w3-center">{{currentHierarchy.text.en}}</h1>
+    <h1 mat-title class="w3-center">{{currentHierarchy.text[siteLang]}}</h1>
     <mat-grid-list *ngIf="currentHierarchy.hasOwnProperty('sub'); else lastChild" 
             [cols]="numOfItemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
         <mat-grid-tile *ngFor="let child of currentHierarchy.sub">
-            <a  [routerLink]="child.name" class="w3-display-container">
-                <img id="category-back-img" src="/assets/category/door.jpg" 
+            <a  [routerLink]="child.name" class="w3-display-container" style="height:100%; width: 100%">
+                <img src="/assets/category/door.jpg"
                     style="height: 100%; width: auto">
-                <span class="w3-display-middle mat-h2">{{child.text.en}}</span>
+                <span class="w3-display-middle mat-h2 category-text">{{child.text[siteLang]}}</span>
             </a>
         </mat-grid-tile>
     </mat-grid-list>
@@ -21,7 +21,7 @@
                         <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
                             [width]="300" style="height: 100%; width: auto; margin: auto; display:block">
                     </div>
-                    <div class="w3-center"><b>{{product.Title.en}}</b><br>{{product.Price.huf | currency : 'HUF'}}</div>
+                    <div class="w3-center"><b>{{product.Title[siteLang]}}</b><br>{{product.Price.huf | currency : 'HUF'}}</div>
                 </a>
             </mat-grid-tile>
         </mat-grid-list>

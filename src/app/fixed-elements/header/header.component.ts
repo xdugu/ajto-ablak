@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 import { ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
 import { ScreenTypeService} from '../../shared-services/screen-type.service';
 
@@ -11,6 +11,7 @@ import { ScreenTypeService} from '../../shared-services/screen-type.service';
 export class HeaderComponent implements OnInit {
 
   @Output() menuButtonClicked = new EventEmitter();
+  @Input() lang: string;
   screenState = 'mobile';
   productHierarchy: any;
 

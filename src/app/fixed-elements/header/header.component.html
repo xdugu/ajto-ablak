@@ -5,7 +5,7 @@
         <ng-template matMenuContent let-item="item">
             <a mat-menu-item *ngFor="let child of item.sub"
                 [routerLink]="['category', item.name, child.name]">
-               {{child.text.en}}
+               {{child.text[lang]}}
             </a>
         </ng-template>
     </mat-menu>
@@ -21,11 +21,11 @@
                 <!-- Show only first two items in first level hierarchy-->
                 <a mat-button *ngIf="i < 2 && !item.hasOwnProperty('sub')"
                     [routerLink]="['category', item.name]">
-                    {{item.text.en}}
+                    {{item.text[lang]}}
                 </a>
                 <button *ngIf="i < 2 && item.hasOwnProperty('sub')" mat-button
                     [matMenuTriggerFor]="hierarchyMenu" [matMenuTriggerData]="{item: item}">
-                    <span>{{item.text.en}}</span>
+                    <span>{{item.text[lang]}}</span>
                     <mat-icon color="accent">
                         keyboard_arrow_down
                     </mat-icon>
@@ -39,8 +39,8 @@
                     shopping_basket
                 </mat-icon>
             </a>
-            <a mat-button>Contact</a>
-            <a mat-button>About Us</a>
+            <a mat-button>Kapcsolat</a>
+            <a mat-button>Rólunk</a>
             
     </mat-toolbar>
 

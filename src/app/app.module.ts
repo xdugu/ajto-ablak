@@ -10,6 +10,7 @@ import { ProductHierarchyService} from './shared-services/product-hierarchy.serv
 import { ScreenTypeService } from './shared-services/screen-type.service';
 import { ApiManagerService } from './shared-services/api-manager.service';
 import { ConfigService } from './shared-services/config.service';
+import { LanguageService } from './shared-services/language.service';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -30,7 +31,7 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService,
-    ConfigService],
+    ConfigService, LanguageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

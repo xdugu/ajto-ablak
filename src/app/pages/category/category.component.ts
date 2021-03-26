@@ -6,6 +6,7 @@ import {ProductHierarchy, ProductHierarchyService} from '@app/shared-services/pr
 import {ConfigService} from '@app/shared-services/config.service';
 import { CategoryGetterService} from '@app/pages/services/category-getter.service';
 import { ScreenTypeService } from 'app/shared-services/screen-type.service';
+import { LanguageService } from 'app/shared-services/language.service';
 
 
 @Component({
@@ -22,10 +23,11 @@ export class CategoryComponent implements OnInit {
 
   numOfItemsPerRow = 2;
   rowHeight = '250px';
+  siteLang = 'en';
 
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
               private categoryGetter: CategoryGetterService, configService: ConfigService,
-              private screenService: ScreenTypeService) {
+              private screenService: ScreenTypeService, private langService: LanguageService) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
@@ -73,6 +75,8 @@ export class CategoryComponent implements OnInit {
         }
       }
     });
+
+    this.langService.getLang().then(lang => this.siteLang = lang);
   }
 
   // Given array of names, returns the current hierarchy

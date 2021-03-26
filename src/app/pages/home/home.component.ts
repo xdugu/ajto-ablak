@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ScreenTypeService} from '@app/shared-services/screen-type.service';
 import { ProductHierarchy, ProductHierarchyService} from '@app/shared-services/product-hierarchy.service';
 import { ConfigService} from '@app/shared-services/config.service';
-import { Subscription } from 'rxjs';
+import { LanguageService } from '@app/shared-services/language.service';
+
 
 @Component({
   selector: 'app-home',
@@ -15,9 +17,10 @@ export class HomeComponent implements OnInit {
   subscriptions: Subscription[] = [];
   pageFlow: [];
   screenType = 'mobile';
+  siteLang = 'en';
 
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
-              private configService: ConfigService){
+              private configService: ConfigService, private langService: LanguageService){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => {this.onScreenSizeChange(state); this.screenType = state; }
     });
@@ -34,6 +37,8 @@ export class HomeComponent implements OnInit {
         this.pageFlow = res.home.pageFlow;
       }
     });
+
+    this.langService.getLang().then(lang => this.siteLang = lang);
   }
 
   // reacts to changes in screen size
