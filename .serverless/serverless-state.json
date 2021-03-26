@@ -209,13 +209,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-common-web-template/dev/1616523363988-2021-03-23T18:16:03.988Z/serverless-common-web-template.zip"
+                "S3Key": "serverless/serverless-common-web-template/dev/1616775586687-2021-03-26T16:19:46.687Z/serverless-common-web-template.zip"
               },
               "Handler": "lambda.ssrserverless",
               "Runtime": "nodejs12.x",
               "FunctionName": "serverless-common-web-template-dev-myLambdaAtEdge",
               "MemorySize": 1024,
-              "Timeout": 5,
+              "Timeout": 3,
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -228,14 +228,14 @@
             ],
             "DeletionPolicy": "Retain"
           },
-          "MyLambdaAtEdgeLambdaVersionOGYXesqHT5sh5XYqegb8yNI5p4KzvBBQkSeQ3Lb1Ew": {
+          "MyLambdaAtEdgeLambdaVersionAmrVQawDtSi8I3ziw4tMhvl0TSxSB562B077d2DXt0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MyLambdaAtEdgeLambdaFunction"
               },
-              "CodeSha256": "Dp929gIMItwZ/xQTPG+kOsY8OK2rhb/Fl4jGwhQW+Fk="
+              "CodeSha256": "7NJ5BM6eqsiacvC5zYY3QPUNAciJxahRl93UHIFc6ww="
             }
           },
           "CloudFrontCachePolicyMyCachePolicy": {
@@ -256,7 +256,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Ref": "MyLambdaAtEdgeLambdaVersionOGYXesqHT5sh5XYqegb8yNI5p4KzvBBQkSeQ3Lb1Ew"
+                "Ref": "MyLambdaAtEdgeLambdaVersionAmrVQawDtSi8I3ziw4tMhvl0TSxSB562B077d2DXt0"
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "edgelambda.amazonaws.com",
@@ -306,7 +306,7 @@
                     {
                       "EventType": "origin-request",
                       "LambdaFunctionARN": {
-                        "Ref": "MyLambdaAtEdgeLambdaVersionOGYXesqHT5sh5XYqegb8yNI5p4KzvBBQkSeQ3Lb1Ew"
+                        "Ref": "MyLambdaAtEdgeLambdaVersionAmrVQawDtSi8I3ziw4tMhvl0TSxSB562B077d2DXt0"
                       }
                     }
                   ]
@@ -338,7 +338,7 @@
                       {
                         "EventType": "origin-response",
                         "LambdaFunctionARN": {
-                          "Ref": "MyLambdaAtEdgeLambdaVersionOGYXesqHT5sh5XYqegb8yNI5p4KzvBBQkSeQ3Lb1Ew"
+                          "Ref": "MyLambdaAtEdgeLambdaVersionAmrVQawDtSi8I3ziw4tMhvl0TSxSB562B077d2DXt0"
                         }
                       }
                     ],
@@ -359,7 +359,7 @@
           "MyLambdaAtEdgeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MyLambdaAtEdgeLambdaVersionOGYXesqHT5sh5XYqegb8yNI5p4KzvBBQkSeQ3Lb1Ew"
+              "Ref": "MyLambdaAtEdgeLambdaVersionAmrVQawDtSi8I3ziw4tMhvl0TSxSB562B077d2DXt0"
             }
           },
           "CloudFrontDistribution": {
@@ -478,7 +478,7 @@
       "myLambdaAtEdge": {
         "handler": "lambda.ssrserverless",
         "memorySize": 1024,
-        "timeout": 5,
+        "timeout": 3,
         "runtime": "nodejs12.x",
         "events": [
           {
@@ -524,7 +524,7 @@
         "versionFunction": true,
         "memory": 1024,
         "vpc": {},
-        "versionLogicalId": "MyLambdaAtEdgeLambdaVersionOGYXesqHT5sh5XYqegb8yNI5p4KzvBBQkSeQ3Lb1Ew"
+        "versionLogicalId": "MyLambdaAtEdgeLambdaVersionAmrVQawDtSi8I3ziw4tMhvl0TSxSB562B077d2DXt0"
       }
     },
     "resources": {
@@ -575,7 +575,7 @@
           "!node_modules/mime-db/**"
         ],
         "artifact": "C:\\Users\\Yayra Adugu\\Documents\\Website\\Ajtoablak\\ajto-ablak\\.serverless\\serverless-common-web-template.zip",
-        "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1616523363988-2021-03-23T18:16:03.988Z"
+        "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1616775586687-2021-03-26T16:19:46.687Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -585,7 +585,7 @@
     "artifact": "C:\\Users\\Yayra Adugu\\Documents\\Website\\Ajtoablak\\ajto-ablak\\.serverless\\serverless-common-web-template.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1616523363988-2021-03-23T18:16:03.988Z",
+    "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1616775586687-2021-03-26T16:19:46.687Z",
     "artifact": "serverless-common-web-template.zip"
   }
 }

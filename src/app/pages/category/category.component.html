@@ -5,9 +5,12 @@
             [cols]="numOfItemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
         <mat-grid-tile *ngFor="let child of currentHierarchy.sub">
             <a  [routerLink]="child.name" class="w3-display-container" style="height:100%; width: 100%">
-                <img src="/assets/category/door.jpg"
-                    style="height: 100%; width: auto">
-                <span class="w3-display-middle mat-h2 category-text">{{child.text[siteLang]}}</span>
+                <div class="image-holder">
+                    <img src="/assets/category/door.jpg" style="height: 100%; width: auto; opacity: 0.6;">
+                </div>
+                <div class="w3-display-middle w3-center mat-h2 category-text" style="width:80%">
+                    {{child.text[siteLang]}}
+                </div>
             </a>
         </mat-grid-tile>
     </mat-grid-list>
@@ -17,7 +20,7 @@
         <mat-grid-list [cols]="numOfItemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
             <mat-grid-tile *ngFor="let product of categoryItems">
                 <a style="height: 100%; width: 100%; display: block" [routerLink]="['/product', product.ItemId]">
-                    <div class="grow-on-hover" style="height: 80%; width: 100%; ">
+                    <div class="grow-on-hover image-holder" style="height: 80%; width: 100%; ">
                         <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
                             [width]="300" style="height: 100%; width: auto; margin: auto; display:block">
                     </div>

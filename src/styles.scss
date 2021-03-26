@@ -8,12 +8,21 @@ a {
     text-decoration: none;
 }
 
-
 .grow-on-hover{
 	overflow: hidden;
 }
 .grow-on-hover img{ transition: all .35s ease-in-out; }
-.grow-on-hover:hover img{ transform: scale(1.02); }
+.grow-on-hover:hover img{ transform: scale(1.04); }
+
+/*Used to center images horizontally and vertically*/
+.image-holder {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.image-holder img {
+  flex: none; /* keep aspect ratio */
+}
 
 .slick-prev:before, .slick-next:before{
   color: black;
