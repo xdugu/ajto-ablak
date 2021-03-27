@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
   carouselHeight: number;
   product = null;
   basketUrl = null;
+  pickedSpec = [];
 
   siteLang = 'en';
 
@@ -52,13 +53,52 @@ export class ProductComponent implements OnInit {
       const productId = param.get('productId');
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
-        this.carouselHeight = this.getMinImageHeight(this.product.Images.list);
+        this.setupVariants();
+        // this.carouselHeight = this.getMinImageHeight(this.product.Images.list);
       });
     });
 
     this.langService.getLang().then(lang => this.siteLang = lang);
+  }
 
+  // setup variant
+  private setupVariants(): void{
 
+    if (this.product.Variants.variants.length > 0){
+
+      // pre-choose the first combination in list
+      const findFirstValid = (candidate) => {
+        if (this.product.TrackStock){
+          return !candidate.disabled && candidate.quantity > 0;
+        }
+        return !candidate.disabled;
+      };
+
+      let combi = this.product.Variants.combinations.find(findFirstValid);
+
+      // in case none are valid, choose the first option
+      if (combi === undefined){
+        combi = this.product.item.Variants.combinations[0];
+      }
+
+      // now loop through each variant to pick right combi
+      this.product.Variants.variants.forEach((variant: any, index: number) => {
+        variant.options.forEach((option: any) => {
+            if (combi.combination[index] === option.name){
+              this.pickedSpec.push(option);
+              if (variant.type === 'group'){
+                // TODO: fix this. Need to actually query for groups
+                const groupKeys = Object.keys(variant.groupInfo);
+                this.pickedSpec[this.pickedSpec.length - 1].chosenVariant =
+                    variant.groupInfo[groupKeys[0]][0];
+              }
+            }
+        });
+      });
+
+      this.product.Price = Object.assign(this.product.Price, combi.price);
+      this.product.Quantity = combi.quantity;
+    }
   }
 
   onCarouselEvent(event: any): void{

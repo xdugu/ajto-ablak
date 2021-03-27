@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  url: 'https://d2zr7lkne30ede.cloudfront.net'
+  url: 'http://localhost:4000'
+  // url: 'https://d2zr7lkne30ede.cloudfront.net'
 };

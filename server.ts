@@ -1,3 +1,7 @@
+/***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
 import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
@@ -12,7 +16,7 @@ import { existsSync } from 'fs';
 export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/ajto-ablak/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  // const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
@@ -22,24 +26,30 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
 
+  server.get('/', (req, res) => {
+    res.redirect('/hu');
+  });
+
+  server.get('/en*', (req, res) => {
+    console.log(req.baseUrl);
+    res.render(join(distFolder, 'en/index.html'), { req, providers: [{ provide: APP_BASE_HREF, useValue: '/en/' }] });
+  });
+
   // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+  server.get('/hu*', (req, res) => {
+    console.log(req.baseUrl);
+    res.render(join(distFolder, 'hu/index.html'), { req, providers: [{ provide: APP_BASE_HREF, useValue: '/hu/' }] });
   });
 
   return server;
 }
 
 function run(): void {
-  console.log('I am running and ready to serve!');
-
   const port = process.env.PORT || 4000;
 
   // Start up the Node server

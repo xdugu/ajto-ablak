@@ -13,6 +13,14 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": {
+          "code": "en"
+        },
+        "locales": {
+          "hu": "src/locale/messages.hu.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -69,6 +77,10 @@
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
+            },
+            "hu": {
+              "localize": ["hu"],
+              "main": "src/main.ts"
             }
           }
         },
@@ -80,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ajto-ablak:build:production"
+            },
+            "hu": {
+              "browserTarget": "ajto-ablak:build:hu"
             }
           }
         },
