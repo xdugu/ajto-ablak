@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="ngi18n" original="ng.template">
+    <unit id="ContactUs">
+      <notes>
+        <note category="location">src/app/fixed-elements/header/header.component.html:42</note>
+      </notes>
+      <segment state="initial">
+        <source>Contact us</source>
+      <target>Kapcsolat</target></segment>
+    </unit><unit id="AboutUs">
+      <notes> 
+      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:26</note></notes>
+      <segment state="initial">
+        <source>About</source>
+      <target>Rólunk</target></segment>
+    </unit><unit id="LegalInformation">
+      <notes>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+      </notes>
+      <segment state="initial">
+        <source> Legal Information </source>
+      <target> Jogi információk</target></segment>
+    </unit><unit id="Doors">
+      <notes>
+        <note category="location">src/app/pages/home/home.component.html:15</note>
+      </notes>
+      <segment state="initial">
+        <source>Doors</source>
+      <target>Ajtók</target></segment>
+    </unit><unit id="Windows">
+      <notes>
+        <note category="location">src/app/pages/home/home.component.html:21</note>
+      </notes>
+      <segment state="initial">
+        <source>Windows</source>
+      <target>Ablakok</target></segment>
+    </unit><unit id="AddToBasket">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:29,30</note>
+      </notes>
+      <segment state="initial">
+        <source> Add To Basket </source>
+      <target> Kosarkba </target></segment>
+    </unit><unit id="ProductDescription">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:52,53</note>
+      </notes>
+      <segment state="initial">
+        <source> Description </source>
+      <target> Leírás </target></segment>
+    </unit><unit id="ProductShipping">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:59</note>
+      </notes>
+      <segment state="initial">
+        <source>Shipping</source>
+      <target>Szállítás</target></segment>
+    </unit><unit id="ProductReturns">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:64</note>
+      </notes>
+      <segment state="initial">
+        <source>Returns</source>
+      <target>Áruvisszaküldés</target></segment>
+    </unit><unit id="OutOfStock">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:41</note>
+      </notes>
+      <segment state="initial">
+        <source>Out Of Stock</source>
+      <target>Nincs raktáron</target></segment>
+    </unit>
+  </file>
+</xliff>

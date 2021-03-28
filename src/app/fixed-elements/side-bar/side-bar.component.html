@@ -22,3 +22,7 @@
       </li>
     </mat-nested-tree-node>
   </mat-tree>
+  <mat-nav-list *ngIf="screenType == 'mobile'">
+    <a mat-list-item [routerLink]="['About']" i18n="@@AboutUs"> About Us </a>
+    <a mat-list-item [routerLink]="['About']" i18n="@@LegalInformation"> Legal Information </a>
+  </mat-nav-list>

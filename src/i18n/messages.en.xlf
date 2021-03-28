@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="en">
+  <file id="ngi18n" original="ng.template">
+    <unit id="ContactUs">
+      <notes>
+        <note category="location">src/app/fixed-elements/header/header.component.html:42</note>
+      </notes>
+      <segment state="final">
+        <source>Contact us</source>
+      <target>Contact us</target></segment>
+    </unit><unit id="AboutUs">
+      <notes>
+        
+        
+        
+      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:26</note></notes>
+      <segment state="final">
+        <source>About</source>
+      <target>About</target></segment>
+    </unit><unit id="LegalInformation">
+      <notes>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+      </notes>
+      <segment state="final">
+        <source> Legal Information </source>
+      <target> Legal Information </target></segment>
+    </unit><unit id="Doors">
+      <notes>
+        <note category="location">src/app/pages/home/home.component.html:15</note>
+      </notes>
+      <segment state="final">
+        <source>Doors</source>
+      <target>Doors</target></segment>
+    </unit><unit id="Windows">
+      <notes>
+        <note category="location">src/app/pages/home/home.component.html:21</note>
+      </notes>
+      <segment state="final">
+        <source>Windows</source>
+      <target>Windows</target></segment>
+    </unit><unit id="AddToBasket">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:29,30</note>
+      </notes>
+      <segment state="final">
+        <source> Add To Basket </source>
+      <target> Add To Basket </target></segment>
+    </unit><unit id="ProductDescription">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:52,53</note>
+      </notes>
+      <segment state="final">
+        <source> Description </source>
+      <target> Description </target></segment>
+    </unit><unit id="ProductShipping">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:59</note>
+      </notes>
+      <segment state="final">
+        <source>Shipping</source>
+      <target>Shipping</target></segment>
+    </unit><unit id="ProductReturns">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:64</note>
+      </notes>
+      <segment state="final">
+        <source>Returns</source>
+      <target>Returns</target></segment>
+    </unit><unit id="OutOfStock">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:41</note>
+      </notes>
+      <segment state="final">
+        <source>Out Of Stock</source>
+      <target>Out Of Stock</target></segment>
+    </unit>
+  </file>
+</xliff>

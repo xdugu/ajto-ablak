@@ -17,6 +17,7 @@ interface SideBarProductHierarchy extends ProductHierarchy{
 })
 export class SideBarComponent implements OnInit, OnDestroy {
   @Input() lang: string;
+  @Input() screenType = 'mobile';
   productHierarchy: Array<SideBarProductHierarchy>;
   private pHServiceSubscription: Subscription;
   treeControl = new NestedTreeControl<SideBarProductHierarchy>(node => node.sub);

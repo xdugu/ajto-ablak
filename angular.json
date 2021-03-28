@@ -18,7 +18,7 @@
           "code": "en"
         },
         "locales": {
-          "hu": "src/locale/messages.hu.xlf"
+          "hu": "src/i18n/messages.hu.xlf"
         }
       },
       "architect": {
@@ -79,8 +79,11 @@
               "ngswConfigPath": "ngsw-config.json"
             },
             "hu": {
-              "localize": ["hu"],
-              "main": "src/main.ts"
+              "aot": true,
+              "outputPath": "dist/ajto-ablak-hu",
+              "i18nFile": "src/i18n/messages.hu.xlf",
+              "i18nFormat": "xlf2",
+              "i18nLocale": "hu"
             }
           }
         },
@@ -194,6 +197,21 @@
           },
           "configurations": {
             "production": {}
+          }
+        },
+        "xliffmerge": {
+          "builder": "@ngx-i18nsupport/tooling:xliffmerge",
+          "options": {
+            "xliffmergeOptions": {
+              "i18nFormat": "xlf2",
+              "srcDir": "src/i18n",
+              "genDir": "src/i18n",
+              "defaultLanguage": "en",
+              "languages": [
+                "en",
+                "hu"
+              ]
+            }
           }
         }
       }
