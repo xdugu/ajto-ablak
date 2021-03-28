@@ -8,20 +8,24 @@
         "files": [
           "/favicon.ico",
           "/index.html",
-          "/manifest.webmanifest",
-          "/*.css",
-          "/*.js"
+          "/manifest.webmanifest"
         ]
       }
     },
     {
       "name": "assets",
       "installMode": "lazy",
-      "updateMode": "prefetch",
+      "updateMode": "lazy",
       "resources": {
         "files": [
+          "/*.css",
+          "/*.js",
           "/assets/**",
           "/*.(eot|svg|cur|jpg|jpeg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ],
+        "urls":[
+          "https://adugu-common.s3.eu-central-1.amazonaws.com/",
+          "https://fonts.googleapis.com/"
         ]
       }
     }
@@ -29,18 +33,10 @@
   "dataGroups": [
     {
       "name": "apis",
-      "urls": ["https://3j1b7pw3nd.execute-api.eu-central-1.amazonaws.com/*"],
+      "urls": ["https://3j1b7pw3nd.execute-api.eu-central-1.amazonaws.com/"],
       "cacheConfig": {
         "maxSize": 50,
         "maxAge": "20m"
-      }
-    },
-    {
-      "name": "s3",
-      "urls": ["https://adugu-common.s3.eu-central-1.amazonaws.com/*"],
-      "cacheConfig": {
-        "maxSize": 150,
-        "maxAge": "30d"
       }
     }
   ]

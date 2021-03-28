@@ -11,6 +11,7 @@
     "dev:ssr": "ng run ajto-ablak:serve-ssr",
     "serve:ssr": "node dist/ajto-ablak/server/main.js",
     "build:ssr": "ng build --prod --localize && ng run ajto-ablak:server:production",
+    "build:prod": "ng build --prod --localize",
     "prerender": "ng run ajto-ablak:prerender",
     "start-hu": "ng serve --configuration=hu"
   },
