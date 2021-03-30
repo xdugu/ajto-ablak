@@ -24,7 +24,6 @@
           "/*.(eot|svg|cur|jpg|jpeg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ],
         "urls":[
-          "https://adugu-common.s3.eu-central-1.amazonaws.com/",
           "https://fonts.googleapis.com/"
         ]
       }

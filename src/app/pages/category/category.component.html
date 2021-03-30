@@ -24,7 +24,10 @@
                         <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
                             [width]="300" style="height: 100%; width: auto; margin: auto; display:block">
                     </div>
-                    <div class="w3-center"><b>{{product.Title[siteLang]}}</b><br>{{product.Price.huf | currency : 'HUF'}}</div>
+                    <div class="w3-center">
+                        <b>{{product.Title[siteLang]}}</b><br>
+                        <span class="price">{{product.Price.huf | currency : 'HUF'}}</span>
+                    </div>
                 </a>
             </mat-grid-tile>
         </mat-grid-list>

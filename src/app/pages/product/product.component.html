@@ -16,54 +16,63 @@
       </ng-container>
   </ngx-slick-carousel>
 
-        <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
-        <div>
-          <div *ngIf="product.Price.original.discountEnabled" 
-                style="text-decoration: line-through;">
-                {{ product.Price.original.huf | currency : 'HUF'}}
-          </div>
-        <div #price class="accent-color">{{ product.Price.huf | currency : 'HUF'}}</div>
-        </div><br>
+  <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
+  <div>
+    <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
+          style="text-decoration: line-through;">
+          {{ product.Price.original.huf | currency : 'HUF'}}
+    </div>
 
-  <button mat-raised-button color="primary" i18n="@@AddToBasket">
+    <div #price class="my-theme-primary">
+      {{ product.Price.huf | currency : 'HUF'}}
+    </div>
+    <ng-template #OutOfStock>
+        <span i18n="@@OutOfStock" class="my-theme-warn">Out Of Stock</span>
+    </ng-template>
+  </div><br>
+
+  <button mat-raised-button *ngIf="product.Quantity > 0; else OutOfStock" 
+          color="primary" i18n="@@AddToBasket">
     Add To Basket
   </button><br><br>
 
-        <!-- Selectable variants appear here-->
-        <ng-container *ngFor="let variant of product.Variants.variants; index as i">
-          <mat-form-field>
-              <mat-label>{{variant.text[siteLang]}}</mat-label>
-              <mat-select matNativeControl [(value)]="pickedSpec[i]">
-                <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
-                  [disabled]="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
-                  {{option.text[siteLang]}}
-                  <span *ngIf="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
-                    (<span i18n="@@OutOfStock">Out Of Stock</span>)
-                  </span>
-                </mat-option>
-              </mat-select>
-          </mat-form-field><br>
-        </ng-container><br><br>
+  <!-- Selectable variants appear here-->
+  <ng-container *ngIf="product.Quantity > 0;">
+    <ng-container *ngFor="let variant of product.Variants.variants; index as i">
+      <mat-form-field>
+        <mat-label>{{variant.text[siteLang]}}</mat-label>
+        <mat-select matNativeControl [(value)]="pickedSpec[i]" (selectionChange)="updateProductPrice()">
+          <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
+            [disabled]="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
+            {{option.text[siteLang]}}
+            <span *ngIf="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
+              (<span i18n="@@OutOfStock">Out Of Stock</span>)
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br>
+    </ng-container><br><br>
+  </ng-container>
 
-        <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title i18n="@@ProductDescription">
-                  Description
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <div [innerHtml]="product.Description[siteLang]"></div>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title i18n="@@ProductShipping">Shipping</mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title i18n="@@ProductReturns">Returns</mat-panel-title>
-              </mat-expansion-panel-header>
-            </mat-expansion-panel>
-        </mat-accordion>
-        <div style="height:200px"></div>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n="@@ProductDescription">
+          Description
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div [innerHtml]="product.Description[siteLang]"></div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n="@@ProductShipping">Shipping</mat-panel-title>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n="@@ProductReturns">Returns</mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div style="height:200px"></div>
 </ng-container>

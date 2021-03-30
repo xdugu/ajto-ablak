@@ -43,6 +43,7 @@ package:
   - e2e/**
   - coverage/**
   - '**/assets/**'
+  - '**.json'
   - '!node_modules/aws-serverless-express-edge/**'
   - '!node_modules/qs/**'
   - '!node_modules/binary-case/**'

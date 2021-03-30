@@ -34,13 +34,13 @@
             "landerImg": "/assets/home/lander.jpg",
             "pageFlow":[
                 {
-                    "title":{"en": "Windows", "hu": "Ablakak"},
+                    "title":{"en": "Windows", "hu": "Ablakok"},
                     "type": "product",
                     "items": ["PVC-fix-felulvilagito-ablak", "Borovi-fa-ablak", "Muanyag-erkelyajto-2-retegu", "WertPLUS-tetoablak-fa"],
                     "showPrice": true
                 },
                 {
-                    "title":{"en": "Doors", "hu": "Bejarati ajtok"},
+                    "title":{"en": "Doors", "hu": "Bejárati ajtók"},
                     "type": "category",
                     "items": ["Ajtok", "Bejarati"],
                     "showPrice": true

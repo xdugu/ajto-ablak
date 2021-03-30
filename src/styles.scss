@@ -1,12 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'assets/common/css/w3.css';
+@import '~@angular/material/theming';
+@import 'theme.scss';
 
-html, body { height: 100%; }
+html, body { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 a {
     text-decoration: none;
 }
+
+
 
 .grow-on-hover{
 	overflow: hidden;
@@ -37,3 +41,36 @@ a {
   z-index: 1;
   right: 5px;
 }
+
+// Extract the palettes you need from the theme definition.
+@mixin theme-color($my-config) {
+  // Extract the color configuration in case a theme has been passed.
+  // This allows consumers to either pass a theme object or a color configuration.
+  $config: mat-get-color-config($my-config);
+
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  
+  // Define any styles affected by the theme.
+  .my-theme-primary{
+    // Use mat-color to extract individual colors from a palette.
+    color: mat-color($primary);
+  }
+
+  .my-theme-accent{
+    // Use mat-color to extract individual colors from a palette.
+    color: mat-color($accent);
+  }
+
+  .my-theme-warn{
+    // Use mat-color to extract individual colors from a palette.
+    color: mat-color($warn);
+  }
+}
+
+
+@include theme-color($my-app-theme)
+
+

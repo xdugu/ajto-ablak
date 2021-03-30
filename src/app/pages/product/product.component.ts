@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import { ConfigService } from '@app/shared-services/config.service';
@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
   pickedSpec = [];
 
   siteLang = 'en';
+  private priceElement: ElementRef;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
               config: ConfigService, private langService: LanguageService) {
@@ -26,6 +27,12 @@ export class ProductComponent implements OnInit {
     });
     this.carouselHeight = 600;
 
+  }
+
+  @ViewChild('price') set content(content: ElementRef) {
+    if (content) { // initially setter gets called with undefined
+        this.priceElement = content;
+    }
   }
 
   slickConfig = {
@@ -54,7 +61,6 @@ export class ProductComponent implements OnInit {
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
         this.setupVariants();
-        // this.carouselHeight = this.getMinImageHeight(this.product.Images.list);
       });
     });
 
@@ -78,7 +84,7 @@ export class ProductComponent implements OnInit {
 
       // in case none are valid, choose the first option
       if (combi === undefined){
-        combi = this.product.item.Variants.combinations[0];
+        combi = this.product.Variants.combinations[0];
       }
 
       // now loop through each variant to pick right combi
@@ -101,11 +107,34 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  // Called when there is a carousel event
   onCarouselEvent(event: any): void{
     const currentSlideIndex = event.currentSlide || 0;
 
     this.carouselHeight = ((event.slick.slideWidth * this.product.Images.list[currentSlideIndex].height) /
                             this.product.Images.list[currentSlideIndex].width) + 30;
+  }
+
+  updateProductPrice(): void{
+    if (this.product.Variants.variants.length > 0){
+      const chosenArray = [];
+      this.pickedSpec.forEach((variant) => {
+        chosenArray.push(variant.name);
+      });
+      function combiMatches(myCombi: any): boolean{
+        return JSON.stringify(myCombi.combination) === JSON.stringify(chosenArray);
+      }
+      const combi = this.product.Variants.combinations.find(combiMatches);
+      const prevPrice = this.product.Price.huf;
+
+      // only need to scroll or update price if there is a difference between the current
+      // and the previous price
+      if (prevPrice !== combi.price.huf){
+        this.product.Price = Object.assign(this.product.Price, combi.price);
+        this.product.Quantity = combi.quantity;
+        window.scroll({top: this.priceElement.nativeElement.offsetTop - 30, behavior: 'smooth' });
+      }
+    }
   }
 
   private getMinImageHeight(images: any): number{

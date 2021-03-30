@@ -41,7 +41,7 @@
       </notes>
       <segment state="initial">
         <source> Add To Basket </source>
-      <target> Kosarkba </target></segment>
+      <target> Kosarba </target></segment>
     </unit><unit id="ProductDescription">
       <notes>
         <note category="location">src/app/pages/product/product.component.html:52,53</note>
