@@ -66,7 +66,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
     const newItem: SideBarProductHierarchy = {
       name: item.name,
       expanded: state,
-      link: []
+      link: [],
+      enabled: item.enabled,
     };
 
     // make copy of link

@@ -2,9 +2,9 @@
   "name": "ajto-ablak",
   "short_name": "ajto-ablak",
   "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "./",
+  "scope": "/",
   "start_url": "/index.html",
   "icons": [
     {

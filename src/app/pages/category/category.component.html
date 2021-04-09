@@ -1,7 +1,7 @@
 <!-- For hierarchies that have children -->
 <ng-container *ngIf="currentHierarchy != null ">
     <h1 mat-title class="w3-center">{{currentHierarchy.text[siteLang]}}</h1>
-    <mat-grid-list *ngIf="currentHierarchy.hasOwnProperty('sub'); else lastChild" 
+    <mat-grid-list *ngIf="currentHierarchy.sub != null; else lastChild" 
             [cols]="numOfItemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
         <mat-grid-tile *ngFor="let child of currentHierarchy.sub">
             <a  [routerLink]="child.name" class="w3-display-container" style="height:100%; width: 100%">

@@ -7,8 +7,9 @@ import { ApiManagerService, API_METHOD, API_MODE} from './api-manager.service';
 
 export interface ProductHierarchy {
   name: string;
-  text ?: {en?: string, hu?: string};
+  text?: {en?: string, hu?: string};
   sub?: ProductHierarchy[];
+  enabled: boolean;
 }
 
 @Injectable({

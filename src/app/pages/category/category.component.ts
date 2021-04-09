@@ -49,7 +49,7 @@ export class CategoryComponent implements OnInit {
               this.currentHierarchy = this.getFinalHierarchy(h, categories);
 
               // if we are at the tail-end of category, attempt to get items inside it
-              if (!this.currentHierarchy.hasOwnProperty('sub')){
+              if (this.currentHierarchy.sub === null || this.currentHierarchy.sub.length === 0){
                 this.categoryGetter.getCategory(this.category.split('>')).then(items => {
                   this.categoryItems = items;
                 });
