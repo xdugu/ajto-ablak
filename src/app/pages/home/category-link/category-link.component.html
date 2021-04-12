@@ -1,0 +1,6 @@
+<div [ngClass]="screenType" style="overflow: hidden" class="w3-margin-top main-container">  
+    <a class="w3-display-container" [routerLink]="['category'].concat(flow.link)">
+        <img [appImageSource]="imgSrc" style="height: auto; width: 100%;" [width]="1000">
+        <h1 class="w3-display-middle w3-xxlarge home-category-text">{{flow.title[lang]}}</h1>
+    </a> 
+</div>

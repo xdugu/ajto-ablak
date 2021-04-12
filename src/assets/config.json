@@ -31,8 +31,22 @@
             "logoImg": "/assets/fixed/header/images/logo.jpg"
         },
         "home":{
-            "landerImg": "/assets/home/lander.jpg",
             "pageFlow":[
+                {
+                    "type": "lander",
+                    "title":{"en": "ajtoablak.hu", "hu": "ajtoablak.hu"},
+                    "contentText":{"en": null, "hu": null}
+                },
+                {
+                    "type": "link-category",
+                    "title":{"en": "Windows", "hu": "Ablakok"},
+                    "link": ["Ablakok"]
+                },
+                {
+                    "type": "link-category",
+                    "title":{"en": "Doors", "hu": "Ajtok"},
+                    "link": ["Ajtok"]
+                },
                 {
                     "title":{"en": "Windows", "hu": "Ablakok"},
                     "type": "product",
@@ -60,6 +74,10 @@
                 }
             }
         }
+    },
+    "images":{
+        "list":[],
+        "path": null
     },
     "version": 10
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import {  HttpParams } from '@angular/common/http';
+import { ApiManagerService, API_METHOD, API_MODE } from './api-manager.service';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ export class ConfigService {
   currentConfig: any = null;
   requestInProgress = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiManager: ApiManagerService) {}
 
   // returns the config given the config nam
   getConfig(configName: string): Observable<any>{
@@ -42,8 +42,12 @@ export class ConfigService {
   // performs network getting of config
   private getConfigFromNetwork(): void{
     this.requestInProgress = true;
-    this.http.get(`${environment.url}/assets/config.json`).subscribe({
-      next: res => {this.currentConfig = res; this.requestInProgress = false; },
+    const hierarchyParams = new HttpParams()
+              .set('storeId', 'AjtoAblak')
+              .set('get', 'WebsiteSettings');
+
+    this.apiManager.get(API_MODE.OPEN, API_METHOD.GET, 'settings', hierarchyParams).subscribe({
+      next: (res: any) => {this.currentConfig = res.WebsiteSettings; this.requestInProgress = false; },
       error: () => this.requestInProgress = false,
       complete: () => this.requestInProgress = false
     });

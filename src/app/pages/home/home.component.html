@@ -1,44 +1,19 @@
-
-<div style="min-height: 300px" class="w3-display-container">
-  <img src="assets/home/lander.jpg" 
-    style="width: 100%; height: auto; min-height: 300px">
-  <h1 class="w3-text-white w3-display-topmiddle w3-center home-lander-msg w3-animate-opacity w3-xxlarge"
-      style="width: 80%; margin-top: 5%;">
-        AjtoAblak.hu
-  </h1>
-</div>
-
-<!-- Choose the first two main hierarchy items to be displayed -->
-<mat-grid-list [cols]="numOfCols" rowHeight="300px" gutterSize="8px">
-    <!--ng-container *ngFor="let h of hierarchy; index as i">
-      <mat-grid-tile  *ngIf="i < 2" [style.background]="'green'">
-        <a mat-button [routerLink]="['category', h.name]">{{h.text[siteLang]}}</a>
-      </mat-grid-tile>
-    </ng-container-->
-    <mat-grid-tile>
-      <a class="w3-display-container" [routerLink]="['/category', 'Ajtok']" style="height: 100%; width: 100%">
-        <img src="assets/home/door.jpg" class="main-category-pic" style="width: auto; height: 100%">
-        <h1 class="w3-display-middle w3-xxlarge home-category-text" i18n="@@Doors">Doors</h1>
-      </a>  
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <a class="w3-display-container" [routerLink]="['/category', 'Ablakok']">
-        <img src="assets/home/window.jpg" class="main-category-pic" style="width: 100%; height: auto">
-        <h1 class="w3-display-middle w3-xxlarge home-category-text" i18n="@@Windows">Windows</h1>
-      </a>  
-    </mat-grid-tile>
-      
-</mat-grid-list>
-
 <!-- Implement the rest of the page flow -->
-<ng-container *ngFor="let flow of pageFlow">
+<ng-container *ngFor="let flow of pageFlow; index as i">
   <ng-container [ngSwitch]="flow.type">
-    <app-product-gallery *ngSwitchCase="'product'" [title]="flow.title[siteLang]"
-      [products]="flow.items" [screenType]="screenType" [lang]="siteLang">
+    <app-lander *ngSwitchCase="'lander'" [lang]="siteLang" [flow]="flow"
+      [imgSrc]="flow.type + '-' + i.toString() | flowImage : images.list : bucketUrl + images.path ">
+    </app-lander>
+    <app-product-gallery *ngSwitchCase="'product'" 
+        [flow]="flow" [screenType]="screenType" [lang]="siteLang">
     </app-product-gallery>
-    <app-category-gallery *ngSwitchCase="'category'" [title]="flow.title[siteLang]"
-      [categoryName]="flow.items" [screenType]="screenType" [lang]="siteLang">
+    <app-category-gallery *ngSwitchCase="'category-list'" [flow]="flow"
+          [screenType]="screenType" [lang]="siteLang">
     </app-category-gallery>
+    <app-category-link *ngSwitchCase="'category-link'" [lang]="siteLang" [screenType]="screenType"
+        [flow]="flow"
+        [imgSrc]="flow.type + '-' + i.toString() | flowImage : images.list : bucketUrl + images.path ">
+    </app-category-link>
   </ng-container>
-
 </ng-container>
+

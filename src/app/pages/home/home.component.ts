@@ -16,8 +16,10 @@ export class HomeComponent implements OnInit {
   hierarchy: ProductHierarchy[]; // determine hierarchy
   subscriptions: Subscription[] = [];
   pageFlow: [];
+  images = null;
   screenType = 'mobile';
   siteLang = 'en';
+  bucketUrl: string = null;
 
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
               private configService: ConfigService, private langService: LanguageService){
@@ -32,11 +34,26 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.configService.getConfig('images').subscribe({
+      next: (res: any) => {
+        this.images = res;
+      }
+    });
+
+    this.configService.getConfig('imgSrc').subscribe({
+      next: (res: any) => {
+        this.bucketUrl = res;
+      }
+    });
+
     this.configService.getConfig('pages').subscribe({
       next: (res: any) => {
         this.pageFlow = res.home.pageFlow;
       }
     });
+
+    
 
     this.langService.getLang().then(lang => this.siteLang = lang);
   }

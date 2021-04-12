@@ -10,8 +10,7 @@ import { ConfigService } from '@app/shared-services/config.service';
 })
 export class ProductGalleryComponent implements OnInit, OnChanges {
   @Input() screenType = 'mobile';
-  @Input() title;
-  @Input() products: [];
+  @Input() flow: any = null;
   @Input() showPrice = false;
   @Input() lang = 'en';
 
@@ -47,7 +46,7 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
   }
 
   private getProducts(): void{
-    this.productGetter.getProducts(this.products).then(res => {
+    this.productGetter.getProducts(this.flow.items).then(res => {
       this.finalProducts = res;
     });
   }

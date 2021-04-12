@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export enum API_MODE {
    OPEN = 'open',
@@ -16,9 +17,7 @@ export enum API_METHOD {
   providedIn: 'root'
 })
 export class ApiManagerService {
-  private endPoint = 'https://3j1b7pw3nd.execute-api.eu-central-1.amazonaws.com'; // prod
-  // private endPoint = 'https://vr0uojtaa1.execute-api.eu-central-1.amazonaws.com' // testing
-
+  private endPoint = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

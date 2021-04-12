@@ -9,9 +9,7 @@ import { ConfigService } from '@app/shared-services/config.service';
 })
 export class CategoryGalleryComponent implements OnInit, OnChanges {
   @Input() screenType = 'mobile';
-  @Input() title;
-  @Input() categoryName: [];
-  @Input() maxItems = 4;
+  @Input() flow: any = null;
   @Input() lang = 'en';
 
   categoryItems = [];
@@ -29,7 +27,7 @@ export class CategoryGalleryComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void{
-    if (changes.hasOwnProperty('categoryName')){
+    if (changes.hasOwnProperty('flow')){
       this.getCategoryItems();
     }
     switch (this.screenType){
@@ -45,10 +43,10 @@ export class CategoryGalleryComponent implements OnInit, OnChanges {
   }
 
   private getCategoryItems(): void{
-    this.catGetter.getCategory(this.categoryName).then(res => {
+    this.catGetter.getCategory(this.flow.link).then(res => {
       this.categoryItems = res;
-      if (this.categoryItems.length > this.maxItems){
-        this.categoryItems = this.categoryItems.slice(0, this.maxItems);
+      if (this.categoryItems.length > 4){
+        this.categoryItems = this.categoryItems.slice(0, 4);
       }
     });
   }

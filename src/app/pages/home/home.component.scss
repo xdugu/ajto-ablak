@@ -3,17 +3,7 @@ mat-grid-list{
     margin: 8px auto;
 }
 
-.home-lander-msg{
-    padding: 5%;
-    border: 3px solid white;
-}
 
-.home-category-text{
-    padding: 5%;
-    transition: padding linear 0.5s;
-    border: 3px solid black;
-}
-
-.home-category-text:hover{
-    padding: 15%;
+app-category-link + app-category-link{
+    padding-left: 8px;
 }

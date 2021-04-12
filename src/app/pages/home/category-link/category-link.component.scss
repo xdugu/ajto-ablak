@@ -1,0 +1,23 @@
+div{
+    overflow-y: hidden;
+    display: inline-flex;
+    width: calc(50% - 4px);
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+
+.mobile{
+    width: 100%; 
+    height: 250px;
+}
+
+.home-category-text{
+    padding: 5%;
+    transition: padding linear 0.5s;
+    border: 3px solid black;
+}
+
+.home-category-text:hover{
+    padding: 15%;
+}

@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  //url: 'http://localhost:4000'
-   url: 'https://d2zr7lkne30ede.cloudfront.net/hu'
+  apiMode: 'https://3j1b7pw3nd.execute-api.eu-central-1.amazonaws.com'
 };
