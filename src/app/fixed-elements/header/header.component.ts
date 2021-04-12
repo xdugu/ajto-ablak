@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 import { ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
 import { ScreenTypeService} from '../../shared-services/screen-type.service';
+import { BasketService } from '@app/shared-services/basket.service';
 
 
 @Component({
@@ -14,8 +15,10 @@ export class HeaderComponent implements OnInit {
   @Input() lang: string;
   screenState = 'mobile';
   productHierarchy: any;
+  basketCount = 0;
 
-  constructor(screenTypeService: ScreenTypeService, private pHService: ProductHierarchyService) {
+  constructor(screenTypeService: ScreenTypeService, private pHService: ProductHierarchyService,
+              private basketService: BasketService) {
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.screenState = state
     });
@@ -24,6 +27,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
      this.pHService.getHierarchy().subscribe({
        next: (res) => {this.productHierarchy = res; }
+     });
+
+     this.basketService.getBasketCount().subscribe({
+       next: count => this.basketCount = count
      });
   }
 

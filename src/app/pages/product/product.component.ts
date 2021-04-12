@@ -1,9 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-
 import { ConfigService } from '@app/shared-services/config.service';
 import { ProductGetterService } from '../services/product-getter.service';
-import { LanguageService } from 'app/shared-services/language.service';
+import { LanguageService } from '@app/shared-services/language.service';
+import { BasketService } from '@app/shared-services/basket.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product',
@@ -20,7 +21,8 @@ export class ProductComponent implements OnInit {
   private priceElement: ElementRef;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
-              config: ConfigService, private langService: LanguageService) {
+              config: ConfigService, private langService: LanguageService,
+              private basketService: BasketService, private snackBar: MatSnackBar) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
@@ -136,6 +138,25 @@ export class ProductComponent implements OnInit {
       }
     }
   }
+
+  // adds item to basket
+  addToBasket(): void{
+    this.basketService.addToBasket(this.product.ItemId, this.pickedSpec).subscribe(
+      () => {
+         const msg = {en: 'Item added successfully', hu: 'A termék a kosaradba került'};
+         this.snackBar.open(msg[this.siteLang], '', {
+             duration: 2000
+         });
+      },
+      (err) => {
+        console.log(err);
+        const msg = {en: 'Error', hu: 'Hiba :-<'};
+        this.snackBar.open(msg[this.siteLang], '', {
+          duration: 4000
+      });
+      }
+    );
+ }
 
   private getMinImageHeight(images: any): number{
      let minHeight = 2000;

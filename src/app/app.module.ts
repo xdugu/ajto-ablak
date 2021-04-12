@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { enableProdMode, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FixedElementsModule} from './fixed-elements/fixed-elements.module';
@@ -11,6 +11,8 @@ import { ScreenTypeService } from './shared-services/screen-type.service';
 import { ApiManagerService } from './shared-services/api-manager.service';
 import { ConfigService } from './shared-services/config.service';
 import { LanguageService } from './shared-services/language.service';
+import { TokenStorageService } from './shared-services/token-storage.service';
+import { BasketService } from './shared-services/basket.service';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -31,7 +33,7 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService,
-    ConfigService, LanguageService],
+    ConfigService, LanguageService, TokenStorageService, BasketService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

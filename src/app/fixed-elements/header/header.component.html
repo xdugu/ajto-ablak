@@ -35,7 +35,7 @@
             <span class="fill-remaining-space"></span>
 
             <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon" >
-                <mat-icon color="accent" [matBadge]="1" matBadgePosition="below after">
+                <mat-icon color="accent" [matBadge]="basketCount > 0? basketCount: null" matBadgePosition="below after">
                     shopping_basket
                 </mat-icon>
             </a>
@@ -53,7 +53,7 @@
         <span class="fill-remaining-space"></span>
         
         <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon" >
-            <mat-icon color="accent" [matBadge]="1" matBadgePosition="below after">
+            <mat-icon color="accent" [matBadge]="basketCount > 0? basketCount: null" matBadgePosition="below after">
                 shopping_basket
             </mat-icon>
         </a>

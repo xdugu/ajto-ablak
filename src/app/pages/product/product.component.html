@@ -32,7 +32,7 @@
   </div><br>
 
   <button mat-raised-button *ngIf="product.Quantity > 0; else OutOfStock" 
-          color="primary" i18n="@@AddToBasket">
+          color="primary" i18n="@@AddToBasket" (click)="addToBasket()">
     Add To Basket
   </button><br><br>
 

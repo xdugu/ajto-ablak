@@ -5,7 +5,8 @@ import { Routes, RouterModule, UrlSegment } from '@angular/router';
 const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { matcher: resolveRoute, loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
-  { path: 'product/:productId', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) }
+  { path: 'product/:productId', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
+  { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule) }
 ];
 
 @NgModule({
