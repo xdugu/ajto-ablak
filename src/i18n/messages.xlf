@@ -26,33 +26,9 @@
         <source> Legal Information </source>
       </segment>
     </unit>
-    <unit id="Doors">
-      <notes>
-        <note category="location">src/app/pages/home/home.component.html:15</note>
-      </notes>
-      <segment>
-        <source>Doors</source>
-      </segment>
-    </unit>
-    <unit id="Windows">
-      <notes>
-        <note category="location">src/app/pages/home/home.component.html:21</note>
-      </notes>
-      <segment>
-        <source>Windows</source>
-      </segment>
-    </unit>
-    <unit id="AddToBasket">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:29,30</note>
-      </notes>
-      <segment>
-        <source> Add To Basket </source>
-      </segment>
-    </unit>
     <unit id="ProductDescription">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:52,53</note>
+        <note category="location">src/app/pages/product/product.component.html:61,62</note>
       </notes>
       <segment>
         <source> Description </source>
@@ -60,7 +36,7 @@
     </unit>
     <unit id="ProductShipping">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:59</note>
+        <note category="location">src/app/pages/product/product.component.html:68</note>
       </notes>
       <segment>
         <source>Shipping</source>
@@ -68,7 +44,7 @@
     </unit>
     <unit id="ProductReturns">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:64</note>
+        <note category="location">src/app/pages/product/product.component.html:73</note>
       </notes>
       <segment>
         <source>Returns</source>
@@ -76,10 +52,118 @@
     </unit>
     <unit id="OutOfStock">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:41</note>
+        <note category="location">src/app/pages/product/product.component.html:30</note>
+        <note category="location">src/app/pages/product/product.component.html:49</note>
       </notes>
       <segment>
         <source>Out Of Stock</source>
+      </segment>
+    </unit>
+    <unit id="AddToBasket">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:36,37</note>
+      </notes>
+      <segment>
+        <source> Add To Basket </source>
+      </segment>
+    </unit>
+    <unit id="Basket">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:3</note>
+      </notes>
+      <segment>
+        <source>Basket</source>
+      </segment>
+    </unit>
+    <unit id="BasketIsEmpty">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:6</note>
+      </notes>
+      <segment>
+        <source>Your basket is empty</source>
+      </segment>
+    </unit>
+    <unit id="Remove">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:28</note>
+        <note category="description">Text to remove from basket</note>
+      </notes>
+      <segment>
+        <source>Remove</source>
+      </segment>
+    </unit>
+    <unit id="Quantity">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:33</note>
+      </notes>
+      <segment>
+        <source>Quantity</source>
+      </segment>
+    </unit>
+    <unit id="SelectCountry">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:45</note>
+        <note category="description">Static text to tell customer to select country</note>
+      </notes>
+      <segment>
+        <source>Select Country</source>
+      </segment>
+    </unit>
+    <unit id="ChooseCountry">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:47</note>
+        <note category="description">First option of country chooser</note>
+      </notes>
+      <segment>
+        <source>Please choose a country</source>
+      </segment>
+    </unit>
+    <unit id="ChooseCourier">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:56</note>
+      </notes>
+      <segment>
+        <source>Choose a courier:</source>
+      </segment>
+    </unit>
+    <unit id="Delivery">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:68</note>
+      </notes>
+      <segment>
+        <source>Delivery:</source>
+      </segment>
+    </unit>
+    <unit id="Subtotal">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:73</note>
+      </notes>
+      <segment>
+        <source>Subtotal:</source>
+      </segment>
+    </unit>
+    <unit id="Total">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:74</note>
+      </notes>
+      <segment>
+        <source>Total:</source>
+      </segment>
+    </unit>
+    <unit id="ProceedToCheckout">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:75</note>
+      </notes>
+      <segment>
+        <source> Proceed to checkout</source>
+      </segment>
+    </unit>
+    <unit id="Discount">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:70</note>
+      </notes>
+      <segment>
+        <source>Discount:</source>
       </segment>
     </unit>
   </file>

@@ -9,6 +9,20 @@ export class TokenStorageService {
 
   constructor() {}
 
+  setNumber(id: string, value: number): void{
+    localStorage.setItem(id, value.toString());
+  }
+
+  getNumber(id: string): number{
+    const item = localStorage.getItem(id);
+
+    if (item != null){
+      return parseFloat(item);
+    }
+
+    return null;
+  }
+
   // saves a string
   setString(id: string, value: string): void {
     localStorage.setItem(id, value);

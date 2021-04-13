@@ -91,6 +91,44 @@ export class BasketService {
 
   }
 
+  // changes the quantity of an item in basket
+  changeQuantity(index: number, newQuantity: number): Promise<BasketInterface>{
+    return new Promise ((resolve, reject) => {
+        this.configService.getConfig('storeId').subscribe(storeId => {
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/quantity', new HttpParams(), {
+            basketId: this.basketId,
+            storeId,
+            index,
+            newQuantity,
+         }).subscribe({
+           next: basket => {
+            this.basket = basket;
+            resolve(this.basket);
+          },
+          error: err => reject(err)
+        });
+        });
+    });
+  }
+
+  removeItem(index: number): Promise<BasketInterface>{
+    return new Promise ((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe(storeId => {
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/remove', new HttpParams(), {
+            basketId: this.basketId,
+            storeId,
+            index,
+         }).subscribe(basket => {
+            this.basket = basket;
+            resolve(this.basket);
+         },
+         err => {
+           reject(err);
+         });
+        });
+    });
+  }
+
   // actually performs network request to get basket
   private _getBasket(): void{
       this.configService.getConfig('storeId').subscribe({
@@ -103,6 +141,7 @@ export class BasketService {
               this.basket = basket;
               this.tokenService.setString('BasketId', this.basket.BasketId);
               this.basketCount.next(this.basket.Count);
+              this.loadingBasket = false;
             },
             error: () => this.loadingBasket = false
           });

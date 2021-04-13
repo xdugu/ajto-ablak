@@ -1,1 +1,85 @@
-<p>basket works!</p>
+
+<h2 class="mat-h2 w3-center" i18n="@@Basket"
+    [hidden]="basket == null || basket.Items.length == 0" >Basket</h2>
+
+<h2 class="mat-h2 w3-center" i18n="@@BasketIsEmpty"
+    *ngIf="basket == null || basket.Items.length == 0">Your basket is empty</h2>
+
+<div *ngIf="preferences != null && basket !=null && bucketUrl != null">
+
+    <div class="w3-row w3-margin-top" style="min-height: 800px;">
+        <!-- to be displayed left on desktops and 100% width on tablets and mobiles-->
+        <div class="w3-col l6">
+            <div *ngFor="let item of basket.Items; index as i;" class="w3-display-container w3-mobile w3-card-2 w3-margin-top" 
+                style="height: 120px; width: 100%">
+                <img   [appImageSource]="bucketUrl + item.Images.path + item.Images.list[0].name" [width]="100" style="height: 80px"
+                    class="w3-display-left w3-padding">
+                <span class="w3-display-topmiddle">{{item.Title[lang]}}
+                    <span *ngFor="let variant of item.Variants.variants; index as varInd">
+                        , {{variant.text[lang]}} : {{item.Combination[varInd].text[lang]}}</span>
+                    </span>
+                <div class="w3-display-right w3-padding" style="text-align: right;">
+                    <div *ngIf="item.Price.original.discountEnabled"
+                        class="discount">
+                        {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}
+                    </div>
+                    <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}</div>
+                    
+                    <button mat-button  (click)="onRemoveItem(i)" i18n="Text to remove from basket@@Remove">Remove</button>
+                </div>
+                <!-- input to change quantities-->
+                <div class="w3-display-bottommiddle">
+                    <mat-form-field style="max-width: 80px">
+                        <mat-label i18n="@@Quantity">Quantity</mat-label>
+                        <mat-select [value]="item.Quantity | stringOf" (selectionChange)="onChangeQuantity($event, i)">
+                            <mat-option *ngFor="let quantity of availableQuantities" [value]="quantity">
+                                    {{quantity}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div><!-- end of one basket item-->       
+        </div><!-- Left display end-->
+        <div class="w3-col l6 w3-padding" *ngIf="basket.Items.length > 0">
+            <mat-form-field>
+                <mat-label i18n="Static text to tell customer to select country@@SelectCountry">Select Country</mat-label>
+                <mat-select matNativeControl [(value)]="preferences.countryCode" (selectionChange)="onCountryChange($event)">
+                    <mat-option value="" i18n="First option of country chooser@@ChooseCountry">
+                        Please choose a country
+                    </mat-option>
+                    <mat-option *ngFor="let country of basket.Costs | keyvalue" [value]="country.key">
+                        {{country.key | countryCode : lang}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br><br>
+
+            <div *ngIf="basket.hasOwnProperty('Costs') && preferences.countryCode != null &&
+                        preferences.countryCode.length == 2">
+                
+                <div>
+                    <label i18n="@@ChooseCourier">Choose a courier:</label>
+                    <mat-radio-group class="radio-group"
+                        [value]="preferences.deliveryMethod" (change)="onCourierChange($event)">
+                    <mat-radio-button class="radio-button"
+                        *ngFor="let courier of basket.Costs[preferences.countryCode] | keyvalue" 
+                        [value]="courier.key">
+                        {{courier.key}}
+                    </mat-radio-button>
+                    </mat-radio-group><br>
+                </div>
+
+                <div *ngIf="preferences.deliveryMethod != null">
+                    <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                    <span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
+                        <b i18n="@@Discount">Discount:</b> 
+                        <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                    </span>
+                    <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                    <b i18n="@@Total">Total:</b><span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span> <br><br>
+                    <a mat-raised-button color="primary" [routerLink]="['/checkout']" i18n="@@ProceedToCheckout"> Proceed to checkout</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>  
+</div>

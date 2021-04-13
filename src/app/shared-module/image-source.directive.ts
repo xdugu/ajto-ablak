@@ -7,7 +7,7 @@ import { Directive, ElementRef, Input, OnChanges} from '@angular/core';
 })
 export class ImageSourceDirective implements OnChanges{
   @Input() appImageSource: string;
-  @Input() width = 300;
+  @Input() width = null;
 
   constructor(private el: ElementRef) {
     if (this.appImageSource != null || this.appImageSource !== undefined){
@@ -24,7 +24,7 @@ export class ImageSourceDirective implements OnChanges{
   getFinalImageSource(url: string, width: number): string{
     const extInd = url.search(/\.[a-z]{2,}$/i);
 
-    if (extInd >= 0){
+    if (extInd >= 0 && width != null){
       const urlWithoutExt = url.substring(0, extInd);
       return urlWithoutExt + '_' + width.toString() + 'w' + url.substring(extInd);
     }

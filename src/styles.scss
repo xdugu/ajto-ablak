@@ -10,8 +10,6 @@ a {
     text-decoration: none;
 }
 
-
-
 .grow-on-hover{
 	overflow: hidden;
 }
@@ -56,6 +54,10 @@ a {
   // Define any styles affected by the theme.
   .my-theme-primary{
     // Use mat-color to extract individual colors from a palette.
+    color: mat-color($primary);
+  }
+
+  .price{
     color: mat-color($primary);
   }
 
