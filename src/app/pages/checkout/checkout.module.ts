@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { BasketRoutingModule } from './basket-routing.module';
-import { BasketComponent } from './basket.component';
+import { CheckoutRoutingModule } from './checkout-routing.module';
+import { CheckoutComponent } from './checkout.component';
 import { PagesModule} from '../pages.module';
 
 import { SharedModuleModule} from '@app/shared-module/shared-module.module';
@@ -14,14 +14,14 @@ import { MatRadioModule} from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
-  declarations: [BasketComponent],
+  declarations: [CheckoutComponent],
   imports: [
     CommonModule,
-    BasketRoutingModule,
+    CheckoutRoutingModule,
     SharedModuleModule,
     MatExpansionModule,
     MatButtonModule,
@@ -31,7 +31,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatInputModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     PagesModule
   ]
 })
-export class BasketModule { }
+export class CheckoutModule { }

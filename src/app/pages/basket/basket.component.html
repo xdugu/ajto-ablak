@@ -59,12 +59,12 @@
                 <div>
                     <label i18n="@@ChooseCourier">Choose a courier:</label>
                     <mat-radio-group class="radio-group"
-                        [value]="preferences.deliveryMethod" (change)="onCourierChange($event)">
-                    <mat-radio-button class="radio-button"
-                        *ngFor="let courier of basket.Costs[preferences.countryCode] | keyvalue" 
-                        [value]="courier.key">
-                        {{courier.key}}
-                    </mat-radio-button>
+                        [(ngModel)]="preferences.deliveryMethod" (change)="onCourierChange($event)">
+                        <mat-radio-button class="radio-button"
+                            *ngFor="let courier of basket.Costs[preferences.countryCode] | keyvalue" 
+                            [value]="courier.key">
+                            {{courier.key}}
+                        </mat-radio-button>
                     </mat-radio-group><br>
                 </div>
 

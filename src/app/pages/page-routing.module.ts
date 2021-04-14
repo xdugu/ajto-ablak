@@ -6,7 +6,9 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { matcher: resolveRoute, loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
   { path: 'product/:productId', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
-  { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule) }
+  { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule) },
+  { path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
+  { path: 'review', loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) }
 ];
 
 @NgModule({

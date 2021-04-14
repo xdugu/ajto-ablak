@@ -31,6 +31,127 @@
       <segment state="final">
         <source> Add To Basket </source>
       <target> Add To Basket </target></segment>
+    </unit><unit id="ContactInformation">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:3</note>
+        <note category="description">Header in checkout page</note>
+      </notes>
+      <segment state="final">
+        <source>Contact Information</source>
+      <target>Contact Information</target></segment>
+    </unit><unit id="Name">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
+      </notes>
+      <segment state="final">
+        <source>Name</source>
+      <target>Name</target></segment>
+    </unit><unit id="NameIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
+      </notes>
+      <segment state="final">
+        <source>Name is required</source>
+      <target>Name is required</target></segment>
+    </unit><unit id="EmailIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
+      </notes>
+      <segment state="final">
+        <source>Email is required</source>
+      <target>Email is required</target></segment>
+    </unit><unit id="PhoneNumber">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:27</note>
+      </notes>
+      <segment state="final">
+        <source>Phone Number</source>
+      <target>Phone Number</target></segment>
+    </unit><unit id="PhoneNumberIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:31</note>
+      </notes>
+      <segment state="final">
+        <source>Phone number is required</source>
+      <target>Phone number is required</target></segment>
+    </unit><unit id="ShippingDetails">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:62</note>
+      </notes>
+      <segment state="final">
+        <source>Shipping Details</source>
+      <target>Shipping Details</target></segment>
+    </unit><unit id="AddressLine1">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:65</note>
+      </notes>
+      <segment state="final">
+        <source>Address Line 1</source>
+      <target>Address Line 1</target></segment>
+    </unit><unit id="AddressIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:70</note>
+      </notes>
+      <segment state="final">
+        <source>Address is required</source>
+      <target>Address is required</target></segment>
+    </unit><unit id="AddressLine2">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:75</note>
+      </notes>
+      <segment state="final">
+        <source>Address Line 2</source>
+      <target>Address Line 2</target></segment>
+    </unit><unit id="City">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:82</note>
+      </notes>
+      <segment state="final">
+        <source>City/Town</source>
+      <target>City/Town</target></segment>
+    </unit><unit id="CityIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:86</note>
+      </notes>
+      <segment state="final">
+        <source>City is required</source>
+      <target>City is required</target></segment>
+    </unit><unit id="PostCode">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:91</note>
+      </notes>
+      <segment state="final">
+        <source>PostCode</source>
+      <target>PostCode</target></segment>
+    </unit><unit id="PostCodeIsRequired">
+      <notes>
+        
+      <note category="location">src/app/pages/checkout/checkout.component.html:95</note></notes>
+      <segment state="final">
+        <source>Post code is required</source>
+      <target>Post code is required</target></segment>
+    </unit><unit id="Country">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:101</note>
+      </notes>
+      <segment state="final">
+        <source>Country</source>
+      <target>Country</target></segment>
+    </unit><unit id="IAcceptTerms">
+      <notes>
+        
+        <note category="description">clickable text to allow customer to read terms</note>
+      <note category="location">src/app/pages/checkout/checkout.component.html:115</note></notes>
+      <segment state="final">
+        <source> I accept the terms and conditions for this sale</source>
+      <target> I accept the terms and conditions for this sale</target></segment>
+    </unit><unit id="ProceedToPayment">
+      <notes>
+        
+      <note category="location">src/app/pages/checkout/checkout.component.html:121</note></notes>
+      <segment state="final">
+        <source> Proceed to payment </source>
+      <target> Proceed to payment </target></segment>
     </unit><unit id="Basket">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:3</note>
@@ -70,51 +191,51 @@
       <target>Select Country</target></segment>
     </unit><unit id="ChooseCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:47</note>
+        
         <note category="description">First option of country chooser</note>
-      </notes>
+      <note category="location">src/app/pages/basket/basket.component.html:48</note></notes>
       <segment state="final">
         <source>Please choose a country</source>
       <target>Please choose a country</target></segment>
     </unit><unit id="ChooseCourier">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:56</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:60</note></notes>
       <segment state="final">
         <source>Choose a courier:</source>
       <target>Choose a courier:</target></segment>
     </unit><unit id="Delivery">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:68</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:72</note></notes>
       <segment state="final">
         <source>Delivery:</source>
       <target>Delivery:</target></segment>
     </unit><unit id="Subtotal">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:73</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:77</note></notes>
       <segment state="final">
         <source>Subtotal:</source>
       <target>Subtotal:</target></segment>
     </unit><unit id="Total">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:74</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:78</note></notes>
       <segment state="final">
         <source>Total:</source>
       <target>Total:</target></segment>
     </unit><unit id="ProceedToCheckout">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:75</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:79</note></notes>
       <segment state="final">
         <source> Proceed to checkout</source>
       <target> Proceed to checkout</target></segment>
     </unit><unit id="Discount">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:70</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:74</note></notes>
       <segment state="final">
         <source>Discount:</source>
       <target>Discount:</target></segment>
