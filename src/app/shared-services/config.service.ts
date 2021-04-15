@@ -8,8 +8,8 @@ import { ApiManagerService, API_METHOD, API_MODE } from './api-manager.service';
   providedIn: 'root'
 })
 export class ConfigService {
-  currentConfig: any = null;
-  requestInProgress = false;
+  private currentConfig: any = null;
+  private requestInProgress = false;
 
   constructor(private apiManager: ApiManagerService) {}
 

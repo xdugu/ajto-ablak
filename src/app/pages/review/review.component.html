@@ -1,1 +1,72 @@
-<p>review works!</p>
+<div *ngIf="preferences != null && basket != null" >
+    <h1 class="w3-center" i18n="Heading for final order review page@@Review">Review</h1>
+    <div class="w3-row">
+        <div class="w3-col l6">
+            <div *ngFor="let item of basket.Items; index as i;" class="w3-display-container w3-mobile w3-card" 
+                style="height: 100px; width: 100%; padding: 0px 16px">
+                <img [appImageSource]="bucketUrl + item.Images.path + item.Images.list[0].name" style="height: 80px"
+                    class="w3-display-left w3-padding" [width]="100">
+                <span class="w3-display-middle">{{item.Title[preferences.lang.chosen]}}
+                    <span *ngFor="let variant of item.Variants.variants; index as varInd">
+                        , {{variant.text[preferences.lang.chosen]}} : {{item.Combination[varInd].text[preferences.lang.chosen]}}
+                    </span>
+                </span>
+                <span class="w3-display-right price w3-padding">
+                    {{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}
+                </span>
+            </div>
+
+            <div class="w3-margin-top">
+                <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                <b i18n="@@Discount">Discount:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                <b i18n="@@Total">Total:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+            </div>
+
+        </div>
+
+        <div class="w3-col l6 w3-padding w3-card" *ngIf="customer != null">
+            <h2 i18n="@@OrderDetails">Order Details</h2> 
+            <span>{{customer.firstName}}</span><br> 
+            <span>{{customer.email}}</span><br>  
+            <span>{{customer.number}}</span><br><br>
+            
+            <span i18n="where to post package@@PostTo">Post To:</span><br>
+            <span>{{customer.firstName}}</span><br>
+            <span>{{customer.address1}}</span><br>
+            <span [hidden]="customer.address2 == null">{{customer.address2}}<br></span> 
+            <span>{{customer.city}}</span><br>
+            <span>{{customer.postCode}}</span><br>  
+            <span>{{preferences.countryCode | countryCode : preferences.lang.chosen}}</span><br> 
+        </div>
+    </div> 
+
+    
+    <div  style="width: 300px; overflow: hidden" class="w3-mobile w3-margin-top">
+        <ng-container *ngFor="let payment of paymentTypes">
+            <ng-container [ngSwitch]="payment.name">
+                <app-paypal *ngSwitchCase="'paypal'" [config]="payment"></app-paypal><br>
+                <button mat-raised-button color="primary" *ngSwitchCase="'bankTransfer'"
+                        style="width: 300px" class="w3-mobile"
+                        (click)="triggerPaymentMethod('bankTransfer')"
+                        i18n="@@PayByBankTransfer"> Pay by bank transfer
+                </button> 
+            </ng-container>
+
+        </ng-container>
+        <br><br>
+        
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary" 
+                    style="width: 300px" class="w3-mobile"
+                    (click)="triggerPaymentMethod('payOnDelivery')"
+                    *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].hasOwnProperty('payOnDelivery')"
+                    i18n="@@PayOnDelivery">
+                    Pay on delivery
+        </button>
+    </div>
+    <br><br>
+</div>
+
