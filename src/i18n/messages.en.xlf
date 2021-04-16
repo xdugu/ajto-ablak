@@ -31,6 +31,33 @@
       <segment state="final">
         <source> Add To Basket </source>
       <target> Add To Basket </target></segment>
+    </unit><unit id="PayOnDelivery">
+      <notes>
+        <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
+        <note category="location">src/app/pages/review/review.component.html:62,63</note>
+      </notes>
+      <segment state="final">
+        <source> Pay on delivery
+</source>
+      <target> Pay on delivery
+</target></segment>
+    </unit><unit id="PayByBankTransfer">
+      <notes>
+        <note category="location">src/app/pages/review/payments/bank-transfer/bank-transfer.component.html:3,4</note>
+      </notes>
+      <segment state="final">
+        <source> Pay by bank transfer
+</source>
+      <target> Pay by bank transfer
+</target></segment>
+    </unit><unit id="Review">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:2</note>
+        <note category="description">Heading for final order review page</note>
+      </notes>
+      <segment state="final">
+        <source>Review</source>
+      <target>Review</target></segment>
     </unit><unit id="ContactInformation">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:3</note>
@@ -152,6 +179,13 @@
       <segment state="final">
         <source> Proceed to payment </source>
       <target> Proceed to payment </target></segment>
+    </unit><unit id="Cancel">
+      <notes>
+        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
+      </notes>
+      <segment state="final">
+        <source>Cancel</source>
+      <target>Cancel</target></segment>
     </unit><unit id="Basket">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:3</note>
@@ -207,24 +241,39 @@
     </unit><unit id="Delivery">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:72</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:20</note><note category="location">src/app/pages/basket/basket.component.html:72</note></notes>
       <segment state="final">
         <source>Delivery:</source>
       <target>Delivery:</target></segment>
     </unit><unit id="Subtotal">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:77</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:22</note><note category="location">src/app/pages/basket/basket.component.html:77</note></notes>
       <segment state="final">
         <source>Subtotal:</source>
       <target>Subtotal:</target></segment>
     </unit><unit id="Total">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:78</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:23</note><note category="location">src/app/pages/basket/basket.component.html:78</note></notes>
       <segment state="final">
         <source>Total:</source>
       <target>Total:</target></segment>
+    </unit><unit id="OrderDetails">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:29</note>
+      </notes>
+      <segment state="final">
+        <source>Order Details</source>
+      <target>Order Details</target></segment>
+    </unit><unit id="PostTo">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:34</note>
+        <note category="description">where to post package</note>
+      </notes>
+      <segment state="final">
+        <source>Post To:</source>
+      <target>Post To:</target></segment>
     </unit><unit id="ProceedToCheckout">
       <notes>
         
@@ -235,7 +284,7 @@
     </unit><unit id="Discount">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:74</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:21</note><note category="location">src/app/pages/basket/basket.component.html:74</note></notes>
       <segment state="final">
         <source>Discount:</source>
       <target>Discount:</target></segment>

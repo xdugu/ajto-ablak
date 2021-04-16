@@ -46,26 +46,22 @@
         <ng-container *ngFor="let payment of paymentTypes">
             <ng-container [ngSwitch]="payment.name">
                 <app-paypal *ngSwitchCase="'paypal'" [config]="payment"></app-paypal><br>
-                <button mat-raised-button color="primary" *ngSwitchCase="'bankTransfer'"
-                        style="width: 300px" class="w3-mobile"
-                        (click)="triggerPaymentMethod('bankTransfer')"
-                        i18n="@@PayByBankTransfer"> Pay by bank transfer
-                </button> 
+                <app-bank-transfer *ngSwitchCase="'bankTransfer'" [lang]="preferences.lang.chosen"
+                                    (orderConfirmed)="onOrderConfirmed('bankTransfer')">
+                </app-bank-transfer>
+                <ng-container *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].hasOwnProperty('payOnDelivery')">
+                    <app-pay-on-delivery *ngSwitchCase="'payOnDelivery'" (orderConfirmed)="onOrderConfirmed('payOnDelivery')"
+                        [lang]="preferences.lang.chosen"
+                        [totalCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen"
+                        [extraCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] - 
+                                            basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] 
+                                            | currency : preferences.currency.chosen">
+                    </app-pay-on-delivery>
+                </ng-container>
             </ng-container>
-
         </ng-container>
         <br><br>
         
-    </div>
-
-    <div>
-        <button mat-raised-button color="primary" 
-                    style="width: 300px" class="w3-mobile"
-                    (click)="triggerPaymentMethod('payOnDelivery')"
-                    *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].hasOwnProperty('payOnDelivery')"
-                    i18n="@@PayOnDelivery">
-                    Pay on delivery
-        </button>
     </div>
     <br><br>
 </div>

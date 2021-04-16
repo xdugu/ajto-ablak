@@ -67,6 +67,87 @@
         <source> Add To Basket </source>
       </segment>
     </unit>
+    <unit id="PayOnDelivery">
+      <notes>
+        <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
+        <note category="location">src/app/pages/review/review.component.html:62,63</note>
+      </notes>
+      <segment>
+        <source> Pay on delivery
+</source>
+      </segment>
+    </unit>
+    <unit id="PayByBankTransfer">
+      <notes>
+        <note category="location">src/app/pages/review/payments/bank-transfer/bank-transfer.component.html:3,4</note>
+      </notes>
+      <segment>
+        <source> Pay by bank transfer
+</source>
+      </segment>
+    </unit>
+    <unit id="Review">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:2</note>
+        <note category="description">Heading for final order review page</note>
+      </notes>
+      <segment>
+        <source>Review</source>
+      </segment>
+    </unit>
+    <unit id="Delivery">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:20</note>
+        <note category="location">src/app/pages/basket/basket.component.html:72</note>
+      </notes>
+      <segment>
+        <source>Delivery:</source>
+      </segment>
+    </unit>
+    <unit id="Discount">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:21</note>
+        <note category="location">src/app/pages/basket/basket.component.html:74</note>
+      </notes>
+      <segment>
+        <source>Discount:</source>
+      </segment>
+    </unit>
+    <unit id="Subtotal">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:22</note>
+        <note category="location">src/app/pages/basket/basket.component.html:77</note>
+      </notes>
+      <segment>
+        <source>Subtotal:</source>
+      </segment>
+    </unit>
+    <unit id="Total">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:23</note>
+        <note category="location">src/app/pages/basket/basket.component.html:78</note>
+      </notes>
+      <segment>
+        <source>Total:</source>
+      </segment>
+    </unit>
+    <unit id="OrderDetails">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:29</note>
+      </notes>
+      <segment>
+        <source>Order Details</source>
+      </segment>
+    </unit>
+    <unit id="PostTo">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:34</note>
+        <note category="description">where to post package</note>
+      </notes>
+      <segment>
+        <source>Post To:</source>
+      </segment>
+    </unit>
     <unit id="ContactInformation">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:3</note>
@@ -205,6 +286,14 @@
         <source> Proceed to payment </source>
       </segment>
     </unit>
+    <unit id="Cancel">
+      <notes>
+        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Cancel</source>
+      </segment>
+    </unit>
     <unit id="Basket">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:3</note>
@@ -264,44 +353,12 @@
         <source>Choose a courier:</source>
       </segment>
     </unit>
-    <unit id="Delivery">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:72</note>
-      </notes>
-      <segment>
-        <source>Delivery:</source>
-      </segment>
-    </unit>
-    <unit id="Subtotal">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:77</note>
-      </notes>
-      <segment>
-        <source>Subtotal:</source>
-      </segment>
-    </unit>
-    <unit id="Total">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:78</note>
-      </notes>
-      <segment>
-        <source>Total:</source>
-      </segment>
-    </unit>
     <unit id="ProceedToCheckout">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:79</note>
       </notes>
       <segment>
         <source> Proceed to checkout</source>
-      </segment>
-    </unit>
-    <unit id="Discount">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:74</note>
-      </notes>
-      <segment>
-        <source>Discount:</source>
       </segment>
     </unit>
   </file>

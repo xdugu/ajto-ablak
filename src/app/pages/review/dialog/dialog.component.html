@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>
+    {{data.title}}
+</h1>
+<div mat-dialog-content [innerHtml]="data.content"></div>
+<div mat-dialog-actions>
+  <ng-container *ngFor="let button of data.buttons">
+    <button mat-button [mat-dialog-close]="button">{{button.text}}</button>
+  </ng-container>
+  <button mat-button [mat-dialog-close]="null" i18n="@@Cancel">Cancel</button>
+</div>
