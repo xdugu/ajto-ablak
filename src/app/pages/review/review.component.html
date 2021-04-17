@@ -2,7 +2,7 @@
     <h1 class="w3-center" i18n="Heading for final order review page@@Review">Review</h1>
     <div class="w3-row">
         <div class="w3-col l6">
-            <div *ngFor="let item of basket.Items; index as i;" class="w3-display-container w3-mobile w3-card" 
+            <div *ngFor="let item of basket.Items; index as i;" class="w3-display-container w3-mobile w3-card w3-margin-top" 
                 style="height: 100px; width: 100%; padding: 0px 16px">
                 <img [appImageSource]="bucketUrl + item.Images.path + item.Images.list[0].name" style="height: 80px"
                     class="w3-display-left w3-padding" [width]="100">
@@ -25,7 +25,7 @@
 
         </div>
 
-        <div class="w3-col l6 w3-padding w3-card" *ngIf="customer != null">
+        <div class="w3-col l6 w3-padding w3-card w3-margin-top" *ngIf="customer != null">
             <h2 i18n="@@OrderDetails">Order Details</h2> 
             <span>{{customer.firstName}}</span><br> 
             <span>{{customer.email}}</span><br>  
@@ -41,11 +41,20 @@
         </div>
     </div> 
 
+    <form #commentsForm="ngForm" class="w3-margin-top">
+        <mat-form-field style="width: 50%" class="w3-mobile" >
+            <mat-label i18n="Prompt to leave a comment@@LeaveComment">Leave a comment</mat-label>
+            <textarea matInput  rows="2" #comment maxlength="500" name="comments" [(ngModel)]="customerComments"></textarea>
+            <mat-hint align="end">{{comment.value.length}} / 500</mat-hint>
+        </mat-form-field>
+    </form>
     
     <div  style="width: 300px; overflow: hidden" class="w3-mobile w3-margin-top">
         <ng-container *ngFor="let payment of paymentTypes">
             <ng-container [ngSwitch]="payment.name">
-                <app-paypal *ngSwitchCase="'paypal'" [config]="payment"></app-paypal><br>
+                <app-paypal *ngSwitchCase="'paypal'" [config]="payment" 
+                            (orderConfirmed)="onOrderConfirmed('paypal', $event)">
+                </app-paypal><br>
                 <app-bank-transfer *ngSwitchCase="'bankTransfer'" [lang]="preferences.lang.chosen"
                                     (orderConfirmed)="onOrderConfirmed('bankTransfer')">
                 </app-bank-transfer>

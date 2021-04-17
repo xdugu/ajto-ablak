@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService, BasketInterface } from '@app/shared-services/basket.service';
-import { PreferencesService, PreferencesInterface } from '../services/preferences.service';
+import { PreferencesService, PreferencesInterface } from '@app/shared-services/preferences.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { MatSelectChange } from '@angular/material/select';

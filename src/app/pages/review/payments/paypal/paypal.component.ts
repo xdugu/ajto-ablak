@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Output, EventEmitter } from '@angular/core';
 import { get } from 'scriptjs';
 import { BasketInterface, BasketService } from '@app/shared-services/basket.service';
 import { environment } from '../../../../../environments/environment';
-import { CustomerDetailsInterface, CustomerDetailsService } from '../../../services/customer-details.service';
-import { PreferencesService, PreferencesInterface} from '../../../services/preferences.service';
+import { CustomerDetailsInterface, CustomerDetailsService } from '@app/shared-services/customer-details.service';
+import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
 
 declare var paypal;
 
@@ -20,6 +20,7 @@ interface PaypalConfigInterface{
 })
 export class PaypalComponent implements OnInit {
   @Input() config: PaypalConfigInterface = null;
+  @Output() orderConfirmed = new EventEmitter<any>();
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
               private customerDetailsService: CustomerDetailsService, 
@@ -98,7 +99,7 @@ export class PaypalComponent implements OnInit {
       },
       onApprove: (data, actions) => {
         actions.order.get().then((details: any) => {
-            console.log(JSON.stringify(details));
+            this.orderConfirmed.emit(details);
         });
 
       }}).render(this.element.nativeElement);

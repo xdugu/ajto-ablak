@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerDetailsService, CustomerDetailsInterface } from '../services/customer-details.service';
-import { PreferencesService, PreferencesInterface} from '../services/preferences.service';
+import { Router } from '@angular/router';
+import { CustomerDetailsService, CustomerDetailsInterface } from '@app/shared-services/customer-details.service';
+import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
 import { BasketService, BasketInterface} from '@app/shared-services/basket.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,11 +15,13 @@ import { DialogComponent} from './dialog/dialog.component';
 export class ReviewComponent implements OnInit {
   basket: BasketInterface = null;
   customer: CustomerDetailsInterface = null;
+  customerComments = '';
   preferences: PreferencesInterface = null;
   paymentTypes = null;
   bucketUrl: string = null;
+
   private successMessage = {
-    title:{
+    title: {
       en: 'Order Successful',
       hu: 'Order Successful'
     },
@@ -33,8 +36,7 @@ export class ReviewComponent implements OnInit {
     otherPaymentMethods: {
       en: `Thank you for your order. We will ship your item as soon as we can.
           Thank you for shopping with us`,
-      hu: `A megrendelés megerősítését a következő e-mail címre küldjük <strong>{{shopping.contact.email}}</strong>. 
-        A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>, 
+      hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>, 
         kérjük vegye fel velünk a kapcsolatot!
         Megrendelését hamarosan kézbesítjük!`
     },
@@ -50,7 +52,8 @@ export class ReviewComponent implements OnInit {
               private prefService: PreferencesService,
               private configService: ConfigService,
               private basketService: BasketService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.customerDetailsService.get().then(contact => this.customer = contact);
@@ -73,15 +76,24 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  onOrderConfirmed(paymentType: string, paymentDetails: any): void{
+  onOrderConfirmed(paymentType: string, paymentDetails: any = null): void{
     const lang = this.preferences.lang.chosen;
-    const dialog = this.dialog.open(DialogComponent, {
-      width: '350px',
-      data: {
-        title: this.successMessage.title[lang],
-        content: paymentType === 'bankTransfer' ? this.successMessage.bankTransfer[lang] : this.successMessage.otherPaymentMethods[lang],
-        buttons: []
-      }
+
+    this.basketService.placeOrder(paymentType, this.customerComments, paymentDetails).then(() => {
+      const dialog = this.dialog.open(DialogComponent, {
+        width: '350px',
+        data: {
+          title: this.successMessage.title[lang],
+          content: paymentType === 'bankTransfer' ? this.successMessage.bankTransfer[lang] :
+                                this.successMessage.otherPaymentMethods[lang],
+          buttons: []
+        }
+      });
+
+      dialog.afterClosed().subscribe(() => {
+        this.route.navigate(['/']);
+      });
     });
+
   }
 }

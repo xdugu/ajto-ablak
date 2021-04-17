@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './page-routing.module';
 import { CategoryGetterService } from './services/category-getter.service';
 import { ProductGetterService } from './services/product-getter.service';
-import { PreferencesService } from './services/preferences.service';
-import { CustomerDetailsService } from './services/customer-details.service';
+import { PreferencesService } from '@app/shared-services/preferences.service';
+import { CustomerDetailsService } from '@app/shared-services/customer-details.service';
 import { CountryCodePipe } from './pipes/country-code.pipe';
 import { StringOfPipe } from './pipes/string-of.pipe';
 

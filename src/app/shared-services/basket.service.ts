@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TokenStorageService } from '@app/shared-services/token-storage.service';
+import { CustomerDetailsService, CustomerDetailsInterface } from '@app/shared-services/customer-details.service';
+import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
 import { ApiManagerService, API_METHOD, API_MODE } from '@app/shared-services/api-manager.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { HttpParams } from '@angular/common/http';
@@ -23,7 +25,8 @@ export class BasketService {
   private loadingBasket = false; // flag to note when basket is loading to prevent multiple simultaneous network requests
 
   constructor(private tokenService: TokenStorageService, private apiService: ApiManagerService,
-              private configService: ConfigService) {
+              private configService: ConfigService, private customerDetailsService: CustomerDetailsService,
+              private prefService: PreferencesService) {
     this.basketId = tokenService.getString('BasketId');
   }
 
@@ -148,6 +151,46 @@ export class BasketService {
         },
         error: () => this.loadingBasket = false
       });
+  }
+
+  placeOrder(paymentType: string, comments: string, paymentDetails: any): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.prefService.getPreferences().subscribe({
+        next: preferences => {
+          this.customerDetailsService.get().then(customer => {
+            const lang = preferences.lang.chosen;
+            customer.countryCode = preferences.countryCode;
+            customer.lang = lang;
+
+            this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/order', new HttpParams(), {
+              orderDetails: {
+                contact: customer,
+                currency: preferences.currency.chosen,
+                paymentMethod: paymentType === 'payOnDelivery' ? 'payOnDelivery' : 'payBeforeDelivery',
+                paymentType,
+                deliveryMethod: preferences.deliveryMethod,
+                comments: comments.length === 0 ? null : comments,
+                paymentDetails
+            },
+            basketId: this.basket.BasketId,
+            storeId:  this.basket.StoreId
+            }).subscribe({
+              next: (data) => {
+                this.tokenService.removeItem('BasketId');
+                this.basket = null;
+                this.basketId = null;
+                this.basketCount.next(0);
+                this.prefService.clearPreferences();
+                resolve(data);
+                return;
+              },
+              error: err => reject(err)
+            });
+          });
+        },
+        error: err => reject(err)
+      });
+    });
   }
 
 }

@@ -4,8 +4,8 @@ import { TokenStorageService } from '@app/shared-services/token-storage.service'
 export interface CustomerDetailsInterface{
   firstName: string; lastName: string;
   address1: string; address2: string;
-  city: string; countryCode: string; postCode: string;
-  number: string; email: string;
+  city: string; countryCode?: string; postCode: string;
+  number: string; email: string; lang?: string;
 }
 
 @Injectable({

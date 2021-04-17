@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CustomerDetailsService, CustomerDetailsInterface } from '../services/customer-details.service';
-import { PreferencesService, PreferencesInterface} from '../services/preferences.service';
+import { CustomerDetailsService, CustomerDetailsInterface } from '@app/shared-services/customer-details.service';
+import { PreferencesService, PreferencesInterface} from '@app/shared-services//preferences.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ElementRef } from '@angular/core';
 import { Router } from '@angular/router';

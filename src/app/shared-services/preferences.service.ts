@@ -112,5 +112,10 @@ export class PreferencesService {
     }
   }
 
+  clearPreferences(): void{
+    this.storageService.removeItem('PreferencesVersion');
+    this.storageService.removeItem('Preferences');
+  }
+
 
 }

@@ -43,7 +43,7 @@ export class ConfigService {
   private getConfigFromNetwork(): void{
     this.requestInProgress = true;
     const hierarchyParams = new HttpParams()
-              .set('storeId', 'AjtoAblak')
+              .set('storeId', 'YatiTrend')
               .set('get', 'WebsiteSettings');
 
     this.apiManager.get(API_MODE.OPEN, API_METHOD.GET, 'settings', hierarchyParams).subscribe({
