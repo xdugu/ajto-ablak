@@ -36,6 +36,7 @@
     "component": "^1.1.0",
     "express": "^4.15.2",
     "jquery": "^3.6.0",
+    "localstorage-polyfill": "^1.0.1",
     "ngx-slick-carousel": "^0.5.1",
     "rxjs": "~6.6.0",
     "scriptjs": "^2.5.9",
