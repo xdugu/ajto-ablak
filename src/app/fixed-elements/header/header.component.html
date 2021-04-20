@@ -19,7 +19,7 @@
                        
             <ng-container *ngFor="let item of productHierarchy; index as i">
                 <!-- Show only first two items in first level hierarchy-->
-                <a mat-button *ngIf="i < 2 && !item.hasOwnProperty('sub')"
+                <a mat-button *ngIf="i < 2 && item.sub.length == 0"
                     [routerLink]="['category', item.name]">
                     {{item.text[lang]}}
                 </a>

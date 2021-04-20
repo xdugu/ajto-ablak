@@ -63,16 +63,15 @@
       </mat-expansion-panel-header>
       <div [innerHtml]="product.Description[siteLang]"></div>
     </mat-expansion-panel>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title i18n="@@ProductShipping">Shipping</mat-panel-title>
-        </mat-expansion-panel-header>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title i18n="@@ProductReturns">Returns</mat-panel-title>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
+    <ng-container *ngFor="let doc of product.Documents">
+      <mat-expansion-panel *ngIf="doc.lang == siteLang" [appDocument]="doc.id" [storeId]="storeId"
+        [titleRef]="title" [contentRef]="content">
+          <mat-expansion-panel-header >
+            <mat-panel-title #title></mat-panel-title>
+          </mat-expansion-panel-header>
+          <div #content></div>
+      </mat-expansion-panel>
+    </ng-container>
   </mat-accordion>
   <div style="height:200px"></div>
 </ng-container>

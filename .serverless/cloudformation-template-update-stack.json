@@ -175,7 +175,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-common-web-template/dev/1617644116840-2021-04-05T17:35:16.840Z/serverless-common-web-template.zip"
+          "S3Key": "serverless/serverless-common-web-template/dev/1618774605339-2021-04-18T19:36:45.339Z/serverless-common-web-template.zip"
         },
         "Handler": "lambda.ssrserverless",
         "Runtime": "nodejs12.x",
@@ -194,14 +194,14 @@
       ],
       "DeletionPolicy": "Retain"
     },
-    "MyLambdaAtEdgeLambdaVersionmhrArY3tjwuqf2sP6qK2MmtrgUp9GlgfO6yrntp9A": {
+    "MyLambdaAtEdgeLambdaVersion08CsH7a9XsuW5r6zTLat1OkI8gbErsN1zQPLooCC9Y": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MyLambdaAtEdgeLambdaFunction"
         },
-        "CodeSha256": "rAssHErBuTc3Wdjg51BWOLzsDuYS/cNCUjRZTqRRuOQ="
+        "CodeSha256": "O1qwbC1VJHpw94x9x4CC3ereH9yYElaqh3XGYJYFaDY="
       }
     },
     "CloudFrontCachePolicyMyCachePolicy": {
@@ -232,7 +232,7 @@
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
-          "Ref": "MyLambdaAtEdgeLambdaVersionmhrArY3tjwuqf2sP6qK2MmtrgUp9GlgfO6yrntp9A"
+          "Ref": "MyLambdaAtEdgeLambdaVersion08CsH7a9XsuW5r6zTLat1OkI8gbErsN1zQPLooCC9Y"
         },
         "Action": "lambda:InvokeFunction",
         "Principal": "edgelambda.amazonaws.com",
@@ -282,7 +282,7 @@
               {
                 "EventType": "origin-request",
                 "LambdaFunctionARN": {
-                  "Ref": "MyLambdaAtEdgeLambdaVersionmhrArY3tjwuqf2sP6qK2MmtrgUp9GlgfO6yrntp9A"
+                  "Ref": "MyLambdaAtEdgeLambdaVersion08CsH7a9XsuW5r6zTLat1OkI8gbErsN1zQPLooCC9Y"
                 }
               }
             ]
@@ -314,7 +314,7 @@
                 {
                   "EventType": "origin-response",
                   "LambdaFunctionARN": {
-                    "Ref": "MyLambdaAtEdgeLambdaVersionmhrArY3tjwuqf2sP6qK2MmtrgUp9GlgfO6yrntp9A"
+                    "Ref": "MyLambdaAtEdgeLambdaVersion08CsH7a9XsuW5r6zTLat1OkI8gbErsN1zQPLooCC9Y"
                   }
                 }
               ],
@@ -335,7 +335,7 @@
     "MyLambdaAtEdgeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MyLambdaAtEdgeLambdaVersionmhrArY3tjwuqf2sP6qK2MmtrgUp9GlgfO6yrntp9A"
+        "Ref": "MyLambdaAtEdgeLambdaVersion08CsH7a9XsuW5r6zTLat1OkI8gbErsN1zQPLooCC9Y"
       }
     },
     "CloudFrontDistribution": {

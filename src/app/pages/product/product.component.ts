@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
   product = null;
   basketUrl = null;
   pickedSpec = [];
+  storeId: string = null;
 
   siteLang = 'en';
   private priceElement: ElementRef;
@@ -26,6 +27,9 @@ export class ProductComponent implements OnInit {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
+    });
+    config.getConfig('storeId').subscribe({
+      next: storeId => this.storeId = storeId
     });
     this.carouselHeight = 600;
 

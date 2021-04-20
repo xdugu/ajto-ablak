@@ -58,3 +58,138 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($my-app-theme);
+
+
+$goldenrod-primary: (
+    50 : #fbf4e4,
+    100 : #f4e4bc,
+    200 : #edd290,
+    300 : #e5c063,
+    400 : #e0b341,
+    500 : #daa520,
+    600 : #d69d1c,
+    700 : #d09318,
+    800 : #cb8a13,
+    900 : #c2790b,
+    A100 : #fff8ee,
+    A200 : #ffe1bb,
+    A400 : #ffcb88,
+    A700 : #ffbf6e,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$goldenrod-theme-primary: mat-palette($goldenrod-primary);
+$goldenrod-theme-accent:  mat-palette($mat-grey, 900);
+
+// The warn palette is optional (defaults to red).
+$goldenrod-theme-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$goldenrod-theme: mat-light-theme($goldenrod-theme-primary, $goldenrod-theme-accent, $goldenrod-theme-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+.goldenrod-theme{
+    @include angular-material-color($goldenrod-theme);
+}
+
+$cream-primary: (
+    50 : #faf6f0,
+    100 : #f3e8d9,
+    200 : #ebd9bf,
+    300 : #e2c9a5,
+    400 : #dcbe92,
+    500 : #d6b27f,
+    600 : #d1ab77,
+    700 : #cca26c,
+    800 : #c69962,
+    900 : #bc8a4f,
+    A100 : #ffffff,
+    A200 : #fff4e7,
+    A400 : #ffdcb4,
+    A700 : #ffcf9b,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$cream-secondary: (
+    50 : #f8f3ed,
+    100 : #ede2d3,
+    200 : #e2ceb6,
+    300 : #d6ba98,
+    400 : #cdac82,
+    500 : #c49d6c,
+    600 : #be9564,
+    700 : #b68b59,
+    800 : #af814f,
+    900 : #a26f3d,
+    A100 : #fff8f2,
+    A200 : #ffdebf,
+    A400 : #ffc48c,
+    A700 : #ffb773,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$cream-theme-primary: mat-palette($cream-primary);
+$cream-theme-accent:  mat-palette($cream-secondary, 900);
+
+// The warn palette is optional (defaults to red).
+$cream-theme-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$cream-theme: mat-light-theme($cream-theme-primary, $cream-theme-accent, $cream-theme-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+.cream-theme{
+    @include angular-material-color($cream-theme);
+}
+

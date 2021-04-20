@@ -1,9 +1,11 @@
-<app-header (menuButtonClicked)="onMenuButtonClickedInNav()" [lang]="siteLanguage"></app-header>
-<mat-sidenav-container>
-  <mat-sidenav [(opened)]="sideBarVisible" [mode]="sideBarMode" [position]="'start'">
-    <app-side-bar [lang]="siteLanguage" [screenType]="currentView"></app-side-bar>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="">
+  <app-header (menuButtonClicked)="onMenuButtonClickedInNav()" [lang]="siteLanguage"></app-header>
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="sideBarVisible" [mode]="sideBarMode" [position]="'start'">
+      <app-side-bar [lang]="siteLanguage" [screenType]="currentView"></app-side-bar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -73,6 +73,14 @@ a {
 }
 
 
-@include theme-color($my-app-theme)
+@include theme-color($my-app-theme);
+
+.goldenrod-theme{
+  @include theme-color($goldenrod-theme);
+}
+
+.cream-theme{
+  @include theme-color($cream-theme)
+}
 
 
