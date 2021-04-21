@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { SharedModuleModule } from '@app/shared-module/shared-module.module';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -20,6 +21,7 @@ import {MatListModule} from '@angular/material/list';
   imports: [
     CommonModule,
     AppRoutingModule,
+    SharedModuleModule,
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,

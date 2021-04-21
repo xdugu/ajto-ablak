@@ -20,57 +20,24 @@
     </unit>
     <unit id="LegalInformation">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:28</note>
+        <note category="location">src/app/pages/legal/legal.component.html:1</note>
       </notes>
       <segment>
         <source> Legal Information </source>
       </segment>
     </unit>
-    <unit id="ProductDescription">
+    <unit id="Blogs">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:61,62</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
       </notes>
       <segment>
-        <source> Description </source>
-      </segment>
-    </unit>
-    <unit id="ProductShipping">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:68</note>
-      </notes>
-      <segment>
-        <source>Shipping</source>
-      </segment>
-    </unit>
-    <unit id="ProductReturns">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:73</note>
-      </notes>
-      <segment>
-        <source>Returns</source>
-      </segment>
-    </unit>
-    <unit id="OutOfStock">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:30</note>
-        <note category="location">src/app/pages/product/product.component.html:49</note>
-      </notes>
-      <segment>
-        <source>Out Of Stock</source>
-      </segment>
-    </unit>
-    <unit id="AddToBasket">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:36,37</note>
-      </notes>
-      <segment>
-        <source> Add To Basket </source>
+        <source> Blogs </source>
       </segment>
     </unit>
     <unit id="PayOnDelivery">
       <notes>
         <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
-        <note category="location">src/app/pages/review/review.component.html:62,63</note>
       </notes>
       <segment>
         <source> Pay on delivery
@@ -129,6 +96,15 @@
       </notes>
       <segment>
         <source>Total:</source>
+      </segment>
+    </unit>
+    <unit id="LeaveComment">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:46</note>
+        <note category="description">Prompt to leave a comment</note>
+      </notes>
+      <segment>
+        <source>Leave a comment</source>
       </segment>
     </unit>
     <unit id="OrderDetails">
@@ -286,14 +262,6 @@
         <source> Proceed to payment </source>
       </segment>
     </unit>
-    <unit id="Cancel">
-      <notes>
-        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
-      </notes>
-      <segment>
-        <source>Cancel</source>
-      </segment>
-    </unit>
     <unit id="Basket">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:3</note>
@@ -359,6 +327,39 @@
       </notes>
       <segment>
         <source> Proceed to checkout</source>
+      </segment>
+    </unit>
+    <unit id="Cancel">
+      <notes>
+        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Cancel</source>
+      </segment>
+    </unit>
+    <unit id="ProductDescription">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:61,62</note>
+      </notes>
+      <segment>
+        <source> Description </source>
+      </segment>
+    </unit>
+    <unit id="OutOfStock">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:30</note>
+        <note category="location">src/app/pages/product/product.component.html:49</note>
+      </notes>
+      <segment>
+        <source>Out Of Stock</source>
+      </segment>
+    </unit>
+    <unit id="AddToBasket">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:36,37</note>
+      </notes>
+      <segment>
+        <source> Add To Basket </source>
       </segment>
     </unit>
   </file>

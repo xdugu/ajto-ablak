@@ -16,11 +16,18 @@
       <target>Rólunk</target></segment>
     </unit><unit id="LegalInformation">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
-      </notes>
+        
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="initial">
         <source> Legal Information </source>
       <target> Jogi információk</target></segment>
+    </unit><unit id="Blogs">
+      <notes>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+      </notes>
+      <segment state="initial">
+        <source> Blogs </source>
+      <target> Blogs </target></segment>
     </unit><unit id="AddToBasket">
       <notes>
         
@@ -30,9 +37,9 @@
       <target>Kosárba</target></segment>
     </unit><unit id="PayOnDelivery">
       <notes>
-        <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
-        <note category="location">src/app/pages/review/review.component.html:62,63</note>
-      </notes>
+        
+        
+      <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3</note></notes>
       <segment state="initial">
         <source> Pay on delivery
 </source>
@@ -256,6 +263,14 @@
       <segment state="initial">
         <source>Total:</source>
       <target>Végösszeg:</target></segment>
+    </unit><unit id="LeaveComment">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:46</note>
+        <note category="description">Prompt to leave a comment</note>
+      </notes>
+      <segment state="initial">
+        <source>Leave a comment</source>
+      <target>Leave a comment</target></segment>
     </unit><unit id="OrderDetails">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:29</note>
@@ -292,20 +307,6 @@
       <segment state="initial">
         <source> Description </source>
       <target> Leírás </target></segment>
-    </unit><unit id="ProductShipping">
-      <notes>
-        
-      <note category="location">src/app/pages/product/product.component.html:68</note></notes>
-      <segment state="initial">
-        <source>Shipping</source>
-      <target>Szállítás</target></segment>
-    </unit><unit id="ProductReturns">
-      <notes>
-        
-      <note category="location">src/app/pages/product/product.component.html:73</note></notes>
-      <segment state="initial">
-        <source>Returns</source>
-      <target>Áruvisszaküldés</target></segment>
     </unit><unit id="OutOfStock">
       <notes>
         

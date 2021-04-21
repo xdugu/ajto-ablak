@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 import { ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
 import { ScreenTypeService} from '../../shared-services/screen-type.service';
 import { BasketService } from '@app/shared-services/basket.service';
-
+import { ConfigService } from '@app/shared-services/config.service';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +16,11 @@ export class HeaderComponent implements OnInit {
   screenState = 'mobile';
   productHierarchy: any;
   basketCount = 0;
+  bucketUrl: string = null;
+  configImages = null;
 
   constructor(screenTypeService: ScreenTypeService, private pHService: ProductHierarchyService,
-              private basketService: BasketService) {
+              private basketService: BasketService, private configService: ConfigService) {
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.screenState = state
     });
@@ -32,6 +34,15 @@ export class HeaderComponent implements OnInit {
      this.basketService.getBasketCount().subscribe({
        next: count => this.basketCount = count
      });
+
+     this.configService.getConfig('imgSrc').subscribe({
+       next: bucketUrl => this.bucketUrl = bucketUrl
+     });
+
+     this.configService.getConfig('images').subscribe({
+      next: images => this.configImages = images
+    });
+
   }
 
   // callback from view to register when menu button is clicked

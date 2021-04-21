@@ -19,11 +19,18 @@
       <target>About</target></segment>
     </unit><unit id="LegalInformation">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
-      </notes>
+        
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="final">
         <source> Legal Information </source>
       <target> Legal Information </target></segment>
+    </unit><unit id="Blogs">
+      <notes>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+      </notes>
+      <segment state="final">
+        <source> Blogs </source>
+      <target> Blogs </target></segment>
     </unit><unit id="AddToBasket">
       <notes>
         
@@ -33,9 +40,9 @@
       <target> Add To Basket </target></segment>
     </unit><unit id="PayOnDelivery">
       <notes>
-        <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
-        <note category="location">src/app/pages/review/review.component.html:62,63</note>
-      </notes>
+        
+        
+      <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3</note></notes>
       <segment state="final">
         <source> Pay on delivery
 </source>
@@ -259,6 +266,14 @@
       <segment state="final">
         <source>Total:</source>
       <target>Total:</target></segment>
+    </unit><unit id="LeaveComment">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:46</note>
+        <note category="description">Prompt to leave a comment</note>
+      </notes>
+      <segment state="final">
+        <source>Leave a comment</source>
+      <target>Leave a comment</target></segment>
     </unit><unit id="OrderDetails">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:29</note>
@@ -295,20 +310,6 @@
       <segment state="final">
         <source> Description </source>
       <target> Description </target></segment>
-    </unit><unit id="ProductShipping">
-      <notes>
-        
-      <note category="location">src/app/pages/product/product.component.html:68</note></notes>
-      <segment state="final">
-        <source>Shipping</source>
-      <target>Shipping</target></segment>
-    </unit><unit id="ProductReturns">
-      <notes>
-        
-      <note category="location">src/app/pages/product/product.component.html:73</note></notes>
-      <segment state="final">
-        <source>Returns</source>
-      <target>Returns</target></segment>
     </unit><unit id="OutOfStock">
       <notes>
         

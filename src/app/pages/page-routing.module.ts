@@ -8,7 +8,11 @@ const routes: Routes = [
   { path: 'product/:productId', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
   { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule) },
   { path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
-  { path: 'review', loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) }
+  { path: 'review', loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) },
+  { path: 'legal', loadChildren: () => import('./legal/legal.module').then(m => m.LegalModule) },
+  { path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule) },
+  { path: '**', loadChildren: () => import('./generic/generic.module').then(m => m.GenericModule) },
+
 ];
 
 @NgModule({

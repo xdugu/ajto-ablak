@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
-import { ProductHierarchy, ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { ProductHierarchy, ProductHierarchyService } from '@app/shared-services/product-hierarchy.service';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { ConfigService } from '@app/shared-services/config.service';
 import { Subscription } from 'rxjs';
 
 interface SideBarProductHierarchy extends ProductHierarchy{
@@ -22,13 +23,16 @@ export class SideBarComponent implements OnInit, OnDestroy {
   private pHServiceSubscription: Subscription;
   treeControl = new NestedTreeControl<SideBarProductHierarchy>(node => node.sub);
   dataSource = new MatTreeNestedDataSource<SideBarProductHierarchy>();
+  configPages = null;
 
-  constructor(pHService: ProductHierarchyService) {
+  constructor(pHService: ProductHierarchyService, configService: ConfigService) {
 
     // get product hierarchy
     this.pHServiceSubscription = pHService.getHierarchy().subscribe({
       next: res => this.updateProductHierarchy(res)
     });
+
+    configService.getConfig('pages').subscribe({next: pages => this.configPages = pages});
   }
 
   ngOnInit(): void {

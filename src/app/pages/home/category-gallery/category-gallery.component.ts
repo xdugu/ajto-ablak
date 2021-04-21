@@ -23,7 +23,6 @@ export class CategoryGalleryComponent implements OnInit, OnChanges {
     this.configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
-    this.getCategoryItems();
   }
 
   ngOnChanges(changes: SimpleChanges): void{

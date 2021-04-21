@@ -1,4 +1,4 @@
-<header [ngSwitch]="screenState">
+<header [ngSwitch]="screenState" *ngIf="configImages != null">
 
     <!--Menu for hierarchy-->
     <mat-menu #hierarchyMenu="matMenu" yPosition="below">
@@ -13,8 +13,8 @@
     <!--Desktops-->
     <mat-toolbar color="primary" *ngSwitchCase="'wideScreen'" class="center">
             <a [routerLink]="['/']" style="height:100%"> 
-                <img src="assets/fixed/header/images/logo.jpg" style="height: 100%" 
-                        class="w3-padding w3-circle">
+                <img [src]="'logo' | flowImage : configImages.list : bucketUrl + configImages.path" 
+                    style="height: 100%" class="w3-padding w3-circle">
             </a>
                        
             <ng-container *ngFor="let item of productHierarchy; index as i">
@@ -39,8 +39,8 @@
                     shopping_basket
                 </mat-icon>
             </a>
-            <a mat-button i18n="@@ContactUs">Contact us</a>
-            <a mat-button i18n="@@AboutUs">About</a>
+            <a mat-button i18n="@@ContactUs" [routerLink]="['/contact']">Contact us</a>
+            <a mat-button i18n="@@AboutUs" [routerLink]="['/about']">About</a>
             
     </mat-toolbar>
 
@@ -48,11 +48,12 @@
     <!-- Mobile Screens-->
     <mat-toolbar color="primary" *ngSwitchDefault>
         <a [routerLink]="['/']" style="height:100%">
-             <img src="assets/fixed/header/images/logo.jpg" style="height: 100%" class="w3-padding w3-circle">
+             <img [src]="'logo' | flowImage : configImages.list : bucketUrl + configImages.path" 
+                    style="height: 100%" class="w3-padding w3-circle">
         </a>
         <span class="fill-remaining-space"></span>
         
-        <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon" >
+        <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon">
             <mat-icon color="accent" [matBadge]="basketCount > 0? basketCount: null" matBadgePosition="below after">
                 shopping_basket
             </mat-icon>

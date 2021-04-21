@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges} from '@angular/core';
 import {  HttpParams } from '@angular/common/http';
 import { ApiManagerService, API_METHOD, API_MODE } from '@app/shared-services/api-manager.service';
 
