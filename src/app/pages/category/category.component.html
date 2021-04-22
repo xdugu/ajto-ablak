@@ -5,8 +5,9 @@
             [cols]="numOfItemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
         <mat-grid-tile *ngFor="let child of currentHierarchy.sub">
             <a  [routerLink]="child.name" class="w3-display-container" style="height:100%; width: 100%">
-                <div class="image-holder">
-                    <img src="assets/category/door.jpg" style="height: 100%; width: auto; opacity: 0.6;">
+                <div class="image-holder" *ngIf="images != null">
+                    <img [appImageSource]="'logo' | flowImage : images.list : bucketUrl + images.path"
+                         style="height: 100%; width: auto; opacity: 0.6;">
                 </div>
                 <div class="w3-display-middle w3-center mat-h2 category-text" style="width:80%">
                     {{child.text[siteLang]}}

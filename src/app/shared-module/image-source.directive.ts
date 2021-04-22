@@ -26,7 +26,7 @@ export class ImageSourceDirective implements OnChanges{
 
     if (extInd >= 0 && width != null){
       const urlWithoutExt = url.substring(0, extInd);
-      return urlWithoutExt + '_' + width.toString() + 'w' + url.substring(extInd);
+      return urlWithoutExt + '_' + width.toString() + 'w' + url.substring(extInd).toLowerCase();
     }
     else{
       return url;

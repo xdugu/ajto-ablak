@@ -1,0 +1,26 @@
+<div class="w3-content" style="max-width: 600px;">
+    <h2 class="w3-center">Blog</h2>
+    <mat-list>
+        <mat-list-item *ngFor="let item of list | objectFilter : {'Published': true}">
+            <img matListAvatar [alt]="item.Info.title"
+                [appImageSource]="bucketUrl + storeId + '/blogs/' + item.ItemId + '/preview.jpg'" 
+                    [width]="100">
+            <h3 matLine> <b>{{item.Info.title}} </b></h3>
+            <p matLine class="w3-text-grey">
+                <span  i18n="@@Published">Published</span>: 
+                    {{item.PublishDate | date : 'medium'}}</p>
+            <p matLine>
+                <span> {{item.Info.previewText}} </span>
+                <br>
+            </p>
+            <p matLine>
+                <a mat-button color="primary" [routerLink]="['/blogs', 'view', item.ItemId]"
+                    i18n="A 'read more' button@@ReadMore">
+                    Read More
+                </a>
+            </p>
+            
+        </mat-list-item>
+    </mat-list>
+</div>
+

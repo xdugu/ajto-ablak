@@ -20,6 +20,7 @@ export class CategoryComponent implements OnInit {
   pHSubscription: Subscription;
   categoryItems: [];
   bucketUrl: string = null;
+  images: null;
 
   numOfItemsPerRow = 2;
   rowHeight = '250px';
@@ -30,6 +31,9 @@ export class CategoryComponent implements OnInit {
               private screenService: ScreenTypeService, private langService: LanguageService) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
+    });
+    configService.getConfig('images').subscribe({
+      next: images => this.images = images
     });
   }
 

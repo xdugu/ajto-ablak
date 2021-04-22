@@ -24,8 +24,8 @@
   </mat-tree>
   <mat-nav-list *ngIf="configPages != null">
     <ng-container *ngIf="screenType == 'mobile'">
-      <a *ngIf="configPages.about.enabled" mat-list-item [routerLink]="['about']" i18n="@@AboutUs"> About Us </a>
+      <a *ngIf="configPages.about.enabled" mat-list-item [routerLink]="['/about']" i18n="@@AboutUs"> About Us </a>
     </ng-container>
-    <a *ngIf="configPages.blogs.enabled" mat-list-item [routerLink]="['blogs']" i18n="@@Blogs"> Blogs </a>
+    <a *ngIf="configPages.blogs.enabled" mat-list-item [routerLink]="['/blogs', 'list']" i18n="@@Blogs"> Blog </a>
     <a mat-list-item [routerLink]="['legal']" i18n="@@LegalInformation"> Legal Information </a>
   </mat-nav-list>

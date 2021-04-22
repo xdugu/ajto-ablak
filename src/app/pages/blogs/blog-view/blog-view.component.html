@@ -1,0 +1,6 @@
+<div class="w3-content w3-padding" style="max-width: 900px;" *ngIf="blog != null">
+    
+    <h2 class="w3-center">{{blog.Info.title}}</h2>
+    <div [innerHtml]="blog.Info.content"></div>
+
+</div>
