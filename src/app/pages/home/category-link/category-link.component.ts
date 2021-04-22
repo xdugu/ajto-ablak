@@ -3,6 +3,7 @@ import { Component, OnInit, Input} from '@angular/core';
 interface CategoryLinkFlow{
   title: { en?: string, hu?: string};
   link: [];
+  colour: string;
 }
 
 @Component({

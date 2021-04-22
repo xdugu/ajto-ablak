@@ -1,4 +1,4 @@
-<div class="goldenrod-theme">
+<div [ngClass]="theme">
   <app-header (menuButtonClicked)="onMenuButtonClickedInNav()" [lang]="siteLanguage"></app-header>
   <mat-sidenav-container>
     <mat-sidenav [(opened)]="sideBarVisible" [mode]="sideBarMode" [position]="'start'">

@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 interface LanderFlow{
   title: { en?: string, hu?: string};
   contentText: { en?: string, hu?: string};
+  colour: string;
 }
 
 @Component({
