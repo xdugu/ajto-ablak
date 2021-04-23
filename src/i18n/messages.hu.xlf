@@ -3,31 +3,31 @@
   <file id="ngi18n" original="ng.template">
     <unit id="ContactUs">
       <notes>
-        <note category="location">src/app/fixed-elements/header/header.component.html:42</note>
-      </notes>
+        
+      <note category="location">src/app/fixed-elements/header/header.component.html:42</note><note category="location">src/app/pages/contact/contact.component.html:1</note></notes>
       <segment state="initial">
         <source>Contact us</source>
       <target>Kapcsolat</target></segment>
     </unit><unit id="AboutUs">
       <notes> 
-      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:26</note></notes>
+      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note></notes>
       <segment state="initial">
         <source>About</source>
       <target>Rólunk</target></segment>
     </unit><unit id="LegalInformation">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="initial">
         <source> Legal Information </source>
       <target> Jogi információk</target></segment>
     </unit><unit id="Blogs">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
-      </notes>
+        
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:29</note></notes>
       <segment state="initial">
-        <source> Blogs </source>
-      <target> Blogs </target></segment>
+        <source> Blog </source>
+      <target> Blog </target></segment>
     </unit><unit id="AddToBasket">
       <notes>
         
@@ -43,7 +43,7 @@
       <segment state="initial">
         <source> Pay on delivery
 </source>
-      <target> Pay on delivery
+      <target> Utánvét
 </target></segment>
     </unit><unit id="PayByBankTransfer">
       <notes>
@@ -52,7 +52,7 @@
       <segment state="initial">
         <source> Pay by bank transfer
 </source>
-      <target> Pay by bank transfer
+      <target> Banki átutalás
 </target></segment>
     </unit><unit id="Review">
       <notes>
@@ -61,7 +61,7 @@
       </notes>
       <segment state="initial">
         <source>Review</source>
-      <target>Review</target></segment>
+      <target>Rendelés áttekintése</target></segment>
     </unit><unit id="ContactInformation">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:3</note>
@@ -72,25 +72,54 @@
       <target>Kapcsolati információk</target></segment>
     </unit><unit id="Name">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:6</note><note category="location">src/app/pages/checkout/checkout.component.html:9</note></notes>
       <segment state="initial">
         <source>Name</source>
       <target>Név</target></segment>
     </unit><unit id="NameIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:9</note><note category="location">src/app/pages/checkout/checkout.component.html:13</note></notes>
       <segment state="initial">
         <source>Name is required</source>
       <target>Név megadása szükséges</target></segment>
     </unit><unit id="EmailIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:18</note><note category="location">src/app/pages/checkout/checkout.component.html:22</note></notes>
       <segment state="initial">
         <source>Email is required</source>
       <target>Email megadása szükséges</target></segment>
+    </unit><unit id="Comment">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:23</note>
+      </notes>
+      <segment state="initial">
+        <source>Comment</source>
+      <target>Megjegyzés</target></segment>
+    </unit><unit id="SendRequest">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:32</note>
+      </notes>
+      <segment state="initial">
+        <source>Send</source>
+      <target>Küldés</target></segment>
+    </unit><unit id="Published">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:10</note>
+      </notes>
+      <segment state="initial">
+        <source>Published</source>
+      <target>Datum</target></segment>
+    </unit><unit id="ReadMore">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:19,20</note>
+        <note category="description">A 'read more' button</note>
+      </notes>
+      <segment state="initial">
+        <source> Read More </source>
+      <target> Tovább olvasom </target></segment>
     </unit><unit id="PhoneNumber">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:27</note>
@@ -185,11 +214,11 @@
       <target> Tovább a fizetéshez </target></segment>
     </unit><unit id="Cancel">
       <notes>
-        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
-      </notes>
+        
+      <note category="location">src/app/shared-module/dialog/dialog.component.html:9</note></notes>
       <segment state="initial">
         <source>Cancel</source>
-      <target>Cancel</target></segment>
+      <target>Törlés</target></segment>
     </unit><unit id="Basket">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:3</note>
@@ -270,14 +299,14 @@
       </notes>
       <segment state="initial">
         <source>Leave a comment</source>
-      <target>Leave a comment</target></segment>
+      <target>Megjegyzés</target></segment>
     </unit><unit id="OrderDetails">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:29</note>
       </notes>
       <segment state="initial">
         <source>Order Details</source>
-      <target>Order Details</target></segment>
+      <target>Rendelés részletei</target></segment>
     </unit><unit id="PostTo">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:34</note>
@@ -285,7 +314,7 @@
       </notes>
       <segment state="initial">
         <source>Post To:</source>
-      <target>Post To:</target></segment>
+      <target>Címzett:</target></segment>
     </unit><unit id="ProceedToCheckout">
       <notes>
         

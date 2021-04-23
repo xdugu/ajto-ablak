@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent} from '../../dialog/dialog.component';
+import { DialogComponent} from '../../../../shared-module/dialog/dialog.component';
 
 @Component({
   selector: 'app-pay-on-delivery',

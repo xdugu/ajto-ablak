@@ -5,7 +5,7 @@ import { PreferencesService, PreferencesInterface} from '@app/shared-services/pr
 import { BasketService, BasketInterface} from '@app/shared-services/basket.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent} from './dialog/dialog.component';
+import { DialogComponent } from '@app/shared-module/dialog/dialog.component';
 
 @Component({
   selector: 'app-review',

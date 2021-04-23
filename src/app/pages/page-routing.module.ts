@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'review', loadChildren: () => import('./review/review.module').then(m => m.ReviewModule) },
   { path: 'legal', loadChildren: () => import('./legal/legal.module').then(m => m.LegalModule) },
   { path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule) },
+  { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: '**', loadChildren: () => import('./generic/generic.module').then(m => m.GenericModule) },
 
 ];

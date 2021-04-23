@@ -3,8 +3,8 @@
   <file id="ngi18n" original="ng.template">
     <unit id="ContactUs">
       <notes>
-        <note category="location">src/app/fixed-elements/header/header.component.html:42</note>
-      </notes>
+        
+      <note category="location">src/app/fixed-elements/header/header.component.html:42</note><note category="location">src/app/pages/contact/contact.component.html:1</note></notes>
       <segment state="final">
         <source>Contact us</source>
       <target>Contact us</target></segment>
@@ -13,24 +13,24 @@
         
         
         
-      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:26</note></notes>
+      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note></notes>
       <segment state="final">
         <source>About</source>
       <target>About</target></segment>
     </unit><unit id="LegalInformation">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="final">
         <source> Legal Information </source>
       <target> Legal Information </target></segment>
     </unit><unit id="Blogs">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
-      </notes>
+        
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:29</note></notes>
       <segment state="final">
-        <source> Blogs </source>
-      <target> Blogs </target></segment>
+        <source> Blog </source>
+      <target> Blog </target></segment>
     </unit><unit id="AddToBasket">
       <notes>
         
@@ -75,25 +75,54 @@
       <target>Contact Information</target></segment>
     </unit><unit id="Name">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:6</note><note category="location">src/app/pages/checkout/checkout.component.html:9</note></notes>
       <segment state="final">
         <source>Name</source>
       <target>Name</target></segment>
     </unit><unit id="NameIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:9</note><note category="location">src/app/pages/checkout/checkout.component.html:13</note></notes>
       <segment state="final">
         <source>Name is required</source>
       <target>Name is required</target></segment>
     </unit><unit id="EmailIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:18</note><note category="location">src/app/pages/checkout/checkout.component.html:22</note></notes>
       <segment state="final">
         <source>Email is required</source>
       <target>Email is required</target></segment>
+    </unit><unit id="Comment">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:23</note>
+      </notes>
+      <segment state="final">
+        <source>Comment</source>
+      <target>Comment</target></segment>
+    </unit><unit id="SendRequest">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:32</note>
+      </notes>
+      <segment state="final">
+        <source>Send</source>
+      <target>Send</target></segment>
+    </unit><unit id="Published">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:10</note>
+      </notes>
+      <segment state="final">
+        <source>Published</source>
+      <target>Published</target></segment>
+    </unit><unit id="ReadMore">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:19,20</note>
+        <note category="description">A 'read more' button</note>
+      </notes>
+      <segment state="final">
+        <source> Read More </source>
+      <target> Read More </target></segment>
     </unit><unit id="PhoneNumber">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:27</note>
@@ -188,8 +217,8 @@
       <target> Proceed to payment </target></segment>
     </unit><unit id="Cancel">
       <notes>
-        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
-      </notes>
+        
+      <note category="location">src/app/shared-module/dialog/dialog.component.html:9</note></notes>
       <segment state="final">
         <source>Cancel</source>
       <target>Cancel</target></segment>

@@ -12,13 +12,11 @@ import { SharedModuleModule} from '@app/shared-module/shared-module.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
 import { PayOnDeliveryComponent } from './payments/pay-on-delivery/pay-on-delivery.component';
 
 
 @NgModule({
-  declarations: [ReviewComponent, PaypalComponent, BankTransferComponent, DialogComponent, PayOnDeliveryComponent],
+  declarations: [ReviewComponent, PaypalComponent, BankTransferComponent, PayOnDeliveryComponent],
   imports: [
     CommonModule,
     ReviewRoutingModule,
@@ -27,8 +25,7 @@ import { PayOnDeliveryComponent } from './payments/pay-on-delivery/pay-on-delive
     MatFormFieldModule,
     MatInputModule,
     PagesModule,
-    SharedModuleModule,
-    MatDialogModule
+    SharedModuleModule
   ]
 })
 export class ReviewModule { }

@@ -4,6 +4,7 @@
     <unit id="ContactUs">
       <notes>
         <note category="location">src/app/fixed-elements/header/header.component.html:42</note>
+        <note category="location">src/app/pages/contact/contact.component.html:1</note>
       </notes>
       <segment>
         <source>Contact us</source>
@@ -12,7 +13,7 @@
     <unit id="AboutUs">
       <notes>
         <note category="location">src/app/fixed-elements/header/header.component.html:43</note>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:26</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
       </notes>
       <segment>
         <source>About</source>
@@ -20,7 +21,7 @@
     </unit>
     <unit id="LegalInformation">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:28</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note>
         <note category="location">src/app/pages/legal/legal.component.html:1</note>
       </notes>
       <segment>
@@ -29,10 +30,78 @@
     </unit>
     <unit id="Blogs">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:29</note>
       </notes>
       <segment>
-        <source> Blogs </source>
+        <source> Blog </source>
+      </segment>
+    </unit>
+    <unit id="Cancel">
+      <notes>
+        <note category="location">src/app/shared-module/dialog/dialog.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Cancel</source>
+      </segment>
+    </unit>
+    <unit id="Name">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:6</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Name</source>
+      </segment>
+    </unit>
+    <unit id="NameIsRequired">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:9</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
+      </notes>
+      <segment>
+        <source>Name is required</source>
+      </segment>
+    </unit>
+    <unit id="EmailIsRequired">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:18</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
+      </notes>
+      <segment>
+        <source>Email is required</source>
+      </segment>
+    </unit>
+    <unit id="Comment">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:23</note>
+      </notes>
+      <segment>
+        <source>Comment</source>
+      </segment>
+    </unit>
+    <unit id="SendRequest">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:32</note>
+      </notes>
+      <segment>
+        <source>Send</source>
+      </segment>
+    </unit>
+    <unit id="Published">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:10</note>
+      </notes>
+      <segment>
+        <source>Published</source>
+      </segment>
+    </unit>
+    <unit id="ReadMore">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:19,20</note>
+        <note category="description">A &apos;read more&apos; button</note>
+      </notes>
+      <segment>
+        <source> Read More </source>
       </segment>
     </unit>
     <unit id="PayOnDelivery">
@@ -131,30 +200,6 @@
       </notes>
       <segment>
         <source>Contact Information</source>
-      </segment>
-    </unit>
-    <unit id="Name">
-      <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
-      </notes>
-      <segment>
-        <source>Name</source>
-      </segment>
-    </unit>
-    <unit id="NameIsRequired">
-      <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
-      </notes>
-      <segment>
-        <source>Name is required</source>
-      </segment>
-    </unit>
-    <unit id="EmailIsRequired">
-      <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
-      </notes>
-      <segment>
-        <source>Email is required</source>
       </segment>
     </unit>
     <unit id="PhoneNumber">
@@ -327,14 +372,6 @@
       </notes>
       <segment>
         <source> Proceed to checkout</source>
-      </segment>
-    </unit>
-    <unit id="Cancel">
-      <notes>
-        <note category="location">src/app/pages/review/dialog/dialog.component.html:9</note>
-      </notes>
-      <segment>
-        <source>Cancel</source>
       </segment>
     </unit>
     <unit id="ProductDescription">
