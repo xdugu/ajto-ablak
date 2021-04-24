@@ -1,15 +1,15 @@
 <ng-container *ngIf="product != null">
 
   <ngx-slick-carousel  #slickModal="slick-carousel" [config]="slickConfig" 
-      style="width: 100%;" [style.height.px]="carouselHeight"
+      style="width: 100%;" 
       (afterChange)="onCarouselEvent($event)"
-      (init)="onCarouselEvent($event)">
+      (init)="onCarouselEvent($event)"
+      [style.height.px]="carouselHeight + 10">
       <ng-container *ngFor="let imgName of product.Images.list" >
         <div  ngxSlickItem *ngIf="imgName.type == 'product'"
-                style="width:100%; overflow-y:hidden;">
+                style="width:100%; overflow-y: hidden;" [style.height.px]="carouselHeight">
 
-            <img  [appImageSource]="basketUrl + product.Images.path + imgName.name" 
-                  [width]="500"
+            <img  [appLazyLoad]="basketUrl + product.Images.path + imgName.name | imageSource : 500" 
                   class="w3-center"
                   style="width:100%; height:auto;"> 
         </div>

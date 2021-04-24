@@ -5,7 +5,7 @@ import { LanguageService } from '@app/shared-services/language.service';
 import { ApiManagerService, API_METHOD, API_MODE} from '@app/shared-services/api-manager.service';
 import { HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { DialogComponent, DialogInterface} from '@app/shared-module/dialog/dialog.component';
+import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-contact',
