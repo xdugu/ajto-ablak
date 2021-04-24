@@ -4,8 +4,8 @@
         <div class="w3-col l6">
             <div *ngFor="let item of basket.Items; index as i;" class="w3-display-container w3-mobile w3-card w3-margin-top" 
                 style="height: 100px; width: 100%; padding: 0px 16px">
-                <img [appImageSource]="bucketUrl + item.Images.path + item.Images.list[0].name" style="height: 80px"
-                    class="w3-display-left w3-padding" [width]="100">
+                <img [appLazyLoad]="bucketUrl + item.Images.path + item.Images.list[0].name | imageSource : 100" style="height: 80px"
+                    class="w3-display-left w3-padding">
                 <span class="w3-display-middle">{{item.Title[preferences.lang.chosen]}}
                     <span *ngFor="let variant of item.Variants.variants; index as varInd">
                         , {{variant.text[preferences.lang.chosen]}} : {{item.Combination[varInd].text[preferences.lang.chosen]}}

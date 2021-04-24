@@ -6,7 +6,7 @@
         <mat-grid-tile *ngFor="let child of currentHierarchy.sub">
             <a  [routerLink]="child.name" class="w3-display-container" style="height:100%; width: 100%">
                 <div class="image-holder" *ngIf="images != null">
-                    <img [appImageSource]="'logo' | flowImage : images.list : bucketUrl + images.path"
+                    <img [appLazyLoad]="'logo' | flowImage : images.list : bucketUrl + images.path | imageSource : 300"
                          style="height: 100%; width: auto; opacity: 0.6;">
                 </div>
                 <div class="w3-display-middle w3-center mat-h2 category-text" style="width:80%">
@@ -22,8 +22,8 @@
             <mat-grid-tile *ngFor="let product of categoryItems">
                 <a style="height: 100%; width: 100%; display: block" [routerLink]="['/product', product.ItemId]">
                     <div class="grow-on-hover image-holder" style="height: 80%; width: 100%; ">
-                        <img [appImageSource]="bucketUrl + product.Images.path + product.Images.list[0].name"
-                            [width]="300" style="height: 100%; width: auto; margin: auto; display:block">
+                        <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 300"
+                             style="height: 100%; width: auto; margin: auto; display:block">
                     </div>
                     <div class="w3-center">
                         <b>{{product.Title[siteLang]}}</b><br>
