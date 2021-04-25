@@ -18,6 +18,9 @@
 
     <!-- For hierarchies that don't have children -->
     <ng-template #lastChild>
+        <app-currency-chooser *ngIf="currencyPref != null" [chosen]="currencyPref.chosen"
+            [available]="currencyPref.available" (currencyChange)="onCurrencyChange($event)">
+        </app-currency-chooser>
         <mat-grid-list [cols]="numOfItemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
             <mat-grid-tile *ngFor="let product of categoryItems">
                 <a style="height: 100%; width: 100%; display: block" [routerLink]="['/product', product.ItemId]">
@@ -27,7 +30,9 @@
                     </div>
                     <div class="w3-center">
                         <b>{{product.Title[siteLang]}}</b><br>
-                        <span class="price">{{product.Price.huf | currency : 'HUF'}}</span>
+                        <span class="price" *ngIf="currencyPref != null">
+                            {{product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+                        </span>
                     </div>
                 </a>
             </mat-grid-tile>

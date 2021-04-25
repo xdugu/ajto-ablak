@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { TokenStorageService } from '@app/shared-services/token-storage.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
@@ -19,6 +19,8 @@ export interface PreferencesInterface{
 export class PreferencesService {
   private currentPreference: PreferencesInterface = null;
   private loadingPreferences = true;
+  private observable: Observable<PreferencesInterface> = null;
+  private observer: Observer<PreferencesInterface> = null;
 
   constructor(private storageService: TokenStorageService, private configService: ConfigService,
               langService: LanguageService) {
@@ -42,7 +44,6 @@ export class PreferencesService {
         }
       });
     } // if
-
     else{
       this.currentPreference = storageService.getObj('Preferences');
       this.configService.getConfig('version').subscribe({
@@ -82,10 +83,35 @@ export class PreferencesService {
       });
 
     } // else
+
+    this.initialiseObservable();
   } // constructor
 
   getPreferences(): Observable<PreferencesInterface> {
-    return new Observable(observer => {
+    return this.observable;
+  }
+
+  setPreference(property: string, value: any): void{
+    const keys = Object.keys(this.currentPreference);
+    if (keys.indexOf(property) >= 0){
+      this.currentPreference[property] = value;
+      this.storageService.setObj('Preferences', this.currentPreference);
+      this.observer.next(JSON.parse(JSON.stringify(this.currentPreference)));
+    }
+    else{
+      console.log('Cannot save a property that does not exist in preferences');
+    }
+  }
+
+  clearPreferences(): void{
+    this.storageService.removeItem('PreferencesVersion');
+    this.storageService.removeItem('Preferences');
+  }
+
+  private initialiseObservable(): void {
+    // create function for observer
+    this.observable = new Observable(observer => {
+      this.observer = observer;
       if (this.loadingPreferences){
         const interval = setInterval(() => {
           if (!this.loadingPreferences){
@@ -99,22 +125,6 @@ export class PreferencesService {
         observer.next(JSON.parse(JSON.stringify(this.currentPreference)));
       }
     });
-  }
-
-  setPreference(property: string, value: any): void{
-    const keys = Object.keys(this.currentPreference);
-    if (keys.indexOf(property) >= 0){
-      this.currentPreference[property] = value;
-      this.storageService.setObj('Preferences', this.currentPreference);
-    }
-    else{
-      console.log('Cannot save a property that does not exist in preferences');
-    }
-  }
-
-  clearPreferences(): void{
-    this.storageService.removeItem('PreferencesVersion');
-    this.storageService.removeItem('Preferences');
   }
 
 

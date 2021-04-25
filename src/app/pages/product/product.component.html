@@ -17,19 +17,23 @@
   </ngx-slick-carousel>
 
   <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
-  <div>
-    <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
-          style="text-decoration: line-through;">
-          {{ product.Price.original.huf | currency : 'HUF'}}
-    </div>
 
-    <div #price class="my-theme-primary">
-      {{ product.Price.huf | currency : 'HUF'}}
-    </div>
-    <ng-template #OutOfStock>
-        <span i18n="@@OutOfStock" class="my-theme-warn">Out Of Stock</span>
-    </ng-template>
-  </div><br>
+  <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
+        style="text-decoration: line-through;">
+        {{ product.Price.original[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+  </div>
+
+  <div #price class="my-theme-primary">
+    {{ product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+  </div>
+  <ng-template #OutOfStock>
+      <span i18n="@@OutOfStock" class="my-theme-warn">Out Of Stock</span>
+  </ng-template>
+  <br>
+
+  <app-currency-chooser *ngIf="currencyPref != null" [chosen]="currencyPref.chosen" [available]="currencyPref.available"
+                  position="left" (currencyChange)="onCurrencyChange($event)">
+  </app-currency-chooser>
 
   <button mat-raised-button *ngIf="product.Quantity > 0; else OutOfStock" 
           color="primary" i18n="@@AddToBasket" (click)="addToBasket()">

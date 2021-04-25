@@ -63,6 +63,11 @@ export class BasketComponent implements OnInit {
     this.prefService.setPreference('deliveryMethod', event.value);
   }
 
+  onCurrencyChange(chosen: string): void{
+    this.preferences.currency.chosen = chosen;
+    this.prefService.setPreference('currency', this.preferences.currency);
+  }
+
   // to prevent a dom re-draw of the basket list, this function assigns a unique id
   // to each item in the basket based on a few unique properties of the basket item
   basketTrackFn(index: number, item: any): string{

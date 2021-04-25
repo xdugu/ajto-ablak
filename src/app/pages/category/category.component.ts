@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import {ProductHierarchy, ProductHierarchyService} from '@app/shared-services/product-hierarchy.service';
-import {ConfigService} from '@app/shared-services/config.service';
+import { ProductHierarchy, ProductHierarchyService } from '@app/shared-services/product-hierarchy.service';
+import { ConfigService } from '@app/shared-services/config.service';
 import { CategoryGetterService} from '@app/pages/services/category-getter.service';
 import { ScreenTypeService } from 'app/shared-services/screen-type.service';
 import { LanguageService } from 'app/shared-services/language.service';
+import { PreferencesService } from '@app/shared-services/preferences.service';
 
 
 @Component({
@@ -21,6 +22,10 @@ export class CategoryComponent implements OnInit {
   categoryItems: [];
   bucketUrl: string = null;
   images: null;
+  currencyPref = {
+    chosen: null,
+    available: []
+  };
 
   numOfItemsPerRow = 2;
   rowHeight = '250px';
@@ -28,12 +33,19 @@ export class CategoryComponent implements OnInit {
 
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
               private categoryGetter: CategoryGetterService, configService: ConfigService,
-              private screenService: ScreenTypeService, private langService: LanguageService) {
+              private screenService: ScreenTypeService, private langService: LanguageService,
+              private prefService: PreferencesService) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
     configService.getConfig('images').subscribe({
       next: images => this.images = images
+    });
+
+    this.prefService.getPreferences().subscribe({
+      next: prefs => {
+        this.currencyPref = prefs.currency;
+      }
     });
   }
 
@@ -80,6 +92,8 @@ export class CategoryComponent implements OnInit {
       }
     });
 
+
+
     this.langService.getLang().then(lang => this.siteLang = lang);
   }
 
@@ -100,6 +114,11 @@ export class CategoryComponent implements OnInit {
       return currentHierarchy;
     } // if
     return currentHierarchy;
+  }
+
+  onCurrencyChange(chosen: string): void{
+    this.currencyPref.chosen = chosen;
+    this.prefService.setPreference('currency', this.currencyPref);
   }
 
 }

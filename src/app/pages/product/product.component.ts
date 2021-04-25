@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@app/shared-services/config.service';
 import { ProductGetterService } from '../services/product-getter.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { BasketService } from '@app/shared-services/basket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PreferencesService } from '@app/shared-services/preferences.service';
 
 @Component({
   selector: 'app-product',
@@ -17,13 +18,15 @@ export class ProductComponent implements OnInit {
   basketUrl = null;
   pickedSpec = [];
   storeId: string = null;
+  currencyPref = null;
 
   siteLang = 'en';
   private priceElement: ElementRef;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
               config: ConfigService, private langService: LanguageService,
-              private basketService: BasketService, private snackBar: MatSnackBar) {
+              private basketService: BasketService, private snackBar: MatSnackBar,
+              private prefService: PreferencesService) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
@@ -33,6 +36,9 @@ export class ProductComponent implements OnInit {
     });
     this.carouselHeight = 600;
 
+    prefService.getPreferences().subscribe({
+      next: pref => this.currencyPref = pref.currency
+    });
   }
 
   @ViewChild('price') set content(content: ElementRef) {
@@ -161,6 +167,11 @@ export class ProductComponent implements OnInit {
       }
     );
  }
+
+  onCurrencyChange(chosen: string): void{
+    this.currencyPref.chosen = chosen;
+    this.prefService.setPreference('currency', this.currencyPref);
+  }
 
   private getMinImageHeight(images: any): number{
      let minHeight = 2000;

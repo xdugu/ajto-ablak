@@ -7,21 +7,24 @@ import { ObjectFilterPipe } from './pipes/object-filter.pipe';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import {MatChipsModule} from '@angular/material/chips';
 import { ImageSourcePipe } from './pipes/image-source.pipe';
+import { CurrencyChooserComponent } from './components/currency-chooser/currency-chooser.component';
 
 
 
 @NgModule({
   declarations: [DocumentDirective, FlowImagePipe,
-    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe],
+    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent],
   imports: [
     CommonModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule
   ],
   exports: [
      DocumentDirective, FlowImagePipe, ObjectFilterPipe,
-      DialogComponent, LazyLoadDirective, ImageSourcePipe
+      DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
   ]
 })
 export class SharedModuleModule { }

@@ -6,6 +6,9 @@
     *ngIf="basket == null || basket.Items.length == 0">Your basket is empty</h2>
 
 <div *ngIf="preferences != null && basket !=null && bucketUrl != null">
+    <app-currency-chooser [chosen]="preferences.currency.chosen" [available]="preferences.currency.available"
+                (currencyChange)="onCurrencyChange($event)">
+    </app-currency-chooser>
 
     <div class="w3-row w3-margin-top" style="min-height: 800px;">
         <!-- to be displayed left on desktops and 100% width on tablets and mobiles-->
