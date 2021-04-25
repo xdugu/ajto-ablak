@@ -3,8 +3,7 @@
     <mat-list>
         <mat-list-item *ngFor="let item of list | objectFilter : {'Published': true}">
             <img matListAvatar [alt]="item.Info.title"
-                [appImageSource]="bucketUrl + storeId + '/blogs/' + item.ItemId + '/preview.jpg'" 
-                    [width]="100">
+                [appLazyLoad]="bucketUrl + storeId + '/blogs/' + item.ItemId + '/preview.jpg' | imageSource : 100">
             <h3 matLine> <b>{{item.Info.title}} </b></h3>
             <p matLine class="w3-text-grey">
                 <span  i18n="@@Published">Published</span>: 
