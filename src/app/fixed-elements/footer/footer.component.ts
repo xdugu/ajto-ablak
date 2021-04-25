@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
 import { PreferencesService } from '@app/shared-services/preferences.service';
+import { ConfigService } from '@app/shared-services/config.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,9 +17,10 @@ export class FooterComponent implements OnInit {
     en: 'English',
     hu: 'Magyarul'
   };
+  externalLinks = [];
 
-  constructor(prefService: PreferencesService,
-              private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(prefService: PreferencesService, configService: ConfigService,
+              router: Router, location: Location) {
     const subscription = prefService.getPreferences().subscribe({
       next: prefs => {
         this.availableLangs = prefs.lang.available;
@@ -25,19 +28,24 @@ export class FooterComponent implements OnInit {
       }
     });
 
-    this.currentUrl = router.url;
+    this.currentUrl = location.path();
 
     // listen to route changes to update links
     router.events.subscribe({
       next: event => {
-        if (event instanceof NavigationStart){
-          this.currentUrl = event.url;
+        if (event instanceof NavigationEnd){
+          this.currentUrl = location.path();
         }
       }
     });
+
+    configService.getConfig('externalLinks').subscribe({
+      next: links => this.externalLinks = links
+    });
+
+
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

@@ -23,7 +23,7 @@ export class ReviewComponent implements OnInit {
   private successMessage = {
     title: {
       en: 'Order Successful',
-      hu: 'Order Successful'
+      hu: 'Rendelés megerősítése'
     },
     bankTransfer: {
       en: `We have sent you an email with our account details. We will ship you item
@@ -39,12 +39,6 @@ export class ReviewComponent implements OnInit {
       hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>, 
         kérjük vegye fel velünk a kapcsolatot!
         Megrendelését hamarosan kézbesítjük!`
-    },
-    buttons: {
-      confirm: {
-        en: 'Confirm',
-        hu: 'Megerősítés'
-      }
     }
   };
 

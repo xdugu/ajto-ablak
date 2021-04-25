@@ -1,12 +1,26 @@
 <div class="my-theme-primary-background" id="footer">
-    <ng-container *ngFor="let langOption of availableLangs; last as l">
+    <ng-container *ngFor="let langOption of availableLangs;">
         <ng-container *ngIf="langOption !== lang">
             <a class="underlined" [href]="currentUrl | langUrl : lang : langOption">{{langDict[langOption]}}</a>
-            <span *ngIf="!l"> | </span>
         </ng-container>
     </ng-container>
 
-    <div class="w3-margin-top"><i class="fa fa-copyright"></i> Copyright 2021</div>
+    <div>
+        <ng-container *ngFor="let link of externalLinks">
+            <ng-container [ngSwitch]="link.name">
+                <a *ngSwitchCase="'facebook'" [href]="link.link" target="_blank">
+                    <mat-icon fontSet="fa" fontIcon="fa-facebook"></mat-icon>
+                </a>
+                <a *ngSwitchCase="'instagram'" [href]="link.link" target="_blank">
+                    <mat-icon fontSet="fa" fontIcon="fa-instagram"></mat-icon>
+                </a>
+
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="w3-margin-top"> 
+        <mat-icon fontSet="fa" fontIcon="fa-copyright"></mat-icon>Copyright 2021
+    </div>
     <br>
     <div>
         <a class="underlined" [routerLink]="['legal']" 

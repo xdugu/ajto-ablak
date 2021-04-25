@@ -5,10 +5,10 @@
       [imgSrc]="flow.type + '-' + i.toString() | flowImage : images.list : bucketUrl + images.path ">
     </app-lander>
     <app-product-gallery *ngSwitchCase="'product'" 
-        [flow]="flow" [screenType]="screenType" [lang]="siteLang">
+        [flow]="flow" [screenType]="screenType" [lang]="siteLang" [currency]="currency">
     </app-product-gallery>
     <app-category-gallery *ngSwitchCase="'category-list'" [flow]="flow"
-          [screenType]="screenType" [lang]="siteLang">
+          [screenType]="screenType" [lang]="siteLang"  [currency]="currency">
     </app-category-gallery>
     <app-category-link *ngSwitchCase="'category-link'" [lang]="siteLang" [screenType]="screenType"
         [flow]="flow"

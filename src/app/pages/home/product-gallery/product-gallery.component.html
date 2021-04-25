@@ -6,7 +6,9 @@
                 <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 300"
                      style="height: 100%; margin: auto">
             </div>
-            <div class="w3-center w3-padding">{{product.Title[lang]}}</div>
+            <div class="w3-center w3-padding">{{product.Title[lang]}} <br>
+                <span class="price">{{product.Price[currency.toLowerCase()] | currency : currency}}</span>
+            </div>
         </a>
     </mat-grid-tile>
 </mat-grid-list>

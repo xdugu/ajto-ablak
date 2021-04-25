@@ -7,6 +7,7 @@
                          style="margin: auto; display: block; height: 100%">              
             </div>
             <div class="w3-center">{{item.Title[lang]}}<br>
+                <span class="price">{{item.Price[currency.toLowerCase()] | currency : currency}}</span>
             </div>
         </a>
     </mat-grid-tile>

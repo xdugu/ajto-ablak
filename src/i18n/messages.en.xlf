@@ -20,7 +20,7 @@
     </unit><unit id="LegalInformation">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/fixed-elements/footer/footer.component.html:29</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="final">
         <source> Legal Information </source>
       <target> Legal Information </target></segment>
@@ -31,10 +31,17 @@
       <segment state="final">
         <source> Blog </source>
       <target> Blog </target></segment>
+    </unit><unit id="Close">
+      <notes>
+        <note category="location">src/app/shared-module/components/dialog/dialog.component.html:9</note>
+      </notes>
+      <segment state="final">
+        <source>Close</source>
+      <target>Close</target></segment>
     </unit><unit id="AddToBasket">
       <notes>
         
-      <note category="location">src/app/pages/product/product.component.html:36</note></notes>
+      <note category="location">src/app/pages/product/product.component.html:40</note></notes>
       <segment state="final">
         <source> Add To Basket </source>
       <target> Add To Basket </target></segment>
@@ -103,23 +110,23 @@
       <target>Comment</target></segment>
     </unit><unit id="SendRequest">
       <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:32</note>
-      </notes>
+        
+      <note category="location">src/app/pages/contact/contact.component.html:33</note></notes>
       <segment state="final">
         <source>Send</source>
       <target>Send</target></segment>
     </unit><unit id="Published">
       <notes>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:10</note>
-      </notes>
+        
+      <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:9</note></notes>
       <segment state="final">
         <source>Published</source>
       <target>Published</target></segment>
     </unit><unit id="ReadMore">
       <notes>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:19,20</note>
+        
         <note category="description">A 'read more' button</note>
-      </notes>
+      <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18</note></notes>
       <segment state="final">
         <source> Read More </source>
       <target> Read More </target></segment>
@@ -215,13 +222,6 @@
       <segment state="final">
         <source> Proceed to payment </source>
       <target> Proceed to payment </target></segment>
-    </unit><unit id="Cancel">
-      <notes>
-        
-      <note category="location">src/app/shared-module/dialog/dialog.component.html:9</note></notes>
-      <segment state="final">
-        <source>Cancel</source>
-      <target>Cancel</target></segment>
     </unit><unit id="Basket">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:3</note>
@@ -238,24 +238,24 @@
       <target>Your basket is empty</target></segment>
     </unit><unit id="Remove">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:28</note>
+        
         <note category="description">Text to remove from basket</note>
-      </notes>
+      <note category="location">src/app/pages/basket/basket.component.html:31</note></notes>
       <segment state="final">
         <source>Remove</source>
       <target>Remove</target></segment>
     </unit><unit id="Quantity">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:33</note>
-      </notes>
+        
+      <note category="location">src/app/pages/basket/basket.component.html:36</note></notes>
       <segment state="final">
         <source>Quantity</source>
       <target>Quantity</target></segment>
     </unit><unit id="SelectCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:45</note>
+        
         <note category="description">Static text to tell customer to select country</note>
-      </notes>
+      <note category="location">src/app/pages/basket/basket.component.html:48</note></notes>
       <segment state="final">
         <source>Select Country</source>
       <target>Select Country</target></segment>
@@ -263,35 +263,35 @@
       <notes>
         
         <note category="description">First option of country chooser</note>
-      <note category="location">src/app/pages/basket/basket.component.html:48</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:51</note></notes>
       <segment state="final">
         <source>Please choose a country</source>
       <target>Please choose a country</target></segment>
     </unit><unit id="ChooseCourier">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:60</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:63</note></notes>
       <segment state="final">
         <source>Choose a courier:</source>
       <target>Choose a courier:</target></segment>
     </unit><unit id="Delivery">
       <notes>
         
-      <note category="location">src/app/pages/review/review.component.html:20</note><note category="location">src/app/pages/basket/basket.component.html:72</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:20</note><note category="location">src/app/pages/basket/basket.component.html:75</note></notes>
       <segment state="final">
         <source>Delivery:</source>
       <target>Delivery:</target></segment>
     </unit><unit id="Subtotal">
       <notes>
         
-      <note category="location">src/app/pages/review/review.component.html:22</note><note category="location">src/app/pages/basket/basket.component.html:77</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:22</note><note category="location">src/app/pages/basket/basket.component.html:80</note></notes>
       <segment state="final">
         <source>Subtotal:</source>
       <target>Subtotal:</target></segment>
     </unit><unit id="Total">
       <notes>
         
-      <note category="location">src/app/pages/review/review.component.html:23</note><note category="location">src/app/pages/basket/basket.component.html:78</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:23</note><note category="location">src/app/pages/basket/basket.component.html:81</note></notes>
       <segment state="final">
         <source>Total:</source>
       <target>Total:</target></segment>
@@ -321,28 +321,28 @@
     </unit><unit id="ProceedToCheckout">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:79</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:82</note></notes>
       <segment state="final">
         <source> Proceed to checkout</source>
       <target> Proceed to checkout</target></segment>
     </unit><unit id="Discount">
       <notes>
         
-      <note category="location">src/app/pages/review/review.component.html:21</note><note category="location">src/app/pages/basket/basket.component.html:74</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:21</note><note category="location">src/app/pages/basket/basket.component.html:77</note></notes>
       <segment state="final">
         <source>Discount:</source>
       <target>Discount:</target></segment>
     </unit><unit id="ProductDescription">
       <notes>
         
-      <note category="location">src/app/pages/product/product.component.html:61</note></notes>
+      <note category="location">src/app/pages/product/product.component.html:65</note></notes>
       <segment state="final">
         <source> Description </source>
       <target> Description </target></segment>
     </unit><unit id="OutOfStock">
       <notes>
         
-      <note category="location">src/app/pages/product/product.component.html:30</note><note category="location">src/app/pages/product/product.component.html:49</note></notes>
+      <note category="location">src/app/pages/product/product.component.html:30</note><note category="location">src/app/pages/product/product.component.html:53</note></notes>
       <segment state="final">
         <source>Out Of Stock</source>
       <target>Out Of Stock</target></segment>

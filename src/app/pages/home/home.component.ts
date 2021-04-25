@@ -4,6 +4,7 @@ import { ScreenTypeService} from '@app/shared-services/screen-type.service';
 import { ProductHierarchy, ProductHierarchyService} from '@app/shared-services/product-hierarchy.service';
 import { ConfigService} from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
+import { PreferencesService } from '@app/shared-services/preferences.service';
 
 
 @Component({
@@ -20,9 +21,11 @@ export class HomeComponent implements OnInit {
   screenType = 'mobile';
   siteLang = 'en';
   bucketUrl: string = null;
+  currency: string = null;
 
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
-              private configService: ConfigService, private langService: LanguageService){
+              private configService: ConfigService, private langService: LanguageService,
+              prefService: PreferencesService){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => {this.onScreenSizeChange(state); this.screenType = state; }
     });
@@ -30,6 +33,10 @@ export class HomeComponent implements OnInit {
     this.subscriptions.push(pHService.getHierarchy().subscribe({
       next: res => this.hierarchy = res
     }));
+
+    prefService.getPreferences().subscribe({
+      next: prefs => this.currency = prefs.currency.chosen
+    });
 
   }
 

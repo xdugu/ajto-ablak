@@ -22,6 +22,7 @@
     <unit id="LegalInformation">
       <notes>
         <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:29,30</note>
         <note category="location">src/app/pages/legal/legal.component.html:1</note>
       </notes>
       <segment>
@@ -36,12 +37,12 @@
         <source> Blog </source>
       </segment>
     </unit>
-    <unit id="Cancel">
+    <unit id="Close">
       <notes>
-        <note category="location">src/app/shared-module/dialog/dialog.component.html:9</note>
+        <note category="location">src/app/shared-module/components/dialog/dialog.component.html:9</note>
       </notes>
       <segment>
-        <source>Cancel</source>
+        <source>Close</source>
       </segment>
     </unit>
     <unit id="Name">
@@ -81,7 +82,7 @@
     </unit>
     <unit id="SendRequest">
       <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:32</note>
+        <note category="location">src/app/pages/contact/contact.component.html:33</note>
       </notes>
       <segment>
         <source>Send</source>
@@ -89,7 +90,7 @@
     </unit>
     <unit id="Published">
       <notes>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:10</note>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:9</note>
       </notes>
       <segment>
         <source>Published</source>
@@ -97,7 +98,7 @@
     </unit>
     <unit id="ReadMore">
       <notes>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:19,20</note>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18,19</note>
         <note category="description">A &apos;read more&apos; button</note>
       </notes>
       <segment>
@@ -134,7 +135,7 @@
     <unit id="Delivery">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:20</note>
-        <note category="location">src/app/pages/basket/basket.component.html:72</note>
+        <note category="location">src/app/pages/basket/basket.component.html:75</note>
       </notes>
       <segment>
         <source>Delivery:</source>
@@ -143,7 +144,7 @@
     <unit id="Discount">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:21</note>
-        <note category="location">src/app/pages/basket/basket.component.html:74</note>
+        <note category="location">src/app/pages/basket/basket.component.html:77</note>
       </notes>
       <segment>
         <source>Discount:</source>
@@ -152,7 +153,7 @@
     <unit id="Subtotal">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:22</note>
-        <note category="location">src/app/pages/basket/basket.component.html:77</note>
+        <note category="location">src/app/pages/basket/basket.component.html:80</note>
       </notes>
       <segment>
         <source>Subtotal:</source>
@@ -161,7 +162,7 @@
     <unit id="Total">
       <notes>
         <note category="location">src/app/pages/review/review.component.html:23</note>
-        <note category="location">src/app/pages/basket/basket.component.html:78</note>
+        <note category="location">src/app/pages/basket/basket.component.html:81</note>
       </notes>
       <segment>
         <source>Total:</source>
@@ -325,7 +326,7 @@
     </unit>
     <unit id="Remove">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:28</note>
+        <note category="location">src/app/pages/basket/basket.component.html:31</note>
         <note category="description">Text to remove from basket</note>
       </notes>
       <segment>
@@ -334,7 +335,7 @@
     </unit>
     <unit id="Quantity">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:33</note>
+        <note category="location">src/app/pages/basket/basket.component.html:36</note>
       </notes>
       <segment>
         <source>Quantity</source>
@@ -342,7 +343,7 @@
     </unit>
     <unit id="SelectCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:45</note>
+        <note category="location">src/app/pages/basket/basket.component.html:48</note>
         <note category="description">Static text to tell customer to select country</note>
       </notes>
       <segment>
@@ -351,7 +352,7 @@
     </unit>
     <unit id="ChooseCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:48,49</note>
+        <note category="location">src/app/pages/basket/basket.component.html:51,52</note>
         <note category="description">First option of country chooser</note>
       </notes>
       <segment>
@@ -360,7 +361,7 @@
     </unit>
     <unit id="ChooseCourier">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:60</note>
+        <note category="location">src/app/pages/basket/basket.component.html:63</note>
       </notes>
       <segment>
         <source>Choose a courier:</source>
@@ -368,7 +369,7 @@
     </unit>
     <unit id="ProceedToCheckout">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:79</note>
+        <note category="location">src/app/pages/basket/basket.component.html:82</note>
       </notes>
       <segment>
         <source> Proceed to checkout</source>
@@ -376,7 +377,7 @@
     </unit>
     <unit id="ProductDescription">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:61,62</note>
+        <note category="location">src/app/pages/product/product.component.html:65,66</note>
       </notes>
       <segment>
         <source> Description </source>
@@ -385,7 +386,7 @@
     <unit id="OutOfStock">
       <notes>
         <note category="location">src/app/pages/product/product.component.html:30</note>
-        <note category="location">src/app/pages/product/product.component.html:49</note>
+        <note category="location">src/app/pages/product/product.component.html:53</note>
       </notes>
       <segment>
         <source>Out Of Stock</source>
@@ -393,7 +394,7 @@
     </unit>
     <unit id="AddToBasket">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:36,37</note>
+        <note category="location">src/app/pages/product/product.component.html:40,41</note>
       </notes>
       <segment>
         <source> Add To Basket </source>

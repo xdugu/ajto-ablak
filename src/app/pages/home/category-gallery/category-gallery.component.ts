@@ -11,6 +11,7 @@ export class CategoryGalleryComponent implements OnInit, OnChanges {
   @Input() screenType = 'mobile';
   @Input() flow: any = null;
   @Input() lang = 'en';
+  @Input() currency: string = null;
 
   categoryItems = [];
   bucketUrl = null;
