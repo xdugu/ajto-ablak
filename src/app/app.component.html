@@ -5,7 +5,10 @@
       <app-side-bar [lang]="siteLanguage" [screenType]="currentView"></app-side-bar>
     </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div id="router-container">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer [lang]="siteLanguage"></app-footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

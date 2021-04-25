@@ -1,1 +1,24 @@
-<p>footer works!</p>
+<div class="my-theme-primary-background" id="footer">
+    <ng-container *ngFor="let langOption of availableLangs; last as l">
+        <ng-container *ngIf="langOption !== lang">
+            <a class="underlined" [href]="currentUrl | langUrl : lang : langOption">{{langDict[langOption]}}</a>
+            <span *ngIf="!l"> | </span>
+        </ng-container>
+    </ng-container>
+
+    <div class="w3-margin-top"><i class="fa fa-copyright"></i> Copyright 2021</div>
+    <br>
+    <div>
+        <a class="underlined" [routerLink]="['legal']" 
+                i18n="@@LegalInformation">
+            Legal Information
+        </a>
+    </div>
+    
+    <div class="w3-stretch">
+        <!-- PayPal Logo -->
+        <table border="0" cellpadding="10" cellspacing="0" align="left"><tr><td align="left"></td></tr><tr><td align="left"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
+    </div>
+
+
+</div>

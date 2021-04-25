@@ -13,11 +13,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatListModule} from '@angular/material/list';
+import { LangUrlPipe } from './footer/lang-url.pipe';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SideBarComponent],
+  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe],
   imports: [
     CommonModule,
     AppRoutingModule,
