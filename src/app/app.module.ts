@@ -13,7 +13,8 @@ import { ConfigService } from './shared-services/config.service';
 import { LanguageService } from './shared-services/language.service';
 import { TokenStorageService } from './shared-services/token-storage.service';
 import { BasketService } from './shared-services/basket.service';
-
+import { TrackingService } from './shared-services/tracking.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -30,10 +31,11 @@ import { environment } from '../environments/environment';
     MatSidenavModule,
     HttpClientModule,
     PagesModule.forRoot(),
+    MatSnackBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService,
-    ConfigService, LanguageService, TokenStorageService, BasketService],
+    ConfigService, LanguageService, TokenStorageService, BasketService, TrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

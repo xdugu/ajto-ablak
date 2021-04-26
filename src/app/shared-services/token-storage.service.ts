@@ -23,6 +23,20 @@ export class TokenStorageService {
     return null;
   }
 
+  setBoolean(id: string, value: boolean): void{
+    this.setString(id, value ? 'true' : 'false');
+  }
+
+  getBoolean(id: string): boolean{
+    const item = localStorage.getItem(id);
+
+    if (item != null){
+      return item === 'true' ? true : false;
+    }
+
+    return null;
+  }
+
   // saves a string
   setString(id: string, value: string): void {
     localStorage.setItem(id, value);

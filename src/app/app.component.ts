@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { ScreenTypeService} from './shared-services/screen-type.service';
 import { LanguageService } from './shared-services/language.service';
 import { ConfigService } from '@app/shared-services/config.service';
+import { TrackingService } from '@app/shared-services/tracking.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent {
   siteLanguage = 'en';
 
   constructor(screenTypeService: ScreenTypeService, router: Router,
-              langService: LanguageService, configService: ConfigService){
+              langService: LanguageService, configService: ConfigService,
+              tracking: TrackingService){
 
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.onScreenSizeChange(state)
