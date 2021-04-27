@@ -117,6 +117,8 @@ export class ProductComponent implements OnInit {
       this.product.Price = Object.assign(this.product.Price, combi.price);
       this.product.Quantity = combi.quantity;
     }
+
+    this.determineSelectableItems();
   }
 
   // Called when there is a carousel event
@@ -173,16 +175,101 @@ export class ProductComponent implements OnInit {
     this.prefService.setPreference('currency', this.currencyPref);
   }
 
-  private getMinImageHeight(images: any): number{
-     let minHeight = 2000;
+  // gets combi that starts with something
+  private getCombinations(startsWith: [] | any): any{
+    startsWith = startsWith.join();
+    return this.product.Variants.combinations.filter(combi => {
+      const joinedCombi = combi.combination.join();
+      return joinedCombi.startsWith(startsWith);
+    });
+  }
 
-     for (const image of images){
-       if (image.height < minHeight){
-         minHeight = image.height;
-       }
-     }
+  determineSelectableItems(): void {
+    this.validateAndCorrectSelection();
+    for (let iLevel = 0; iLevel < this.product.Variants.variants.length; iLevel++){
+      for (const option of this.product.Variants.variants[iLevel].options){
+        option.isSelectable = false; // assume initially not selectable
+        let combis;
 
-     return minHeight;
+        if (iLevel === 0){
+          combis = this.getCombinations([option.name]);
+        }
+        else{
+          // look up at current selection to work out what item in lower
+          // variant level is selectable
+          let currentSelection = this.pickedSpec.reduce((accum, currVal) => {
+            accum.push(currVal.name);
+            return accum;
+          }, []);
+          currentSelection = currentSelection.splice(0, iLevel);
+          currentSelection.push(option.name);
+          combis = this.getCombinations(currentSelection);
+        }
+        const validCombi = combis.some(combi => {
+          if (this.product.TrackStock){
+            return combi.quantity > 0 && !combi.disabled;
+          }
+          else {
+            return !combi.disabled;
+          }
+        });
+        if (validCombi){
+          option.isSelectable = true;
+        } // if
+      } // for
+    }
+  }
+
+  // checks if the current selection by user is valid. if not, determines the cloest to what the customer wants
+  validateAndCorrectSelection(): void{
+    const currentCombi = this.pickedSpec.reduce((accum, elem) => {
+      accum.push(elem.name);
+      return accum;
+    }, []);
+
+    const isValidCombi = (myCombi): boolean => {
+      if (this.product.TrackStock){
+        return !myCombi.disabled && myCombi.quantity > 0;
+      }
+      else {
+        return !myCombi.disabled;
+      }
+    }
+
+    const combi = this.product.Variants.combinations.find(elem => elem.combination.join() === currentCombi.join());
+
+    if (!isValidCombi(combi)){
+      // find a valid combination
+
+      for (let index = this.pickedSpec.length; index > 0; index--){
+        const combinations = this.getCombinations(currentCombi.slice(0, index - 1));
+        for (const combination of combinations){
+          if (isValidCombi(combination)){
+            this.pickedSpec = [];
+
+            for (const combiCombi of combination.combination){
+              for (const variant of this.product.Variants.variants){
+                for (const option of variant.options){
+                  if (combiCombi === option.name){
+                    this.pickedSpec.push(option);
+                    if (variant.type === 'group'){
+                      // TODO: fix this. Need to actually query for groups
+                      const groupKeys = Object.keys(variant.groupInfo);
+                      this.pickedSpec[this.pickedSpec.length - 1].chosenVariant =
+                          variant.groupInfo[groupKeys[0]][0];
+                    } // if
+                  } // if
+                } // for
+              } // for
+            } // for
+            return;
+          }
+        }
+
+      }
+
+    } // if
+
   }
 
 }

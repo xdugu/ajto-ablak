@@ -1,0 +1,18 @@
+<h2 i18n="@@Blog" class="w3-center">Blog</h2>
+<!-- Blog list-->
+<div class="flex-container" [ngClass]="screenType">
+    <ng-container *ngFor="let item of list; index as i">
+        <div *ngIf="i < 4">
+            <div class="w3-center" style="min-height: 50px;">
+                <img [appLazyLoad]="bucketUrl + storeId + '/blogs/' + item.ItemId + '/preview_400w.jpg'" 
+                    style="width: 100%; height: auto">
+            </div>
+            <h3>{{item.Info.title}}</h3>
+            <span>{{item.Info.previewText}}</span><br>
+            <a mat-button color="primary" [routerLink]="['/blogs', 'view', item.ItemId]"
+                    i18n="A 'read more' button@@ReadMore">
+                    Read More
+            </a>
+        </div>
+    </ng-container>
+</div>

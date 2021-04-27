@@ -11,9 +11,11 @@ import { ProductGalleryComponent } from './product-gallery/product-gallery.compo
 import { CategoryGalleryComponent } from './category-gallery/category-gallery.component';
 import { CategoryLinkComponent } from './category-link/category-link.component';
 import { LanderComponent } from './lander/lander.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
 
 @NgModule({
-  declarations: [HomeComponent, ProductGalleryComponent, CategoryGalleryComponent, CategoryLinkComponent, LanderComponent],
+  declarations: [HomeComponent, ProductGalleryComponent, CategoryGalleryComponent,
+    CategoryLinkComponent, LanderComponent, BlogListComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

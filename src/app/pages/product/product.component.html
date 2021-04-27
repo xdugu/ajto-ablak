@@ -45,11 +45,12 @@
     <ng-container *ngFor="let variant of product.Variants.variants; index as i">
       <mat-form-field>
         <mat-label>{{variant.text[siteLang]}}</mat-label>
-        <mat-select matNativeControl [(value)]="pickedSpec[i]" (selectionChange)="updateProductPrice()">
+        <mat-select matNativeControl [(value)]="pickedSpec[i]" 
+            (selectionChange)="determineSelectableItems(); updateProductPrice()">
           <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
-            [disabled]="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
+            [disabled]="!option.isSelectable">
             {{option.text[siteLang]}}
-            <span *ngIf="product.TrackStock && product.Variants.combinations[subIndex].quantity == 0">
+            <span *ngIf="product.TrackStock && !option.isSelectable">
               (<span i18n="@@OutOfStock">Out Of Stock</span>)
             </span>
           </mat-option>
