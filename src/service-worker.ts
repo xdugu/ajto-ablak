@@ -1,6 +1,6 @@
 // link to useful tutorial https://golb.hplar.ch/2018/06/workbox-serviceworker-in-angular-project.html
 
-import { precacheAndRoute } from 'workbox-precaching';
+import { createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching';
 import { clientsClaim, skipWaiting } from 'workbox-core';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
 import { ExpirationPlugin } from 'workbox-expiration';
@@ -12,16 +12,19 @@ declare const self: ServiceWorkerGlobalScope;
 skipWaiting();
 clientsClaim();
 
-const navigationHandler = async ({url, request}) => {
-  let newRequest = null;
-  if (url.href.indexOf('/en/') >= 0){
-    newRequest =  new Request('/en/index.html');
+
+precacheAndRoute(self.__WB_MANIFEST);
+
+const enNavHandler = createHandlerBoundToURL('/en/index.html');
+const huNavHandler = createHandlerBoundToURL('/hu/index.html');
+
+const navigationHandler = async (context) => {
+  if (context.url.href.indexOf('/en/') >= 0){
+    return enNavHandler(context);
   }
-  else{
-    newRequest =  new Request('/hu/index.html');
-  }
-  return await fetch(newRequest);
+  return huNavHandler(context);
 };
+
 
 const navigationRoute = new NavigationRoute(navigationHandler);
 registerRoute(navigationRoute);
@@ -128,4 +131,3 @@ registerRoute(
 
 
 
-precacheAndRoute(self.__WB_MANIFEST);

@@ -83,7 +83,7 @@ export class CategoryComponent implements OnInit {
         switch (type){
           case 'mobile':
             this.numOfItemsPerRow = 2;
-            this.rowHeight = '300px';
+            this.rowHeight = '350px';
             break;
 
           default:
