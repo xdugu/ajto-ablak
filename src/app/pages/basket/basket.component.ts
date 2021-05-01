@@ -5,6 +5,7 @@ import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { MatSelectChange } from '@angular/material/select';
 import { MatRadioChange } from '@angular/material/radio';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-basket',
@@ -19,7 +20,10 @@ export class BasketComponent implements OnInit {
   availableQuantities = ['1', '2', '3', '4', '5'];
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
-              private configService: ConfigService, private langService: LanguageService) { }
+              private configService: ConfigService, private langService: LanguageService,
+              titleService: Title) {
+    titleService.setTitle('Basket');
+  }
 
   ngOnInit(): void {
     this.basketService.getBasket().subscribe(basket => {
@@ -34,7 +38,9 @@ export class BasketComponent implements OnInit {
       this.bucketUrl = url;
     });
 
-    this.langService.getLang().then(lang => this.lang = lang);
+    this.langService.getLang().then(lang => {
+      this.lang = lang;
+    });
   }
 
   // change of quantity

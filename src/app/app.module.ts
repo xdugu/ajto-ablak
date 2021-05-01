@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title, Meta} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +16,7 @@ import { BasketService } from './shared-services/basket.service';
 import { TrackingService } from './shared-services/tracking.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { SharedModuleModule } from './shared-module/shared-module.module';
 
 @NgModule({
   declarations: [
@@ -31,10 +30,10 @@ import { environment } from '../environments/environment';
     MatSidenavModule,
     HttpClientModule,
     PagesModule.forRoot(),
-    MatSnackBarModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    SharedModuleModule.forRoot(),
+    MatSnackBarModule
   ],
-  providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService,
+  providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService, Title, Meta,
     ConfigService, LanguageService, TokenStorageService, BasketService, TrackingService],
   bootstrap: [AppComponent]
 })

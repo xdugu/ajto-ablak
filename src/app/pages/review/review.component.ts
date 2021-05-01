@@ -6,6 +6,7 @@ import { BasketService, BasketInterface} from '@app/shared-services/basket.servi
 import { ConfigService } from '@app/shared-services/config.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '@app/shared-module/components/dialog/dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-review',
@@ -47,7 +48,8 @@ export class ReviewComponent implements OnInit {
               private configService: ConfigService,
               private basketService: BasketService,
               private dialog: MatDialog,
-              private route: Router) { }
+              private route: Router,
+              private titleService: Title) { }
 
   ngOnInit(): void {
     this.customerDetailsService.get().then(contact => this.customer = contact);
@@ -68,6 +70,8 @@ export class ReviewComponent implements OnInit {
     this.basketService.getBasket().subscribe({
       next: basket => this.basket = basket
     });
+
+    this.titleService.setTitle('Review');
   }
 
   onOrderConfirmed(paymentType: string, paymentDetails: any = null): void{

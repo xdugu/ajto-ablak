@@ -3,6 +3,7 @@ import { ApiManagerService, API_MODE, API_METHOD} from '@app/shared-services/api
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigService } from '@app/shared-services/config.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-view',
@@ -13,7 +14,7 @@ export class BlogViewComponent implements OnInit {
   blog = null;
 
   constructor(apiManager: ApiManagerService, configService: ConfigService,
-              routeInfo: ActivatedRoute) {
+              routeInfo: ActivatedRoute, titleService: Title) {
       routeInfo.paramMap.subscribe({
         next: params => {
           configService.getConfig('storeId').subscribe({
@@ -24,8 +25,9 @@ export class BlogViewComponent implements OnInit {
                 .set('storeId', storeId)
                 .set('blogId', params.get('blogId'));
 
-              apiManager.get(API_MODE.OPEN, API_METHOD.GET, 'blog', httpParams).subscribe( res => {
+              apiManager.get(API_MODE.OPEN, API_METHOD.GET, 'blog', httpParams).subscribe(res => {
                 this.blog = res;
+                titleService.setTitle(this.blog.Info.title);
               });
             }
           });

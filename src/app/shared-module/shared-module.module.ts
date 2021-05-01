@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import { ImageSourcePipe } from './pipes/image-source.pipe';
 import { CurrencyChooserComponent } from './components/currency-chooser/currency-chooser.component';
-
+import { ScriptLoaderService } from './services/script-loader.service';
 
 
 @NgModule({
@@ -27,4 +27,11 @@ import { CurrencyChooserComponent } from './components/currency-chooser/currency
       DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
   ]
 })
-export class SharedModuleModule { }
+export class SharedModuleModule {
+  static forRoot(): any{
+    return {
+      ngModule: SharedModuleModule,
+      providers: [ScriptLoaderService]
+    };
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-legal',
   templateUrl: './legal.component.html',
@@ -11,7 +12,8 @@ export class LegalComponent implements OnInit {
   storeId: string = null;
   lang: string = null;
 
-  constructor(private configService: ConfigService, private langService: LanguageService) { }
+  constructor(private configService: ConfigService, private langService: LanguageService,
+              private titleService: Title) { }
 
   ngOnInit(): void {
     this.configService.getConfig('pages').subscribe({
@@ -22,7 +24,14 @@ export class LegalComponent implements OnInit {
       next: storeId => this.storeId = storeId
     });
 
-    this.langService.getLang().then(lang => this.lang = lang);
+    this.langService.getLang().then(lang => {
+      this.lang = lang;
+      const titles = {
+        en: 'Legal Information',
+        hu: 'Jogi információk'
+      };
+      this.titleService.setTitle(titles[lang]);
+    });
   }
 
 }

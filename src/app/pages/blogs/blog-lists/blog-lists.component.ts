@@ -3,6 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { ApiManagerService, API_METHOD, API_MODE } from '@app/shared-services/api-manager.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { ConfigService } from '@app/shared-services/config.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-lists',
@@ -15,7 +16,9 @@ export class BlogListsComponent implements OnInit {
   storeId: string = null;
 
   constructor(private apiService: ApiManagerService, private langService: LanguageService,
-              private configService: ConfigService) {
+              private configService: ConfigService, titleService: Title) {
+
+      titleService.setTitle('Blog');
 
       this.configService.getConfig('imgSrc').subscribe({
         next: bucket => this.bucketUrl = bucket

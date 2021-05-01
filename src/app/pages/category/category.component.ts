@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { Subscription } from 'rxjs';
 import { ProductHierarchy, ProductHierarchyService } from '@app/shared-services/product-hierarchy.service';
 import { ConfigService } from '@app/shared-services/config.service';
@@ -8,6 +7,7 @@ import { CategoryGetterService} from '@app/pages/services/category-getter.servic
 import { ScreenTypeService } from 'app/shared-services/screen-type.service';
 import { LanguageService } from 'app/shared-services/language.service';
 import { PreferencesService } from '@app/shared-services/preferences.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
               private categoryGetter: CategoryGetterService, configService: ConfigService,
               private screenService: ScreenTypeService, private langService: LanguageService,
-              private prefService: PreferencesService) {
+              private prefService: PreferencesService, private titleService: Title) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
@@ -63,6 +63,7 @@ export class CategoryComponent implements OnInit {
           for (const h of res){
             if (h.name === categories[0]){
               this.currentHierarchy = this.getFinalHierarchy(h, categories);
+              this.titleService.setTitle(this.currentHierarchy.text[this.siteLang]);
 
               // if we are at the tail-end of category, attempt to get items inside it
               if (this.currentHierarchy.sub === null || this.currentHierarchy.sub.length === 0){
@@ -91,8 +92,6 @@ export class CategoryComponent implements OnInit {
         }
       }
     });
-
-
 
     this.langService.getLang().then(lang => this.siteLang = lang);
   }

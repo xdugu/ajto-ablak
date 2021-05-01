@@ -6,6 +6,7 @@ import { ApiManagerService, API_METHOD, API_MODE} from '@app/shared-services/api
 import { HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -50,13 +51,21 @@ export class ContactComponent implements OnInit {
   };
 
   constructor(configService: ConfigService, private apiService: ApiManagerService,
-              private dialog: MatDialog, private router: Router, langService: LanguageService) {
+              private dialog: MatDialog, private router: Router, langService: LanguageService,
+              private title: Title) {
 
     configService.getConfig('storeId').subscribe({
       next: storeId => this.user.storeId = storeId
     });
 
-    langService.getLang().then(lang => this.lang = lang);
+    langService.getLang().then(lang => {
+      this.lang = lang;
+      const titles = {
+        en: 'Contact us',
+        hu: 'Kapcsolat'
+      };
+      this.title.setTitle(titles[lang]);
+    });
   }
 
   ngOnInit(): void {

@@ -6,6 +6,7 @@ import { LanguageService } from '@app/shared-services/language.service';
 import { BasketService } from '@app/shared-services/basket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PreferencesService } from '@app/shared-services/preferences.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -26,7 +27,7 @@ export class ProductComponent implements OnInit {
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
               config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
-              private prefService: PreferencesService) {
+              private prefService: PreferencesService, private titleService: Title) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
@@ -72,6 +73,7 @@ export class ProductComponent implements OnInit {
       const productId = param.get('productId');
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
+        this.titleService.setTitle(this.product.Title[this.siteLang]);
         this.setupVariants();
       });
     });
@@ -220,7 +222,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  // checks if the current selection by user is valid. if not, determines the cloest to what the customer wants
+  // checks if the current selection by user is valid. if not, determines the closest to what the customer wants
   validateAndCorrectSelection(): void{
     const currentCombi = this.pickedSpec.reduce((accum, elem) => {
       accum.push(elem.name);
@@ -234,7 +236,7 @@ export class ProductComponent implements OnInit {
       else {
         return !myCombi.disabled;
       }
-    }
+    };
 
     const combi = this.product.Variants.combinations.find(elem => elem.combination.join() === currentCombi.join());
 

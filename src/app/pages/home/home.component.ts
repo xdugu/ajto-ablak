@@ -5,6 +5,7 @@ import { ProductHierarchy, ProductHierarchyService} from '@app/shared-services/p
 import { ConfigService} from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { PreferencesService } from '@app/shared-services/preferences.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
 
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
               private configService: ConfigService, private langService: LanguageService,
-              prefService: PreferencesService){
+              prefService: PreferencesService, private titleService: Title,
+              private metaService: Meta){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => {this.onScreenSizeChange(state); this.screenType = state; }
     });
@@ -60,9 +62,15 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    
-
-    this.langService.getLang().then(lang => this.siteLang = lang);
+    this.langService.getLang().then(lang => {
+      this.siteLang = lang;
+      this.configService.getConfig('general').subscribe({
+        next: general => {
+          this.titleService.setTitle(general.storeName);
+          this.metaService.updateTag({name: 'description', content: general.storeDescription[lang]});
+        }
+      });
+    });
   }
 
   // reacts to changes in screen size

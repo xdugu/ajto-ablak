@@ -4,6 +4,7 @@ import { PreferencesService, PreferencesInterface} from '@app/shared-services//p
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-checkout',
@@ -23,7 +24,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   constructor(private customerDetailsService: CustomerDetailsService,
-              private prefService: PreferencesService, private router: Router) { }
+              private prefService: PreferencesService, private router: Router,
+              titleService: Title) {
+      titleService.setTitle('Checkout');
+  }
 
   ngOnInit(): void {
     this.customerDetailsService.get().then(contact => this.contact = contact);

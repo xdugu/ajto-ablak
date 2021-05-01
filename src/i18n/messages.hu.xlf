@@ -17,7 +17,7 @@
     </unit><unit id="LegalInformation">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/fixed-elements/footer/footer.component.html:29</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/fixed-elements/footer/footer.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="initial">
         <source> Legal Information </source>
       <target> Jogi információk</target></segment>
@@ -112,6 +112,13 @@
       <segment state="initial">
         <source>Send</source>
       <target>Küldés</target></segment>
+    </unit><unit id="Blog">
+      <notes>
+        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:1</note>
+      </notes>
+      <segment state="initial">
+        <source>Blog</source>
+      <target>Blog</target></segment>
     </unit><unit id="Published">
       <notes>
         
@@ -123,7 +130,7 @@
       <notes>
         
         <note category="description">A 'read more' button</note>
-      <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18</note></notes>
+      <note category="location">src/app/pages/home/blog-list/blog-list.component.html:14</note><note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18</note></notes>
       <segment state="initial">
         <source> Read More </source>
       <target> Tovább olvasom </target></segment>
@@ -332,14 +339,14 @@
     </unit><unit id="ProductDescription">
       <notes>
         
-      <note category="location">src/app/pages/product/product.component.html:65</note></notes>
+      <note category="location">src/app/pages/product/product.component.html:66</note></notes>
       <segment state="initial">
         <source> Description </source>
       <target> Leírás </target></segment>
     </unit><unit id="OutOfStock">
       <notes>
         
-      <note category="location">src/app/pages/product/product.component.html:30</note><note category="location">src/app/pages/product/product.component.html:53</note></notes>
+      <note category="location">src/app/pages/product/product.component.html:30</note><note category="location">src/app/pages/product/product.component.html:54</note></notes>
       <segment state="initial">
         <source>Out Of Stock</source>
       <target>Nincs raktáron</target></segment>

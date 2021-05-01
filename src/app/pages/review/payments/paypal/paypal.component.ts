@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ElementRef, Output, EventEmitter } from '@angular/core';
-import { get } from 'scriptjs';
+import { ScriptLoaderService } from '@app/shared-module/services/script-loader.service';
 import { BasketInterface, BasketService } from '@app/shared-services/basket.service';
 import { environment } from '../../../../../environments/environment';
 import { CustomerDetailsInterface, CustomerDetailsService } from '@app/shared-services/customer-details.service';
@@ -23,8 +23,8 @@ export class PaypalComponent implements OnInit {
   @Output() orderConfirmed = new EventEmitter<any>();
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
-              private customerDetailsService: CustomerDetailsService, 
-              private element: ElementRef) { }
+              private customerDetailsService: CustomerDetailsService,
+              private element: ElementRef, private scriptLoader: ScriptLoaderService) { }
 
   ngOnInit(): void {
     this.basketService.getBasket().subscribe({
@@ -32,8 +32,17 @@ export class PaypalComponent implements OnInit {
         this.customerDetailsService.get().then((customer: CustomerDetailsInterface) => {
           this.prefService.getPreferences().subscribe((preferences: PreferencesInterface) => {
             const token = environment.production ? this.config.tokens.live : this.config.tokens.test;
-            get(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}`,
-                    () => this.createPaypalObject(basket, customer, preferences));
+
+            // check if paypal is already loaded
+            try {
+              if (paypal){
+                this.createPaypalObject(basket, customer, preferences);
+              }
+            }
+            catch (err) {
+              this.scriptLoader.loadScript(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}`)
+                .then(() => this.createPaypalObject(basket, customer, preferences));
+            }
           });
         });
       }

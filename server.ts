@@ -11,7 +11,8 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { existsSync } from 'fs';
+const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
 
 import 'localstorage-polyfill';
 
