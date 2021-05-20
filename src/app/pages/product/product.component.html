@@ -9,7 +9,7 @@
         <div  ngxSlickItem *ngIf="imgName.type == 'product'"
                 style="width:100%; overflow-y: hidden;" [style.height.px]="carouselHeight">
 
-            <img  [appLazyLoad]="basketUrl + product.Images.path + imgName.name | imageSource : 500" 
+            <img  [appLazyLoad]="basketUrl + product.Images.path + imgName.name | imageSource : 700" 
                   class="w3-center"
                   style="width:100%; height:auto;"> 
         </div>
@@ -36,7 +36,8 @@
   </app-currency-chooser>
 
   <button mat-raised-button *ngIf="product.Quantity > 0; else OutOfStock" 
-          color="primary" i18n="@@AddToBasket" (click)="addToBasket()">
+          color="primary" i18n="@@AddToBasket" (click)="addToBasket()"
+          style="width: 180px">
     Add To Basket
   </button><br><br>
 

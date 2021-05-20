@@ -1,7 +1,7 @@
 <!-- Implement the rest of the page flow -->
 <ng-container *ngFor="let flow of pageFlow; index as i">
   <ng-container [ngSwitch]="flow.type">
-    <app-lander *ngSwitchCase="'lander'" [lang]="siteLang" [flow]="flow"
+    <app-lander *ngSwitchCase="'lander'" [lang]="siteLang" [flow]="flow" 
       [imgSrc]="flow.type + '-' + i.toString() | flowImage : images.list : bucketUrl + images.path ">
     </app-lander>
     <app-product-gallery *ngSwitchCase="'product'" 

@@ -1,14 +1,14 @@
 <h2 class="mat-h2 w3-center" style="margin-top: 24px;">{{flow.title[lang]}}</h2>
-<mat-grid-list [cols]="itemsPerRow" [rowHeight]="rowHeight" gutterSize="8px">
-    <mat-grid-tile *ngFor="let product of finalProducts">
-        <a style="display: block; height: 100%; width: 100%;" [routerLink]="['/product', product.ItemId]">
-            <div style="height: 80%; width: 100%;" class="image-holder grow-on-hover">
-                <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 300"
-                     style="height: 100%; margin: auto">
-            </div>
-            <div class="w3-center w3-padding">{{product.Title[lang]}} <br>
-                <span class="price">{{product.Price[currency.toLowerCase()] | currency : currency}}</span>
-            </div>
-        </a>
-    </mat-grid-tile>
-</mat-grid-list>
+
+<div class="w3-margin-top w3-container" style="width: 100%; padding: 0px !important">		
+    <a  *ngFor="let product of finalProducts; first as f" [routerLink]="['/product', product.ItemId]"
+        style="overflow: hidden" [style.width]="rowWidth" class="w3-left w3-margin-top"
+        [ngClass]="{'app-margin-left': !f}"
+        >
+        <div class="image-holder grow-on-hover" style="height: 250px; width: 100%; overflow-y: hidden">
+            <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 300" />
+        </div>
+        <div class="w3-center w3-padding">{{product.Title[lang]}}</div>
+        <div class="w3-center price">{{product.Price[currency.toLowerCase()] | currency : currency}}</div>
+    </a>
+</div>
