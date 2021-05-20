@@ -1,7 +1,8 @@
+<div class="w3-center mat-h2" i18n="@@ProductRange">Product Range</div>
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mobile-menu w3-padding">
     <!-- This is the tree nodes that don't have children-->
     <mat-tree-node *matTreeNodeDef="let node;">
-      <a class="no-child-node" [routerLink]="node.link" mat-button>
+      <a class="no-child-node app-node" [routerLink]="node.link" >
         {{node.text[lang]}}
       </a>
     </mat-tree-node>
@@ -9,12 +10,14 @@
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
       <li>
         <div class="mat-tree-node" >
-          <a [routerLink]="node.link" mat-button>{{node.text[lang]}}</a>
-          <button mat-icon-button (click)="toggleTreeNodes(node)">
-            <mat-icon color="accent">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
+          <span class="app-node">
+            <a [routerLink]="node.link" >{{node.text[lang]}}</a>
+            <button mat-icon-button (click)="toggleTreeNodes(node)">
+              <mat-icon color="accent">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+          </span>
         </div>
         <ul [hidden]="!treeControl.isExpanded(node)">
           <ng-container matTreeNodeOutlet></ng-container>
@@ -22,6 +25,9 @@
       </li>
     </mat-nested-tree-node>
   </mat-tree>
+
+  <mat-divider></mat-divider>
+
   <mat-nav-list *ngIf="configPages != null">
     <ng-container *ngIf="screenType == 'mobile'">
       <a *ngIf="configPages.about.enabled" mat-list-item [routerLink]="['/about']" i18n="@@AboutUs"> About Us </a>

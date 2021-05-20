@@ -15,8 +15,11 @@ resources:
       Properties:
         DistributionConfig:
           PriceClass: PriceClass_100
-          #Aliases:
-           # - mysite.example.com
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: false
+            AcmCertificateArn: arn:aws:acm:us-east-1:545902454044:certificate/d1c221ec-bb65-4dbc-b3be-ae4d1a4ca895
+          Aliases:
+            - fashion.yati-trend.com
 
 provider:
   name: aws
@@ -32,7 +35,9 @@ provider:
           EnableAcceptEncodingBrotli: true # optional
           EnableAcceptEncodingGzip: true
           HeadersConfig:
-            HeaderBehavior: none
+            HeaderBehavior: whitelist
+            Headers:
+              - Host
           QueryStringsConfig:
             QueryStringBehavior: none # Possible values are 'none', 'whitelist', 'allExcept' and 'all'
 

@@ -13,15 +13,23 @@
     <unit id="AboutUs">
       <notes>
         <note category="location">src/app/fixed-elements/header/header.component.html:43</note>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:33</note>
       </notes>
       <segment>
         <source>About</source>
       </segment>
     </unit>
+    <unit id="ProductRange">
+      <notes>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:1</note>
+      </notes>
+      <segment>
+        <source>Product Range</source>
+      </segment>
+    </unit>
     <unit id="LegalInformation">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:36</note>
         <note category="location">src/app/fixed-elements/footer/footer.component.html:28,29</note>
         <note category="location">src/app/pages/legal/legal.component.html:1</note>
       </notes>
@@ -31,7 +39,7 @@
     </unit>
     <unit id="Blogs">
       <notes>
-        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:29</note>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:35</note>
       </notes>
       <segment>
         <source> Blog </source>
@@ -88,30 +96,102 @@
         <source>Send</source>
       </segment>
     </unit>
-    <unit id="Blog">
-      <notes>
-        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:1</note>
-      </notes>
-      <segment>
-        <source>Blog</source>
-      </segment>
-    </unit>
-    <unit id="ReadMore">
-      <notes>
-        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:14,15</note>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18,19</note>
-        <note category="description">A &apos;read more&apos; button</note>
-      </notes>
-      <segment>
-        <source> Read More </source>
-      </segment>
-    </unit>
     <unit id="Published">
       <notes>
         <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:9</note>
       </notes>
       <segment>
         <source>Published</source>
+      </segment>
+    </unit>
+    <unit id="ReadMore">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18,19</note>
+        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:14,15</note>
+        <note category="description">A &apos;read more&apos; button</note>
+      </notes>
+      <segment>
+        <source> Read More </source>
+      </segment>
+    </unit>
+    <unit id="Review">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:2</note>
+        <note category="description">Heading for final order review page</note>
+      </notes>
+      <segment>
+        <source>Review</source>
+      </segment>
+    </unit>
+    <unit id="Delivery">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:20</note>
+        <note category="location">src/app/pages/basket/basket.component.html:75</note>
+      </notes>
+      <segment>
+        <source>Delivery:</source>
+      </segment>
+    </unit>
+    <unit id="Discount">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:21</note>
+        <note category="location">src/app/pages/basket/basket.component.html:77</note>
+      </notes>
+      <segment>
+        <source>Discount:</source>
+      </segment>
+    </unit>
+    <unit id="Subtotal">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:22</note>
+        <note category="location">src/app/pages/basket/basket.component.html:80</note>
+      </notes>
+      <segment>
+        <source>Subtotal:</source>
+      </segment>
+    </unit>
+    <unit id="Total">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:23</note>
+        <note category="location">src/app/pages/basket/basket.component.html:81</note>
+      </notes>
+      <segment>
+        <source>Total:</source>
+      </segment>
+    </unit>
+    <unit id="LeaveComment">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:46</note>
+        <note category="description">Prompt to leave a comment</note>
+      </notes>
+      <segment>
+        <source>Leave a comment</source>
+      </segment>
+    </unit>
+    <unit id="OrderDetails">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:29</note>
+      </notes>
+      <segment>
+        <source>Order Details</source>
+      </segment>
+    </unit>
+    <unit id="PostTo">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:34</note>
+        <note category="description">where to post package</note>
+      </notes>
+      <segment>
+        <source>Post To:</source>
+      </segment>
+    </unit>
+    <unit id="PayByBankTransfer">
+      <notes>
+        <note category="location">src/app/pages/review/payments/bank-transfer/bank-transfer.component.html:3,4</note>
+      </notes>
+      <segment>
+        <source> Pay by bank transfer
+</source>
       </segment>
     </unit>
     <unit id="PayOnDelivery">
@@ -121,134 +201,6 @@
       <segment>
         <source> Pay on delivery
 </source>
-      </segment>
-    </unit>
-    <unit id="ProductDescription">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:66,67</note>
-      </notes>
-      <segment>
-        <source> Description </source>
-      </segment>
-    </unit>
-    <unit id="OutOfStock">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:30</note>
-        <note category="location">src/app/pages/product/product.component.html:54</note>
-      </notes>
-      <segment>
-        <source>Out Of Stock</source>
-      </segment>
-    </unit>
-    <unit id="AddToBasket">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:40,41</note>
-      </notes>
-      <segment>
-        <source> Add To Basket </source>
-      </segment>
-    </unit>
-    <unit id="Basket">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:3</note>
-      </notes>
-      <segment>
-        <source>Basket</source>
-      </segment>
-    </unit>
-    <unit id="BasketIsEmpty">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:6</note>
-      </notes>
-      <segment>
-        <source>Your basket is empty</source>
-      </segment>
-    </unit>
-    <unit id="Remove">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:31</note>
-        <note category="description">Text to remove from basket</note>
-      </notes>
-      <segment>
-        <source>Remove</source>
-      </segment>
-    </unit>
-    <unit id="Quantity">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:36</note>
-      </notes>
-      <segment>
-        <source>Quantity</source>
-      </segment>
-    </unit>
-    <unit id="SelectCountry">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:48</note>
-        <note category="description">Static text to tell customer to select country</note>
-      </notes>
-      <segment>
-        <source>Select Country</source>
-      </segment>
-    </unit>
-    <unit id="ChooseCountry">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:51,52</note>
-        <note category="description">First option of country chooser</note>
-      </notes>
-      <segment>
-        <source> Please choose a country </source>
-      </segment>
-    </unit>
-    <unit id="ChooseCourier">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:63</note>
-      </notes>
-      <segment>
-        <source>Choose a courier:</source>
-      </segment>
-    </unit>
-    <unit id="Delivery">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:75</note>
-        <note category="location">src/app/pages/review/review.component.html:20</note>
-      </notes>
-      <segment>
-        <source>Delivery:</source>
-      </segment>
-    </unit>
-    <unit id="Subtotal">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:80</note>
-        <note category="location">src/app/pages/review/review.component.html:22</note>
-      </notes>
-      <segment>
-        <source>Subtotal:</source>
-      </segment>
-    </unit>
-    <unit id="Total">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:81</note>
-        <note category="location">src/app/pages/review/review.component.html:23</note>
-      </notes>
-      <segment>
-        <source>Total:</source>
-      </segment>
-    </unit>
-    <unit id="ProceedToCheckout">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:82</note>
-      </notes>
-      <segment>
-        <source> Proceed to checkout</source>
-      </segment>
-    </unit>
-    <unit id="Discount">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:77</note>
-        <note category="location">src/app/pages/review/review.component.html:21</note>
-      </notes>
-      <segment>
-        <source>Discount:</source>
       </segment>
     </unit>
     <unit id="ContactInformation">
@@ -365,48 +317,104 @@
         <source> Proceed to payment </source>
       </segment>
     </unit>
-    <unit id="PayByBankTransfer">
+    <unit id="Blog">
       <notes>
-        <note category="location">src/app/pages/review/payments/bank-transfer/bank-transfer.component.html:3,4</note>
+        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:1</note>
       </notes>
       <segment>
-        <source> Pay by bank transfer
-</source>
+        <source>Blog</source>
       </segment>
     </unit>
-    <unit id="Review">
+    <unit id="ProductDescription">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:2</note>
-        <note category="description">Heading for final order review page</note>
+        <note category="location">src/app/pages/product/product.component.html:66,67</note>
       </notes>
       <segment>
-        <source>Review</source>
+        <source> Description </source>
       </segment>
     </unit>
-    <unit id="LeaveComment">
+    <unit id="OutOfStock">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:46</note>
-        <note category="description">Prompt to leave a comment</note>
+        <note category="location">src/app/pages/product/product.component.html:30</note>
+        <note category="location">src/app/pages/product/product.component.html:54</note>
       </notes>
       <segment>
-        <source>Leave a comment</source>
+        <source>Out Of Stock</source>
       </segment>
     </unit>
-    <unit id="OrderDetails">
+    <unit id="AddToBasket">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:29</note>
+        <note category="location">src/app/pages/product/product.component.html:40,41</note>
       </notes>
       <segment>
-        <source>Order Details</source>
+        <source> Add To Basket </source>
       </segment>
     </unit>
-    <unit id="PostTo">
+    <unit id="Basket">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:34</note>
-        <note category="description">where to post package</note>
+        <note category="location">src/app/pages/basket/basket.component.html:3</note>
       </notes>
       <segment>
-        <source>Post To:</source>
+        <source>Basket</source>
+      </segment>
+    </unit>
+    <unit id="BasketIsEmpty">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:6</note>
+      </notes>
+      <segment>
+        <source>Your basket is empty</source>
+      </segment>
+    </unit>
+    <unit id="Remove">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:31</note>
+        <note category="description">Text to remove from basket</note>
+      </notes>
+      <segment>
+        <source>Remove</source>
+      </segment>
+    </unit>
+    <unit id="Quantity">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:36</note>
+      </notes>
+      <segment>
+        <source>Quantity</source>
+      </segment>
+    </unit>
+    <unit id="SelectCountry">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:48</note>
+        <note category="description">Static text to tell customer to select country</note>
+      </notes>
+      <segment>
+        <source>Select Country</source>
+      </segment>
+    </unit>
+    <unit id="ChooseCountry">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:51,52</note>
+        <note category="description">First option of country chooser</note>
+      </notes>
+      <segment>
+        <source> Please choose a country </source>
+      </segment>
+    </unit>
+    <unit id="ChooseCourier">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:63</note>
+      </notes>
+      <segment>
+        <source>Choose a courier:</source>
+      </segment>
+    </unit>
+    <unit id="ProceedToCheckout">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:82</note>
+      </notes>
+      <segment>
+        <source> Proceed to checkout</source>
       </segment>
     </unit>
   </file>

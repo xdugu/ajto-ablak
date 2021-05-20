@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 import { LangUrlPipe } from './footer/lang-url.pipe';
 
 
@@ -29,7 +30,8 @@ import { LangUrlPipe } from './footer/lang-url.pipe';
     MatIconModule,
     MatTreeModule,
     MatBadgeModule,
-    MatListModule
+    MatListModule,
+    MatDividerModule
   ],
   exports: [HeaderComponent, FooterComponent, SideBarComponent]
 })

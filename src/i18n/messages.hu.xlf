@@ -10,21 +10,28 @@
       <target>Kapcsolat</target></segment>
     </unit><unit id="AboutUs">
       <notes> 
-      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:27</note></notes>
+      <note category="location">src/app/fixed-elements/header/header.component.html:43</note><note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:33</note></notes>
       <segment state="initial">
         <source>About</source>
       <target>Rólunk</target></segment>
+    </unit><unit id="ProductRange">
+      <notes>
+        <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:1</note>
+      </notes>
+      <segment state="initial">
+        <source>Product Range</source>
+      <target>Termékskála</target></segment>
     </unit><unit id="LegalInformation">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:30</note><note category="location">src/app/fixed-elements/footer/footer.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:36</note><note category="location">src/app/fixed-elements/footer/footer.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="initial">
         <source> Legal Information </source>
       <target> Jogi információk</target></segment>
     </unit><unit id="Blogs">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:29</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:35</note></notes>
       <segment state="initial">
         <source> Blog </source>
       <target> Blog </target></segment>

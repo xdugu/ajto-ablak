@@ -209,7 +209,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-common-web-template/dev/1619810350462-2021-04-30T19:19:10.462Z/serverless-common-web-template.zip"
+                "S3Key": "serverless/serverless-common-web-template/dev/1620114716126-2021-05-04T07:51:56.126Z/serverless-common-web-template.zip"
               },
               "Handler": "lambda.ssrserverless",
               "Runtime": "nodejs12.x",
@@ -228,14 +228,14 @@
             ],
             "DeletionPolicy": "Retain"
           },
-          "MyLambdaAtEdgeLambdaVersion6OUYlJLORxMkBmuazYXbXzXd6eL9Y9pc1JH0LDuPiM": {
+          "MyLambdaAtEdgeLambdaVersionP3DTDUemmHCVEgIwVaayxgdUyxKcKFLmYPNlBXw0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MyLambdaAtEdgeLambdaFunction"
               },
-              "CodeSha256": "yphj/0SKzhcm0SJPHnKbbCBvMYOr/q1jQJFQDuCNHB0="
+              "CodeSha256": "p9GBeTTwgqY1BWQtcmperh9QtW0GNk3xMB+7AenFaT4="
             }
           },
           "CloudFrontCachePolicyMyCachePolicy": {
@@ -256,7 +256,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Ref": "MyLambdaAtEdgeLambdaVersion6OUYlJLORxMkBmuazYXbXzXd6eL9Y9pc1JH0LDuPiM"
+                "Ref": "MyLambdaAtEdgeLambdaVersionP3DTDUemmHCVEgIwVaayxgdUyxKcKFLmYPNlBXw0"
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "edgelambda.amazonaws.com",
@@ -306,7 +306,7 @@
                     {
                       "EventType": "origin-request",
                       "LambdaFunctionARN": {
-                        "Ref": "MyLambdaAtEdgeLambdaVersion6OUYlJLORxMkBmuazYXbXzXd6eL9Y9pc1JH0LDuPiM"
+                        "Ref": "MyLambdaAtEdgeLambdaVersionP3DTDUemmHCVEgIwVaayxgdUyxKcKFLmYPNlBXw0"
                       }
                     }
                   ]
@@ -338,7 +338,7 @@
                       {
                         "EventType": "origin-response",
                         "LambdaFunctionARN": {
-                          "Ref": "MyLambdaAtEdgeLambdaVersion6OUYlJLORxMkBmuazYXbXzXd6eL9Y9pc1JH0LDuPiM"
+                          "Ref": "MyLambdaAtEdgeLambdaVersionP3DTDUemmHCVEgIwVaayxgdUyxKcKFLmYPNlBXw0"
                         }
                       }
                     ],
@@ -359,7 +359,7 @@
           "MyLambdaAtEdgeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MyLambdaAtEdgeLambdaVersion6OUYlJLORxMkBmuazYXbXzXd6eL9Y9pc1JH0LDuPiM"
+              "Ref": "MyLambdaAtEdgeLambdaVersionP3DTDUemmHCVEgIwVaayxgdUyxKcKFLmYPNlBXw0"
             }
           },
           "CloudFrontDistribution": {
@@ -524,7 +524,7 @@
         "versionFunction": true,
         "memory": 1024,
         "vpc": {},
-        "versionLogicalId": "MyLambdaAtEdgeLambdaVersion6OUYlJLORxMkBmuazYXbXzXd6eL9Y9pc1JH0LDuPiM"
+        "versionLogicalId": "MyLambdaAtEdgeLambdaVersionP3DTDUemmHCVEgIwVaayxgdUyxKcKFLmYPNlBXw0"
       }
     },
     "resources": {
@@ -576,7 +576,7 @@
           "!node_modules/mime-db/**"
         ],
         "artifact": "C:\\Users\\Yayra Adugu\\Documents\\Website\\Ajtoablak\\ajto-ablak\\.serverless\\serverless-common-web-template.zip",
-        "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1619810350462-2021-04-30T19:19:10.462Z"
+        "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1620114716126-2021-05-04T07:51:56.126Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -586,7 +586,7 @@
     "artifact": "C:\\Users\\Yayra Adugu\\Documents\\Website\\Ajtoablak\\ajto-ablak\\.serverless\\serverless-common-web-template.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1619810350462-2021-04-30T19:19:10.462Z",
+    "artifactDirectoryName": "serverless/serverless-common-web-template/dev/1620114716126-2021-05-04T07:51:56.126Z",
     "artifact": "serverless-common-web-template.zip"
   }
 }

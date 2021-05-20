@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject, Optional } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { PreferencesService } from '@app/shared-services/preferences.service';
 import { ConfigService } from '@app/shared-services/config.service';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -20,7 +22,9 @@ export class FooterComponent implements OnInit {
   externalLinks = [];
 
   constructor(prefService: PreferencesService, configService: ConfigService,
-              router: Router, location: Location) {
+              router: Router, location: Location,
+              @Inject(PLATFORM_ID) private platformId: object,
+              @Optional() @Inject('request') private request: any) {
     const subscription = prefService.getPreferences().subscribe({
       next: prefs => {
         this.availableLangs = prefs.lang.available;
@@ -28,7 +32,12 @@ export class FooterComponent implements OnInit {
       }
     });
 
-    this.currentUrl = location.path();
+    if (isPlatformBrowser(this.platformId)){
+      this.currentUrl = window.location.href;
+    }
+    else{
+      this.currentUrl = '/' + this.request.path;
+    }
 
     // listen to route changes to update links
     router.events.subscribe({

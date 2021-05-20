@@ -11,8 +11,6 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-const MockBrowser = require('mock-browser').mocks.MockBrowser;
-const mock = new MockBrowser();
 
 import 'localstorage-polyfill';
 
@@ -22,7 +20,6 @@ global['localStorage'] = localStorage;
 export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/ajto-ablak/browser');
-  // const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
@@ -37,22 +34,42 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
-  server.get('/', (req, res) => {
+  server.get('/', (_, res) => {
     res.redirect('/hu');
   });
 
   server.get('/en*', (req, res) => {
-    console.log(req.baseUrl);
-    res.render(join(distFolder, 'en/index.html'), { req, providers: [{ provide: APP_BASE_HREF, useValue: '/en/' }] });
+    res.render(join(distFolder, 'en/index.html'), {
+      req,
+      providers: [{ provide: APP_BASE_HREF, useValue: '/en/' },
+        {provide: 'host', useValue: getHost(req)}, {provide: 'request', useValue: req}]
+    });
   });
 
   // All regular routes use the Universal engine
   server.get('/hu*', (req, res) => {
-    console.log(req.baseUrl);
-    res.render(join(distFolder, 'hu/index.html'), { req, providers: [{ provide: APP_BASE_HREF, useValue: '/hu/' }] });
+    res.render(join(distFolder, 'hu/index.html'), {
+      req,
+      providers: [{ provide: APP_BASE_HREF, useValue: '/hu/' },
+        { provide: 'host', useValue: getHost(req) }, {provide: 'request', useValue: req}]
+      });
   });
 
   return server;
+}
+
+function getHost(req: any): string{
+  const edgeEvent = req.get('x-edge-event');
+  if (edgeEvent){
+     console.log('Got edge event');
+     const decodedHeader = JSON.parse(decodeURIComponent(edgeEvent));
+     console.log(decodedHeader);
+     return decodedHeader.Records[0].cf.request.headers.host[0].value;
+  }
+  else{
+    return req.get('host');
+  }
+
 }
 
 function run(): void {
