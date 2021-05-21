@@ -57,7 +57,7 @@ export class ConfigService {
         hierarchyParams = hierarchyParams.set('domain', window.location.href);
       }
       else{
-        hierarchyParams = hierarchyParams.set('storeId', 'YatiTrend');
+        hierarchyParams = hierarchyParams.set('storeId', 'AjtoAblak');
       }
     } else{
       console.log(this.host);

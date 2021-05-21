@@ -1,8 +1,11 @@
 import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductHierarchyService} from '../../shared-services/product-hierarchy.service';
 import { ScreenTypeService} from '../../shared-services/screen-type.service';
 import { BasketService } from '@app/shared-services/basket.service';
 import { ConfigService } from '@app/shared-services/config.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +23,8 @@ export class HeaderComponent implements OnInit {
   configImages = null;
 
   constructor(screenTypeService: ScreenTypeService, private pHService: ProductHierarchyService,
-              private basketService: BasketService, private configService: ConfigService) {
+              private basketService: BasketService, private configService: ConfigService,
+              private dialog: MatDialog, private router: Router) {
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.screenState = state
     });
@@ -48,6 +52,19 @@ export class HeaderComponent implements OnInit {
   // callback from view to register when menu button is clicked
   onMenuButtonClicked(): void{
     this.menuButtonClicked.emit();
+  }
+
+  onSearchClicked(): void {
+    const dialog = this.dialog.open(SearchComponent, {
+      width: '400px',
+      data: null
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (result){
+        this.router.navigate(['product', result.id]);
+      }
+    });
   }
 
 }

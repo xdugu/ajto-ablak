@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
@@ -14,12 +15,15 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { LangUrlPipe } from './footer/lang-url.pipe';
+import { SearchComponent } from './search/search.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe],
+  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe, SearchComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -31,8 +35,11 @@ import { LangUrlPipe } from './footer/lang-url.pipe';
     MatTreeModule,
     MatBadgeModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
-  exports: [HeaderComponent, FooterComponent, SideBarComponent]
+  exports: [HeaderComponent, FooterComponent, SideBarComponent, SearchComponent]
 })
 export class FixedElementsModule { }

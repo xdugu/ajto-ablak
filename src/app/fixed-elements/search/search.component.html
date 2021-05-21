@@ -1,0 +1,16 @@
+<mat-form-field appearance="legacy">
+    <mat-label i18n="@@SearchHere">Search here</mat-label>
+    <input matInput id="searchTerm" name="search" type="text"
+            [(ngModel)]="searchTerm" (ngModelChange)="onSearchTermChange()">
+</mat-form-field>
+<mat-list style="max-height: 60vh; overflow-y: auto;">
+    <mat-list-item *ngFor="let result of searchResults">
+      <img matListAvatar [appLazyLoad]="bucketUrl + result.image | imageSource : 100" [alt]="result.title">
+      <p matLine>
+        <span> {{result.title}} </span>
+      </p>
+      <button matLine mat-button color="primary"
+              (click)="onItemSelect(result.id)" i18n="@@SearchHere">View
+      </button>
+    </mat-list-item>
+</mat-list>

@@ -33,7 +33,11 @@
             </ng-container>   
             
             <span class="fill-remaining-space"></span>
-
+            <button mat-icon-button (click)="onSearchClicked()" class="mobile-header-icon" >
+                <mat-icon color="accent">
+                    search
+                </mat-icon>
+            </button>
             <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon" >
                 <mat-icon color="accent" [matBadge]="basketCount > 0? basketCount: null" matBadgePosition="below after">
                     shopping_basket
