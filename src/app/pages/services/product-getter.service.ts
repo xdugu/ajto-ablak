@@ -61,4 +61,26 @@ export class ProductGetterService {
     });
   }
 
+  getGroup(groupName: string): Promise<any>{
+
+    return new Promise((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe({
+        next: storeId => {
+          const httpParams = new HttpParams()
+          .set('category', groupName)
+          .set('storeId', storeId + '>Variant');
+
+          const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'category', httpParams);
+          resp.subscribe({
+              next: (evt: any) => resolve(evt),
+              error: err => reject(err)
+            }
+          );
+        },
+        error: err => reject(err)
+      });
+    });
+
+  }
+
 }

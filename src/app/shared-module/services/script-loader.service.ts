@@ -17,7 +17,7 @@ export class ScriptLoaderService {
         script.src = url;
         document.head.appendChild(script);
         script.onload = () => {
-          resolve();
+          setTimeout(resolve, 500);
         };
         script.onerror = (err) => {
           reject(err);

@@ -25,6 +25,9 @@ import { ScriptLoaderService } from './services/script-loader.service';
   exports: [
      DocumentDirective, FlowImagePipe, ObjectFilterPipe,
       DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
+  ],
+  providers: [
+    ImageSourcePipe
   ]
 })
 export class SharedModuleModule {

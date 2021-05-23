@@ -7,6 +7,9 @@ import { BasketService } from '@app/shared-services/basket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PreferencesService } from '@app/shared-services/preferences.service';
 import { Title } from '@angular/platform-browser';
+import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageSourcePipe } from '@app/shared-module/pipes/image-source.pipe';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +19,7 @@ import { Title } from '@angular/platform-browser';
 export class ProductComponent implements OnInit {
   carouselHeight: number;
   product = null;
-  basketUrl = null;
+  bucketUrl = null;
   pickedSpec = [];
   storeId: string = null;
   currencyPref = null;
@@ -30,15 +33,15 @@ export class ProductComponent implements OnInit {
               config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
-              private route: Router) {
+              private route: Router, private dialog: MatDialog, private imgSourcePipe: ImageSourcePipe) {
 
     config.getConfig('imgSrc').subscribe({
-      next: res => this.basketUrl = res
+      next: res => this.bucketUrl = res
     });
     config.getConfig('storeId').subscribe({
       next: storeId => this.storeId = storeId
     });
-    this.carouselHeight = 600;
+    //this.carouselHeight = 600;
 
     prefService.getPreferences().subscribe({
       next: pref => this.currencyPref = pref.currency
@@ -86,6 +89,7 @@ export class ProductComponent implements OnInit {
         if (this.product.Metadata.findIndex(item => item.name === `custom_qs_${this.siteLang}`) >= 0) {
           this.customQuestions = true;
         }
+        this.pickedSpec = []; // reset for product to product changes
         this.setupVariants();
       });
     });
@@ -94,7 +98,17 @@ export class ProductComponent implements OnInit {
   }
 
   // setup variant
-  private setupVariants(): void{
+  private async setupVariants(): Promise<void>{
+
+    for (const variant of this.product.Variants.variants){
+      variant.groupInfo = {};
+      if (variant.type === 'group'){
+        for (const variantOption of variant.options){
+          const resp = await this.productGetter.getGroup(variantOption.name);
+          variant.groupInfo[variantOption.name] = resp.filter(item => item.Enabled);
+        }
+      }
+    }
 
     if (this.product.Variants.variants.length > 0){
 
@@ -143,7 +157,7 @@ export class ProductComponent implements OnInit {
                             this.product.Images.list[currentSlideIndex].width) + 30;
   }
 
-  updateProductPrice(): void{
+  private updateProductPrice(): void{
     if (this.product.Variants.variants.length > 0){
       const combi = this.getCombinationFromPickedSpec();
       const prevPrice = this.product.Price.huf;
@@ -158,6 +172,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  // called to update main image shown after combination change
   private updateImageFromVariantChange(): void{
     const combi = this.getCombinationFromPickedSpec();
     if (combi.linkedImage){
@@ -168,12 +183,27 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  // called when there is a new selection of variant
   onVariantSelectionChange(): void{
     this.determineSelectableItems();
     this.updateProductPrice();
     this.updateImageFromVariantChange();
   }
 
+  // called when a different group of patterns is selected
+  onGroupSelectionChange(newOption: any, changeIndex: number): void{
+    this.pickedSpec[changeIndex] = newOption.value;
+    this.pickedSpec[changeIndex].chosenVariant = this.product.Variants.variants[changeIndex].groupInfo[newOption.value.name][0];
+    this.onVariantSelectionChange();
+  }
+
+  // called when a pattern is selected
+  onPatternSelection(newPattern: any, index: number): void {
+    this.pickedSpec[index].chosenVariant = newPattern;
+    this.onVariantSelectionChange();
+  }
+
+  // returns the combination pointed to by 'pickedSpec'
   private getCombinationFromPickedSpec(): any{
     const chosenArray = [];
     this.pickedSpec.forEach((variant) => {
@@ -183,6 +213,20 @@ export class ProductComponent implements OnInit {
       return JSON.stringify(myCombi.combination) === JSON.stringify(chosenArray);
     }
     return  this.product.Variants.combinations.find(combiMatches);
+  }
+
+  showSelectedPatternOverlay(pattern: any): void{
+    const imageLink = this.imgSourcePipe.transform(this.bucketUrl + pattern.Images.path + pattern.Images.list[0].name, 300);
+    const content = `<img src="${imageLink}" class="w3-center" style="max-width: 300px">`;
+    const dialogData: DialogInterface = {
+      title: pattern.Title[this.siteLang],
+      content,
+      buttons: []
+    };
+    this.dialog.open(DialogComponent, {
+      data: dialogData
+    });
+
   }
 
   // adds item to basket

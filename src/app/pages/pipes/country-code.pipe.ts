@@ -20,6 +20,18 @@ export class CountryCodePipe implements PipeTransform {
     GB: {
         en: 'United Kingdom',
         hu: 'Egyesült Királyság'
+    },
+    SK: {
+      en: 'Slovakia',
+      hu: 'Szlovákia'
+    },
+    RO: {
+      en: 'Romania',
+      hu: 'Románia'
+    },
+    CH: {
+      en: 'Switzerland',
+      hu: 'Svájc'
     }
   };
 

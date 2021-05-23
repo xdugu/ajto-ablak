@@ -13,33 +13,53 @@
     <div class="w3-row w3-margin-top" style="min-height: 800px;">
         <!-- to be displayed left on desktops and 100% width on tablets and mobiles-->
         <div class="w3-col l6">
-            <div *ngFor="let item of basket.Items; index as i;" class="w3-display-container w3-mobile w3-card-2 w3-margin-top" 
-                style="height: 120px; width: 100%">
-                <img   [appLazyLoad]="bucketUrl + item.Images.path + item.Images.list[0].name | imageSource : 100" style="height: 80px"
-                    class="w3-display-left w3-padding">
-                <span class="w3-display-topmiddle">{{item.Title[lang]}}
-                    <span *ngFor="let variant of item.Variants.variants; index as varInd">
-                        , {{variant.text[lang]}} : {{item.Combination[varInd].text[lang]}}</span>
-                    </span>
-                <div class="w3-display-right w3-padding" style="text-align: right;">
-                    <div *ngIf="item.Price.original.discountEnabled"
-                        class="discount">
-                        {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}
-                    </div>
-                    <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}</div>
-                    
-                    <button mat-button  (click)="onRemoveItem(i)" i18n="Text to remove from basket@@Remove">Remove</button>
+            <div *ngFor="let item of basket.Items; index as i;" 
+                    class="w3-card w3-margin-top w3-padding w3-white w3-display-container" 
+                    style="width: 100%;overflow:hidden;">
+                <img   [appLazyLoad]="bucketUrl + item.Images.path + item.Images.list[0].name | imageSource : 100" style="height: 80px">
+                <span>{{item.Title[lang]}}</span>
+
+                <div *ngFor="let combi of item.Combination; index as combiIndex">
+					<span *ngIf="item.Variants.variants[combiIndex].type === 'group'">
+						<img [appLazyLoad]="bucketUrl + combi.chosenVariant.Images.path + combi.chosenVariant.Images.list[0].name | imageSource : 100"
+							style="height:50px; width:auto"/>
+						<span><b>{{item.Variants.variants[combiIndex].text[lang]}}: </b>
+							 {{combi.chosenVariant.Title[lang]}}
+						</span>										
+					</span>
+					<span *ngIf="item.Variants.variants[combiIndex].type === 'individual'">
+						<b>{{item.Variants.variants[combiIndex].text[lang]}}: </b>
+						{{combi.text[lang]}}
+						<span *ngIf="combi.requiresInput">: {{combi.enteredValue}}</span>
+					</span>
+
+				</div>
+                <div class="w3-display-topright">
+                    <button mat-button  (click)="onRemoveItem(i)" 
+                            i18n="Text to remove from basket@@Remove">
+                            Remove
+                    </button>
                 </div>
-                <!-- input to change quantities-->
-                <div class="w3-display-bottommiddle">
-                    <mat-form-field style="max-width: 80px">
-                        <mat-label i18n="@@Quantity">Quantity</mat-label>
-                        <mat-select [value]="item.Quantity | stringOf" (selectionChange)="onChangeQuantity($event, i)">
-                            <mat-option *ngFor="let quantity of availableQuantities" [value]="quantity">
-                                    {{quantity}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <div class="w3-margin-top">
+                    <div class="w3-right">
+                        <div *ngIf="item.Price.original.discountEnabled"
+                            class="discount">
+                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}
+                        </div>
+                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}</div>
+                        
+                    </div>
+                    <!-- input to change quantities-->
+                    <div class="w3-left">
+                        <mat-form-field style="max-width: 80px">
+                            <mat-label i18n="@@Quantity">Quantity</mat-label>
+                            <mat-select [value]="item.Quantity | stringOf" (selectionChange)="onChangeQuantity($event, i)">
+                                <mat-option *ngFor="let quantity of availableQuantities" [value]="quantity">
+                                        {{quantity}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
             </div><!-- end of one basket item-->       
         </div><!-- Left display end-->

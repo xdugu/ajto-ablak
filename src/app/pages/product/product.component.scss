@@ -5,3 +5,11 @@ ngx-slick-carousel{
 mat-accordion > *{
     max-width: 500px;
 }
+
+.selected{
+	border: 5px solid black;
+}
+
+.hoverable{
+	cursor:pointer;
+}

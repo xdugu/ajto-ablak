@@ -9,7 +9,7 @@
         <div  ngxSlickItem *ngIf="imgName.type == 'product'"
                 style="width:100%; overflow-y: hidden;" [style.height.px]="carouselHeight">
 
-            <img  [appLazyLoad]="basketUrl + product.Images.path + imgName.name | imageSource : 700" 
+            <img  [appLazyLoad]="bucketUrl + product.Images.path + imgName.name | imageSource : 700" 
                   class="w3-center"
                   style="width:100%; height:auto;"> 
         </div>
@@ -35,34 +35,88 @@
                   position="left" (currencyChange)="onCurrencyChange($event)">
   </app-currency-chooser>
 
-  <button mat-raised-button *ngIf="product.Quantity > 0; else OutOfStock" 
+  <button mat-raised-button *ngIf="product.Quantity > 0 || !product.TrackStock; else OutOfStock" 
           color="primary" i18n="@@AddToBasket" (click)="addToBasket()"
-          style="width: 180px">
+          style="width: 180px" [disabled]="productSelectionForm.invalid">
     Add To Basket
   </button><br><br>
-  <button mat-button *ngIf="customQuestions" color="primary" i18n="@@WouldLikeToCustomize"
-      (click)="onCustomizeClick()">
-    I would like to a customize this item
-  </button><br><br>
+
+  <ng-container *ngIf="customQuestions">
+    <button mat-button  color="primary" i18n="@@WouldLikeToCustomize"
+        (click)="onCustomizeClick()">
+      I would like to a customize this item
+    </button><br><br>
+  </ng-container>
 
   <!-- Selectable variants appear here-->
-  <ng-container *ngIf="product.Quantity > 0;">
-    <ng-container *ngFor="let variant of product.Variants.variants; index as i">
-      <mat-form-field>
-        <mat-label>{{variant.text[siteLang]}}</mat-label>
-        <mat-select matNativeControl [(value)]="pickedSpec[i]" 
-            (selectionChange)="onVariantSelectionChange()">
-          <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
-            [disabled]="!option.isSelectable">
-            {{option.text[siteLang]}}
-            <span *ngIf="product.TrackStock && !option.isSelectable">
-              (<span i18n="@@OutOfStock">Out Of Stock</span>)
+  <form  #productSelectionForm="ngForm">
+    <ng-container *ngIf="(product.Quantity > 0 || !product.TrackStock) && pickedSpec.length > 0">
+      <ng-container *ngFor="let variant of product.Variants.variants; index as i">
+        <!-- Individual selections-->
+        <ng-container *ngIf="variant.type === 'individual'">
+          <mat-form-field>
+            <mat-label>{{variant.text[siteLang]}}</mat-label>
+            <mat-select matNativeControl [(value)]="pickedSpec[i]" 
+                (selectionChange)="onVariantSelectionChange()" [name]="variant.name">
+              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
+                [disabled]="!option.isSelectable">
+                {{option.text[siteLang]}}
+                <span *ngIf="product.TrackStock && !option.isSelectable">
+                  (<span i18n="@@OutOfStock">Out Of Stock</span>)
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- Grouped selections -->
+        <ng-container *ngIf="variant.type === 'group'">
+          <mat-form-field>
+            <mat-label>{{variant.text[siteLang]}}</mat-label>
+            <mat-select matNativeControl [value]="pickedSpec[i]" [name]="variant.name"
+                        (selectionChange)="onGroupSelectionChange($event, i)" required>
+              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" >
+                {{option.text[siteLang]}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field><br>
+
+          <!-- showing actual variant images-->
+          <div style="width:100%;padding:0;white-space:nowrap;overflow-x:auto;">
+            <span *ngFor="let pattern of variant.groupInfo[pickedSpec[i].name]" class="w3-display-container">
+              <img class="w3-circle hoverable" [appLazyLoad]="bucketUrl + pattern.Images.path + pattern.Images.list[0].name | imageSource : 100" 
+                  [ngClass]="{'selected': pickedSpec[i].chosenVariant.ItemId == pattern.ItemId}"
+                  (click)="onPatternSelection(pattern, i)"
+                  style="height: 90px;width:auto; margin:0 1%;">
+                  <span class="material-icons w3-xxlarge w3-text-black w3-display-middle w3-white w3-circle hoverable"
+                        *ngIf="pickedSpec[i].chosenVariant.ItemId === pattern.ItemId"
+                        (click)="showSelectedPatternOverlay(pattern)">
+                        zoom_in
+                  </span>	
             </span>
-          </mat-option>
-        </mat-select>
-      </mat-form-field><br>
-    </ng-container><br><br>
-  </ng-container>
+          </div>
+          <div  *ngIf="pickedSpec.length > 0" class="w3-margin-top" class="my-theme-primary">
+            {{pickedSpec[i].chosenVariant.Title[siteLang]}}
+          </div><br>
+        </ng-container>
+
+        <!-- Extra inputs to be entered by user-->
+        <ng-container *ngIf="pickedSpec.length > 0 && pickedSpec[i].requiresInput">
+          <mat-form-field *ngIf="pickedSpec[i].inputType === 'text'">
+            <input matInput [placeholder]="variant.text[siteLang]" [(ngModel)]="pickedSpec[i].enteredValue"
+                    [maxLength]="pickedSpec[i].max" type="text" required [name]="variant.name + '_text'">
+          </mat-form-field>
+          <mat-form-field *ngIf="pickedSpec[i].inputType === 'number'">
+            <input matInput [placeholder]="variant.text[siteLang]" [(ngModel)]="pickedSpec[i].enteredValue"
+                    [max]="pickedSpec[i].max"  [min]="pickedSpec[i].min" type="number" required
+                    [name]="variant.name + '_number'">
+          </mat-form-field>
+        </ng-container>
+        <br>
+      </ng-container>
+      
+    </ng-container>
+  </form>
 
   <mat-accordion>
     <mat-expansion-panel>
