@@ -1,6 +1,6 @@
 // link to useful tutorial https://golb.hplar.ch/2018/06/workbox-serviceworker-in-angular-project.html
 
-import { createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching';
+import { createHandlerBoundToURL, precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { clientsClaim, skipWaiting } from 'workbox-core';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
 import { ExpirationPlugin } from 'workbox-expiration';
@@ -9,16 +9,14 @@ import * as strategies from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
+cleanupOutdatedCaches();
 skipWaiting();
 clientsClaim();
 
-
 precacheAndRoute(self.__WB_MANIFEST);
 
-
-
-const navigationRoute = new NavigationRoute(createHandlerBoundToURL('index.html'));
-registerRoute(navigationRoute);
+// const navigationRoute = new NavigationRoute(createHandlerBoundToURL('index.html'));
+// registerRoute(navigationRoute);
 
 // Cache the Google Fonts webfont files with a cache first strategy for 1 year.
 registerRoute(

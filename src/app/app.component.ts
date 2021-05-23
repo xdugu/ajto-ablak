@@ -1,9 +1,14 @@
-import { Component} from '@angular/core';
+import { Component, Inject} from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../environments/environment';
+import { Workbox } from 'workbox-window';
 import { ScreenTypeService} from './shared-services/screen-type.service';
 import { LanguageService } from './shared-services/language.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { TrackingService } from '@app/shared-services/tracking.service';
+
 
 @Component({
   selector: 'app-root',
@@ -21,7 +26,7 @@ export class AppComponent {
 
   constructor(screenTypeService: ScreenTypeService, router: Router,
               langService: LanguageService, configService: ConfigService,
-              tracking: TrackingService){
+              tracking: TrackingService, @Inject(PLATFORM_ID) private platformId: object){
 
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => this.onScreenSizeChange(state)
@@ -40,7 +45,12 @@ export class AppComponent {
       }
     });
 
-    langService.getLang().then(lang => this.siteLanguage = lang);
+    langService.getLang().then(lang => {
+      this.siteLanguage = lang;
+      if (isPlatformBrowser(this.platformId)){
+        this.setupServiceWorker(lang);
+      }
+    });
 
   }
 
@@ -69,5 +79,28 @@ export class AppComponent {
     if (this.currentView === 'tablet' || this.currentView === 'mobile'){
       this.sideBarVisible = !this.sideBarVisible;
     } // if
+  }
+
+  private setupServiceWorker(lang: string): void{
+
+    if ('serviceWorker' in navigator) {
+
+      if (environment.production){
+        const wb = new Workbox(`/${lang}/service-worker.js`);
+        wb.register();
+      }
+
+      // unregister all previous service workers not in root to prevent interference
+      // now we have one service worker for all languages
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+          for (const registration of registrations) {
+            if (registration.scope.indexOf(`/en`) < 0 && registration.scope.indexOf(`/hu`) < 0){
+                registration.unregister();
+            } // if
+          } // for
+      });
+    }
+
+
   }
 }

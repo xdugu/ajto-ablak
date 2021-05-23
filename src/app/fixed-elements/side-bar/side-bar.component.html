@@ -2,13 +2,13 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mobile-menu w3-padding">
     <!-- This is the tree nodes that don't have children-->
     <mat-tree-node *matTreeNodeDef="let node;">
-      <a class="no-child-node app-node" [routerLink]="node.link" >
+      <a class="no-child-node app-node" [routerLink]="node.link" *ngIf="node.enabled">
         {{node.text[lang]}}
       </a>
     </mat-tree-node>
     <!-- This is the tree nodes that have children -->
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
-      <li>
+      <li *ngIf="node.enabled">
         <div class="mat-tree-node" >
           <span class="app-node">
             <a [routerLink]="node.link" >{{node.text[lang]}}</a>

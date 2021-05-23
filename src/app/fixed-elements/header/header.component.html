@@ -19,17 +19,19 @@
                        
             <ng-container *ngFor="let item of productHierarchy; index as i">
                 <!-- Show only first two items in first level hierarchy-->
-                <a mat-button *ngIf="i < 2 && item.sub.length == 0"
-                    [routerLink]="['category', item.name]">
-                    {{item.text[lang]}}
-                </a>
-                <button *ngIf="i < 2 && item.hasOwnProperty('sub')" mat-button
-                    [matMenuTriggerFor]="hierarchyMenu" [matMenuTriggerData]="{item: item}">
-                    <span>{{item.text[lang]}}</span>
-                    <mat-icon color="accent">
-                        keyboard_arrow_down
-                    </mat-icon>
-                </button>
+                <ng-container *ngIf="item.enabled && i < 2">
+                    <a mat-button *ngIf="item.sub == null || item.sub.length == 0"
+                        [routerLink]="['category', item.name]">
+                        {{item.text[lang]}}
+                    </a>
+                    <button *ngIf="item.sub && item.sub.length > 0" mat-button
+                        [matMenuTriggerFor]="hierarchyMenu" [matMenuTriggerData]="{item: item}">
+                        <span>{{item.text[lang]}}</span>
+                        <mat-icon color="accent">
+                            keyboard_arrow_down
+                        </mat-icon>
+                    </button>
+                </ng-container>
             </ng-container>   
             
             <span class="fill-remaining-space"></span>
@@ -57,6 +59,11 @@
         </a>
         <span class="fill-remaining-space"></span>
         
+        <button mat-icon-button (click)="onSearchClicked()" class="mobile-header-icon" >
+            <mat-icon color="accent">
+                search
+            </mat-icon>
+        </button>
         <a mat-icon-button [routerLink]="['/basket']" class="mobile-header-icon">
             <mat-icon color="accent" [matBadge]="basketCount > 0? basketCount: null" matBadgePosition="below after">
                 shopping_basket

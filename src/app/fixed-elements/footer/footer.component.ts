@@ -42,8 +42,8 @@ export class FooterComponent implements OnInit {
     // listen to route changes to update links
     router.events.subscribe({
       next: event => {
-        if (event instanceof NavigationEnd){
-          this.currentUrl = location.path();
+        if (event instanceof NavigationEnd && isPlatformBrowser(this.platformId)){
+            this.currentUrl = window.location.href;
         }
       }
     });

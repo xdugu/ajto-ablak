@@ -1,4 +1,5 @@
-<mat-chip-list aria-label="currency chooser" *ngIf="available.length > 1">
+<mat-chip-list aria-label="currency chooser" *ngIf="available.length > 1"
+        [style.justify-content]="position">
     <mat-chip *ngFor="let name of available" 
             [selected]="name == chosen" 
             (click)="onCurrencyChange(name)">{{name}}

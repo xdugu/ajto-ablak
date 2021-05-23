@@ -43,7 +43,7 @@
   <button mat-button *ngIf="customQuestions" color="primary" i18n="@@WouldLikeToCustomize"
       (click)="onCustomizeClick()">
     I would like to a customize this item
-  </button>
+  </button><br><br>
 
   <!-- Selectable variants appear here-->
   <ng-container *ngIf="product.Quantity > 0;">
@@ -51,7 +51,7 @@
       <mat-form-field>
         <mat-label>{{variant.text[siteLang]}}</mat-label>
         <mat-select matNativeControl [(value)]="pickedSpec[i]" 
-            (selectionChange)="determineSelectableItems(); updateProductPrice()">
+            (selectionChange)="onVariantSelectionChange()">
           <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
             [disabled]="!option.isSelectable">
             {{option.text[siteLang]}}

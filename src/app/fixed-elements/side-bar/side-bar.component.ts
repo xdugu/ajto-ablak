@@ -40,7 +40,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
   }
 
   // A function called to indicate if current node has children - called from view
-  hasChild = (_: number, node: ProductHierarchy) => !!node.sub && node.sub.length > 0;
+  hasChild = (_: number, node: ProductHierarchy) => node.sub && node.sub.length > 0;
 
   // called when a tree node is clicked
   // ensures that only one tree and its branches are visible at any time

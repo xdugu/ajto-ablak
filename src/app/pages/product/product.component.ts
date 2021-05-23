@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
 
   siteLang = 'en';
   private priceElement: ElementRef;
+  private slickModal: any;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
               config: ConfigService, private langService: LanguageService,
@@ -47,6 +48,12 @@ export class ProductComponent implements OnInit {
   @ViewChild('price') set content(content: ElementRef) {
     if (content) { // initially setter gets called with undefined
         this.priceElement = content;
+    }
+  }
+
+  @ViewChild('slickModal') set model(modal: any) {
+    if (modal) { // initially setter gets called with undefined
+        this.slickModal = modal;
     }
   }
 
@@ -138,14 +145,7 @@ export class ProductComponent implements OnInit {
 
   updateProductPrice(): void{
     if (this.product.Variants.variants.length > 0){
-      const chosenArray = [];
-      this.pickedSpec.forEach((variant) => {
-        chosenArray.push(variant.name);
-      });
-      function combiMatches(myCombi: any): boolean{
-        return JSON.stringify(myCombi.combination) === JSON.stringify(chosenArray);
-      }
-      const combi = this.product.Variants.combinations.find(combiMatches);
+      const combi = this.getCombinationFromPickedSpec();
       const prevPrice = this.product.Price.huf;
 
       // only need to scroll or update price if there is a difference between the current
@@ -156,6 +156,33 @@ export class ProductComponent implements OnInit {
         window.scroll({top: this.priceElement.nativeElement.offsetTop - 30, behavior: 'smooth' });
       }
     }
+  }
+
+  private updateImageFromVariantChange(): void{
+    const combi = this.getCombinationFromPickedSpec();
+    if (combi.linkedImage){
+      const imagePosition = this.product.Images.list.findIndex(image => image.name === combi.linkedImage);
+      if (imagePosition >= 0){
+        this.slickModal.slickGoTo(imagePosition);
+      }
+    }
+  }
+
+  onVariantSelectionChange(): void{
+    this.determineSelectableItems();
+    this.updateProductPrice();
+    this.updateImageFromVariantChange();
+  }
+
+  private getCombinationFromPickedSpec(): any{
+    const chosenArray = [];
+    this.pickedSpec.forEach((variant) => {
+      chosenArray.push(variant.name);
+    });
+    function combiMatches(myCombi: any): boolean{
+      return JSON.stringify(myCombi.combination) === JSON.stringify(chosenArray);
+    }
+    return  this.product.Variants.combinations.find(combiMatches);
   }
 
   // adds item to basket

@@ -13,7 +13,7 @@
     "build:ssr": "ng build --prod --localize && ng run ajto-ablak:server:production",
     "postbuild:ssr": "npm run sw-prod-webpack",
     "build:prod": "ng build --prod --localize",
-    "postbuild:prod": "npm run sw-prod-webpack",
+    "postbuild:prod": "npm run sw-prod-webpack && node helper/assetsUploader.js",
     "prerender": "ng run ajto-ablak:prerender",
     "start-hu": "ng serve --configuration=hu",
     "extract-i18n": "ng xi18n ajto-ablak --ivy --i18n-format xlf2 --output-path src/i18n --i18n-locale en && ng run ajto-ablak:xliffmerge",
