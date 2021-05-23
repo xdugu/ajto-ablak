@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LanguageService } from '@app/shared-services/language.service';
 import { ApiManagerService, API_METHOD, API_MODE} from '@app/shared-services/api-manager.service';
 import { HttpParams } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
 import { Title } from '@angular/platform-browser';
 
@@ -15,6 +15,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class ContactComponent implements OnInit {
   lang = 'hu';
+  extraQuestions = [];
 
   // model to store user entries
   user = {
@@ -52,7 +53,7 @@ export class ContactComponent implements OnInit {
 
   constructor(configService: ConfigService, private apiService: ApiManagerService,
               private dialog: MatDialog, private router: Router, langService: LanguageService,
-              private title: Title) {
+              private title: Title, private routeInfo: ActivatedRoute) {
 
     configService.getConfig('storeId').subscribe({
       next: storeId => this.user.storeId = storeId
@@ -66,9 +67,27 @@ export class ContactComponent implements OnInit {
       };
       this.title.setTitle(titles[lang]);
     });
+
+
   }
 
   ngOnInit(): void {
+    const params = this.routeInfo.queryParams;
+    params.subscribe({
+      next: param => {
+        const topic = param.topic;
+        const questions = param.questions;
+        if (topic){
+          this.user.topic = topic;
+        }
+        if (questions){
+          this.extraQuestions = questions.split(',');
+          for (const question of this.extraQuestions){
+            this.user[question] = null;
+          }
+        }
+      }
+    });
   }
 
   // called when the user submits a request

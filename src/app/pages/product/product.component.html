@@ -40,6 +40,10 @@
           style="width: 180px">
     Add To Basket
   </button><br><br>
+  <button mat-button *ngIf="customQuestions" color="primary" i18n="@@WouldLikeToCustomize"
+      (click)="onCustomizeClick()">
+    I would like to a customize this item
+  </button>
 
   <!-- Selectable variants appear here-->
   <ng-container *ngIf="product.Quantity > 0;">

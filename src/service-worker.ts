@@ -15,18 +15,9 @@ clientsClaim();
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-const enNavHandler = createHandlerBoundToURL('/en/index.html');
-const huNavHandler = createHandlerBoundToURL('/hu/index.html');
-
-const navigationHandler = async (context) => {
-  if (context.url.href.indexOf('/en/') >= 0){
-    return enNavHandler(context);
-  }
-  return huNavHandler(context);
-};
 
 
-const navigationRoute = new NavigationRoute(navigationHandler);
+const navigationRoute = new NavigationRoute(createHandlerBoundToURL('index.html'));
 registerRoute(navigationRoute);
 
 // Cache the Google Fonts webfont files with a cache first strategy for 1 year.

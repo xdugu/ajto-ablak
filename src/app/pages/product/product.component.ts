@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '@app/shared-services/config.service';
 import { ProductGetterService } from '../services/product-getter.service';
 import { LanguageService } from '@app/shared-services/language.service';
@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit {
   pickedSpec = [];
   storeId: string = null;
   currencyPref = null;
+  customQuestions = false;
 
   siteLang = 'en';
   private priceElement: ElementRef;
@@ -27,7 +28,8 @@ export class ProductComponent implements OnInit {
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
               config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
-              private prefService: PreferencesService, private titleService: Title) {
+              private prefService: PreferencesService, private titleService: Title,
+              private route: Router) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.basketUrl = res
@@ -74,6 +76,9 @@ export class ProductComponent implements OnInit {
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
         this.titleService.setTitle(this.product.Title[this.siteLang]);
+        if (this.product.Metadata.findIndex(item => item.name === `custom_qs_${this.siteLang}`) >= 0) {
+          this.customQuestions = true;
+        }
         this.setupVariants();
       });
     });
@@ -175,6 +180,13 @@ export class ProductComponent implements OnInit {
   onCurrencyChange(chosen: string): void{
     this.currencyPref.chosen = chosen;
     this.prefService.setPreference('currency', this.currencyPref);
+  }
+
+  // called when customoer wants to request more customization of an item
+  onCustomizeClick(): void{
+    const questions = this.product.Metadata.find(item => item.name === `custom_qs_${this.siteLang}`);
+    this.route.navigate(['contact'],
+        {queryParams: {topic: this.product.ItemId, questions: questions.value}});
   }
 
   // gets combi that starts with something

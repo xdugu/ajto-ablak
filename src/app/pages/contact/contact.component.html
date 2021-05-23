@@ -19,6 +19,16 @@
         </mat-form-field>
     </p>
 
+    <p *ngFor="let question of extraQuestions; index as i">
+        <mat-form-field appearance="legacy">
+        <mat-label>{{question}}</mat-label>
+        <input matInput required [id]="question + i.toString()" [name]="question + i.toString()" type="text"
+                [(ngModel)]="user[question]" #model="ngModel">
+        <mat-error [hidden]="model.valid || model.pristine" i18n="@@Required">Required</mat-error>
+        </mat-form-field>
+    </p>
+
+
     <mat-form-field  style="width: 100%">
         <mat-label><span i18n="@@Comment">Comment</span></mat-label>
         <textarea

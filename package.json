@@ -17,7 +17,7 @@
     "prerender": "ng run ajto-ablak:prerender",
     "start-hu": "ng serve --configuration=hu",
     "extract-i18n": "ng xi18n ajto-ablak --ivy --i18n-format xlf2 --output-path src/i18n --i18n-locale en && ng run ajto-ablak:xliffmerge",
-    "sw-prod-webpack": "rimraf ./dist/ajto-ablak/service-worker.js && webpack --config ./sw-prod-webpack.config.js --progress && workbox injectManifest ./workbox-config.js"
+    "sw-prod-webpack": "rimraf ./webpack-config/service-worker.js && webpack --config ./webpack-config/sw-prod-webpack.config.js --progress && workbox injectManifest ./workboxconfig/en.js && workbox injectManifest ./workboxconfig/hu.js"
   },
   "private": true,
   "dependencies": {
