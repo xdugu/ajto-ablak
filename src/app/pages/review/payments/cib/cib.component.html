@@ -1,0 +1,10 @@
+<ng-container *ngIf="preferences && customer">
+    <div ng-if="currency=='HUF'">
+        <span>{{preferences.countryCode | countryCode : lang}}</span><br>
+        <button mat-raised-button color="accent" i18n="@@PayByCard" 
+                (click)="onPaymentMethodActivation()"
+                [style.width.px]="width">
+            Pay securely by card
+        </button>
+    </div>
+</ng-container>

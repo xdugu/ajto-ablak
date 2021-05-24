@@ -87,19 +87,35 @@
     <div  style="width: 300px; overflow: hidden" class="w3-mobile w3-margin-top">
         <ng-container *ngFor="let payment of paymentTypes">
             <ng-container [ngSwitch]="payment.name">
-                <app-paypal *ngSwitchCase="'paypal'" [config]="payment" 
-                            (orderConfirmed)="onOrderConfirmed('paypal', $event)">
-                </app-paypal><br>
-                <app-bank-transfer *ngSwitchCase="'bankTransfer'" [lang]="preferences.lang.chosen"
-                                    (orderConfirmed)="onOrderConfirmed('bankTransfer')">
-                </app-bank-transfer>
+                <ng-container *ngIf="(payment.supportedCurrencies | indexOf : preferences.currency.chosen) >= 0">
+                    <app-cib *ngSwitchCase="'cib'" [config]="payment" 
+                            (orderConfirmed)="onOrderConfirmed()"
+                            [lang]="preferences.lang.chosen"
+                            [comments]="customerComments">
+                    </app-cib> <br>
+                </ng-container>
+
+                <ng-container *ngIf="(payment.supportedCurrencies | indexOf : preferences.currency.chosen) >= 0">
+                    <app-paypal *ngSwitchCase="'paypal'" [config]="payment" [lang]="preferences.lang.chosen"
+                                (orderConfirmed)="onOrderConfirmed()"
+                                [comments]="customerComments">
+                    </app-paypal><br>
+                </ng-container>
+
+                <ng-container *ngIf="(payment.supportedCurrencies | indexOf : preferences.currency.chosen) >= 0">
+                    <app-bank-transfer *ngSwitchCase="'bankTransfer'" [lang]="preferences.lang.chosen"
+                                        (orderConfirmed)="onOrderConfirmed()"
+                                        [comments]="customerComments">
+                    </app-bank-transfer>
+                </ng-container>
                 <ng-container *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].hasOwnProperty('payOnDelivery')">
-                    <app-pay-on-delivery *ngSwitchCase="'payOnDelivery'" (orderConfirmed)="onOrderConfirmed('payOnDelivery')"
+                    <app-pay-on-delivery *ngSwitchCase="'payOnDelivery'" (orderConfirmed)="onOrderConfirmed()"
                         [lang]="preferences.lang.chosen"
                         [totalCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen"
                         [extraCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] - 
                                             basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] 
-                                            | currency : preferences.currency.chosen">
+                                            | currency : preferences.currency.chosen"
+                        [comments]="customerComments">
                     </app-pay-on-delivery>
                 </ng-container>
             </ng-container>

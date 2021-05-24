@@ -23,28 +23,6 @@ export class ReviewComponent implements OnInit {
   bucketUrl: string = null;
   lang = 'en';
 
-  private successMessage = {
-    title: {
-      en: 'Order Successful',
-      hu: 'Rendelés megerősítése'
-    },
-    bankTransfer: {
-      en: `We have sent you an email with our account details. We will ship you item
-        as soon as the stated amount is credited to our account. Thank you for shopping
-        with us`,
-      hu: `Sikeresen elküldtük a banki utaláshoz szükséges adatokat az email címedre
-        Kérjük, hogy saját érdekedben az utalást minél előbb tedd meg,
-        hogy mi is minél hamarabb előkészíthessük és kézbesíthessük számodra a megrendelt terméket/termékeket.`
-    },
-    otherPaymentMethods: {
-      en: `Thank you for your order. We will ship your item as soon as we can.
-          Thank you for shopping with us`,
-      hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>, 
-        kérjük vegye fel velünk a kapcsolatot!
-        Megrendelését hamarosan kézbesítjük!`
-    }
-  };
-
   constructor(private customerDetailsService: CustomerDetailsService,
               private prefService: PreferencesService,
               private configService: ConfigService,
@@ -63,7 +41,9 @@ export class ReviewComponent implements OnInit {
     });
 
     this.configService.getConfig('paymentTypes').subscribe({
-      next: paymentTypes => this.paymentTypes = paymentTypes
+      next: paymentTypes => {
+        this.paymentTypes = paymentTypes;
+      }
     });
 
     this.configService.getConfig('imgSrc').subscribe({
@@ -71,31 +51,16 @@ export class ReviewComponent implements OnInit {
     });
 
     this.basketService.getBasket().subscribe({
-      next: basket => this.basket = basket
+      next: basket => {
+        this.basket = basket;
+      }
     });
 
     this.langService.getLang().then(lang => this.lang = lang);
     this.titleService.setTitle('Review');
   }
 
-  onOrderConfirmed(paymentType: string, paymentDetails: any = null): void{
-    const lang = this.preferences.lang.chosen;
-
-    this.basketService.placeOrder(paymentType, this.customerComments, paymentDetails).then(() => {
-      const dialog = this.dialog.open(DialogComponent, {
-        width: '350px',
-        data: {
-          title: this.successMessage.title[lang],
-          content: paymentType === 'bankTransfer' ? this.successMessage.bankTransfer[lang] :
-                                this.successMessage.otherPaymentMethods[lang],
-          buttons: []
-        }
-      });
-
-      dialog.afterClosed().subscribe(() => {
-        this.route.navigate(['/']);
-      });
-    });
-
+  onOrderConfirmed(): void{
+    this.route.navigate(['/']);
   }
 }

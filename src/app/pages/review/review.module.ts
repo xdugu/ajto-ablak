@@ -13,10 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PayOnDeliveryComponent } from './payments/pay-on-delivery/pay-on-delivery.component';
+import { CibComponent } from './payments/cib/cib.component';
 
 
 @NgModule({
-  declarations: [ReviewComponent, PaypalComponent, BankTransferComponent, PayOnDeliveryComponent],
+  declarations: [ReviewComponent, PaypalComponent, BankTransferComponent, PayOnDeliveryComponent, CibComponent],
   imports: [
     CommonModule,
     ReviewRoutingModule,

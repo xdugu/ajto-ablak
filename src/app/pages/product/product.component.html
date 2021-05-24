@@ -56,7 +56,7 @@
       <ng-container *ngFor="let variant of product.Variants.variants; index as i">
         <!-- Individual selections-->
         <ng-container *ngIf="variant.type === 'individual'">
-          <mat-form-field>
+          <mat-form-field *ngIf="!variant.hasAttachedImage">
             <mat-label>{{variant.text[siteLang]}}</mat-label>
             <mat-select matNativeControl [(value)]="pickedSpec[i]" 
                 (selectionChange)="onVariantSelectionChange()" [name]="variant.name">
@@ -69,6 +69,26 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <div *ngIf="variant.hasAttachedImage">
+						<div style="width:100%;padding:0;white-space:nowrap;overflow-x:auto;">
+							<span *ngFor="let option of variant.options" class="w3-display-container">
+                <ng-container *ngIf="option.isSelectable">
+                  <img class="w3-circle hoverable" [appLazyLoad]="bucketUrl + product.Images.path + option.linkedImage | imageSource : 100" 
+                        [ngClass]="{'selected': pickedSpec[i] === option}"
+                        (click)="pickedSpec[i] = option; onVariantSelectionChange()" 
+                      style="height: 90px;width:auto; margin:0 1%;">	
+                  <span class="material-icons w3-xxlarge w3-text-black w3-display-middle w3-white w3-circle hoverable"
+                        *ngIf="pickedSpec[i] == option"
+                        (click)="showSelectedOptionOverlay(option)">
+                      zoom_in
+                  </span>	
+                </ng-container>	
+							</span>
+						</div>
+						<div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
+              {{pickedSpec[i].text[siteLang]}}
+						</div>
+					</div>
         </ng-container>
 
         <!-- Grouped selections -->
@@ -97,7 +117,7 @@
                   </span>	
             </span>
           </div>
-          <div  *ngIf="pickedSpec.length > 0" class="w3-margin-top" class="my-theme-primary">
+          <div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
             {{pickedSpec[i].chosenVariant.Title[siteLang]}}
           </div><br>
         </ng-container>
@@ -109,7 +129,7 @@
                     [maxLength]="pickedSpec[i].max" type="text" required [name]="variant.name + '_text'">
           </mat-form-field>
           <mat-form-field *ngIf="pickedSpec[i].inputType === 'number'">
-            <input matInput [placeholder]="variant.text[siteLang]" [(ngModel)]="pickedSpec[i].enteredValue"
+            <input matInput [placeholder]="variant.text[siteLang] + '(' + pickedSpec[i].min + '-' + pickedSpec[i].max  + ')'" [(ngModel)]="pickedSpec[i].enteredValue"
                     [max]="pickedSpec[i].max"  [min]="pickedSpec[i].min" type="number" required
                     [name]="variant.name + '_number'">
           </mat-form-field>

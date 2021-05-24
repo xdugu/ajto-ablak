@@ -176,11 +176,7 @@ export class BasketService {
             storeId:  this.basket.StoreId
             }).subscribe({
               next: (data) => {
-                this.tokenService.removeItem('BasketId');
-                this.basket = null;
-                this.basketId = null;
-                this.basketCount.next(0);
-                this.prefService.clearPreferences();
+                this.clearBasket();
                 resolve(data);
                 return;
               },
@@ -191,6 +187,14 @@ export class BasketService {
         error: err => reject(err)
       });
     });
+  }
+
+  clearBasket(): void {
+    this.tokenService.removeItem('BasketId');
+    this.basket = null;
+    this.basketId = null;
+    this.basketCount.next(0);
+    this.prefService.clearPreferences();
   }
 
 }

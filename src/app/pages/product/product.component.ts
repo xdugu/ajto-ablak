@@ -89,6 +89,7 @@ export class ProductComponent implements OnInit {
           this.customQuestions = true;
         }
         this.pickedSpec = []; // reset for product to product changes
+        this.linkImagesToVariants();
         this.setupVariants();
       });
     });
@@ -96,6 +97,27 @@ export class ProductComponent implements OnInit {
     this.langService.getLang().then(lang => this.siteLang = lang);
   }
 
+  // attach images to variants to be used by view
+  private linkImagesToVariants(): void{
+    // attempt to link variant images to variants
+    for (const image of this.product.Images.list){
+      if (image.type.startsWith('variant')){
+        const type = image.type.split('-');
+        type.splice(0, 1); // remove the first element as it will always be 'variant'
+        for (const variant of this.product.Variants.variants){
+
+          if (variant.name === type[0]){
+            const index = variant.options.findIndex(option => option.name === type[1]);
+            if (index >= 0){
+              variant.options[index].linkedImage = image.name;
+              variant.hasAttachedImage = true;
+            }
+          }
+        }
+      }
+    }
+
+  }
   // setup variant
   private async setupVariants(): Promise<void>{
 
@@ -226,6 +248,19 @@ export class ProductComponent implements OnInit {
       data: dialogData
     });
 
+  }
+
+  showSelectedOptionOverlay(option: any): void{
+    const imageLink = this.imgSourcePipe.transform(this.bucketUrl + this.product.Images.path + option.linkedImage, 300);
+    const content = `<img src="${imageLink}" class="w3-center" style="max-width: 300px">`;
+    const dialogData: DialogInterface = {
+      title: option.text[this.siteLang],
+      content,
+      buttons: []
+    };
+    this.dialog.open(DialogComponent, {
+      data: dialogData
+    });
   }
 
   // adds item to basket

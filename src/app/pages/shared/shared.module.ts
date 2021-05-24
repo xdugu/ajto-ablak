@@ -6,15 +6,16 @@ import { StringOfPipe } from './pipes/string-of.pipe';
 import { CategoryGetterService } from './services/category-getter.service';
 import { ProductGetterService } from './services/product-getter.service';
 import { BlogGetterService} from './services/blog-getter.service';
+import { IndexOfPipe } from './pipes/index-of.pipe';
 
 
 
 @NgModule({
-  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe],
+  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe],
   imports: [
     CommonModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe]
 })
 export class SharedModule {
   static forRoot(): any{

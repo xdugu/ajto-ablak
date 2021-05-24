@@ -4,6 +4,8 @@ import { BasketInterface, BasketService } from '@app/shared-services/basket.serv
 import { environment } from '../../../../../environments/environment';
 import { CustomerDetailsInterface, CustomerDetailsService } from '@app/shared-services/customer-details.service';
 import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
+import { DialogComponent} from '@app/shared-module/components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var paypal;
 
@@ -20,11 +22,30 @@ interface PaypalConfigInterface{
 })
 export class PaypalComponent implements OnInit {
   @Input() config: PaypalConfigInterface = null;
+  @Input() comments: string = null;
+  @Input() lang = 'hu';
   @Output() orderConfirmed = new EventEmitter<any>();
+
+  messages: {
+    paymentSuccessful: {
+      title: {
+        en: 'Order Successful',
+        hu: 'Rendelés megerősítése'
+      },
+      content: {
+        en: `Thank you for your order. We will ship your item as soon as we can.
+          Thank you for shopping with us`,
+        hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>, 
+          kérjük vegye fel velünk a kapcsolatot!
+          Megrendelését hamarosan kézbesítjük!`
+      }
+    }
+  };
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
               private customerDetailsService: CustomerDetailsService,
-              private element: ElementRef, private scriptLoader: ScriptLoaderService) { }
+              private element: ElementRef, private scriptLoader: ScriptLoaderService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.basketService.getBasket().subscribe({
@@ -108,7 +129,18 @@ export class PaypalComponent implements OnInit {
       },
       onApprove: (data, actions) => {
         actions.order.get().then((details: any) => {
-            this.orderConfirmed.emit(details);
+            this.basketService.placeOrder('paypal', this.comments, details).then(() => {
+              this.dialog.open(DialogComponent, {
+                width: '400px',
+                data: {
+                  title: this.messages.paymentSuccessful.title[this.lang],
+                  content: this.messages.paymentSuccessful.content[this.lang]
+                }
+              }).afterClosed().subscribe({
+                next: () => this.orderConfirmed.emit()
+              });
+            });
+
         });
 
       }}).render(this.element.nativeElement);
