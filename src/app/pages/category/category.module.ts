@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
 import { SharedModuleModule} from '@app/shared-module/shared-module.module';
-import { PagesModule} from '../pages.module';
+import { SharedModule } from '../shared/shared.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -19,7 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
     SharedModuleModule,
     MatGridListModule,
     MatButtonModule,
-    PagesModule
+    SharedModule
   ]
 })
 export class CategoryModule { }

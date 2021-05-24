@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '@app/shared-services/config.service';
-import { ProductGetterService } from '../services/product-getter.service';
+import { ProductGetterService } from '../shared/services/product-getter.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { BasketService } from '@app/shared-services/basket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

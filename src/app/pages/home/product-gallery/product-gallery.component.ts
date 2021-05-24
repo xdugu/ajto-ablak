@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ProductGetterService} from '@app/pages/services/product-getter.service';
+import { ProductGetterService} from '@app/pages/shared/services/product-getter.service';
 import { ConfigService } from '@app/shared-services/config.service';
 
 

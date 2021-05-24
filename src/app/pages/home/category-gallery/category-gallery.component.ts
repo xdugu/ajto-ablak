@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CategoryGetterService } from '@app/pages/services/category-getter.service';
+import { CategoryGetterService } from '@app/pages/shared/services/category-getter.service';
 import { ConfigService } from '@app/shared-services/config.service';
 
 @Component({

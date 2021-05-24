@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BasketRoutingModule } from './basket-routing.module';
 import { BasketComponent } from './basket.component';
-import { PagesModule} from '../pages.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { SharedModuleModule} from '@app/shared-module/shared-module.module';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -31,7 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatInputModule,
     MatSnackBarModule,
-    PagesModule
+    SharedModule
   ]
 })
 export class BasketModule { }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BlogGetterService } from '../../services/blog-getter.service';
+import { BlogGetterService } from '../../shared/services/blog-getter.service';
 import { ConfigService } from '@app/shared-services/config.service';
 
 @Component({

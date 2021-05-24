@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductHierarchy, ProductHierarchyService } from '@app/shared-services/product-hierarchy.service';
 import { ConfigService } from '@app/shared-services/config.service';
-import { CategoryGetterService} from '@app/pages/services/category-getter.service';
+import { CategoryGetterService} from '@app/pages/shared/services/category-getter.service';
 import { ScreenTypeService } from 'app/shared-services/screen-type.service';
 import { LanguageService } from 'app/shared-services/language.service';
 import { PreferencesService } from '@app/shared-services/preferences.service';
