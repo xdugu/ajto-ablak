@@ -3,7 +3,7 @@
   <file id="ngi18n" original="ng.template">
     <unit id="ContactUs">
       <notes>
-        <note category="location">src/app/fixed-elements/header/header.component.html:46</note>
+        <note category="location">src/app/fixed-elements/header/header.component.html:48</note>
         <note category="location">src/app/pages/contact/contact.component.html:1</note>
       </notes>
       <segment>
@@ -12,7 +12,7 @@
     </unit>
     <unit id="AboutUs">
       <notes>
-        <note category="location">src/app/fixed-elements/header/header.component.html:47</note>
+        <note category="location">src/app/fixed-elements/header/header.component.html:49</note>
         <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:33</note>
       </notes>
       <segment>
@@ -48,10 +48,17 @@
     <unit id="SearchHere">
       <notes>
         <note category="location">src/app/fixed-elements/search/search.component.html:2</note>
-        <note category="location">src/app/fixed-elements/search/search.component.html:13,14</note>
       </notes>
       <segment>
         <source>Search here</source>
+      </segment>
+    </unit>
+    <unit id="View">
+      <notes>
+        <note category="location">src/app/fixed-elements/search/search.component.html:13,14</note>
+      </notes>
+      <segment>
+        <source>View </source>
       </segment>
     </unit>
     <unit id="Close">
@@ -60,57 +67,6 @@
       </notes>
       <segment>
         <source>Close</source>
-      </segment>
-    </unit>
-    <unit id="Name">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:6</note>
-        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
-      </notes>
-      <segment>
-        <source>Name</source>
-      </segment>
-    </unit>
-    <unit id="NameIsRequired">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:9</note>
-        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
-      </notes>
-      <segment>
-        <source>Name is required</source>
-      </segment>
-    </unit>
-    <unit id="EmailIsRequired">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:18</note>
-        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
-      </notes>
-      <segment>
-        <source>Email is required</source>
-      </segment>
-    </unit>
-    <unit id="Comment">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:33</note>
-      </notes>
-      <segment>
-        <source>Comment</source>
-      </segment>
-    </unit>
-    <unit id="SendRequest">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:43</note>
-      </notes>
-      <segment>
-        <source>Send</source>
-      </segment>
-    </unit>
-    <unit id="Required">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:27</note>
-      </notes>
-      <segment>
-        <source>Required</source>
       </segment>
     </unit>
     <unit id="Published">
@@ -131,13 +87,12 @@
         <source> Read More </source>
       </segment>
     </unit>
-    <unit id="PayOnDelivery">
+    <unit id="PayByCard">
       <notes>
-        <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
+        <note category="location">src/app/pages/review/payments/cib/cib.component.html:7,8</note>
       </notes>
       <segment>
-        <source> Pay on delivery
-</source>
+        <source> Pay securely by card </source>
       </segment>
     </unit>
     <unit id="Blog">
@@ -148,114 +103,34 @@
         <source>Blog</source>
       </segment>
     </unit>
-    <unit id="Review">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:2</note>
-        <note category="description">Heading for final order review page</note>
-      </notes>
-      <segment>
-        <source>Review</source>
-      </segment>
-    </unit>
-    <unit id="Delivery">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:20</note>
-        <note category="location">src/app/pages/basket/basket.component.html:75</note>
-      </notes>
-      <segment>
-        <source>Delivery:</source>
-      </segment>
-    </unit>
-    <unit id="Discount">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:21</note>
-        <note category="location">src/app/pages/basket/basket.component.html:77</note>
-      </notes>
-      <segment>
-        <source>Discount:</source>
-      </segment>
-    </unit>
-    <unit id="Subtotal">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:22</note>
-        <note category="location">src/app/pages/basket/basket.component.html:80</note>
-      </notes>
-      <segment>
-        <source>Subtotal:</source>
-      </segment>
-    </unit>
-    <unit id="Total">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:23</note>
-        <note category="location">src/app/pages/basket/basket.component.html:81</note>
-      </notes>
-      <segment>
-        <source>Total:</source>
-      </segment>
-    </unit>
-    <unit id="LeaveComment">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:46</note>
-        <note category="description">Prompt to leave a comment</note>
-      </notes>
-      <segment>
-        <source>Leave a comment</source>
-      </segment>
-    </unit>
-    <unit id="OrderDetails">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:29</note>
-      </notes>
-      <segment>
-        <source>Order Details</source>
-      </segment>
-    </unit>
-    <unit id="PostTo">
-      <notes>
-        <note category="location">src/app/pages/review/review.component.html:34</note>
-        <note category="description">where to post package</note>
-      </notes>
-      <segment>
-        <source>Post To:</source>
-      </segment>
-    </unit>
-    <unit id="PayByBankTransfer">
-      <notes>
-        <note category="location">src/app/pages/review/payments/bank-transfer/bank-transfer.component.html:3,4</note>
-      </notes>
-      <segment>
-        <source> Pay by bank transfer
-</source>
-      </segment>
-    </unit>
     <unit id="ProductDescription">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:71,72</note>
+        <note category="location">src/app/pages/product/product.component.html:147,148</note>
       </notes>
       <segment>
         <source> Description </source>
       </segment>
     </unit>
-    <unit id="OutOfStock">
-      <notes>
-        <note category="location">src/app/pages/product/product.component.html:30</note>
-        <note category="location">src/app/pages/product/product.component.html:59</note>
-      </notes>
-      <segment>
-        <source>Out Of Stock</source>
-      </segment>
-    </unit>
     <unit id="AddToBasket">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:41,42</note>
+        <note category="location">src/app/pages/product/product.component.html:39,40</note>
       </notes>
       <segment>
         <source> Add To Basket </source>
       </segment>
     </unit>
+    <unit id="OutOfStock">
+      <notes>
+        <note category="location">src/app/pages/product/product.component.html:42</note>
+        <note category="location">src/app/pages/product/product.component.html:67</note>
+      </notes>
+      <segment>
+        <source>Out Of Stock</source>
+      </segment>
+    </unit>
     <unit id="WouldLikeToCustomize">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:45,46</note>
+        <note category="location">src/app/pages/product/product.component.html:49,50</note>
       </notes>
       <segment>
         <source> I would like to a customize this item </source>
@@ -279,16 +154,17 @@
     </unit>
     <unit id="Remove">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:31</note>
+        <note category="location">src/app/pages/basket/basket.component.html:40,41</note>
         <note category="description">Text to remove from basket</note>
       </notes>
       <segment>
-        <source>Remove</source>
+        <source> Remove </source>
       </segment>
     </unit>
     <unit id="Quantity">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:36</note>
+        <note category="location">src/app/pages/basket/basket.component.html:55</note>
+        <note category="location">src/app/pages/review/review.component.html:37</note>
       </notes>
       <segment>
         <source>Quantity</source>
@@ -296,7 +172,7 @@
     </unit>
     <unit id="SelectCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:48</note>
+        <note category="location">src/app/pages/basket/basket.component.html:68</note>
         <note category="description">Static text to tell customer to select country</note>
       </notes>
       <segment>
@@ -305,7 +181,7 @@
     </unit>
     <unit id="ChooseCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:51,52</note>
+        <note category="location">src/app/pages/basket/basket.component.html:71,72</note>
         <note category="description">First option of country chooser</note>
       </notes>
       <segment>
@@ -314,18 +190,54 @@
     </unit>
     <unit id="ChooseCourier">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:63</note>
+        <note category="location">src/app/pages/basket/basket.component.html:83</note>
       </notes>
       <segment>
         <source>Choose a courier:</source>
       </segment>
     </unit>
+    <unit id="Delivery">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:95</note>
+        <note category="location">src/app/pages/review/review.component.html:43</note>
+      </notes>
+      <segment>
+        <source>Delivery:</source>
+      </segment>
+    </unit>
+    <unit id="Subtotal">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:100</note>
+        <note category="location">src/app/pages/review/review.component.html:49</note>
+      </notes>
+      <segment>
+        <source>Subtotal:</source>
+      </segment>
+    </unit>
+    <unit id="Total">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:101</note>
+        <note category="location">src/app/pages/review/review.component.html:50</note>
+      </notes>
+      <segment>
+        <source>Total:</source>
+      </segment>
+    </unit>
     <unit id="ProceedToCheckout">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:82</note>
+        <note category="location">src/app/pages/basket/basket.component.html:102</note>
       </notes>
       <segment>
         <source> Proceed to checkout</source>
+      </segment>
+    </unit>
+    <unit id="Discount">
+      <notes>
+        <note category="location">src/app/pages/basket/basket.component.html:97</note>
+        <note category="location">src/app/pages/review/review.component.html:45</note>
+      </notes>
+      <segment>
+        <source>Discount:</source>
       </segment>
     </unit>
     <unit id="ContactInformation">
@@ -335,6 +247,33 @@
       </notes>
       <segment>
         <source>Contact Information</source>
+      </segment>
+    </unit>
+    <unit id="Name">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
+        <note category="location">src/app/pages/contact/contact.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Name</source>
+      </segment>
+    </unit>
+    <unit id="NameIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
+        <note category="location">src/app/pages/contact/contact.component.html:12</note>
+      </notes>
+      <segment>
+        <source>Name is required</source>
+      </segment>
+    </unit>
+    <unit id="EmailIsRequired">
+      <notes>
+        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
+        <note category="location">src/app/pages/contact/contact.component.html:21</note>
+      </notes>
+      <segment>
+        <source>Email is required</source>
       </segment>
     </unit>
     <unit id="PhoneNumber">
@@ -355,7 +294,7 @@
     </unit>
     <unit id="ShippingDetails">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:62</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:73</note>
       </notes>
       <segment>
         <source>Shipping Details</source>
@@ -363,7 +302,7 @@
     </unit>
     <unit id="AddressLine1">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:65</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:76</note>
       </notes>
       <segment>
         <source>Address Line 1</source>
@@ -371,7 +310,7 @@
     </unit>
     <unit id="AddressIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:70</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:81</note>
       </notes>
       <segment>
         <source>Address is required</source>
@@ -379,7 +318,7 @@
     </unit>
     <unit id="AddressLine2">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:75</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:86</note>
       </notes>
       <segment>
         <source>Address Line 2</source>
@@ -387,7 +326,7 @@
     </unit>
     <unit id="City">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:82</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:93</note>
       </notes>
       <segment>
         <source>City/Town</source>
@@ -395,7 +334,7 @@
     </unit>
     <unit id="CityIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:86</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:97</note>
       </notes>
       <segment>
         <source>City is required</source>
@@ -403,7 +342,7 @@
     </unit>
     <unit id="PostCode">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:91</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:102</note>
       </notes>
       <segment>
         <source>PostCode</source>
@@ -411,7 +350,7 @@
     </unit>
     <unit id="PostCodeIsRequired">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:95</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:106</note>
       </notes>
       <segment>
         <source>Post code is required</source>
@@ -419,7 +358,7 @@
     </unit>
     <unit id="Country">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:101</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:112</note>
       </notes>
       <segment>
         <source>Country</source>
@@ -427,7 +366,7 @@
     </unit>
     <unit id="IAcceptTerms">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:115</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:126</note>
         <note category="description">clickable text to allow customer to read terms</note>
       </notes>
       <segment>
@@ -436,10 +375,95 @@
     </unit>
     <unit id="ProceedToPayment">
       <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:121,122</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:132,133</note>
       </notes>
       <segment>
         <source> Proceed to payment </source>
+      </segment>
+    </unit>
+    <unit id="PayOnDelivery">
+      <notes>
+        <note category="location">src/app/pages/review/payments/pay-on-delivery/pay-on-delivery.component.html:3,4</note>
+      </notes>
+      <segment>
+        <source> Pay on delivery
+</source>
+      </segment>
+    </unit>
+    <unit id="PayByBankTransfer">
+      <notes>
+        <note category="location">src/app/pages/review/payments/bank-transfer/bank-transfer.component.html:3,4</note>
+      </notes>
+      <segment>
+        <source> Pay by bank transfer
+</source>
+      </segment>
+    </unit>
+    <unit id="Review">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:2</note>
+        <note category="description">Heading for final order review page</note>
+      </notes>
+      <segment>
+        <source>Review</source>
+      </segment>
+    </unit>
+    <unit id="LeaveComment">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:81</note>
+        <note category="description">Prompt to leave a comment</note>
+      </notes>
+      <segment>
+        <source>Leave a comment</source>
+      </segment>
+    </unit>
+    <unit id="OrderDetails">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:56</note>
+      </notes>
+      <segment>
+        <source>Order Details</source>
+      </segment>
+    </unit>
+    <unit id="PostTo">
+      <notes>
+        <note category="location">src/app/pages/review/review.component.html:69</note>
+        <note category="description">where to post package</note>
+      </notes>
+      <segment>
+        <source>Post To:</source>
+      </segment>
+    </unit>
+    <unit id="Comment">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:36</note>
+      </notes>
+      <segment>
+        <source>Comment</source>
+      </segment>
+    </unit>
+    <unit id="SendRequest">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:46</note>
+      </notes>
+      <segment>
+        <source>Send</source>
+      </segment>
+    </unit>
+    <unit id="Topic">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:5</note>
+      </notes>
+      <segment>
+        <source>Topic</source>
+      </segment>
+    </unit>
+    <unit id="Required">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:30</note>
+      </notes>
+      <segment>
+        <source>Required</source>
       </segment>
     </unit>
   </file>
