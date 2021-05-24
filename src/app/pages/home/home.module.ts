@@ -12,6 +12,7 @@ import { CategoryGalleryComponent } from './category-gallery/category-gallery.co
 import { CategoryLinkComponent } from './category-link/category-link.component';
 import { LanderComponent } from './lander/lander.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
+import { PagesModule } from '../pages.module';
 
 @NgModule({
   declarations: [HomeComponent, ProductGalleryComponent, CategoryGalleryComponent,
@@ -21,7 +22,8 @@ import { BlogListComponent } from './blog-list/blog-list.component';
     HomeRoutingModule,
     MatGridListModule,
     MatButtonModule,
-    SharedModuleModule
+    SharedModuleModule,
+    PagesModule
   ]
 })
 export class HomeModule { }

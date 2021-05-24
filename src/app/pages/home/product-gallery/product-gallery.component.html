@@ -9,6 +9,8 @@
             <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 300" />
         </div>
         <div class="w3-center w3-padding">{{product.Title[lang]}}</div>
-        <div class="w3-center price">{{product.Price[currency.toLowerCase()] | currency : currency}}</div>
+        <ng-container *ngIf="!(product | isCustom)">
+            <div class="w3-center price">{{product.Price[currency.toLowerCase()] | currency : currency}}</div>
+        </ng-container>
     </a>
 </div>

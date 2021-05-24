@@ -10,7 +10,7 @@ export class ImageSourcePipe implements PipeTransform {
 
     if (extInd >= 0 && width != null){
       const urlWithoutExt = url.substring(0, extInd);
-      return urlWithoutExt + '_' + width.toString() + 'w' + url.substring(extInd).toLowerCase();
+      return urlWithoutExt + '_' + width.toString() + 'w.jpg'; //+ url.substring(extInd).toLowerCase();
     }
     else{
       return url;
