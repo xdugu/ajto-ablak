@@ -8,16 +8,14 @@ import { PreferencesService } from '@app/shared-services/preferences.service';
 import { CustomerDetailsService } from '@app/shared-services/customer-details.service';
 import { CountryCodePipe } from './pipes/country-code.pipe';
 import { StringOfPipe } from './pipes/string-of.pipe';
-import { IsCustomPipe } from './pipes/is-custom.pipe';
 
 @NgModule({
-    declarations: [CountryCodePipe, StringOfPipe, IsCustomPipe],
+    declarations: [CountryCodePipe, StringOfPipe],
     imports: [
       CommonModule,
       PagesRoutingModule,
     ],
-    exports: [CountryCodePipe, StringOfPipe, IsCustomPipe],
-    providers: [IsCustomPipe]
+    exports: [CountryCodePipe, StringOfPipe]
   })
   export class PagesModule {
     static forRoot(): any{

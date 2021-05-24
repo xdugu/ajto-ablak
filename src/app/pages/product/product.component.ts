@@ -41,6 +41,7 @@ export class ProductComponent implements OnInit {
     config.getConfig('storeId').subscribe({
       next: storeId => this.storeId = storeId
     });
+    //this.carouselHeight = 600;
 
     prefService.getPreferences().subscribe({
       next: pref => this.currencyPref = pref.currency
@@ -254,11 +255,9 @@ export class ProductComponent implements OnInit {
 
   // called when customoer wants to request more customization of an item
   onCustomizeClick(): void{
-    let questions = this.product.Metadata.find(item => item.name === `custom_qs_${this.siteLang}`);
-    questions = questions || {value: null};
-
+    const questions = this.product.Metadata.find(item => item.name === `custom_qs_${this.siteLang}`);
     this.route.navigate(['contact'],
-        {queryParams: {topic: this.product.Title[this.siteLang], questions: questions.value}});
+        {queryParams: {topic: this.product.ItemId, questions: questions.value}});
   }
 
   // gets combi that starts with something

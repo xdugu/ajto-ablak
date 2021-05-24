@@ -18,32 +18,30 @@
 
   <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
 
-  <ng-container *ngIf="!(product | isCustom)">
-    <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
-          style="text-decoration: line-through;">
-          {{ product.Price.original[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
-    </div>
+  <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
+        style="text-decoration: line-through;">
+        {{ product.Price.original[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+  </div>
 
-    <div #price class="my-theme-primary">
-      {{ product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
-    </div>
-    <br>
-
-    <app-currency-chooser *ngIf="currencyPref != null" [chosen]="currencyPref.chosen" [available]="currencyPref.available"
-                    position="left" (currencyChange)="onCurrencyChange($event)">
-    </app-currency-chooser>
-
-    <button mat-raised-button *ngIf="product.Quantity > 0 || !product.TrackStock; else OutOfStock" 
-            color="primary" i18n="@@AddToBasket" (click)="addToBasket()"
-            style="width: 180px" [disabled]="productSelectionForm.invalid">
-      Add To Basket
-    </button><br><br>
-    <ng-template #OutOfStock>
+  <div #price class="my-theme-primary">
+    {{ product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+  </div>
+  <ng-template #OutOfStock>
       <span i18n="@@OutOfStock" class="my-theme-warn">Out Of Stock</span>
-    </ng-template>
-  </ng-container>
+  </ng-template>
+  <br>
 
-  <ng-container *ngIf="customQuestions || (product | isCustom)">
+  <app-currency-chooser *ngIf="currencyPref != null" [chosen]="currencyPref.chosen" [available]="currencyPref.available"
+                  position="left" (currencyChange)="onCurrencyChange($event)">
+  </app-currency-chooser>
+
+  <button mat-raised-button *ngIf="product.Quantity > 0 || !product.TrackStock; else OutOfStock" 
+          color="primary" i18n="@@AddToBasket" (click)="addToBasket()"
+          style="width: 180px" [disabled]="productSelectionForm.invalid">
+    Add To Basket
+  </button><br><br>
+
+  <ng-container *ngIf="customQuestions">
     <button mat-button  color="primary" i18n="@@WouldLikeToCustomize"
         (click)="onCustomizeClick()">
       I would like to a customize this item

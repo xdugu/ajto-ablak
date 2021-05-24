@@ -32,17 +32,6 @@
                 </mat-form-field>
             </p>
 
-            <!-- Extra checout fields specific to store-->
-            <ng-container *ngIf="this.preferences.extraCheckoutFields">
-                <p *ngFor="let field of this.preferences.extraCheckoutFields">
-                    <mat-form-field appearance="legacy">
-                    <mat-label>{{field.text[lang]}}</mat-label>
-                    <input matInput  id="number" [name]="field.name" type="text"
-                        [(ngModel)]="contact[field.name]">
-                    </mat-form-field>
-                </p>
-            </ng-container>
-            
             <!-- div *ngIf="foxpostTerminal.showList" >
                 <h2 i18n="Header to tell customer to select foxpost@@SelectFoxpost">
                     Select a Foxpost pickup location</h2>
@@ -132,5 +121,8 @@
                     Proceed to payment
             </button><br><br>
         </form>
+        <!--div class="w3-col l6 w3-hide-small w3-hide-medium">
+            <img [appLazyLoad]="'assets/images/checkout/main_skirt.jpg'" style="width: 100%">
+        </div-->
     </div>
 </div>

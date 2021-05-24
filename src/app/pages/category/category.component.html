@@ -25,15 +25,13 @@
             <mat-grid-tile *ngFor="let product of categoryItems">
                 <a style="height: 100%; width: 100%; display: block" [routerLink]="['/product', product.ItemId]">
                     <div class="grow-on-hover image-holder" style="height: 80%; width: 100%; ">
-                        <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 500"
+                        <img [appLazyLoad]="bucketUrl + product.Images.path + product.Images.list[0].name | imageSource : 300"
                              style="height: 100%; width: auto; margin: auto; display:block">
                     </div>
                     <div class="w3-center">
                         <b>{{product.Title[siteLang]}}</b><br>
                         <span class="price" *ngIf="currencyPref != null">
-                            <span *ngIf="!(product | isCustom)">
-                                {{product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
-                            </span>
+                            {{product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
                         </span>
                     </div>
                 </a>

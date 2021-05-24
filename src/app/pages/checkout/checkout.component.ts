@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerDetailsService, CustomerDetailsInterface } from '@app/shared-services/customer-details.service';
-import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
-import { LanguageService } from '@app/shared-services/language.service';
+import { PreferencesService, PreferencesInterface} from '@app/shared-services//preferences.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,7 +16,6 @@ export class CheckoutComponent implements OnInit {
   preferences: PreferencesInterface = null;
   termsAccepted = false;
   proceedButton: any;
-  lang = 'en';
 
   @ViewChild('proceedButton') set content(content: ElementRef) {
     if (content) { // initially setter gets called with undefined
@@ -27,15 +25,12 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private customerDetailsService: CustomerDetailsService,
               private prefService: PreferencesService, private router: Router,
-              titleService: Title, langService: LanguageService) {
+              titleService: Title) {
       titleService.setTitle('Checkout');
-      langService.getLang().then(lang => this.lang);
   }
 
   ngOnInit(): void {
-    this.customerDetailsService.get().then(contact => {
-      this.contact = contact;
-    });
+    this.customerDetailsService.get().then(contact => this.contact = contact);
     this.prefService.getPreferences().subscribe({
       next: (preferences: PreferencesInterface) => {
         this.preferences = preferences;

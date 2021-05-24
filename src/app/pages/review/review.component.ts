@@ -4,7 +4,6 @@ import { CustomerDetailsService, CustomerDetailsInterface } from '@app/shared-se
 import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
 import { BasketService, BasketInterface} from '@app/shared-services/basket.service';
 import { ConfigService } from '@app/shared-services/config.service';
-import { LanguageService } from '@app/shared-services/language.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '@app/shared-module/components/dialog/dialog.component';
 import { Title } from '@angular/platform-browser';
@@ -21,7 +20,6 @@ export class ReviewComponent implements OnInit {
   preferences: PreferencesInterface = null;
   paymentTypes = null;
   bucketUrl: string = null;
-  lang = 'en';
 
   private successMessage = {
     title: {
@@ -51,8 +49,7 @@ export class ReviewComponent implements OnInit {
               private basketService: BasketService,
               private dialog: MatDialog,
               private route: Router,
-              private titleService: Title,
-              private langService: LanguageService) { }
+              private titleService: Title) { }
 
   ngOnInit(): void {
     this.customerDetailsService.get().then(contact => this.customer = contact);
@@ -74,7 +71,6 @@ export class ReviewComponent implements OnInit {
       next: basket => this.basket = basket
     });
 
-    this.langService.getLang().then(lang => this.lang = lang);
     this.titleService.setTitle('Review');
   }
 
