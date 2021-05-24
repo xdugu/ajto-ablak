@@ -10,6 +10,7 @@ export interface PreferencesInterface{
   paymentMethod: string;
   deliveryMethod: string;
   lang: {chosen: string; available: Array<string>};
+  extraCheckoutProperties?: Array<any>;
 }
 
 @Injectable({
