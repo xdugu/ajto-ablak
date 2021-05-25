@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   storeId: string = null;
   currencyPref = null;
   customQuestions = false;
+  commonDocuments = [];
 
   siteLang = 'en';
   private priceElement: ElementRef;
@@ -40,6 +41,10 @@ export class ProductComponent implements OnInit {
     });
     config.getConfig('storeId').subscribe({
       next: storeId => this.storeId = storeId
+    });
+
+    config.getConfig('pages').subscribe({
+      next: pages => this.commonDocuments = pages.product.documents ? pages.product.documents : []
     });
 
     prefService.getPreferences().subscribe({

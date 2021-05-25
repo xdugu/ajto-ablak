@@ -86,7 +86,8 @@
                         <mat-radio-button class="radio-button"
                             *ngFor="let courier of basket.Costs[preferences.countryCode] | keyvalue" 
                             [value]="courier.key">
-                            {{courier.key}}
+                            {{courier.key}}:
+                            ({{courier.value.payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}})
                         </mat-radio-button>
                     </mat-radio-group><br>
                 </div>

@@ -13,3 +13,8 @@ mat-accordion > *{
 .hoverable{
 	cursor:pointer;
 }
+
+/* takes care of images in documents */
+:host ::ng-deep mat-expansion-panel img{
+    max-width: 100%;
+}

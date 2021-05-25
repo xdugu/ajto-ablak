@@ -28,10 +28,25 @@ export class BasketComponent implements OnInit {
   ngOnInit(): void {
     this.basketService.getBasket().subscribe(basket => {
       this.basket = basket;
-    });
 
-    this.prefService.getPreferences().subscribe(pref => {
-      this.preferences = pref;
+      this.prefService.getPreferences().subscribe(pref => {
+        this.preferences = pref;
+        const countries = Object.keys(this.basket.Costs);
+        if (this.preferences.countryCode && countries.indexOf(this.preferences.countryCode) < 0){
+          this.preferences.countryCode = null;
+          this.prefService.setPreference('countryCode', null);
+          this.preferences.deliveryMethod = null;
+          this.prefService.setPreference('deliveryMethod', null);
+        }
+
+        if (this.preferences.countryCode && this.preferences.deliveryMethod){
+          const couriers = Object.keys(this.basket.Costs[this.preferences.countryCode]);
+          if (couriers.indexOf(this.preferences.deliveryMethod) < 0){
+            this.preferences.deliveryMethod = couriers[0];
+            this.prefService.setPreference('deliveryMethod', this.preferences.deliveryMethod);
+          }
+        }
+      });
     });
 
     this.configService.getConfig('imgSrc').subscribe(url => {
@@ -62,6 +77,13 @@ export class BasketComponent implements OnInit {
 
   onCountryChange(event: MatSelectChange): void{
     this.prefService.setPreference('countryCode', event.value);
+    this.preferences.countryCode = event.value;
+
+    const couriers = Object.keys(this.basket.Costs[this.preferences.countryCode]);
+    if (couriers.indexOf(this.preferences.deliveryMethod) < 0){
+      this.preferences.deliveryMethod = couriers[0];
+      this.prefService.setPreference('deliveryMethod', this.preferences.deliveryMethod);
+    }
   }
 
   // called when there is a change in the selected courier

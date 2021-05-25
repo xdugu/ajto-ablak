@@ -158,6 +158,15 @@
           <div #content></div>
       </mat-expansion-panel>
     </ng-container>
+    <ng-container *ngFor="let doc of commonDocuments">
+      <mat-expansion-panel *ngIf="doc.lang == siteLang" [appDocument]="doc.id" [storeId]="storeId"
+        [titleRef]="title" [contentRef]="content">
+          <mat-expansion-panel-header >
+            <mat-panel-title #title></mat-panel-title>
+          </mat-expansion-panel-header>
+          <div #content></div>
+      </mat-expansion-panel>
+    </ng-container>
   </mat-accordion>
   <div style="height:200px"></div>
 </ng-container>

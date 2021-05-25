@@ -17,7 +17,7 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
 
   finalProducts = [];
   bucketUrl = null;
-  rowWidth = '48.5%'
+  rowWidth = '48.5%';
 
 
   constructor(private productGetter: ProductGetterService, private configService: ConfigService) { }

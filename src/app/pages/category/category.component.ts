@@ -50,6 +50,7 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.langService.getLang().then(lang => this.siteLang = lang);
     const params = this.routeInfo.paramMap;
 
     // will get a callback anytime there is a change in the category path
@@ -93,7 +94,7 @@ export class CategoryComponent implements OnInit {
       }
     });
 
-    this.langService.getLang().then(lang => this.siteLang = lang);
+    
   }
 
   // Given array of names, returns the current hierarchy
