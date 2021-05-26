@@ -34,10 +34,30 @@ export class SearchService {
 
   }
 
+  // returns items with category that matches that given
+  async getItemsForCategory(category: Array<string>): Promise<Array<any>>{
+    return new Promise((resolve, reject) => {
+      if (this.dict){
+        resolve(this.dict.items.filter(item => item.category.join().indexOf(category.join()) >= 0));
+      }
+      else{
+        this.getDict().then(dict => {
+          this.dict = dict;
+          resolve(this.dict.items.filter(item => item.category.join().indexOf(category.join()) >= 0));
+        }).catch(err => reject(err));
+      }
+
+    });
+
+  }
+
   // performs actual search
   private doSearch(searchTerm: string, dict: any): Array<any>{
     const results = dict.filter((item) => {
-      return this.cleanText(item.title).toLowerCase().indexOf(this.cleanText(searchTerm).toLowerCase()) >= 0;
+      const cleanedSearch = this.cleanText(searchTerm).toLowerCase();
+      const cleanedText = this.cleanText(item.title).toLowerCase();
+
+      return cleanedText.indexOf(cleanedSearch) >= 0 && item.enabled;
     });
 
     return results;

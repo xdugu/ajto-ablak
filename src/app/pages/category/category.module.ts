@@ -9,8 +9,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 
 
-
-
 @NgModule({
   declarations: [CategoryComponent],
   imports: [
