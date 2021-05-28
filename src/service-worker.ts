@@ -88,7 +88,7 @@ registerRoute(
 
 registerRoute(
   // Cache get response api server to reduce unnecessary duplicate requests
-   /^https:\/\/adugu-common.s3.eu-central-1.amazonaws.com/,
+    new RegExp('https:\/\/.+\.s3\.eu-central-1\.amazonaws\.com.+\.(jpeg|jpg)'),
     new strategies.CacheFirst({
       cacheName: 'img-cache',
       plugins: [
@@ -98,6 +98,24 @@ registerRoute(
         new ExpirationPlugin({
           maxEntries: 200,
           maxAgeSeconds: 24 * 60 * 60 * 7, // 1 week cache for external images
+          purgeOnQuotaError: true, // Opt-in to automatic cleanup.
+        }),
+      ],
+    }),
+  );
+
+registerRoute(
+  // Cache get response api server to reduce unnecessary duplicate requests
+    new RegExp('https:\/\/.+\.s3\.eu-central-1\.amazonaws\.com.+\.(json|xml)'),
+    new strategies.CacheFirst({
+      cacheName: 'js-css-html-json-xml-cache',
+      plugins: [
+        new CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+        new ExpirationPlugin({
+          maxEntries: 10,
+          maxAgeSeconds: 24 * 60 * 60, // 1 day cache
           purgeOnQuotaError: true, // Opt-in to automatic cleanup.
         }),
       ],

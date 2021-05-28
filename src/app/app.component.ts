@@ -87,6 +87,20 @@ export class AppComponent {
 
       if (environment.production){
         const wb = new Workbox(`/${lang}/service-worker.js`);
+
+        // listen to when sw is intalled
+        wb.addEventListener('installed', () => {
+
+          // delete old caches which will probably never be used
+          caches.keys().then((names) => {
+            for (const name of names){
+              if (['slick-extensions', 'perm-library'].indexOf(name) < 0){
+                caches.delete(name);
+              } // if
+            }
+          });
+        });
+
         wb.register();
       }
 
