@@ -14,7 +14,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import 'localstorage-polyfill';
 
-global['localStorage'] = localStorage;
+global.localStorage = localStorage;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -38,21 +38,20 @@ export function app(): express.Express {
     res.redirect('/hu');
   });
 
-  server.get('/en*', (req, res) => {
-    res.render(join(distFolder, 'en/index.html'), {
-      req,
-      providers: [{ provide: APP_BASE_HREF, useValue: '/en/' },
-        {provide: 'host', useValue: getHost(req)}, {provide: 'request', useValue: req}]
-    });
-  });
+  server.get('/*', (req, res) => {
+    const langMatch = req.path.match(/\/(.{2})/);
 
-  // All regular routes use the Universal engine
-  server.get('/hu*', (req, res) => {
-    res.render(join(distFolder, 'hu/index.html'), {
-      req,
-      providers: [{ provide: APP_BASE_HREF, useValue: '/hu/' },
-        { provide: 'host', useValue: getHost(req) }, {provide: 'request', useValue: req}]
+    if (langMatch){
+      res.render(join(distFolder, `${langMatch[1]}/index.html`), {
+        req,
+        providers: [{ provide: APP_BASE_HREF, useValue: langMatch[0]},
+          {provide: 'host', useValue: getHost(req)}, {provide: 'request', useValue: req}]
       });
+    }
+    else {
+      res.redirect('/');
+    }
+
   });
 
   return server;
