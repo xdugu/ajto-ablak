@@ -34,8 +34,9 @@ export class CategoryComponent implements OnInit {
 
   numOfItemsPerRow = 2;
   rowHeight = '250px';
-  lastChildRowHeight = '250px';
   siteLang = 'en';
+  categorySettings = null;
+  screenType = 'mobile';
 
   constructor(private routeInfo: ActivatedRoute, private pHService: ProductHierarchyService,
               private categoryGetter: CategoryGetterService, configService: ConfigService,
@@ -47,6 +48,13 @@ export class CategoryComponent implements OnInit {
     });
     configService.getConfig('images').subscribe({
       next: images => this.images = images
+    });
+
+    configService.getConfig('pages').subscribe({
+      next: pages => {
+        this.categorySettings = pages.category.arrangements;
+        this.updateItemsPositions(this.screenType);
+      }
     });
 
     this.prefService.getPreferences().subscribe({
@@ -90,7 +98,6 @@ export class CategoryComponent implements OnInit {
                         }
                       });
                 }
-
               }
               break;
             } // if
@@ -101,20 +108,39 @@ export class CategoryComponent implements OnInit {
 
     this.screenService.getScreenTypeUpdate().subscribe({
       next: type => {
-        switch (type){
-          case 'mobile':
-            this.numOfItemsPerRow = 2;
-            this.rowHeight = '250px';
-            this.lastChildRowHeight = '300px';
-            break;
-
-          default:
-            this.numOfItemsPerRow = 3;
-            this.rowHeight = '250px';
-            this.lastChildRowHeight = '350px';
-        }
+        this.screenType = type;
+        this.updateItemsPositions(type);
       }
     });
+
+  }
+
+  private updateItemsPositions(screenType: string): void{
+    if (this.categorySettings){
+      this.numOfItemsPerRow = this.categorySettings[screenType].numOfItemsPerRow;
+    }
+
+    switch (screenType){
+      case 'mobile':
+        if (!this.categorySettings){
+          this.numOfItemsPerRow = 2;
+        }
+        this.rowHeight = '300px';
+        break;
+
+      case 'tablet':
+        if (!this.categorySettings){
+          this.numOfItemsPerRow = 3;
+        }
+        this.rowHeight = '300px';
+        break;
+
+      default:
+        if (!this.categorySettings){
+          this.numOfItemsPerRow = 3;
+        }
+        this.rowHeight = '300px';
+    }
   }
 
   // Given array of names, returns the current hierarchy

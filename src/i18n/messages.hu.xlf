@@ -35,6 +35,22 @@
       <segment state="initial">
         <source> Blog </source>
       <target> Blog </target></segment>
+    </unit><unit id="1624373425123597262">
+      <notes>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:37</note>
+        <note category="description">@CardPaymentProvider</note>
+      </notes>
+      <segment state="initial">
+        <source>Card payment provider</source>
+      <target>Kártyás fizetés szolgáltatója</target></segment>
+    </unit><unit id="7977905855119269307">
+      <notes>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:43</note>
+        <note category="description">@AcceptedCards</note>
+      </notes>
+      <segment state="initial">
+        <source>Accepted cards</source>
+      <target>Elfogadott kártyák</target></segment>
     </unit><unit id="SearchHere">
       <notes>
         
@@ -331,21 +347,21 @@
     </unit><unit id="Delivery">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:95</note><note category="location">src/app/pages/review/review.component.html:43</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:96</note><note category="location">src/app/pages/review/review.component.html:43</note></notes>
       <segment state="initial">
         <source>Delivery:</source>
       <target>Szállítás:</target></segment>
     </unit><unit id="Subtotal">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:100</note><note category="location">src/app/pages/review/review.component.html:49</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:101</note><note category="location">src/app/pages/review/review.component.html:49</note></notes>
       <segment state="initial">
         <source>Subtotal:</source>
       <target>Részösszeg:</target></segment>
     </unit><unit id="Total">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:101</note><note category="location">src/app/pages/review/review.component.html:50</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:102</note><note category="location">src/app/pages/review/review.component.html:50</note></notes>
       <segment state="initial">
         <source>Total:</source>
       <target>Végösszeg:</target></segment>
@@ -375,14 +391,14 @@
     </unit><unit id="ProceedToCheckout">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:102</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:103</note></notes>
       <segment state="initial">
         <source> Proceed to checkout</source>
       <target> Tovább a fizetéshez</target></segment>
     </unit><unit id="Discount">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:97</note><note category="location">src/app/pages/review/review.component.html:45</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:98</note><note category="location">src/app/pages/review/review.component.html:45</note></notes>
       <segment state="initial">
         <source>Discount:</source>
       <target>Kedvezmény:</target></segment>

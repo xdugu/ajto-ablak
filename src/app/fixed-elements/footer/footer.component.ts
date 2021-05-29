@@ -20,6 +20,7 @@ export class FooterComponent implements OnInit {
     hu: 'Magyarul'
   };
   externalLinks = [];
+  paymentTypes = [];
 
   constructor(prefService: PreferencesService, configService: ConfigService,
               router: Router, location: Location,
@@ -50,6 +51,10 @@ export class FooterComponent implements OnInit {
 
     configService.getConfig('externalLinks').subscribe({
       next: links => this.externalLinks = links
+    });
+
+    configService.getConfig('paymentTypes').subscribe({
+      next: types => this.paymentTypes = types
     });
 
 

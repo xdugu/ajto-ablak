@@ -1,4 +1,4 @@
-<div class="my-theme-primary-background" id="footer">
+<div class="my-theme-primary-background w3-container" id="footer">
     <ng-container *ngFor="let langOption of availableLangs;">
         <ng-container *ngIf="langOption !== lang">
             <a class="underlined" [href]="currentUrl | langUrl : lang : langOption">{{langDict[langOption]}}</a>
@@ -29,10 +29,33 @@
         </a>
     </div>
     
-    <div class="w3-stretch">
-        <!-- PayPal Logo -->
-        <table border="0" cellpadding="10" cellspacing="0" align="left"><tr><td align="left"></td></tr><tr><td align="left"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
-    </div>
+    <ng-container *ngFor="let type of paymentTypes">
 
+        <ng-container *ngIf="type.name === 'cib'">
+            <div class="w3-margin-top important-text">
+                <a href="http://www.cib.hu"><img [src]="'assets/cib/CIB_payment_logo.png'" alt="cib payment logo"><br>
+                    <span i18n="@CardPaymentProvider">Card payment provider</span>
+                </a>
+            </div>
 
+            <div class="w3-margin-top important-text" style="overflow: hidden">
+                <img [src]="'assets/cib/' + lang + '/CIB_accepted_cards.png'" alt="accepted cards"><br>
+                <span i18n="@AcceptedCards">Accepted cards</span>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="type.name === 'paypal'">
+            <!-- PayPal Logo -->
+            <table border="0" cellpadding="10" cellspacing="0" align="left">
+                <tr>
+                    <td align="left"></td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a>
+                    </td>
+                </tr>
+            </table><!-- PayPal Logo -->
+        </ng-container>
+
+    </ng-container>
 </div>

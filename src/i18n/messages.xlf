@@ -45,6 +45,24 @@
         <source> Blog </source>
       </segment>
     </unit>
+    <unit id="1624373425123597262">
+      <notes>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:37</note>
+        <note category="description">@CardPaymentProvider</note>
+      </notes>
+      <segment>
+        <source>Card payment provider</source>
+      </segment>
+    </unit>
+    <unit id="7977905855119269307">
+      <notes>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:43</note>
+        <note category="description">@AcceptedCards</note>
+      </notes>
+      <segment>
+        <source>Accepted cards</source>
+      </segment>
+    </unit>
     <unit id="SearchHere">
       <notes>
         <note category="location">src/app/fixed-elements/search/search.component.html:2</note>
@@ -198,7 +216,7 @@
     </unit>
     <unit id="Delivery">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:95</note>
+        <note category="location">src/app/pages/basket/basket.component.html:96</note>
         <note category="location">src/app/pages/review/review.component.html:43</note>
       </notes>
       <segment>
@@ -207,7 +225,7 @@
     </unit>
     <unit id="Subtotal">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:100</note>
+        <note category="location">src/app/pages/basket/basket.component.html:101</note>
         <note category="location">src/app/pages/review/review.component.html:49</note>
       </notes>
       <segment>
@@ -216,7 +234,7 @@
     </unit>
     <unit id="Total">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:101</note>
+        <note category="location">src/app/pages/basket/basket.component.html:102</note>
         <note category="location">src/app/pages/review/review.component.html:50</note>
       </notes>
       <segment>
@@ -225,7 +243,7 @@
     </unit>
     <unit id="ProceedToCheckout">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:102</note>
+        <note category="location">src/app/pages/basket/basket.component.html:103</note>
       </notes>
       <segment>
         <source> Proceed to checkout</source>
@@ -233,7 +251,7 @@
     </unit>
     <unit id="Discount">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:97</note>
+        <note category="location">src/app/pages/basket/basket.component.html:98</note>
         <note category="location">src/app/pages/review/review.component.html:45</note>
       </notes>
       <segment>
