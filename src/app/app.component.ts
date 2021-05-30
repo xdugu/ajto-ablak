@@ -94,7 +94,7 @@ export class AppComponent {
           // delete old caches which will probably never be used
           caches.keys().then((names) => {
             for (const name of names){
-              if (['perm-library', 'precache'].indexOf(name) < 0){
+              if (name.indexOf('precache') < 0){
                 caches.delete(name);
               } // if
             }

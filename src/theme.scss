@@ -8,7 +8,7 @@
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
+// hue. Available color palettes: https://material.io/resources/color/
 // generate custom palette here http://mcg.mbitson.com/#!?mcgpalette0=%23e69138&themename=mcgtheme
 /* For use in src/lib/core/theming/_palette.scss */
 $md-primary:  (
@@ -178,41 +178,42 @@ $cream-primary: (
     )
 );
 
+/* For use in src/lib/core/theming/_palette.scss */
 $cream-secondary: (
-    50 : #f8f3ed,
-    100 : #ede2d3,
-    200 : #e2ceb6,
-    300 : #d6ba98,
-    400 : #cdac82,
-    500 : #c49d6c,
-    600 : #be9564,
-    700 : #b68b59,
-    800 : #af814f,
-    900 : #a26f3d,
-    A100 : #fff8f2,
-    A200 : #ffdebf,
-    A400 : #ffc48c,
-    A700 : #ffb773,
+    50 : #edeae8,
+    100 : #d3c9c6,
+    200 : #b6a6a0,
+    300 : #99827a,
+    400 : #83675e,
+    500 : #6d4c41,
+    600 : #65453b,
+    700 : #5a3c32,
+    800 : #50332a,
+    900 : #3e241c,
+    A100 : #ff9a81,
+    A200 : #ff724e,
+    A400 : #ff491b,
+    A700 : #ff3402,
     contrast: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
         900 : #ffffff,
         A100 : #000000,
         A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
     )
 );
 
 $cream-theme-primary: mat-palette($cream-primary);
-$cream-theme-accent:  mat-palette($cream-secondary, 900);
+$cream-theme-accent:  mat-palette($cream-secondary, 500);
 
 // The warn palette is optional (defaults to red).
 $cream-theme-warn:    mat-palette($mat-red);

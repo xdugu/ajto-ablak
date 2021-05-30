@@ -1,7 +1,7 @@
 <h1 class="w3-center" i18n="@@ContactUs"> Contact Us </h1>
 
 <form  #contactForm="ngForm" class="w3-content w3-padding" style="max-width: 800px">  
-    <div *ngIf="user.topic" class="mat-h3">
+    <div *ngIf="user.topic && user.topic !='General'" class="mat-h3">
         <strong i18n="@@Topic">Topic</strong>: <span>{{user.topic}}</span>
     </div>
     <p>
