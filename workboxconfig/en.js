@@ -1,6 +1,6 @@
 module.exports = {
       globDirectory: `dist/ajto-ablak/browser/en/`,
-      globPatterns: ["**/*.{css,eot,html,ico,jpg,js,json,png,svg,ttf,txt,webmanifest,woff,woff2,webm,xml}"],
+      globPatterns: ["**/*.{css,eot,js,jsonttf,txt,xml}"],
       globFollow: true,
       globStrict: true,
       globIgnores: ['**/*-es5.*.js', '3rdpartylicenses.txt', 'assets/images/icons/icon-*.png'],

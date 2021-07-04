@@ -32,7 +32,7 @@
                         <b>{{product.Title[siteLang]}}</b><br>
                         <span class="price" *ngIf="currencyPref != null">
                             <span *ngIf="!(product | isCustom)">
-                                {{product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+                                {{product.Price[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}
                             </span>
                         </span>
                     </div>

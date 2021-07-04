@@ -3,7 +3,7 @@
         <span>{{preferences.countryCode | countryCode : lang}}</span><br>
         <button mat-raised-button color="accent" i18n="@@PayByCard" 
                 (click)="onPaymentMethodActivation()"
-                [style.width.px]="width">
+                [style.width.px]="width" class="w3-mobile">
             Pay securely by card
         </button>
     </div>

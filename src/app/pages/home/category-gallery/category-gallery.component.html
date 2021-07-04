@@ -10,7 +10,7 @@
         </div>
         <div class="w3-center w3-padding">{{item.Title[lang]}}</div>
         <ng-container *ngIf="!(item | isCustom)">
-            <div class="w3-center price">{{item.Price[currency.toLowerCase()] | currency : currency}}</div>
+            <div class="w3-center price">{{item.Price[currency.toLowerCase()] | appCurrency : currency}}</div>
         </ng-container>
     </a>
 </div>

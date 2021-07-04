@@ -21,11 +21,11 @@
   <ng-container *ngIf="!(product | isCustom)">
     <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
           style="text-decoration: line-through;">
-          {{ product.Price.original[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+          {{ product.Price.original[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}
     </div>
 
     <div #price class="my-theme-primary">
-      {{ product.Price[currencyPref.chosen.toLowerCase()] | currency : currencyPref.chosen}}
+      {{ product.Price[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}
     </div>
     <br>
 

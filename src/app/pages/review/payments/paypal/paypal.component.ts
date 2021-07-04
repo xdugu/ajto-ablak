@@ -13,6 +13,7 @@ interface PaypalConfigInterface{
   name: string;
   tokens: {live: string; test: string};
   enabledFeatures: Array<string>;
+  disabledFeatures: Array<string>;
 }
 
 @Component({
@@ -35,7 +36,7 @@ export class PaypalComponent implements OnInit {
       content: {
         en: `Thank you for your order. We will ship your item as soon as we can.
           Thank you for shopping with us`,
-        hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>, 
+        hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>,
           kérjük vegye fel velünk a kapcsolatot!
           Megrendelését hamarosan kézbesítjük!`
       }
@@ -61,7 +62,8 @@ export class PaypalComponent implements OnInit {
               }
             }
             catch (err) {
-              this.scriptLoader.loadScript(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}`)
+              const disabledFeatures = this.config.disabledFeatures[0];
+              this.scriptLoader.loadScript(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}&disable-funding=${disabledFeatures}`)
                 .then(() => this.createPaypalObject(basket, customer, preferences));
             }
           });

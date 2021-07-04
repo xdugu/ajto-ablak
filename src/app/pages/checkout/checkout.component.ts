@@ -29,7 +29,7 @@ export class CheckoutComponent implements OnInit {
               private prefService: PreferencesService, private router: Router,
               titleService: Title, langService: LanguageService) {
       titleService.setTitle('Checkout');
-      langService.getLang().then(lang => this.lang);
+      langService.getLang().then(lang => this.lang = lang);
   }
 
   ngOnInit(): void {
@@ -53,6 +53,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   onProceedToPayment(): void{
+    // paypal does like + so replace with 00
+    this.contact.number = this.contact.number.replace('+', '00');
     this.customerDetailsService.update(this.contact);
     this.router.navigate(['/review']);
   }

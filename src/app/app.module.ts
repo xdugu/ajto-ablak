@@ -18,6 +18,7 @@ import { TrackingService } from './shared-services/tracking.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModuleModule } from './shared-module/shared-module.module';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
     MatSnackBarModule
   ],
   providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService, Title, Meta,
-    ConfigService, LanguageService, TokenStorageService, BasketService, TrackingService],
+    ConfigService, LanguageService, TokenStorageService, BasketService, TrackingService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

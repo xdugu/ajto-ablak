@@ -27,9 +27,9 @@
                     <div class="w3-right">
                         <div *ngIf="item.Price.original.discountEnabled"
                             class="discount">
-                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}
+                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}
                         </div>
-                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}</div>
+                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}</div>
                         
                     </div>
                     <!-- input to change quantities-->
@@ -40,14 +40,14 @@
             </div><!-- end of one basket item-->  
 
             <div class="w3-margin-top">
-                <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                 <ng-container *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
                     <b i18n="@@Discount">Discount:</b> 
-                    <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                    <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                 </ng-container>
 
-                <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
-                <b i18n="@@Total">Total:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
+                <b i18n="@@Total">Total:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
             </div>
 
         </div>
@@ -111,10 +111,10 @@
                 <ng-container *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].hasOwnProperty('payOnDelivery')">
                     <app-pay-on-delivery *ngSwitchCase="'payOnDelivery'" (orderConfirmed)="onOrderConfirmed()"
                         [lang]="preferences.lang.chosen"
-                        [totalCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen"
+                        [totalCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen"
                         [extraCost]="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payOnDelivery.total[preferences.currency.chosen.toLowerCase()] - 
                                             basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] 
-                                            | currency : preferences.currency.chosen"
+                                            | appCurrency: preferences.currency.chosen"
                         [comments]="customerComments">
                     </app-pay-on-delivery>
                 </ng-container>

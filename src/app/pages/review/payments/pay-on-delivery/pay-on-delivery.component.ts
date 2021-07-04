@@ -42,12 +42,11 @@ export class PayOnDeliveryComponent implements OnInit {
           hu: 'Rendelés megerősítése'
         },
         content: {
-          en: `We have sent you an email with our account details. We will ship you item
-              as soon as the stated amount is credited to our account. Thank you for shopping
-              with us`,
-          hu: `Sikeresen elküldtük a banki utaláshoz szükséges adatokat az email címedre
-              Kérjük, hogy saját érdekedben az utalást minél előbb tedd meg,
-              hogy mi is minél hamarabb előkészíthessük és kézbesíthessük számodra a megrendelt terméket/termékeket.`
+          en: `Thank you for placing your order. We will work hard to get it to you as quickly as possible.
+              If you don't receive an email in 24 hours, please contact us`,
+          hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>,
+              kérjük vegye fel velünk a kapcsolatot!
+              Megrendelését hamarosan kézbesítjük!`
         }
       },
       buttons: {

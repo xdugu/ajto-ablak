@@ -11,11 +11,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import { ImageSourcePipe } from './pipes/image-source.pipe';
 import { CurrencyChooserComponent } from './components/currency-chooser/currency-chooser.component';
 import { ScriptLoaderService } from './services/script-loader.service';
+import { AppCurrencyPipe } from './pipes/app-currency.pipe';
 
 
 @NgModule({
   declarations: [DocumentDirective, FlowImagePipe,
-    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent],
+    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent, AppCurrencyPipe],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -23,7 +24,7 @@ import { ScriptLoaderService } from './services/script-loader.service';
     MatChipsModule
   ],
   exports: [
-     DocumentDirective, FlowImagePipe, ObjectFilterPipe,
+     DocumentDirective, FlowImagePipe, ObjectFilterPipe, AppCurrencyPipe,
       DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
   ],
   providers: [

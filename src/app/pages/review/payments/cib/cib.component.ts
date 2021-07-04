@@ -204,8 +204,8 @@ export class CibComponent implements OnInit {
           data: {
             title: null,
             content: `${this.messages.confirmRedirect[this.lang]}<br>
-                      <img src="assets/cib/CIB_payment_logo.png" alt="cib"><br>
-                      <img src="assets/cib/${this.lang}/CIB_accepted_cards.png">
+                      <img src="assets/cib/CIB_payment_logo.png" alt="cib" style="width:300px"><br>
+                      <img src="assets/cib/${this.lang}/CIB_accepted_cards.png" style="width:300px">
                     `,
             buttons: [
               {

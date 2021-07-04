@@ -44,9 +44,9 @@
                     <div class="w3-right">
                         <div *ngIf="item.Price.original.discountEnabled"
                             class="discount">
-                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}
+                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}
                         </div>
-                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | currency : preferences.currency.chosen}}</div>
+                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}</div>
                         
                     </div>
                     <!-- input to change quantities-->
@@ -87,19 +87,19 @@
                             *ngFor="let courier of basket.Costs[preferences.countryCode] | keyvalue" 
                             [value]="courier.key">
                             {{courier.key}}:
-                            ({{courier.value.payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}})
+                            ({{courier.value.payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}})
                         </mat-radio-button>
                     </mat-radio-group><br>
                 </div>
 
                 <div *ngIf="preferences.deliveryMethod != null">
-                    <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                    <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     <span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
                         <b i18n="@@Discount">Discount:</b> 
-                        <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
+                        <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     </span>
-                    <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span><br>
-                    <b i18n="@@Total">Total:</b><span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | currency : preferences.currency.chosen}}</span> <br><br>
+                    <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
+                    <b i18n="@@Total">Total:</b><span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span> <br><br>
                     <a mat-raised-button color="primary" [routerLink]="['/checkout']" i18n="@@ProceedToCheckout"> Proceed to checkout</a>
                 </div>
             </div>
