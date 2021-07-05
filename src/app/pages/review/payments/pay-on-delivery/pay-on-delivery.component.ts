@@ -22,8 +22,8 @@ export class PayOnDeliveryComponent implements OnInit {
   ngOnInit(): void {
     this.messages = {
       title: {
-        en: 'Bank Transfer',
-        hu: 'Banki átutalás'
+        en: 'Pay on Delivery',
+        hu: 'Utánvét'
       },
       content: {
         en: `Please confirm that you want to pay on delivery of the item(s). Payment on delivery

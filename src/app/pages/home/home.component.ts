@@ -5,7 +5,9 @@ import { ProductHierarchy, ProductHierarchyService} from '@app/shared-services/p
 import { ConfigService} from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { PreferencesService } from '@app/shared-services/preferences.service';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title, Meta} from '@angular/platform-browser';
+import { HeadLinksService } from '@app/shared-module/services/head-links.service';
+import { FlowImagePipe } from '@app/shared-module/pipes/flow-image.pipe';
 
 
 @Component({
@@ -27,7 +29,8 @@ export class HomeComponent implements OnInit {
   constructor(screenTypeService: ScreenTypeService, pHService: ProductHierarchyService,
               private configService: ConfigService, private langService: LanguageService,
               prefService: PreferencesService, private titleService: Title,
-              private metaService: Meta){
+              private metaService: Meta, private headLinksService: HeadLinksService,
+              private flowImagePipe: FlowImagePipe){
     screenTypeService.getScreenTypeUpdate().subscribe({
       next: state => {this.onScreenSizeChange(state); this.screenType = state; }
     });
@@ -71,6 +74,8 @@ export class HomeComponent implements OnInit {
         }
       });
     });
+
+    this.addLogo();
   }
 
   // reacts to changes in screen size
@@ -88,6 +93,20 @@ export class HomeComponent implements OnInit {
         this.numOfCols = 2;
         break;
     }
+  }
+
+  // adds logo icon to page if one has been setup
+  private addLogo(): void{
+    const interval = setInterval(() => {
+      if (this.images && this.bucketUrl){
+        const linkToLogo = this.flowImagePipe.transform('logo', this.images.list, this.bucketUrl + this.images.path);
+        if (linkToLogo){
+          this.headLinksService.createLinkURL('icon', 'image/jpeg', linkToLogo);
+        }
+        clearInterval(interval);
+      }
+    }, 500);
+
   }
 
 }

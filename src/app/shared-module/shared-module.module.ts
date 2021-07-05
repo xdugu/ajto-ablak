@@ -12,6 +12,7 @@ import { ImageSourcePipe } from './pipes/image-source.pipe';
 import { CurrencyChooserComponent } from './components/currency-chooser/currency-chooser.component';
 import { ScriptLoaderService } from './services/script-loader.service';
 import { AppCurrencyPipe } from './pipes/app-currency.pipe';
+import { HeadLinksService } from './services/head-links.service';
 
 
 @NgModule({
@@ -28,14 +29,14 @@ import { AppCurrencyPipe } from './pipes/app-currency.pipe';
       DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
   ],
   providers: [
-    ImageSourcePipe
+    ImageSourcePipe, FlowImagePipe
   ]
 })
 export class SharedModuleModule {
   static forRoot(): any{
     return {
       ngModule: SharedModuleModule,
-      providers: [ScriptLoaderService]
+      providers: [ScriptLoaderService, HeadLinksService]
     };
   }
 }

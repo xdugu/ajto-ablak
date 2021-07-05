@@ -12,6 +12,8 @@ export class FlowImagePipe implements PipeTransform {
         return stem + image.name;
       }
     }
+
+    return null;
   }
 
 }
