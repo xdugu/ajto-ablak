@@ -8,6 +8,7 @@ export class LanguageService {
   private lang: string;
 
   constructor(@Inject(LOCALE_ID) locale: string){
+    console.log("Lang is " + locale);
     if (locale.indexOf('en') >= 0){
       this.lang = 'en';
     }

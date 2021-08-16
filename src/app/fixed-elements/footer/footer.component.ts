@@ -37,7 +37,7 @@ export class FooterComponent implements OnInit {
       this.currentUrl = window.location.href;
     }
     else{
-      this.currentUrl = '/' + this.request.path;
+      this.currentUrl = this.request.path;
     }
 
     // listen to route changes to update links

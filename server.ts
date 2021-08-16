@@ -11,6 +11,7 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
+import { LOCALE_ID} from '@angular/core';
 
 import 'localstorage-polyfill';
 
@@ -45,7 +46,8 @@ export function app(): express.Express {
       res.render(join(distFolder, `${langMatch[1]}/index.html`), {
         req,
         providers: [{ provide: APP_BASE_HREF, useValue: langMatch[0]},
-          {provide: 'host', useValue: getHost(req)}, {provide: 'request', useValue: req}]
+          {provide: 'host', useValue: getHost(req)}, {provide: 'request', useValue: req},
+          {provide: LOCALE_ID, useValue: langMatch[0]}]
       });
     }
     else {
@@ -62,7 +64,7 @@ function getHost(req: any): string{
   if (edgeEvent){
      console.log('Got edge event');
      const decodedHeader = JSON.parse(decodeURIComponent(edgeEvent));
-     console.log(decodedHeader);
+     // console.log(decodedHeader);
      return decodedHeader.Records[0].cf.request.headers.host[0].value;
   }
   else{
