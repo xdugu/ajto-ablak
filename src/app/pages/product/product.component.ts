@@ -26,7 +26,7 @@ export class ProductComponent implements OnInit {
   customQuestions = false;
   commonDocuments = [];
 
-  siteLang = 'en';
+  siteLang = null;
   private priceElement: ElementRef;
   private slickModal: any;
 
@@ -94,8 +94,11 @@ export class ProductComponent implements OnInit {
           this.customQuestions = true;
         }
         this.pickedSpec = []; // reset for product to product changes
-        this.linkImagesToVariants();
-        this.setupVariants();
+
+        if (this.product.Variants.variants.length > 0){
+          this.linkImagesToVariants();
+          this.setupVariants();
+        }
       });
     });
 

@@ -12,7 +12,7 @@ export class ProductGalleryComponent implements OnInit, OnChanges {
   @Input() screenType = 'mobile';
   @Input() flow: any = null;
   @Input() showPrice = false;
-  @Input() lang = 'en';
+  @Input() lang = null;
   @Input() currency: string = null;
 
   finalProducts = [];

@@ -22,7 +22,7 @@ export class AppComponent {
   currentView = 'mobile';
   theme = 'default';
 
-  siteLanguage = 'en';
+  siteLanguage = null;
 
   constructor(screenTypeService: ScreenTypeService, router: Router,
               langService: LanguageService, configService: ConfigService,

@@ -17,7 +17,7 @@ export class CheckoutComponent implements OnInit {
   preferences: PreferencesInterface = null;
   termsAccepted = false;
   proceedButton: any;
-  lang = 'en';
+  lang = null;
 
   @ViewChild('proceedButton') set content(content: ElementRef) {
     if (content) { // initially setter gets called with undefined

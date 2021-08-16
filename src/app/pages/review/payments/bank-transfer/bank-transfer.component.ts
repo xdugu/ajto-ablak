@@ -11,7 +11,7 @@ import { BasketService } from '@app/shared-services/basket.service';
 export class BankTransferComponent implements OnInit {
   @Output() orderConfirmed = new EventEmitter();
   @Input() width = 300;
-  @Input() lang = 'en';
+  @Input() lang = null;
   @Input() comments: string = null;
 
   private messages = {

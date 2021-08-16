@@ -10,7 +10,7 @@ import { ConfigService } from '@app/shared-services/config.service';
 export class CategoryGalleryComponent implements OnInit, OnChanges {
   @Input() screenType = 'mobile';
   @Input() flow: any = null;
-  @Input() lang = 'en';
+  @Input() lang = null;
   @Input() currency: string = null;
 
   categoryItems = [];

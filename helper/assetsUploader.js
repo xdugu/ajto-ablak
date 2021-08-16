@@ -4,7 +4,7 @@
 const { exec } = require('child_process');
 const path = require('path');
 
-bucket = "s3://adugu-testing/webAssets"
+bucket = "s3://adugu-webapps/template_1"
 const distPath = path.resolve('dist/ajto-ablak/browser');
 exec(`aws s3 sync "${distPath}" ${bucket} --acl="public-read" --delete`, (err, stdout, stderr) => {
     if (err) {

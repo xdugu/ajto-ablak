@@ -20,7 +20,7 @@ interface CIBConfigInterface{
   styleUrls: ['./cib.component.scss']
 })
 export class CibComponent implements OnInit {
-  @Input() lang = 'en';
+  @Input() lang = null;
   @Input() width = 300;
   @Input() config: CIBConfigInterface = null;
   @Input() comments = null;

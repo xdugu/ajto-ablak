@@ -21,7 +21,7 @@ export class ReviewComponent implements OnInit {
   preferences: PreferencesInterface = null;
   paymentTypes = null;
   bucketUrl: string = null;
-  lang = 'en';
+  lang = null;
 
   constructor(private customerDetailsService: CustomerDetailsService,
               private prefService: PreferencesService,

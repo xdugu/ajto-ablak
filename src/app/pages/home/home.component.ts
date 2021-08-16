@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   pageFlow: [];
   images = null;
   screenType = 'mobile';
-  siteLang = 'en';
+  siteLang = null;
   bucketUrl: string = null;
   currency: string = null;
 

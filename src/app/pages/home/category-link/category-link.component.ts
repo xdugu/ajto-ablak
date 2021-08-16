@@ -12,7 +12,7 @@ interface CategoryLinkFlow{
   styleUrls: ['./category-link.component.scss']
 })
 export class CategoryLinkComponent implements OnInit {
-  @Input() lang = 'hu';
+  @Input() lang = null;
   @Input() flow: CategoryLinkFlow = null;
   @Input() imgSrc: string = null;
   @Input() screenType = 'mobile';

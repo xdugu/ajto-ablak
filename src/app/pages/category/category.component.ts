@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
 
   numOfItemsPerRow = 2;
   rowHeight = '250px';
-  siteLang = 'en';
+  siteLang = null;
   categorySettings = null;
   screenType = 'mobile';
 
