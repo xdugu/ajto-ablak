@@ -61,7 +61,10 @@ export class ProductHierarchyService {
         const hierarchyResp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET,
                                   'settings', hierarchyParams);
         hierarchyResp.subscribe({
-          next: (res: any) => {this.productHierarchy = res.ProductHierarchy; this.loading = false; },
+          next: (res: any) => {
+            this.productHierarchy = res.ProductHierarchy;
+            this.loading = false;
+          },
           error: (err) => {console.error(err); this.loading = false; }
         });
       },

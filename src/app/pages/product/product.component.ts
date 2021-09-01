@@ -189,11 +189,11 @@ export class ProductComponent implements OnInit {
   private updateProductPrice(): void{
     if (this.product.Variants.variants.length > 0){
       const combi = this.getCombinationFromPickedSpec();
-      const prevPrice = this.product.Price.huf;
+      const prevPrice = this.product.Price[this.currencyPref];
 
       // only need to scroll or update price if there is a difference between the current
       // and the previous price
-      if (prevPrice !== combi.price.huf){
+      if (prevPrice !== combi.price[this.currencyPref]){
         this.product.Price = Object.assign(this.product.Price, combi.price);
         this.product.Quantity = combi.quantity;
         window.scroll({top: this.priceElement.nativeElement.offsetTop - 30, behavior: 'smooth' });
