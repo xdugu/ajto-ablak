@@ -36,6 +36,7 @@ export function app(): express.Express {
   }));
 
   server.get('/', (_, res) => {
+    console.log('Should not be here redirecting languages');
     res.redirect('/hu');
   });
 
@@ -47,7 +48,7 @@ export function app(): express.Express {
         req,
         providers: [{ provide: APP_BASE_HREF, useValue: langMatch[0]},
           {provide: 'host', useValue: getHost(req)}, {provide: 'request', useValue: req},
-          {provide: LOCALE_ID, useValue: langMatch[0]}]
+          {provide: LOCALE_ID, useValue: langMatch[1]}]
       });
     }
     else {
