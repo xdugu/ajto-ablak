@@ -99,6 +99,8 @@ export class ProductComponent implements OnInit {
           this.linkImagesToVariants();
           this.setupVariants();
         }
+      }).catch(() => {
+        this.route.navigate(['/']);
       });
     });
 
