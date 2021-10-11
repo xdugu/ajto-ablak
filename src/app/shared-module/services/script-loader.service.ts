@@ -10,14 +10,14 @@ export class ScriptLoaderService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
-  loadScript(url: string): Promise<void> {
+  loadScript(url: string, delay = 500): Promise<void> {
     return new Promise((resolve, reject) => {
       if (isPlatformBrowser(this.platformId)) {
         const script = document.createElement('script');
         script.src = url;
         document.head.appendChild(script);
         script.onload = () => {
-          setTimeout(resolve, 500);
+          setTimeout(resolve, delay);
         };
         script.onerror = (err) => {
           reject(err);

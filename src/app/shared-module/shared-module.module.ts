@@ -13,11 +13,12 @@ import { CurrencyChooserComponent } from './components/currency-chooser/currency
 import { ScriptLoaderService } from './services/script-loader.service';
 import { AppCurrencyPipe } from './pipes/app-currency.pipe';
 import { HeadLinksService } from './services/head-links.service';
+import { KeycountPipe } from './pipes/keycount.pipe';
 
 
 @NgModule({
   declarations: [DocumentDirective, FlowImagePipe,
-    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent, AppCurrencyPipe],
+    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent, AppCurrencyPipe, KeycountPipe],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -25,7 +26,7 @@ import { HeadLinksService } from './services/head-links.service';
     MatChipsModule
   ],
   exports: [
-     DocumentDirective, FlowImagePipe, ObjectFilterPipe, AppCurrencyPipe,
+     DocumentDirective, FlowImagePipe, ObjectFilterPipe, AppCurrencyPipe, KeycountPipe,
       DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
   ],
   providers: [

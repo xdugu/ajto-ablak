@@ -79,7 +79,7 @@
             <div *ngIf="basket.hasOwnProperty('Costs') && preferences.countryCode != null &&
                         preferences.countryCode.length == 2">
                 
-                <div>
+                <div *ngIf="(basket.Costs[preferences.countryCode] | keycount) > 1">
                     <label i18n="@@ChooseCourier">Choose a courier:</label>
                     <mat-radio-group class="radio-group"
                         [(ngModel)]="preferences.deliveryMethod" (change)="onCourierChange($event)">

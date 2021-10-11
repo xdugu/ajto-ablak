@@ -27,7 +27,7 @@ export class PaypalComponent implements OnInit {
   @Input() lang = 'hu';
   @Output() orderConfirmed = new EventEmitter<any>();
 
-  messages: {
+  messages = {
     paymentSuccessful: {
       title: {
         en: 'Order Successful',
@@ -63,7 +63,7 @@ export class PaypalComponent implements OnInit {
             }
             catch (err) {
               const disabledFeatures = this.config.disabledFeatures[0];
-              this.scriptLoader.loadScript(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}&disable-funding=${disabledFeatures}`)
+              this.scriptLoader.loadScript(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}&disable-funding=${disabledFeatures}`, 1000)
                 .then(() => this.createPaypalObject(basket, customer, preferences));
             }
           });

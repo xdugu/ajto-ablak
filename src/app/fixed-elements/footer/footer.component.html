@@ -1,6 +1,7 @@
 <div class="my-theme-primary-background w3-container" id="footer">
     <ng-container *ngFor="let langOption of availableLangs;">
-        <ng-container *ngIf="langOption !== lang">
+        <!-- Temporarily disable german option (not yet implemented)-->
+        <ng-container *ngIf="langOption !== lang && lang !== 'de'"> 
             <a class="underlined" [href]="currentUrl | langUrl : lang : langOption">{{langDict[langOption]}}</a>
         </ng-container>
     </ng-container>
