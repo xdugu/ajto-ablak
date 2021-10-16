@@ -32,6 +32,26 @@ export class CountryCodePipe implements PipeTransform {
     CH: {
       en: 'Switzerland',
       hu: 'Svájc'
+    },
+    NL: {
+      en: 'Netherlands',
+      hu: 'Hollandia'
+    },
+    BE: {
+      en: 'Belgium',
+      hu: 'Belgium'
+    },
+    PO: {
+      en: 'Poland',
+      hu: 'Lengyelország'
+    },
+    FR: {
+      en: 'France',
+      hu: 'Franciaország'
+    },
+    BG: {
+      en: 'Bulgaria',
+      hu: 'Bulgária'
     }
   };
 
