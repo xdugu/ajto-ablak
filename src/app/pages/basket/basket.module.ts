@@ -14,11 +14,12 @@ import { MatRadioModule} from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BasketInfoGetterPipe } from './pipes/basket-info-getter.pipe';
 
 
 
 @NgModule({
-  declarations: [BasketComponent],
+  declarations: [BasketComponent, BasketInfoGetterPipe],
   imports: [
     CommonModule,
     BasketRoutingModule,

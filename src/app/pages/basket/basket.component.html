@@ -16,23 +16,31 @@
             <div *ngFor="let item of basket.Items; index as i;" 
                     class="w3-card w3-margin-top w3-padding w3-white w3-display-container" 
                     style="width: 100%;overflow:hidden;">
-                <img   [appLazyLoad]="bucketUrl + item.Images.path + item.Images.list[0].name | imageSource : 100" style="height: 80px">
-                <span>{{item.Title[lang]}}</span>
+                <img   [appLazyLoad]="bucketUrl + products[item.ProductId].Images.path + 
+                            products[item.ProductId].Images.list[0].name | imageSource : 100" style="height: 80px">
+                <span>{{products[item.ProductId].Title[lang]}}</span>
 
                 <div *ngFor="let combi of item.Combination; index as combiIndex">
-					<span *ngIf="item.Variants.variants[combiIndex].type === 'group'">
-						<img [appLazyLoad]="bucketUrl + combi.chosenVariant.Images.path + combi.chosenVariant.Images.list[0].name | imageSource : 100"
+					<span *ngIf="combi.variantId else individual">
+						<img [appLazyLoad]="bucketUrl + variants[combi.variantId].Images.path + 
+                            variants[combi.variantId].Images.list[0].name | imageSource : 100"
 							style="height:50px; width:auto"/>
-						<span><b>{{item.Variants.variants[combiIndex].text[lang]}}: </b>
-							 {{combi.chosenVariant.Title[lang]}}
+						<span *ngIf="variants">
+                            <b>{{products[item.ProductId].Variants.variants[combiIndex].text[lang]}}: </b>
+							 {{variants[combi.variantId].Title[lang]}}
 						</span>										
 					</span>
-					<span *ngIf="item.Variants.variants[combiIndex].type === 'individual'">
-						<b>{{item.Variants.variants[combiIndex].text[lang]}}: </b>
-						{{combi.text[lang]}}
-						<span *ngIf="combi.requiresInput">: {{combi.enteredValue}}</span>
-					</span>
-
+                    <ng-template #individual>
+                        <span>
+                            <b>{{products[item.ProductId].Variants.variants[combiIndex].text[lang]}}: </b>
+                            <span *ngFor="let option of products[item.ProductId].Variants.variants[combiIndex].options">
+                                <span *ngIf="option.name === combi.name">{{option.text[lang]}}</span>
+                            </span>
+                            <span *ngIf="products[item.ProductId].Variants.variants[combiIndex].requiresInput">: 
+                                {{combi.enteredValue}}
+                            </span>
+                        </span>
+                    </ng-template>
 				</div>
                 <div class="w3-display-topright">
                     <button mat-button  (click)="onRemoveItem(i)" 
@@ -94,10 +102,10 @@
 
                 <div *ngIf="preferences.deliveryMethod != null">
                     <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
-                    <span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
+                    <!--span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
                         <b i18n="@@Discount">Discount:</b> 
                         <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
-                    </span>
+                    </span-->
                     <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     <b i18n="@@Total">Total:</b><span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span> <br><br>
                     <a mat-raised-button color="primary" [routerLink]="['/checkout']" i18n="@@ProceedToCheckout"> Proceed to checkout</a>

@@ -10,9 +10,23 @@ import { HttpParams } from '@angular/common/http';
 export interface BasketInterface{
   BasketId: string;
   StoreId: string;
-  Items: [];
+  Items: IBasketItem[];
   Count: number;
   Costs: object;
+}
+
+export interface IBasketItem{
+  ProductId: string;
+  Quantity: number;
+  Combination: IBasketCombi[];
+  Price: any;
+  ShippingGroup: string;
+}
+
+export interface IBasketCombi {
+  name: string; // name of chosen option e.g. S, Wellsoft 
+  variantId?: string; // id of variant if option is "grouped" e.g. brown base, premium black
+  enteredValue ?: string | number;
 }
 
 @Injectable({
@@ -73,16 +87,19 @@ export class BasketService {
 
       this.configService.getConfig('storeId').subscribe({
         next: (storeId) => {
-          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket', new HttpParams(), {
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket',
+                new HttpParams().set('storeId', storeId).set('basketId', this.basketId), {
                 itemId,
-                basketId: this.basketId,
-                storeId,
                 combination
             }).subscribe({
-                next: (basket: BasketInterface) => {
+                next: (resp: any) => {
+                        const basket: BasketInterface = resp.item;
                         this.basketId = basket.BasketId;
                         this.tokenService.setString('BasketId', this.basketId);
                         this.basket = basket;
+                        this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
+                          return cV.Quantity + count;
+                        }, 0);
                         this.basketCount.next(this.basket.Count);
                         observer.next();
                       },
@@ -98,18 +115,17 @@ export class BasketService {
   changeQuantity(index: number, newQuantity: number): Promise<BasketInterface>{
     return new Promise ((resolve, reject) => {
         this.configService.getConfig('storeId').subscribe(storeId => {
-          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/quantity', new HttpParams(), {
-            basketId: this.basketId,
-            storeId,
+          const params = new HttpParams().set('storeId', storeId).set('basketId', this.basketId);
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/quantity', params, {
             index,
             newQuantity,
-         }).subscribe({
-           next: basket => {
-            this.basket = basket;
-            resolve(this.basket);
+         }).subscribe((resp: any) => {
+          this.basket = resp.item;
+          resolve(this.basket);
           },
-          error: err => reject(err)
-        });
+          err => {
+            reject(err);
+          });
         });
     });
   }
@@ -117,12 +133,11 @@ export class BasketService {
   removeItem(index: number): Promise<BasketInterface>{
     return new Promise ((resolve, reject) => {
       this.configService.getConfig('storeId').subscribe(storeId => {
-          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/remove', new HttpParams(), {
-            basketId: this.basketId,
-            storeId,
+          const params = new HttpParams().set('basketId', this.basketId).set('storeId', storeId);
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/remove', params, {
             index,
-         }).subscribe(basket => {
-            this.basket = basket;
+         }).subscribe((resp: any) => {
+            this.basket = resp.item;
             resolve(this.basket);
          },
          err => {
@@ -136,17 +151,19 @@ export class BasketService {
   private _getBasket(): void{
       this.configService.getConfig('storeId').subscribe({
         next: (storeId) => {
-          this.apiService.post(API_MODE.OPEN, API_METHOD.GET, 'basket', new HttpParams(), {
-            basketId: this.basketId,
-            storeId,
-          }).subscribe({
-            next: (basket: BasketInterface) => {
+          this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'basket',
+            new HttpParams().set('basketId', this.basketId).set('storeId', storeId)).subscribe({
+            next: (resp: any) => {
+              const basket: BasketInterface = resp.item;
               this.basket = basket;
               this.tokenService.setString('BasketId', this.basket.BasketId);
+              this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
+                return cV.Quantity + count;
+              }, 0);
               this.basketCount.next(this.basket.Count);
               this.loadingBasket = false;
             },
-            error: () => this.loadingBasket = false
+            error: (err) => this.loadingBasket = false
           });
         },
         error: () => this.loadingBasket = false

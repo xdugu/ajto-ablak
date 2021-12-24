@@ -74,20 +74,20 @@
 							<span *ngFor="let option of variant.options" class="w3-display-container">
                 <ng-container *ngIf="option.isSelectable">
                   <img class="w3-circle hoverable" [appLazyLoad]="bucketUrl + product.Images.path + option.linkedImage | imageSource : 100" 
-                        [ngClass]="{'selected': pickedSpec[i] === option}"
-                        (click)="pickedSpec[i] = option; onVariantSelectionChange()" 
+                        [ngClass]="{'selected': pickedSpec[i].name === option.name}"
+                        (click)="pickedSpec[i].name = option.name; onVariantSelectionChange()" 
                       style="height: 90px;width:auto; margin:0 1%;">	
                   <span class="material-icons w3-xxlarge w3-text-black w3-display-middle w3-white w3-circle hoverable"
-                        *ngIf="pickedSpec[i] == option"
+                        *ngIf="pickedSpec[i].name == option.name"
                         (click)="showSelectedOptionOverlay(option)">
                       zoom_in
                   </span>	
                 </ng-container>	
 							</span>
 						</div>
-						<div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
+						<!--div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
               {{pickedSpec[i].text[siteLang]}}
-						</div>
+						</div-->
 					</div>
         </ng-container>
 
@@ -95,9 +95,9 @@
         <ng-container *ngIf="variant.type === 'group'">
           <mat-form-field>
             <mat-label>{{variant.text[siteLang]}}</mat-label>
-            <mat-select matNativeControl [value]="pickedSpec[i]" [name]="variant.name"
+            <mat-select matNativeControl [value]="pickedSpec[i].name" [name]="variant.name"
                         (selectionChange)="onGroupSelectionChange($event, i)" required>
-              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" >
+              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option.name" >
                 {{option.text[siteLang]}}
               </mat-option>
             </mat-select>
@@ -107,19 +107,19 @@
           <div style="width:100%;padding:0;white-space:nowrap;overflow-x:auto;">
             <span *ngFor="let pattern of variant.groupInfo[pickedSpec[i].name]" class="w3-display-container">
               <img class="w3-circle hoverable" [appLazyLoad]="bucketUrl + pattern.Images.path + pattern.Images.list[0].name | imageSource : 100" 
-                  [ngClass]="{'selected': pickedSpec[i].chosenVariant.ItemId == pattern.ItemId}"
+                  [ngClass]="{'selected': pickedSpec[i].variantId == pattern.ItemId}"
                   (click)="onPatternSelection(pattern, i)"
                   style="height: 90px;width:auto; margin:0 1%;">
                   <span class="material-icons w3-xxlarge w3-text-black w3-display-middle w3-white w3-circle hoverable"
-                        *ngIf="pickedSpec[i].chosenVariant.ItemId === pattern.ItemId"
+                        *ngIf="pickedSpec[i].variantId === pattern.ItemId"
                         (click)="showSelectedPatternOverlay(pattern)">
                         zoom_in
                   </span>	
             </span>
           </div>
-          <div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
+          <!--div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
             {{pickedSpec[i].chosenVariant.Title[siteLang]}}
-          </div><br>
+          </div--><br>
         </ng-container>
 
         <!-- Extra inputs to be entered by user-->

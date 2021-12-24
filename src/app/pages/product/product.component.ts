@@ -162,12 +162,11 @@ export class ProductComponent implements OnInit {
       this.product.Variants.variants.forEach((variant: any, index: number) => {
         variant.options.forEach((option: any) => {
             if (combi.combination[index] === option.name){
-              this.pickedSpec.push(option);
+              this.pickedSpec.push({name: option.name, variantId: null, enteredValue: null});
               if (variant.type === 'group'){
-                // TODO: fix this. Need to actually query for groups
                 const groupKeys = Object.keys(variant.groupInfo);
-                this.pickedSpec[this.pickedSpec.length - 1].chosenVariant =
-                    variant.groupInfo[groupKeys[0]][0];
+                this.pickedSpec[this.pickedSpec.length - 1].variantId =
+                    variant.groupInfo[groupKeys[0]][0].ItemId;
               }
             }
         });
@@ -223,14 +222,14 @@ export class ProductComponent implements OnInit {
 
   // called when a different group of patterns is selected
   onGroupSelectionChange(newOption: any, changeIndex: number): void{
-    this.pickedSpec[changeIndex] = newOption.value;
-    this.pickedSpec[changeIndex].chosenVariant = this.product.Variants.variants[changeIndex].groupInfo[newOption.value.name][0];
+    this.pickedSpec[changeIndex].name = newOption.value;
+    this.pickedSpec[changeIndex].variantId = this.product.Variants.variants[changeIndex].groupInfo[newOption.value.name][0].ItemId;
     this.onVariantSelectionChange();
   }
 
   // called when a pattern is selected
   onPatternSelection(newPattern: any, index: number): void {
-    this.pickedSpec[index].chosenVariant = newPattern;
+    this.pickedSpec[index].variantId = newPattern.ItemId;
     this.onVariantSelectionChange();
   }
 
@@ -382,12 +381,12 @@ export class ProductComponent implements OnInit {
               for (const variant of this.product.Variants.variants){
                 for (const option of variant.options){
                   if (combiCombi === option.name){
-                    this.pickedSpec.push(option);
+                    this.pickedSpec.push({name: option.name, enteredValue: null});
                     if (variant.type === 'group'){
-                      // TODO: fix this. Need to actually query for groups
                       const groupKeys = Object.keys(variant.groupInfo);
-                      this.pickedSpec[this.pickedSpec.length - 1].chosenVariant =
-                          variant.groupInfo[groupKeys[0]][0];
+                      this.pickedSpec[this.pickedSpec.length - 1].variantId =
+                          variant.groupInfo[groupKeys[0]][0].ItemId;
+                      break;
                     } // if
                   } // if
                 } // for

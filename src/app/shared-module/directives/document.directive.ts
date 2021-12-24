@@ -29,9 +29,10 @@ export class DocumentDirective implements OnChanges{
               .set('documentId', this.appDocument);
 
     this.apiSerivice.get(API_MODE.OPEN, API_METHOD.GET, 'document', params).subscribe({
-      next: (doc: any) => {
+      next: (res: any) => {
+        const doc = res.item;
         if (this.titleRef){
-          this.titleRef.innerHTML = doc.Info.title;
+          this.titleRef.innerHTML = doc.title;
         }
 
         if (this.contentRef){

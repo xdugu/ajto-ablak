@@ -10,7 +10,8 @@ export enum API_MODE {
 export enum API_METHOD {
   GET = 'get',
   UPDATE = 'update',
-  CREATE = 'create'
+  CREATE = 'create',
+  QUERY = 'query'
 }
 
 @Injectable({

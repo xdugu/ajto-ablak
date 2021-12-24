@@ -7,11 +7,12 @@ import { CategoryGetterService } from './services/category-getter.service';
 import { ProductGetterService } from './services/product-getter.service';
 import { BlogGetterService} from './services/blog-getter.service';
 import { IndexOfPipe } from './pipes/index-of.pipe';
+import { BasketItemsComponent } from './components/basket-items/basket-items.component';
 
 
 
 @NgModule({
-  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe],
+  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, BasketItemsComponent],
   imports: [
     CommonModule
   ],

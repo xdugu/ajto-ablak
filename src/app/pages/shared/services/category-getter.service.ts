@@ -19,12 +19,12 @@ export class CategoryGetterService {
           next: storeId => {
             const httpParams = new HttpParams()
             .set('category', category.join('>'))
-            .set('storeId', storeId + '>Product');
+            .set('storeId', storeId);
 
-            const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'category', httpParams);
+            const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.QUERY, 'product', httpParams);
             resp.subscribe({
               next: (data: any) => {
-                  resolve(data);
+                  resolve(data.items);
               },
               error: (err) => reject(err)
             });
