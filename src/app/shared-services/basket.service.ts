@@ -121,6 +121,10 @@ export class BasketService {
             newQuantity,
          }).subscribe((resp: any) => {
           this.basket = resp.item;
+          this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
+            return cV.Quantity + count;
+          }, 0);
+          this.basketCount.next(this.basket.Count);
           resolve(this.basket);
           },
           err => {
@@ -138,6 +142,10 @@ export class BasketService {
             index,
          }).subscribe((resp: any) => {
             this.basket = resp.item;
+            this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
+              return cV.Quantity + count;
+            }, 0);
+            this.basketCount.next(this.basket.Count);
             resolve(this.basket);
          },
          err => {

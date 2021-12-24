@@ -8,15 +8,23 @@ import { ProductGetterService } from './services/product-getter.service';
 import { BlogGetterService} from './services/blog-getter.service';
 import { IndexOfPipe } from './pipes/index-of.pipe';
 import { BasketItemsComponent } from './components/basket-items/basket-items.component';
+import { SharedModuleModule} from '@app/shared-module/shared-module.module';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, BasketItemsComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModuleModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, BasketItemsComponent]
 })
 export class SharedModule {
   static forRoot(): any{

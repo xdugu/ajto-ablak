@@ -5,7 +5,7 @@
 <h2 class="mat-h2 w3-center" i18n="@@BasketIsEmpty"
     *ngIf="basket == null || basket.Items.length == 0">Your basket is empty</h2>
 
-<div *ngIf="preferences != null && basket !=null && bucketUrl != null">
+<div *ngIf="preferences != null && basket !=null">
     <app-currency-chooser [chosen]="preferences.currency.chosen" [available]="preferences.currency.available"
                 (currencyChange)="onCurrencyChange($event)">
     </app-currency-chooser>
@@ -13,63 +13,10 @@
     <div class="w3-row w3-margin-top" style="min-height: 800px;">
         <!-- to be displayed left on desktops and 100% width on tablets and mobiles-->
         <div class="w3-col l6">
-            <div *ngFor="let item of basket.Items; index as i;" 
-                    class="w3-card w3-margin-top w3-padding w3-white w3-display-container" 
-                    style="width: 100%;overflow:hidden;">
-                <img   [appLazyLoad]="bucketUrl + products[item.ProductId].Images.path + 
-                            products[item.ProductId].Images.list[0].name | imageSource : 100" style="height: 80px">
-                <span>{{products[item.ProductId].Title[lang]}}</span>
-
-                <div *ngFor="let combi of item.Combination; index as combiIndex">
-					<span *ngIf="combi.variantId else individual">
-						<img [appLazyLoad]="bucketUrl + variants[combi.variantId].Images.path + 
-                            variants[combi.variantId].Images.list[0].name | imageSource : 100"
-							style="height:50px; width:auto"/>
-						<span *ngIf="variants">
-                            <b>{{products[item.ProductId].Variants.variants[combiIndex].text[lang]}}: </b>
-							 {{variants[combi.variantId].Title[lang]}}
-						</span>										
-					</span>
-                    <ng-template #individual>
-                        <span>
-                            <b>{{products[item.ProductId].Variants.variants[combiIndex].text[lang]}}: </b>
-                            <span *ngFor="let option of products[item.ProductId].Variants.variants[combiIndex].options">
-                                <span *ngIf="option.name === combi.name">{{option.text[lang]}}</span>
-                            </span>
-                            <span *ngIf="products[item.ProductId].Variants.variants[combiIndex].requiresInput">: 
-                                {{combi.enteredValue}}
-                            </span>
-                        </span>
-                    </ng-template>
-				</div>
-                <div class="w3-display-topright">
-                    <button mat-button  (click)="onRemoveItem(i)" 
-                            i18n="Text to remove from basket@@Remove">
-                            Remove
-                    </button>
-                </div>
-                <div class="w3-margin-top">
-                    <div class="w3-right">
-                        <div *ngIf="item.Price.original.discountEnabled"
-                            class="discount">
-                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}
-                        </div>
-                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}</div>
-                        
-                    </div>
-                    <!-- input to change quantities-->
-                    <div class="w3-left">
-                        <mat-form-field style="max-width: 80px">
-                            <mat-label i18n="@@Quantity">Quantity</mat-label>
-                            <mat-select [value]="item.Quantity | stringOf" (selectionChange)="onChangeQuantity($event, i)">
-                                <mat-option *ngFor="let quantity of availableQuantities" [value]="quantity">
-                                        {{quantity}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div><!-- end of one basket item-->       
+            <app-basket-items [basketItems]="basket.Items" [lang]="lang" canChange="true"
+                (itemRemoved)="onRemoveItem($event)" (quantityChanged)="onChangeQuantity($event)"
+                [preferences]="preferences">
+            </app-basket-items>
         </div><!-- Left display end-->
         <div class="w3-col l6 w3-padding" *ngIf="basket.Items.length > 0">
             <mat-form-field>
