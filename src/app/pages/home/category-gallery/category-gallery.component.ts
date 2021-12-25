@@ -41,7 +41,8 @@ export class CategoryGalleryComponent implements OnInit, OnChanges {
 
   private getCategoryItems(): void{
     this.catGetter.getCategory(this.flow.link).then(res => {
-      this.categoryItems = res;
+      this.categoryItems = res as any[];
+      this.categoryItems = this.categoryItems.filter(item => item.Enabled);
       if (this.categoryItems.length > 4){
         this.categoryItems = this.categoryItems.slice(0, 4);
       }

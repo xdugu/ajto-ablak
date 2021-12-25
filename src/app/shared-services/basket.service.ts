@@ -185,7 +185,7 @@ export class BasketService {
             this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/order', params, {
               orderDetails: {
                 contact: customer,
-                currency: preferences.currency.chosen,
+                currency: preferences.currency.chosen.toLowerCase(),
                 paymentMethod: paymentType === 'payOnDelivery' ? 'payOnDelivery' : 'payBeforeDelivery',
                 paymentType,
                 deliveryMethod: preferences.deliveryMethod,
