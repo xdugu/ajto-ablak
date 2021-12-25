@@ -1,14 +1,4 @@
 <h1 class="w3-center mat-title" i18n="heading in legal/help page@@LegalInformation">Legal Information</h1>
 <div class="w3-content w3-mobile" style="max-width: 1000px">
-    <mat-accordion *ngIf="lang != null">
-        <ng-container *ngFor="let doc of legalDocs">
-            <mat-expansion-panel *ngIf="doc.lang == lang" [appDocument]="doc.id" [storeId]="storeId"
-                [titleRef]="title" [contentRef]="content">
-                <mat-expansion-panel-header>
-                    <mat-panel-title #title></mat-panel-title>
-                </mat-expansion-panel-header>
-                <p #content></p>
-            </mat-expansion-panel>
-        </ng-container>
-    </mat-accordion>
+    <app-document [documents]="legalDocs" [storeId]="storeId"></app-document>
 </div>

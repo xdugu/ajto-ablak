@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./legal.component.scss']
 })
 export class LegalComponent implements OnInit {
-  legalDocs: [] = null;
+  legalDocs: string[] = [];
   storeId: string = null;
   lang: string = null;
 
@@ -16,9 +16,7 @@ export class LegalComponent implements OnInit {
               private titleService: Title) { }
 
   ngOnInit(): void {
-    this.configService.getConfig('pages').subscribe({
-      next: pages => this.legalDocs = pages.legal.documents
-    });
+    
 
     this.configService.getConfig('storeId').subscribe({
       next: storeId => this.storeId = storeId
@@ -31,6 +29,15 @@ export class LegalComponent implements OnInit {
         hu: 'Jogi információk'
       };
       this.titleService.setTitle(titles[lang]);
+      this.configService.getConfig('pages').subscribe({
+        next: pages => {
+          for (const doc of pages.legal.documents){
+            if (doc.lang === lang){
+              this.legalDocs.push(doc.id);
+            }
+          }
+        }
+      });
     });
   }
 

@@ -13,18 +13,23 @@ import { SharedModuleModule} from '@app/shared-module/shared-module.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { DocumentComponent } from './components/document/document.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { DocumentLoaderDirective } from './directives/document-loader.directive';
 
 @NgModule({
-  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, BasketItemsComponent],
+  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe,
+      BasketItemsComponent, DocumentComponent, DocumentLoaderDirective],
   imports: [
     CommonModule,
     SharedModuleModule,
     MatButtonModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatExpansionModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, BasketItemsComponent]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, 
+    BasketItemsComponent, DocumentComponent]
 })
 export class SharedModule {
   static forRoot(): any{

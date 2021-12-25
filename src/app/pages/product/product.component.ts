@@ -25,13 +25,14 @@ export class ProductComponent implements OnInit {
   currencyPref = null;
   customQuestions = false;
   commonDocuments = [];
+  documentList: string[] = [];
 
   siteLang = null;
   private priceElement: ElementRef;
   private slickModal: any;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
-              config: ConfigService, private langService: LanguageService,
+              private config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
               private route: Router, private dialog: MatDialog, private imgSourcePipe: ImageSourcePipe) {
@@ -43,9 +44,6 @@ export class ProductComponent implements OnInit {
       next: storeId => this.storeId = storeId
     });
 
-    config.getConfig('pages').subscribe({
-      next: pages => this.commonDocuments = pages.product.documents ? pages.product.documents : []
-    });
 
     prefService.getPreferences().subscribe({
       next: pref => this.currencyPref = pref.currency
@@ -99,12 +97,32 @@ export class ProductComponent implements OnInit {
           this.linkImagesToVariants();
           this.setupVariants();
         }
+        this.langService.getLang().then(lang => {
+            this.siteLang = lang;
+            for (const doc of this.product.Documents){
+              if (doc.lang === lang){
+                this.documentList.push(doc.id);
+              }
+            }
+
+            this.config.getConfig('pages').subscribe({
+              next: pages => {
+                  if (pages.product.documents){
+                    for (const doc of pages.product.documents){
+                      if (doc.lang === lang){
+                        this.documentList.push(doc.id);
+                      }
+                    }
+                  }
+              }
+            });
+        });
+
       }).catch(() => {
         this.route.navigate(['/']);
       });
     });
 
-    this.langService.getLang().then(lang => this.siteLang = lang);
   }
 
   // attach images to variants to be used by view
