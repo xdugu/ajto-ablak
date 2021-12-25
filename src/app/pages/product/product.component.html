@@ -56,11 +56,11 @@
       <ng-container *ngFor="let variant of product.Variants.variants; index as i">
         <!-- Individual selections-->
         <ng-container *ngIf="variant.type === 'individual'">
-          <mat-form-field *ngIf="!variant.hasAttachedImage">
+          <mat-form-field *ngIf="!variant.hasAttachedImage else hasAttachedImage">
             <mat-label>{{variant.text[siteLang]}}</mat-label>
-            <mat-select matNativeControl [(value)]="pickedSpec[i]" 
+            <mat-select matNativeControl [(value)]="pickedSpec[i].name" 
                 (selectionChange)="onVariantSelectionChange()" [name]="variant.name">
-              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option" 
+              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option.name" 
                 [disabled]="!option.isSelectable">
                 {{option.text[siteLang]}}
                 <span *ngIf="product.TrackStock && !option.isSelectable">
@@ -69,7 +69,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <div *ngIf="variant.hasAttachedImage">
+          <ng-template #hasAttachedImage>
 						<div style="width:100%;padding:0;white-space:nowrap;overflow-x:auto;">
 							<span *ngFor="let option of variant.options" class="w3-display-container">
                 <ng-container *ngIf="option.isSelectable">
@@ -88,7 +88,7 @@
 						<!--div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
               {{pickedSpec[i].text[siteLang]}}
 						</div-->
-					</div>
+					</ng-template>
         </ng-container>
 
         <!-- Grouped selections -->
@@ -123,16 +123,21 @@
         </ng-container>
 
         <!-- Extra inputs to be entered by user-->
-        <ng-container *ngIf="pickedSpec.length > 0 && pickedSpec[i].requiresInput">
-          <mat-form-field *ngIf="pickedSpec[i].inputType === 'text'">
-            <input matInput [placeholder]="variant.text[siteLang]" [(ngModel)]="pickedSpec[i].enteredValue"
-                    [maxLength]="pickedSpec[i].max" type="text" required [name]="variant.name + '_text'">
-          </mat-form-field>
-          <mat-form-field *ngIf="pickedSpec[i].inputType === 'number'">
-            <input matInput [placeholder]="variant.text[siteLang] + '(' + pickedSpec[i].min + '-' + pickedSpec[i].max  + ')'" [(ngModel)]="pickedSpec[i].enteredValue"
-                    [max]="pickedSpec[i].max"  [min]="pickedSpec[i].min" type="number" required
-                    [name]="variant.name + '_number'">
-          </mat-form-field>
+        <ng-container *ngIf="pickedSpec.length > 0">
+          <ng-container *ngFor="let option of variant.options | objectFilter : {'name': pickedSpec[i].name}">
+            <ng-container *ngIf="option.requiresInput">
+              <mat-form-field *ngIf="option.inputType === 'text'">
+                <input matInput [placeholder]="variant.text[siteLang]" [(ngModel)]="pickedSpec[i].enteredValue"
+                        [maxLength]="option.max" type="text" required [name]="variant.name + '_text'">
+              </mat-form-field>
+              <mat-form-field *ngIf="option.inputType === 'number'">
+                <input matInput [placeholder]="variant.text[siteLang] + '(' + option.min + '-' + option.max  + ')'" 
+                        [(ngModel)]="pickedSpec[i].enteredValue"
+                        [max]="option.max"  [min]="option.min" type="number" required
+                        [name]="variant.name + '_number'">
+              </mat-form-field>
+            </ng-container>
+          </ng-container>
         </ng-container>
         <br>
       </ng-container>

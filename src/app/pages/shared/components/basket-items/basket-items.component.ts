@@ -18,7 +18,7 @@ export interface IBasketItemsEvent{
 })
 export class BasketItemsComponent implements OnInit, OnChanges {
   @Input() basketItems: IBasketItem[] = [];
-  @Input() canChange = false;
+  @Input() editable = false;
   @Input() lang = 'en';
   @Input() preferences = null;
   @Input() availableQuantities = ['1', '2', '3', '4', '5'];

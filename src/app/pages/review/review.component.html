@@ -2,42 +2,9 @@
     <h1 class="w3-center" i18n="Heading for final order review page@@Review">Review</h1>
     <div class="w3-row">
         <div class="w3-col l6">
-            <div *ngFor="let item of basket.Items; index as i;" 
-                    class="w3-card w3-margin-top w3-padding w3-white w3-display-container" 
-                    style="width: 100%;overflow:hidden;">
-                <img   [appLazyLoad]="bucketUrl + item.Images.path + item.Images.list[0].name | imageSource : 100" style="height: 80px">
-                <span>{{item.Title[lang]}}</span>
-
-                <div *ngFor="let combi of item.Combination; index as combiIndex">
-					<span *ngIf="item.Variants.variants[combiIndex].type === 'group'">
-						<img [appLazyLoad]="bucketUrl + combi.chosenVariant.Images.path + combi.chosenVariant.Images.list[0].name | imageSource : 100"
-							style="height:50px; width:auto"/>
-						<span><b>{{item.Variants.variants[combiIndex].text[lang]}}: </b>
-							 {{combi.chosenVariant.Title[lang]}}
-						</span>										
-					</span>
-					<span *ngIf="item.Variants.variants[combiIndex].type === 'individual'">
-						<b>{{item.Variants.variants[combiIndex].text[lang]}}: </b>
-						{{combi.text[lang]}}
-						<span *ngIf="combi.requiresInput">: {{combi.enteredValue}}</span>
-					</span>
-
-				</div>
-                <div class="w3-margin-top">
-                    <div class="w3-right">
-                        <div *ngIf="item.Price.original.discountEnabled"
-                            class="discount">
-                            {{item.Price.original[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}
-                        </div>
-                        <div class="price">{{item.Price[preferences.currency.chosen.toLowerCase()] * item.Quantity | appCurrency: preferences.currency.chosen}}</div>
-                        
-                    </div>
-                    <!-- input to change quantities-->
-                    <div class="w3-left">
-                            <strong i18n="@@Quantity">Quantity</strong>: <span>{{item.Quantity}}</span>                
-                    </div>
-                </div>
-            </div><!-- end of one basket item-->  
+            <app-basket-items [basketItems]="basket.Items" [lang]="lang" [editable]="false"
+                [preferences]="preferences">
+            </app-basket-items> 
 
             <div class="w3-margin-top">
                 <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>

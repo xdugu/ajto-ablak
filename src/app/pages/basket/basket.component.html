@@ -13,7 +13,7 @@
     <div class="w3-row w3-margin-top" style="min-height: 800px;">
         <!-- to be displayed left on desktops and 100% width on tablets and mobiles-->
         <div class="w3-col l6">
-            <app-basket-items [basketItems]="basket.Items" [lang]="lang" canChange="true"
+            <app-basket-items [basketItems]="basket.Items" [lang]="lang" [editable]="true"
                 (itemRemoved)="onRemoveItem($event)" (quantityChanged)="onChangeQuantity($event)"
                 [preferences]="preferences">
             </app-basket-items>
@@ -49,10 +49,10 @@
 
                 <div *ngIf="preferences.deliveryMethod != null">
                     <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
-                    <!--span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
+                    <span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
                         <b i18n="@@Discount">Discount:</b> 
                         <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
-                    </span-->
+                    </span>
                     <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     <b i18n="@@Total">Total:</b><span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span> <br><br>
                     <a mat-raised-button color="primary" [routerLink]="['/checkout']" i18n="@@ProceedToCheckout"> Proceed to checkout</a>

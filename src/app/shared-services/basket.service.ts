@@ -121,9 +121,7 @@ export class BasketService {
             newQuantity,
          }).subscribe((resp: any) => {
           this.basket = resp.item;
-          this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
-            return cV.Quantity + count;
-          }, 0);
+          this.basket.Count = this.getBasketItemsCount();
           this.basketCount.next(this.basket.Count);
           resolve(this.basket);
           },
@@ -142,9 +140,7 @@ export class BasketService {
             index,
          }).subscribe((resp: any) => {
             this.basket = resp.item;
-            this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
-              return cV.Quantity + count;
-            }, 0);
+            this.basket.Count = this.getBasketItemsCount();
             this.basketCount.next(this.basket.Count);
             resolve(this.basket);
          },
@@ -165,9 +161,7 @@ export class BasketService {
               const basket: BasketInterface = resp.item;
               this.basket = basket;
               this.tokenService.setString('BasketId', this.basket.BasketId);
-              this.basket.Count = this.basket.Items.reduce((count: number, cV: any) => {
-                return cV.Quantity + count;
-              }, 0);
+              this.basket.Count = this.getBasketItemsCount();
               this.basketCount.next(this.basket.Count);
               this.loadingBasket = false;
             },
@@ -187,7 +181,8 @@ export class BasketService {
             customer.countryCode = preferences.countryCode;
             customer.lang = lang;
 
-            this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/order', new HttpParams(), {
+            const params = new HttpParams().set('basketId', this.basket.BasketId).set('storeId', this.basket.StoreId);
+            this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/order', params, {
               orderDetails: {
                 contact: customer,
                 currency: preferences.currency.chosen,
@@ -195,10 +190,8 @@ export class BasketService {
                 paymentType,
                 deliveryMethod: preferences.deliveryMethod,
                 comments: comments.length === 0 ? null : comments,
-                paymentDetails
-            },
-            basketId: this.basket.BasketId,
-            storeId:  this.basket.StoreId
+              },
+              additionalData: paymentDetails
             }).subscribe({
               next: (data) => {
                 this.clearBasket();
@@ -220,6 +213,16 @@ export class BasketService {
     this.basketId = null;
     this.basketCount.next(0);
     this.prefService.clearPreferences();
+  }
+
+  private getBasketItemsCount(): number{
+    let totalCount = 0;
+    if (this.basket){
+      totalCount = this.basket.Items.reduce((count: number, cV: any) => {
+        return cV.Quantity + count;
+      }, 0);
+    }
+    return totalCount;
   }
 
 }

@@ -22,14 +22,13 @@
                     <b>{{products[item.ProductId].Variants.variants[combiIndex].text[lang]}}: </b>
                     <span *ngFor="let option of products[item.ProductId].Variants.variants[combiIndex].options">
                         <span *ngIf="option.name === combi.name">{{option.text[lang]}}</span>
+                        <span *ngIf="option.requiresInput">: {{combi.enteredValue}}</span>
                     </span>
-                    <span *ngIf="products[item.ProductId].Variants.variants[combiIndex].requiresInput">: 
-                        {{combi.enteredValue}}
-                    </span>
+                    
                 </span>
             </ng-template>
         </div>
-        <div class="w3-display-topright" *ngIf="canChange">
+        <div class="w3-display-topright" *ngIf="editable">
             <button mat-button  (click)="onRemoveItem(i)" 
                     i18n="Text to remove from basket@@Remove">
                     Remove
@@ -49,7 +48,7 @@
                 <mat-form-field style="max-width: 80px">
                     <mat-label i18n="@@Quantity">Quantity</mat-label>
                     <mat-select [value]="item.Quantity | stringOf" (selectionChange)="onChangeQuantity($event, i)"
-                        [disabled]="!canChange">
+                        [disabled]="!editable">
                         <mat-option *ngFor="let quantity of availableQuantities" [value]="quantity">
                                 {{quantity}}
                         </mat-option>

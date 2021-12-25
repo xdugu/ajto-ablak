@@ -57,7 +57,7 @@ export class ConfigService {
         hierarchyParams = hierarchyParams.set('domain', window.location.href);
       }
       else{
-        hierarchyParams = hierarchyParams.set('storeId', 'RampParadise');
+        hierarchyParams = hierarchyParams.set('storeId', 'KutyaLepcso');
       }
     } else{
       console.log(this.host);

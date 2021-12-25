@@ -296,7 +296,7 @@ export class ProductComponent implements OnInit {
     this.prefService.setPreference('currency', this.currencyPref);
   }
 
-  // called when customoer wants to request more customization of an item
+  // called when customer wants to request more customization of an item
   onCustomizeClick(): void{
     let questions = this.product.Metadata.find(item => item.name === `custom_qs_${this.siteLang}`);
     questions = questions || {value: null};

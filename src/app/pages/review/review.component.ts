@@ -6,7 +6,6 @@ import { BasketService, BasketInterface} from '@app/shared-services/basket.servi
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '@app/shared-module/components/dialog/dialog.component';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -20,14 +19,12 @@ export class ReviewComponent implements OnInit {
   customerComments = '';
   preferences: PreferencesInterface = null;
   paymentTypes = null;
-  bucketUrl: string = null;
   lang = null;
 
   constructor(private customerDetailsService: CustomerDetailsService,
               private prefService: PreferencesService,
               private configService: ConfigService,
               private basketService: BasketService,
-              private dialog: MatDialog,
               private route: Router,
               private titleService: Title,
               private langService: LanguageService) { }
@@ -44,10 +41,6 @@ export class ReviewComponent implements OnInit {
       next: paymentTypes => {
         this.paymentTypes = paymentTypes;
       }
-    });
-
-    this.configService.getConfig('imgSrc').subscribe({
-      next: bucketUrl => this.bucketUrl = bucketUrl
     });
 
     this.basketService.getBasket().subscribe({
