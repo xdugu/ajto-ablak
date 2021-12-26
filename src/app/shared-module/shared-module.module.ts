@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DocumentDirective } from './directives/document.directive';
 import { LazyLoadDirective } from './directives/lazy-load.directive';
 import { FlowImagePipe } from './pipes/flow-image.pipe';
 import { ObjectFilterPipe } from './pipes/object-filter.pipe';
@@ -17,8 +16,8 @@ import { KeycountPipe } from './pipes/keycount.pipe';
 
 
 @NgModule({
-  declarations: [DocumentDirective, FlowImagePipe,
-    ObjectFilterPipe, DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent, AppCurrencyPipe, KeycountPipe],
+  declarations: [FlowImagePipe,ObjectFilterPipe, DialogComponent, LazyLoadDirective,
+    ImageSourcePipe, CurrencyChooserComponent, AppCurrencyPipe, KeycountPipe],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -26,7 +25,7 @@ import { KeycountPipe } from './pipes/keycount.pipe';
     MatChipsModule
   ],
   exports: [
-     DocumentDirective, FlowImagePipe, ObjectFilterPipe, AppCurrencyPipe, KeycountPipe,
+      FlowImagePipe, ObjectFilterPipe, AppCurrencyPipe, KeycountPipe,
       DialogComponent, LazyLoadDirective, ImageSourcePipe, CurrencyChooserComponent
   ],
   providers: [

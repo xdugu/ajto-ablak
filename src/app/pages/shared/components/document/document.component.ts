@@ -16,13 +16,13 @@ export class DocumentComponent implements OnInit, OnChanges {
   constructor(private apiService: ApiManagerService) { }
 
   ngOnInit(): void {
-    if (this.documents.length > 0 && this.storeId){
+    if (this.documents && this.documents.length > 0 && this.storeId){
       this.getDocuments();
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.documents.length > 0 && this.storeId){
+    if (this.documents && this.documents.length > 0 && this.storeId){
       this.getDocuments();
     }
   }

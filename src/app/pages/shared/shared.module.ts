@@ -28,8 +28,8 @@ import { DocumentLoaderDirective } from './directives/document-loader.directive'
     MatFormFieldModule,
     MatExpansionModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, 
-    BasketItemsComponent, DocumentComponent]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe,
+    BasketItemsComponent, DocumentComponent, DocumentLoaderDirective]
 })
 export class SharedModule {
   static forRoot(): any{
