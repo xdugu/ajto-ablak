@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { BasketInterface, BasketService } from '@app/shared-services/basket.service';
@@ -85,7 +86,8 @@ export class CibComponent implements OnInit {
               private apiManager: ApiManagerService,
               private configService: ConfigService,
               private dialog: MatDialog,
-              private routeInfo: ActivatedRoute) { }
+              private routeInfo: ActivatedRoute,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.prefService.getPreferences().subscribe({
@@ -203,10 +205,12 @@ export class CibComponent implements OnInit {
           width: '350px',
           data: {
             title: null,
-            content: `${this.messages.confirmRedirect[this.lang]}<br>
+            content: this.sanitizer.bypassSecurityTrustHtml(
+              `${this.messages.confirmRedirect[this.lang]}<br>
                       <img src="assets/cib/CIB_payment_logo.png" alt="cib" style="width:300px"><br>
                       <img src="assets/cib/${this.lang}/CIB_accepted_cards.png" style="width:300px">
-                    `,
+                    `
+            ),
             buttons: [
               {
                 id: 'Confirm',
