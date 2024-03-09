@@ -30,7 +30,7 @@
     <unit id="LegalInformation">
       <notes>
         <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:36</note>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:28,29</note>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:29,30</note>
         <note category="location">src/app/pages/legal/legal.component.html:1</note>
       </notes>
       <segment>
@@ -47,7 +47,7 @@
     </unit>
     <unit id="1624373425123597262">
       <notes>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:37</note>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:38</note>
         <note category="description">@CardPaymentProvider</note>
       </notes>
       <segment>
@@ -56,7 +56,7 @@
     </unit>
     <unit id="7977905855119269307">
       <notes>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:43</note>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:44</note>
         <note category="description">@AcceptedCards</note>
       </notes>
       <segment>
@@ -107,10 +107,37 @@
     </unit>
     <unit id="PayByCard">
       <notes>
-        <note category="location">src/app/pages/review/payments/cib/cib.component.html:7,8</note>
+        <note category="location">src/app/pages/review/payments/cib/cib.component.html:9,10</note>
       </notes>
       <segment>
         <source> Pay securely by card </source>
+      </segment>
+    </unit>
+    <unit id="HintCoupon">
+      <notes>
+        <note category="location">src/app/pages/basket/coupon/coupon.component.html:5</note>
+        <note category="description">Hint on space to enter Coupon code</note>
+      </notes>
+      <segment>
+        <source>Coupon Code</source>
+      </segment>
+    </unit>
+    <unit id="ApplyCode">
+      <notes>
+        <note category="location">src/app/pages/basket/coupon/coupon.component.html:14,15</note>
+        <note category="description">Button to apply code</note>
+      </notes>
+      <segment>
+        <source>Apply </source>
+      </segment>
+    </unit>
+    <unit id="Remove">
+      <notes>
+        <note category="location">src/app/pages/basket/coupon/coupon.component.html:18,19</note>
+        <note category="location">src/app/pages/basket/basket.component.html:40,41</note>
+      </notes>
+      <segment>
+        <source>Remove </source>
       </segment>
     </unit>
     <unit id="Blog">
@@ -151,7 +178,7 @@
         <note category="location">src/app/pages/product/product.component.html:49,50</note>
       </notes>
       <segment>
-        <source> I would like to a customize this item </source>
+        <source> I would like to customize this item </source>
       </segment>
     </unit>
     <unit id="Basket">
@@ -168,15 +195,6 @@
       </notes>
       <segment>
         <source>Your basket is empty</source>
-      </segment>
-    </unit>
-    <unit id="Remove">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:40,41</note>
-        <note category="description">Text to remove from basket</note>
-      </notes>
-      <segment>
-        <source> Remove </source>
       </segment>
     </unit>
     <unit id="Quantity">
@@ -214,28 +232,28 @@
         <source>Choose a courier:</source>
       </segment>
     </unit>
-    <unit id="Delivery">
+    <unit id="Subtotal">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:96</note>
         <note category="location">src/app/pages/review/review.component.html:43</note>
       </notes>
       <segment>
-        <source>Delivery:</source>
+        <source>Subtotal:</source>
       </segment>
     </unit>
-    <unit id="Subtotal">
+    <unit id="Delivery">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:101</note>
-        <note category="location">src/app/pages/review/review.component.html:49</note>
+        <note category="location">src/app/pages/basket/basket.component.html:97</note>
+        <note category="location">src/app/pages/review/review.component.html:44</note>
       </notes>
       <segment>
-        <source>Subtotal:</source>
+        <source>Delivery:</source>
       </segment>
     </unit>
     <unit id="Total">
       <notes>
         <note category="location">src/app/pages/basket/basket.component.html:102</note>
-        <note category="location">src/app/pages/review/review.component.html:50</note>
+        <note category="location">src/app/pages/review/review.component.html:49</note>
       </notes>
       <segment>
         <source>Total:</source>
@@ -251,8 +269,8 @@
     </unit>
     <unit id="Discount">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:98</note>
-        <note category="location">src/app/pages/review/review.component.html:45</note>
+        <note category="location">src/app/pages/basket/basket.component.html:99</note>
+        <note category="location">src/app/pages/review/review.component.html:46</note>
       </notes>
       <segment>
         <source>Discount:</source>
@@ -428,7 +446,7 @@
     </unit>
     <unit id="LeaveComment">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:81</note>
+        <note category="location">src/app/pages/review/review.component.html:80</note>
         <note category="description">Prompt to leave a comment</note>
       </notes>
       <segment>
@@ -437,7 +455,7 @@
     </unit>
     <unit id="OrderDetails">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:56</note>
+        <note category="location">src/app/pages/review/review.component.html:55</note>
       </notes>
       <segment>
         <source>Order Details</source>
@@ -445,7 +463,7 @@
     </unit>
     <unit id="PostTo">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:69</note>
+        <note category="location">src/app/pages/review/review.component.html:68</note>
         <note category="description">where to post package</note>
       </notes>
       <segment>

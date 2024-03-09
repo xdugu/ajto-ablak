@@ -4,12 +4,14 @@ import { ConfigService } from '@app/shared-services/config.service';
 import { ProductGetterService } from '../shared/services/product-getter.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { BasketService } from '@app/shared-services/basket.service';
+import { ScreenTypeService } from '@app/shared-services/screen-type.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PreferencesService } from '@app/shared-services/preferences.service';
 import { Title } from '@angular/platform-browser';
 import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageSourcePipe } from '@app/shared-module/pipes/image-source.pipe';
+import { IProductGalleryFlow } from '../shared/components/product-gallery/product-gallery.component';
 
 @Component({
   selector: 'app-product',
@@ -25,12 +27,14 @@ export class ProductComponent implements OnInit {
   currencyPref = null;
   customQuestions = false;
   commonDocuments = [];
-
+  screenType = 'mobile';
   siteLang = null;
+  accessoriesFlow: IProductGalleryFlow = null
   private priceElement: ElementRef;
   private slickModal: any;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
+              private screenService: ScreenTypeService,
               config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
@@ -50,6 +54,9 @@ export class ProductComponent implements OnInit {
     prefService.getPreferences().subscribe({
       next: pref => this.currencyPref = pref.currency
     });
+
+    screenService.getScreenTypeUpdate().subscribe({next: state => this.screenType = state})
+
   }
 
   @ViewChild('price') set content(content: ElementRef) {
@@ -99,12 +106,26 @@ export class ProductComponent implements OnInit {
           this.linkImagesToVariants();
           this.setupVariants();
         }
+        if(this.product.Accessories.length > 0){
+          this.buildAccessoriesFlow(this.product.Accessories)
+        }
       }).catch(() => {
         this.route.navigate(['/']);
       });
     });
 
     this.langService.getLang().then(lang => this.siteLang = lang);
+  }
+
+  // create a flow object to build gallery of accessoeries attached to product
+  private buildAccessoriesFlow(accessories: string[]): void{
+    this.accessoriesFlow = {
+      title: {
+        en: "Accessories with this item",
+        hu: "Kiegészítők ehhez a termékhez"
+      },
+      items: accessories
+    }
   }
 
   // attach images to variants to be used by view

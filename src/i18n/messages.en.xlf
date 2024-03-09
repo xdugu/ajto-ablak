@@ -27,7 +27,7 @@
     </unit><unit id="LegalInformation">
       <notes>
         
-      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:36</note><note category="location">src/app/fixed-elements/footer/footer.component.html:28</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
+      <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:36</note><note category="location">src/app/fixed-elements/footer/footer.component.html:29</note><note category="location">src/app/pages/legal/legal.component.html:1</note></notes>
       <segment state="final">
         <source> Legal Information </source>
       <target> Legal Information </target></segment>
@@ -40,17 +40,17 @@
       <target> Blog </target></segment>
     </unit><unit id="1624373425123597262">
       <notes>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:37</note>
+        
         <note category="description">@CardPaymentProvider</note>
-      </notes>
+      <note category="location">src/app/fixed-elements/footer/footer.component.html:38</note></notes>
       <segment state="final">
         <source>Card payment provider</source>
       <target>Card payment provider</target></segment>
     </unit><unit id="7977905855119269307">
       <notes>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:43</note>
+        
         <note category="description">@AcceptedCards</note>
-      </notes>
+      <note category="location">src/app/fixed-elements/footer/footer.component.html:44</note></notes>
       <segment state="final">
         <source>Accepted cards</source>
       <target>Accepted cards</target></segment>
@@ -88,8 +88,8 @@
         
       <note category="location">src/app/pages/product/product.component.html:49</note></notes>
       <segment state="final">
-        <source> I would like to a customize this item </source>
-      <target> I would like to a customize this item </target></segment>
+        <source> I would like to customize this item </source>
+      <target> I would like to customize this item </target></segment>
     </unit><unit id="PayOnDelivery">
       <notes>
         
@@ -198,11 +198,27 @@
       <target> Read More </target></segment>
     </unit><unit id="PayByCard">
       <notes>
-        <note category="location">src/app/pages/review/payments/cib/cib.component.html:7,8</note>
-      </notes>
+        
+      <note category="location">src/app/pages/review/payments/cib/cib.component.html:9</note></notes>
       <segment state="final">
         <source> Pay securely by card </source>
       <target> Pay securely by card </target></segment>
+    </unit><unit id="HintCoupon">
+      <notes>
+        <note category="location">src/app/pages/basket/coupon/coupon.component.html:5</note>
+        <note category="description">Hint on space to enter Coupon code</note>
+      </notes>
+      <segment state="final">
+        <source>Coupon Code</source>
+      <target>Coupon Code</target></segment>
+    </unit><unit id="ApplyCode">
+      <notes>
+        <note category="location">src/app/pages/basket/coupon/coupon.component.html:14,15</note>
+        <note category="description">Button to apply code</note>
+      </notes>
+      <segment state="final">
+        <source>Apply </source>
+      <target>Apply </target></segment>
     </unit><unit id="PhoneNumber">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:27</note>
@@ -312,8 +328,8 @@
     </unit><unit id="Remove">
       <notes>
         
-        <note category="description">Text to remove from basket</note>
-      <note category="location">src/app/pages/basket/basket.component.html:40</note></notes>
+        
+      <note category="location">src/app/pages/basket/coupon/coupon.component.html:18</note><note category="location">src/app/pages/basket/basket.component.html:40</note></notes>
       <segment state="final">
         <source>Remove</source>
       <target>Remove</target></segment>
@@ -350,21 +366,21 @@
     </unit><unit id="Delivery">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:96</note><note category="location">src/app/pages/review/review.component.html:43</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:97</note><note category="location">src/app/pages/review/review.component.html:44</note></notes>
       <segment state="final">
         <source>Delivery:</source>
       <target>Delivery:</target></segment>
     </unit><unit id="Subtotal">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:101</note><note category="location">src/app/pages/review/review.component.html:49</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:96</note><note category="location">src/app/pages/review/review.component.html:43</note></notes>
       <segment state="final">
         <source>Subtotal:</source>
       <target>Subtotal:</target></segment>
     </unit><unit id="Total">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:102</note><note category="location">src/app/pages/review/review.component.html:50</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:102</note><note category="location">src/app/pages/review/review.component.html:49</note></notes>
       <segment state="final">
         <source>Total:</source>
       <target>Total:</target></segment>
@@ -372,14 +388,14 @@
       <notes>
         
         <note category="description">Prompt to leave a comment</note>
-      <note category="location">src/app/pages/review/review.component.html:81</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:80</note></notes>
       <segment state="final">
         <source>Leave a comment</source>
       <target>Leave a comment</target></segment>
     </unit><unit id="OrderDetails">
       <notes>
         
-      <note category="location">src/app/pages/review/review.component.html:56</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:55</note></notes>
       <segment state="final">
         <source>Order Details</source>
       <target>Order Details</target></segment>
@@ -387,7 +403,7 @@
       <notes>
         
         <note category="description">where to post package</note>
-      <note category="location">src/app/pages/review/review.component.html:69</note></notes>
+      <note category="location">src/app/pages/review/review.component.html:68</note></notes>
       <segment state="final">
         <source>Post To:</source>
       <target>Post To:</target></segment>
@@ -401,7 +417,7 @@
     </unit><unit id="Discount">
       <notes>
         
-      <note category="location">src/app/pages/basket/basket.component.html:98</note><note category="location">src/app/pages/review/review.component.html:45</note></notes>
+      <note category="location">src/app/pages/basket/basket.component.html:99</note><note category="location">src/app/pages/review/review.component.html:46</note></notes>
       <segment state="final">
         <source>Discount:</source>
       <target>Discount:</target></segment>

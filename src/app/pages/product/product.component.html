@@ -168,5 +168,15 @@
       </mat-expansion-panel>
     </ng-container>
   </mat-accordion>
+  <div *ngIf="accessoriesFlow">
+    <app-product-gallery 
+      [currency]="currencyPref.chosen"
+      [showPrice]="true"
+      [lang]="siteLang"
+      [screenType]="screenType"
+      [flow]="accessoriesFlow"
+      >
+    </app-product-gallery>
+  </div>
   <div style="height:200px"></div>
 </ng-container>

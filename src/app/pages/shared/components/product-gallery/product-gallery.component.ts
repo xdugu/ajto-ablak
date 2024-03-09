@@ -2,6 +2,10 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { ProductGetterService} from '@app/pages/shared/services/product-getter.service';
 import { ConfigService } from '@app/shared-services/config.service';
 
+export interface IProductGalleryFlow{
+  title: { en?: string, hu?: string}
+  items: string[]
+}
 
 @Component({
   selector: 'app-product-gallery',
@@ -10,7 +14,7 @@ import { ConfigService } from '@app/shared-services/config.service';
 })
 export class ProductGalleryComponent implements OnInit, OnChanges {
   @Input() screenType = 'mobile';
-  @Input() flow: any = null;
+  @Input() flow: IProductGalleryFlow = null;
   @Input() showPrice = false;
   @Input() lang = null;
   @Input() currency: string = null;
