@@ -207,6 +207,7 @@ export class CibComponent implements OnInit {
             title: null,
             content: this.sanitizer.bypassSecurityTrustHtml(
               `${this.messages.confirmRedirect[this.lang]}<br>
+                    <p>A Kereskedő / Horváth Patrícia E.V. Székhelyének országa és országkódja: Magyarország (HU)</p>
                       <img src="assets/cib/CIB_payment_logo.png" alt="cib" style="width:300px"><br>
                       <img src="assets/cib/${this.lang}/CIB_accepted_cards.png" style="width:300px">
                     `

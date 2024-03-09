@@ -1,0 +1,22 @@
+<ng-container>
+    <form #couponForm="ngForm">  
+            <mat-form-field >
+                <mat-label>
+                    <span i18n="Hint on space to enter Coupon code@@HintCoupon">Coupon Code</span>
+                </mat-label>
+                <input *ngIf="discountInfo == null" matInput id="couponRef" name="coupon" type="text"
+                        [(ngModel)]="couponCode" #code="ngModel" minlength="4">
+                <input *ngIf="discountInfo" matInput disabled type="text" [value]="discountInfo.code">
+            </mat-form-field>
+            <!-- Button to use to activate discount -->
+            <button *ngIf="discountInfo == null" mat-flat-button  color="primary" style="margin-left: 8px;"
+                [disabled]="couponCode.length < 4"
+                (click)="onAddCoupon()" i18n="Button to apply code@@ApplyCode">Apply
+            </button>
+            <!-- Button to use to remove discount -->
+            <button *ngIf="discountInfo" mat-flat-button  color="primary" style="margin-left: 8px;"
+                (click)="onRemoveCoupon()" i18n="@@Remove">Remove
+            </button>
+
+    </form>
+</ng-container>

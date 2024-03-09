@@ -1,6 +1,8 @@
 <ng-container *ngIf="preferences && customer">
     <div ng-if="currency=='HUF'">
-        <span>{{preferences.countryCode | countryCode : lang}}({{preferences.countryCode}})</span><br>
+        <!--span>{{preferences.countryCode | countryCode : lang}}({{preferences.countryCode}})</span-->
+        <span>A Kereskedő / Horváth Patrícia E.V. Székhelyének országa és országkódja: Magyarország (HU)</span>
+        <br>
         <button mat-raised-button color="accent" i18n="@@PayByCard" 
                 (click)="onPaymentMethodActivation()"
                 [style.width.px]="width" class="w3-mobile">

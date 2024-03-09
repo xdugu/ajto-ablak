@@ -75,6 +75,10 @@ export class BasketComponent implements OnInit {
       });
   }
 
+  onCouponChange(basket: BasketInterface): void{
+    this.basket = basket;
+  }
+
   onCountryChange(event: MatSelectChange): void{
     this.prefService.setPreference('countryCode', event.value);
     this.preferences.countryCode = event.value;

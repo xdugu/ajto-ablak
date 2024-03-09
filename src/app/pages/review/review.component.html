@@ -40,13 +40,12 @@
             </div><!-- end of one basket item-->  
 
             <div class="w3-margin-top">
+                <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                 <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                 <ng-container *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
                     <b i18n="@@Discount">Discount:</b> 
-                    <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
+                    <span class="price"> - {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                 </ng-container>
-
-                <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                 <b i18n="@@Total">Total:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
             </div>
 

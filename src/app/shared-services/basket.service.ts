@@ -67,6 +67,52 @@ export class BasketService {
     return this.basketCount;
   }
 
+  applyCoupon(coupon: string): Promise<BasketInterface>{
+    return new Promise((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe({
+        next: (storeId) => {
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/coupon/add', new HttpParams(), {
+                basketId: this.basketId,
+                storeId,
+                discountCode: coupon
+            }).subscribe({
+                next: (basket: BasketInterface) => {
+                        this.basketId = basket.BasketId;
+                        this.tokenService.setString('BasketId', this.basketId);
+                        this.basket = basket;
+                        resolve(this.basket);
+                      },
+                error: (err) => reject(err)
+            });
+        }
+      });
+    });
+
+  }
+
+  removeCoupon(coupon: string): Promise<BasketInterface>{
+    return new Promise((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe({
+        next: (storeId) => {
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/coupon/remove', new HttpParams(), {
+                basketId: this.basketId,
+                storeId,
+                discountCode: coupon
+            }).subscribe({
+                next: (basket: BasketInterface) => {
+                        this.basketId = basket.BasketId;
+                        this.tokenService.setString('BasketId', this.basketId);
+                        this.basket = basket;
+                        resolve(this.basket)
+                      },
+                error: (err) => reject(err)
+            });
+        }
+      });
+    });
+
+  }
+
   // adds an item to basket
   addToBasket(itemId: string, combination: any): Observable<BasketInterface>{
     return new Observable(observer => {

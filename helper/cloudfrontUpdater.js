@@ -5,7 +5,7 @@ var lambda = new AWS.Lambda({region: 'us-east-1'});
 
 var cloudfront = new AWS.CloudFront();
 
-dists = ['EXBCB4YMVSX0M', 'E33WHZF3DSSW8E', 'E3T70XYJB9Y60Q'];
+dists = ['EXBCB4YMVSX0M', 'E3T70XYJB9Y60Q'];
 async function updateDistributions(distributions){
 
     // get live alias to get latest version

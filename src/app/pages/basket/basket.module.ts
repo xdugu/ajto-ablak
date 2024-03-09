@@ -13,12 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule} from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CouponComponent } from './coupon/coupon.component';
 
 
 
 @NgModule({
-  declarations: [BasketComponent],
+  declarations: [BasketComponent, CouponComponent],
   imports: [
     CommonModule,
     BasketRoutingModule,
@@ -31,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDialogModule,
     SharedModule
   ]
 })

@@ -74,11 +74,11 @@
                         {{country.key | countryCode : lang}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field><br><br>
+            </mat-form-field><br>
 
             <div *ngIf="basket.hasOwnProperty('Costs') && preferences.countryCode != null &&
                         preferences.countryCode.length == 2">
-                
+                <app-coupon [discountInfo]="basket.Discount" (couponChange)="onCouponChange($event)"></app-coupon>
                 <div *ngIf="(basket.Costs[preferences.countryCode] | keycount) > 1">
                     <label i18n="@@ChooseCourier">Choose a courier:</label>
                     <mat-radio-group class="radio-group"
@@ -93,12 +93,12 @@
                 </div>
 
                 <div *ngIf="preferences.deliveryMethod != null">
+                    <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     <b i18n="@@Delivery">Delivery:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.delivery[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     <span *ngIf="basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] > 0">
                         <b i18n="@@Discount">Discount:</b> 
-                        <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
+                        <span class="price"> - {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.discount[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     </span>
-                    <b i18n="@@Subtotal">Subtotal:</b> <span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.subTotal[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span><br>
                     <b i18n="@@Total">Total:</b><span class="price"> {{basket.Costs[preferences.countryCode][preferences.deliveryMethod].payBeforeDelivery.total[preferences.currency.chosen.toLowerCase()] | appCurrency: preferences.currency.chosen}}</span> <br><br>
                     <a mat-raised-button color="primary" [routerLink]="['/checkout']" i18n="@@ProceedToCheckout"> Proceed to checkout</a>
                 </div>
