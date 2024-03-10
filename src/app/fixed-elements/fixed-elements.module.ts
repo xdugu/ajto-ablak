@@ -19,11 +19,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LangUrlPipe } from './footer/lang-url.pipe';
 import { SearchComponent } from './search/search.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe, SearchComponent],
+  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe, SearchComponent, NotificationsComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -40,6 +41,6 @@ import { SearchComponent } from './search/search.component';
     MatInputModule,
     FormsModule
   ],
-  exports: [HeaderComponent, FooterComponent, SideBarComponent, SearchComponent]
+  exports: [HeaderComponent, FooterComponent, SideBarComponent, SearchComponent, NotificationsComponent]
 })
 export class FixedElementsModule { }

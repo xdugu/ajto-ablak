@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
   private slickModal: any;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
-              private screenService: ScreenTypeService,
+              screenService: ScreenTypeService,
               config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
@@ -94,6 +94,9 @@ export class ProductComponent implements OnInit {
     // will get a callback anytime there is a change in the category path
     params.subscribe(param => {
       const productId = param.get('productId');
+      // Reset variables so product to product navigation does not ave remnants of old artifacts
+      this.product = null;
+      this.accessoriesFlow = null;
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
         this.titleService.setTitle(this.product.Title[this.siteLang]);

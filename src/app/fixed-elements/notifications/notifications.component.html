@@ -1,0 +1,7 @@
+<ng-container *ngFor="let noti of notifications">
+    <ng-container *ngIf="noti.Info.type == 'banner' && lang == noti.Info.lang && noti.Metadata.visible">
+        <div [appDocument]="noti.Info.contentRef" [storeId]="storeId" #content
+            [contentRef]="content" class="w3-padding">
+        </div>
+    </ng-container>
+</ng-container>
