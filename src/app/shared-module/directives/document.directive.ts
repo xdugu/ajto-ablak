@@ -11,7 +11,7 @@ export class DocumentDirective implements OnChanges{
   @Input() titleRef = null;
   @Input() contentRef = null;
 
-  constructor(private el: ElementRef, private apiSerivice: ApiManagerService) {
+  constructor(private el: ElementRef, private apiService: ApiManagerService) {
     if (this.appDocument != null && this.storeId != null){
       this.getDocument();
     }
@@ -28,7 +28,7 @@ export class DocumentDirective implements OnChanges{
               .set('storeId', this.storeId)
               .set('documentId', this.appDocument);
 
-    this.apiSerivice.get(API_MODE.OPEN, API_METHOD.GET, 'document', params).subscribe({
+    this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'document', params).subscribe({
       next: (doc: any) => {
         if (this.titleRef){
           this.titleRef.innerHTML = doc.Info.title;

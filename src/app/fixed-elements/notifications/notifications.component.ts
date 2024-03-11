@@ -5,13 +5,15 @@ import { ApiManagerService, API_MODE, API_METHOD } from '@app/shared-services/ap
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { HttpParams } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent, DialogInterface } from '@app/shared-module/components/dialog/dialog.component';
 
 export interface INotificationServer{
   ItemId: string,
   StoreId: string,
   LastUpdated: number,
   Info: {
-    type: "banner" | "popup"
+    type: "banner" | "overlay"
     contentRef: string
     delay: number
     enabled: boolean
@@ -43,7 +45,8 @@ export class NotificationsComponent implements OnInit {
     private tokenService: TokenStorageService,
     private apiService: ApiManagerService,
     private configService: ConfigService,
-    private langService: LanguageService
+    private langService: LanguageService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +85,28 @@ export class NotificationsComponent implements OnInit {
       const exp = new RegExp(notification.Info.match);
       if (path.search(exp)>= 0){
         notification.Metadata.visible = true
+        if (notification.Info.type == 'overlay'){
+          if(Date.now() - notification.Metadata.lastShown > notification.Info.frequency){
+            setTimeout(() => {
+              const params = new HttpParams().set('storeId', this.storeId).set('documentId', notification.Info.contentRef);
+              this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'document', params).subscribe({
+                next: (doc: any) => {
+                  const dialogData: DialogInterface = {
+                    title: doc.Info.title,
+                    content: doc.Info.content,
+                    buttons: []
+                  };
+                  this.dialog.open(DialogComponent, {
+                    data: dialogData
+                  });
+                  notification.Metadata.lastShown = Date.now()
+                  // Save the last updated value
+                  this.tokenService.setObj("Notifications", this.notifications)
+                } // next
+              }); // api service call
+            }, notification.Info.delay);// timeout
+          }
+        }
       }
       else {
         notification.Metadata.visible = false
