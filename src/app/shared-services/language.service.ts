@@ -15,6 +15,10 @@ export class LanguageService {
     else if (locale.indexOf('hu') >= 0){
       this.lang = 'hu';
     }
+    else if (locale.indexOf('de') >= 0){
+      this.lang = 'de';
+    }
+    else console.error("Unknown lang of webpage")
   }
 
   getLang(): Promise<string>{

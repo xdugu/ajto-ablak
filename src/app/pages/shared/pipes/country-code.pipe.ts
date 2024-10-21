@@ -8,50 +8,62 @@ export class CountryCodePipe implements PipeTransform {
     HU: {
         en: 'Hungary',
         hu: 'Magyarország',
+        de: "Ungarn"
     },
     DE: {
         en: 'Germany',
-        hu: 'Németország'
+        hu: 'Németország',
+        de: 'Deutschland'
     },
     AT: {
         en: 'Austria',
-        hu: 'Ausztria'
+        hu: 'Ausztria',
+        de: 'Österreich'
     },
     GB: {
         en: 'United Kingdom',
-        hu: 'Egyesült Királyság'
+        hu: 'Egyesült Királyság',
+        de: 'Vereinigtes Königreich'
     },
     SK: {
       en: 'Slovakia',
-      hu: 'Szlovákia'
+      hu: 'Szlovákia',
+      de: 'Slowakei'
     },
     RO: {
       en: 'Romania',
-      hu: 'Románia'
+      hu: 'Románia',
+      de: 'Rumänien'
     },
     CH: {
       en: 'Switzerland',
-      hu: 'Svájc'
+      hu: 'Svájc',
+      de: 'Schweiz'
     },
     NL: {
       en: 'Netherlands',
-      hu: 'Hollandia'
+      hu: 'Hollandia',
+      de: 'Niederlande'
     },
     BE: {
       en: 'Belgium',
-      hu: 'Belgium'
+      hu: 'Belgium',
+      de: 'Belgien'
     },
     PO: {
       en: 'Poland',
-      hu: 'Lengyelország'
+      hu: 'Lengyelország',
+      de: 'Polen'
     },
     FR: {
       en: 'France',
-      hu: 'Franciaország'
+      hu: 'Franciaország',
+      de: 'Frankreich'
     },
     BG: {
       en: 'Bulgaria',
-      hu: 'Bulgária'
+      hu: 'Bulgária',
+      de: 'Bulgarien'
     }
   };
 

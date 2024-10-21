@@ -301,14 +301,14 @@ export class ProductComponent implements OnInit {
   addToBasket(): void{
     this.basketService.addToBasket(this.product.ItemId, this.pickedSpec).subscribe(
       () => {
-         const msg = {en: 'Item added successfully', hu: 'A termék a kosaradba került'};
+         const msg = {en: 'Item added successfully', hu: 'A termék a kosaradba került', de: 'Artikel erfolgreich hinzugefügt'};
          this.snackBar.open(msg[this.siteLang], '', {
              duration: 2000
          });
       },
       (err) => {
         console.log(err);
-        const msg = {en: 'Error', hu: 'Hiba :-<'};
+        const msg = {en: 'Error', hu: 'Hiba :-<', de: 'Error :-<'};
         this.snackBar.open(msg[this.siteLang], '', {
           duration: 4000
       });

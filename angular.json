@@ -18,7 +18,8 @@
           "code": "en"
         },
         "locales": {
-          "hu": "src/i18n/messages.hu.xlf"
+          "hu": "src/i18n/messages.hu.xlf",
+          "de": "src/i18n/messages.de.xlf"
         }
       },
       "architect": {
@@ -83,6 +84,13 @@
               "i18nFile": "src/i18n/messages.hu.xlf",
               "i18nFormat": "xlf2",
               "i18nLocale": "hu"
+            },
+            "de": {
+              "aot": true,
+              "outputPath": "dist/ajto-ablak-hu",
+              "i18nFile": "src/i18n/messages.de.xlf",
+              "i18nFormat": "xlf2",
+              "i18nLocale": "de"
             }
           }
         },
@@ -97,6 +105,9 @@
             },
             "hu": {
               "browserTarget": "ajto-ablak:build:hu"
+            },
+            "de": {
+              "browserTarget": "ajto-ablak:build:de"
             }
           }
         },
@@ -208,7 +219,8 @@
               "defaultLanguage": "en",
               "languages": [
                 "en",
-                "hu"
+                "hu",
+                "de"
               ]
             }
           }

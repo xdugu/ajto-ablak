@@ -17,7 +17,8 @@ export class FooterComponent implements OnInit {
   currentUrl: string = null;
   langDict = {
     en: 'English',
-    hu: 'Magyar'
+    hu: 'Magyar',
+    de: 'Deutsch'
   };
   externalLinks = [];
   paymentTypes = [];
