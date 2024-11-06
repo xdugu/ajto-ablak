@@ -31,14 +31,17 @@ export class PaypalComponent implements OnInit {
     paymentSuccessful: {
       title: {
         en: 'Order Successful',
-        hu: 'Rendelés megerősítése'
+        hu: 'Rendelés megerősítése',
+        de: 'Order Successful',
       },
       content: {
         en: `Thank you for your order. We will ship your item as soon as we can.
           Thank you for shopping with us`,
         hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>,
           kérjük vegye fel velünk a kapcsolatot!
-          Megrendelését hamarosan kézbesítjük!`
+          Megrendelését hamarosan kézbesítjük!`,
+        de: `Thank you for your order. We will ship your item as soon as we can.
+          Thank you for shopping with us`,
       }
     }
   };

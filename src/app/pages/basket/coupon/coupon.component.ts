@@ -20,7 +20,8 @@ export class CouponComponent implements OnInit {
   couponCode = '';
   messages = {
     en: "Coupon code is invalid",
-    hu: "A kuponkód helytelen"
+    hu: "A kuponkód helytelen",
+    de: "Coupon code is invalid"
   }
 
   constructor(

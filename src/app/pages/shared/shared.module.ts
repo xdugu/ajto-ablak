@@ -10,17 +10,18 @@ import { ProductGetterService } from './services/product-getter.service';
 import { BlogGetterService} from './services/blog-getter.service';
 import { IndexOfPipe } from './pipes/index-of.pipe';
 import { ProductGalleryComponent } from './components/product-gallery/product-gallery.component';
+import { SanitizePipe } from './pipes/sanitize.pipe';
 
 
 
 @NgModule({
-  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent],
+  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe],
   imports: [
     CommonModule,
     SharedModuleModule,
     RouterModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe]
 })
 export class SharedModule {
   static forRoot(): any{

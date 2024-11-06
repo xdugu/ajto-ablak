@@ -7,7 +7,8 @@
                     home-lander-msg w3-animate-opacity"
         style="width: 80%; margin-top: 5%;"
         [style.color]="flow.colour" 
-        [style]="'border: 2px solid ' + flow.colour">
+        [style]="'border: 2px solid ' + flow.colour"
+        [innerHTML]="flow.title[lang] | sanitize">
           {{flow.title[lang]}}
     </h1>
 </div>

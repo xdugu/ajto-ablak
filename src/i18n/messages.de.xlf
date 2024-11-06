@@ -8,7 +8,7 @@
       </notes>
       <segment state="initial">
         <source>Contact us</source>
-      <target>Contact us</target></segment>
+      <target>Kontakt</target></segment>
     </unit>
     <unit id="AboutUs">
       <notes>
@@ -17,7 +17,7 @@
       </notes>
       <segment state="initial">
         <source>About</source>
-      <target>About</target></segment>
+      <target>Über uns</target></segment>
     </unit>
     <unit id="ProductRange">
       <notes>
@@ -25,7 +25,7 @@
       </notes>
       <segment state="initial">
         <source>Product Range</source>
-      <target>Product Range</target></segment>
+      <target>Produktpalette</target></segment>
     </unit>
     <unit id="LegalInformation">
       <notes>
@@ -35,7 +35,7 @@
       </notes>
       <segment state="initial">
         <source> Legal Information </source>
-      <target> Legal Information </target></segment>
+      <target>Rechtliche Informationen</target></segment>
     </unit>
     <unit id="Blogs">
       <notes>
@@ -52,7 +52,7 @@
       </notes>
       <segment state="initial">
         <source>Card payment provider</source>
-      <target>Card payment provider</target></segment>
+      <target>Anbieter von Kartenzahlungsdiensten</target></segment>
     </unit>
     <unit id="7977905855119269307">
       <notes>
@@ -61,7 +61,7 @@
       </notes>
       <segment state="initial">
         <source>Accepted cards</source>
-      <target>Accepted cards</target></segment>
+      <target>Akzeptierte Karten</target></segment>
     </unit>
     <unit id="SearchHere">
       <notes>
@@ -69,7 +69,7 @@
       </notes>
       <segment state="initial">
         <source>Search here</source>
-      <target>Search here</target></segment>
+      <target>Suchen Sie hier</target></segment>
     </unit>
     <unit id="View">
       <notes>
@@ -77,7 +77,7 @@
       </notes>
       <segment state="initial">
         <source>View </source>
-      <target>View </target></segment>
+      <target>Ansehen</target></segment>
     </unit>
     <unit id="Close">
       <notes>
@@ -85,7 +85,7 @@
       </notes>
       <segment state="initial">
         <source>Close</source>
-      <target>Close</target></segment>
+      <target>Schließen</target></segment>
     </unit>
     <unit id="PayByCard">
       <notes>
@@ -93,7 +93,7 @@
       </notes>
       <segment state="initial">
         <source> Pay securely by card </source>
-      <target> Pay securely by card </target></segment>
+      <target> Sichere Zahlung per Karte </target></segment>
     </unit>
     <unit id="HintCoupon">
       <notes>
@@ -102,7 +102,7 @@
       </notes>
       <segment state="initial">
         <source>Coupon Code</source>
-      <target>Coupon Code</target></segment>
+      <target>Gutscheincode</target></segment>
     </unit>
     <unit id="ApplyCode">
       <notes>
@@ -111,7 +111,7 @@
       </notes>
       <segment state="initial">
         <source>Apply </source>
-      <target>Apply </target></segment>
+      <target>Anwenden</target></segment>
     </unit>
     <unit id="Remove">
       <notes>
@@ -119,8 +119,8 @@
         <note category="location">src/app/pages/basket/basket.component.html:40,41</note>
       </notes>
       <segment state="initial">
-        <source>Remove </source>
-      <target>Remove </target></segment>
+        <source>Remove</source>
+      <target>Entfernen</target></segment>
     </unit>
     <unit id="Blog">
       <notes>
@@ -138,7 +138,7 @@
       </notes>
       <segment state="initial">
         <source> Read More </source>
-      <target> Read More </target></segment>
+      <target> Mehr lesen </target></segment>
     </unit>
     <unit id="ProductDescription">
       <notes>
@@ -146,7 +146,7 @@
       </notes>
       <segment state="initial">
         <source> Description </source>
-      <target> Description </target></segment>
+      <target> Beschreibung </target></segment>
     </unit>
     <unit id="AddToBasket">
       <notes>
@@ -154,7 +154,7 @@
       </notes>
       <segment state="initial">
         <source> Add To Basket </source>
-      <target> Add To Basket </target></segment>
+      <target> In den Warenkorb </target></segment>
     </unit>
     <unit id="OutOfStock">
       <notes>
@@ -163,7 +163,7 @@
       </notes>
       <segment state="initial">
         <source>Out Of Stock</source>
-      <target>Out Of Stock</target></segment>
+      <target>Ausverkauft</target></segment>
     </unit>
     <unit id="WouldLikeToCustomize">
       <notes>
@@ -171,7 +171,7 @@
       </notes>
       <segment state="initial">
         <source> I would like to customize this item </source>
-      <target> I would like to customize this item </target></segment>
+      <target> Ich möchte dieses Produkt individuell anpassen </target></segment>
     </unit>
     <unit id="Basket">
       <notes>
@@ -179,7 +179,7 @@
       </notes>
       <segment state="initial">
         <source>Basket</source>
-      <target>Basket</target></segment>
+      <target>Warenkorb</target></segment>
     </unit>
     <unit id="BasketIsEmpty">
       <notes>
@@ -187,7 +187,7 @@
       </notes>
       <segment state="initial">
         <source>Your basket is empty</source>
-      <target>Your basket is empty</target></segment>
+      <target>Dein Warenkorb ist leer</target></segment>
     </unit>
     <unit id="Quantity">
       <notes>
@@ -196,7 +196,7 @@
       </notes>
       <segment state="initial">
         <source>Quantity</source>
-      <target>Quantity</target></segment>
+      <target>Menge</target></segment>
     </unit>
     <unit id="SelectCountry">
       <notes>
@@ -205,7 +205,7 @@
       </notes>
       <segment state="initial">
         <source>Select Country</source>
-      <target>Select Country</target></segment>
+      <target>Wählen Sie Land aus</target></segment>
     </unit>
     <unit id="ChooseCountry">
       <notes>
@@ -214,7 +214,7 @@
       </notes>
       <segment state="initial">
         <source> Please choose a country </source>
-      <target> Please choose a country </target></segment>
+      <target> Bitte wählen Sie ein Land aus </target></segment>
     </unit>
     <unit id="ChooseCourier">
       <notes>
@@ -222,7 +222,7 @@
       </notes>
       <segment state="initial">
         <source>Choose a courier:</source>
-      <target>Choose a courier:</target></segment>
+      <target>Wählen Sie einen Versand Kurier:</target></segment>
     </unit>
     <unit id="Subtotal">
       <notes>
@@ -231,7 +231,7 @@
       </notes>
       <segment state="initial">
         <source>Subtotal:</source>
-      <target>Subtotal:</target></segment>
+      <target>Zwischensumme:</target></segment>
     </unit>
     <unit id="Delivery">
       <notes>
@@ -240,7 +240,7 @@
       </notes>
       <segment state="initial">
         <source>Delivery:</source>
-      <target>Delivery:</target></segment>
+      <target>Versandkosten:</target></segment>
     </unit>
     <unit id="Total">
       <notes>
@@ -249,7 +249,7 @@
       </notes>
       <segment state="initial">
         <source>Total:</source>
-      <target>Total:</target></segment>
+      <target>Gesamtsumme:</target></segment>
     </unit>
     <unit id="ProceedToCheckout">
       <notes>
@@ -257,7 +257,7 @@
       </notes>
       <segment state="initial">
         <source> Proceed to checkout</source>
-      <target> Proceed to checkout</target></segment>
+      <target>Gehen Sie zur Kasse</target></segment>
     </unit>
     <unit id="Discount">
       <notes>
@@ -266,7 +266,7 @@
       </notes>
       <segment state="initial">
         <source>Discount:</source>
-      <target>Discount:</target></segment>
+      <target>Rabatt:</target></segment>
     </unit>
     <unit id="ContactInformation">
       <notes>
@@ -275,7 +275,7 @@
       </notes>
       <segment state="initial">
         <source>Contact Information</source>
-      <target>Contact Information</target></segment>
+      <target>Kontaktdaten</target></segment>
     </unit>
     <unit id="Name">
       <notes>
@@ -293,7 +293,7 @@
       </notes>
       <segment state="initial">
         <source>Name is required</source>
-      <target>Name is required</target></segment>
+      <target>Name ist erforderlich</target></segment>
     </unit>
     <unit id="EmailIsRequired">
       <notes>
@@ -302,7 +302,7 @@
       </notes>
       <segment state="initial">
         <source>Email is required</source>
-      <target>Email is required</target></segment>
+      <target>E-Mail ist erforderlich</target></segment>
     </unit>
     <unit id="PhoneNumber">
       <notes>
@@ -310,7 +310,7 @@
       </notes>
       <segment state="initial">
         <source>Phone Number</source>
-      <target>Phone Number</target></segment>
+      <target>Telefonnummer</target></segment>
     </unit>
     <unit id="PhoneNumberIsRequired">
       <notes>
@@ -318,7 +318,7 @@
       </notes>
       <segment state="initial">
         <source>Phone number is required</source>
-      <target>Phone number is required</target></segment>
+      <target>Telefonnummer ist erforderlich</target></segment>
     </unit>
     <unit id="ShippingDetails">
       <notes>
@@ -326,7 +326,7 @@
       </notes>
       <segment state="initial">
         <source>Shipping Details</source>
-      <target>Shipping Details</target></segment>
+      <target>Versanddetails</target></segment>
     </unit>
     <unit id="AddressLine1">
       <notes>
@@ -334,7 +334,7 @@
       </notes>
       <segment state="initial">
         <source>Address Line 1</source>
-      <target>Address Line 1</target></segment>
+      <target>Adresse 1</target></segment>
     </unit>
     <unit id="AddressIsRequired">
       <notes>
@@ -342,7 +342,7 @@
       </notes>
       <segment state="initial">
         <source>Address is required</source>
-      <target>Address is required</target></segment>
+      <target>Adresse ist erforderlich</target></segment>
     </unit>
     <unit id="AddressLine2">
       <notes>
@@ -350,7 +350,7 @@
       </notes>
       <segment state="initial">
         <source>Address Line 2</source>
-      <target>Address Line 2</target></segment>
+      <target>Addresse 2</target></segment>
     </unit>
     <unit id="City">
       <notes>
@@ -358,7 +358,7 @@
       </notes>
       <segment state="initial">
         <source>City/Town</source>
-      <target>City/Town</target></segment>
+      <target>Stadt</target></segment>
     </unit>
     <unit id="CityIsRequired">
       <notes>
@@ -366,15 +366,15 @@
       </notes>
       <segment state="initial">
         <source>City is required</source>
-      <target>City is required</target></segment>
+      <target>Stadt ist erforderlich</target></segment>
     </unit>
     <unit id="PostCode">
       <notes>
         <note category="location">src/app/pages/checkout/checkout.component.html:102</note>
       </notes>
       <segment state="initial">
-        <source>PostCode</source>
-      <target>PostCode</target></segment>
+        <source>Post Code</source>
+      <target>Postleitzahl</target></segment>
     </unit>
     <unit id="PostCodeIsRequired">
       <notes>
@@ -382,7 +382,7 @@
       </notes>
       <segment state="initial">
         <source>Post code is required</source>
-      <target>Post code is required</target></segment>
+      <target>Postleitzahl ist erforderlich</target></segment>
     </unit>
     <unit id="Country">
       <notes>
@@ -390,7 +390,7 @@
       </notes>
       <segment state="initial">
         <source>Country</source>
-      <target>Country</target></segment>
+      <target>Land</target></segment>
     </unit>
     <unit id="IAcceptTerms">
       <notes>
@@ -399,7 +399,7 @@
       </notes>
       <segment state="initial">
         <source> I accept the terms and conditions for this sale</source>
-      <target> I accept the terms and conditions for this sale</target></segment>
+      <target>Ich akzeptiere die Geschäftsbedingungen für diesen Verkauf</target></segment>
     </unit>
     <unit id="ProceedToPayment">
       <notes>
@@ -407,7 +407,7 @@
       </notes>
       <segment state="initial">
         <source> Proceed to payment </source>
-      <target> Proceed to payment </target></segment>
+      <target> Gehen Sie zur Kasse </target></segment>
     </unit>
     <unit id="PayOnDelivery">
       <notes>
@@ -416,7 +416,7 @@
       <segment state="initial">
         <source> Pay on delivery
 </source>
-      <target> Pay on delivery
+      <target> Bezahlen Sie per Nachnahme
 </target></segment>
     </unit>
     <unit id="PayByBankTransfer">
@@ -426,7 +426,7 @@
       <segment state="initial">
         <source> Pay by bank transfer
 </source>
-      <target> Pay by bank transfer
+      <target> Zahlung per Banküberweisung
 </target></segment>
     </unit>
     <unit id="Review">
@@ -436,7 +436,7 @@
       </notes>
       <segment state="initial">
         <source>Review</source>
-      <target>Review</target></segment>
+      <target>Den Inhalt der Bestellung</target></segment>
     </unit>
     <unit id="LeaveComment">
       <notes>
@@ -445,7 +445,7 @@
       </notes>
       <segment state="initial">
         <source>Leave a comment</source>
-      <target>Leave a comment</target></segment>
+      <target>Kommentar</target></segment>
     </unit>
     <unit id="OrderDetails">
       <notes>
@@ -453,7 +453,7 @@
       </notes>
       <segment state="initial">
         <source>Order Details</source>
-      <target>Order Details</target></segment>
+      <target>Bestelldetails</target></segment>
     </unit>
     <unit id="PostTo">
       <notes>
@@ -462,7 +462,7 @@
       </notes>
       <segment state="initial">
         <source>Post To:</source>
-      <target>Post To:</target></segment>
+      <target>Adressat:</target></segment>
     </unit>
     <unit id="Published">
       <notes>
@@ -470,7 +470,7 @@
       </notes>
       <segment state="initial">
         <source>Published</source>
-      <target>Published</target></segment>
+      <target>Veröffentlicht</target></segment>
     </unit>
     <unit id="Comment">
       <notes>
@@ -478,7 +478,7 @@
       </notes>
       <segment state="initial">
         <source>Comment</source>
-      <target>Comment</target></segment>
+      <target>Kommentar</target></segment>
     </unit>
     <unit id="SendRequest">
       <notes>
@@ -486,7 +486,7 @@
       </notes>
       <segment state="initial">
         <source>Send</source>
-      <target>Send</target></segment>
+      <target>Schicken</target></segment>
     </unit>
     <unit id="Topic">
       <notes>
@@ -494,7 +494,7 @@
       </notes>
       <segment state="initial">
         <source>Topic</source>
-      <target>Topic</target></segment>
+      <target>Thema</target></segment>
     </unit>
     <unit id="Required">
       <notes>
@@ -502,7 +502,7 @@
       </notes>
       <segment state="initial">
         <source>Required</source>
-      <target>Required</target></segment>
+      <target>Erforderlich</target></segment>
     </unit>
   </file>
 </xliff>
