@@ -62,7 +62,7 @@ export class ProductHierarchyService {
                                   'settings', hierarchyParams);
         hierarchyResp.subscribe({
           next: (res: any) => {
-            this.productHierarchy = res.ProductHierarchy;
+            this.productHierarchy = res.item.ProductHierarchy;
             this.loading = false;
           },
           error: (err) => {console.error(err); this.loading = false; }

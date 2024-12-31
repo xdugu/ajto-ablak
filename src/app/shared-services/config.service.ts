@@ -65,7 +65,7 @@ export class ConfigService {
     }
 
     this.apiManager.get(API_MODE.OPEN, API_METHOD.GET, 'settings', hierarchyParams).subscribe({
-      next: (res: any) => {this.currentConfig = res.WebsiteSettings; this.requestInProgress = false; },
+      next: (res: any) => {this.currentConfig = res.item.WebsiteSettings; this.requestInProgress = false; },
       error: () => this.requestInProgress = false,
       complete: () => this.requestInProgress = false
     });

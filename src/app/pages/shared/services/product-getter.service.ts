@@ -23,7 +23,7 @@ export class ProductGetterService {
 
           const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'product', httpParams);
           resp.subscribe({
-            next: (evt: any) => resolve(evt.data),
+            next: (evt: any) => resolve(evt.item),
             error: err => reject(err)
             }
           );
@@ -45,12 +45,12 @@ export class ProductGetterService {
       this.configService.getConfig('storeId').subscribe({
         next: storeId => {
           const httpParams = new HttpParams()
-          .set('items', products.join(','))
+          .set('itemIds', products.join(','))
           .set('storeId', storeId);
 
           const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'products', httpParams);
           resp.subscribe({
-            next: (evt: any) => resolve(evt),
+            next: (evt: any) => resolve(evt.item),
             error: err => reject(err)
             }
           );
@@ -68,11 +68,11 @@ export class ProductGetterService {
         next: storeId => {
           const httpParams = new HttpParams()
           .set('category', groupName)
-          .set('storeId', storeId + '>Variant');
+          .set('storeId', storeId);
 
-          const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'category', httpParams);
+          const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.QUERY, 'variant', httpParams);
           resp.subscribe({
-              next: (evt: any) => resolve(evt),
+              next: (evt: any) => resolve(evt.items),
               error: err => reject(err)
             }
           );
@@ -80,7 +80,28 @@ export class ProductGetterService {
         error: err => reject(err)
       });
     });
-
   }
+
+  getVariants(variants: string[]): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe({
+        next: storeId => {
+          const httpParams = new HttpParams()
+          .set('variantIds', variants.join())
+          .set('storeId', storeId);
+
+          const resp = this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'variants', httpParams);
+          resp.subscribe({
+              next: (evt: any) => resolve(evt.item),
+              error: err => reject(err)
+            }
+          );
+        },
+        error: err => reject(err)
+      });
+    });
+  }
+
+  
 
 }

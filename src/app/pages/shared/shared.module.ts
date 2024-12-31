@@ -11,17 +11,21 @@ import { BlogGetterService} from './services/blog-getter.service';
 import { IndexOfPipe } from './pipes/index-of.pipe';
 import { ProductGalleryComponent } from './components/product-gallery/product-gallery.component';
 import { SanitizePipe } from './pipes/sanitize.pipe';
+import { DocumentLoaderDirective } from './directives/document-loader.directive';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { DocumentComponent } from './components/document/document.component';
 
 
 
 @NgModule({
-  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe],
+  declarations: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe, DocumentLoaderDirective, DocumentComponent],
   imports: [
     CommonModule,
     SharedModuleModule,
-    RouterModule
+    RouterModule,
+    MatExpansionModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe, DocumentComponent]
 })
 export class SharedModule {
   static forRoot(): any{

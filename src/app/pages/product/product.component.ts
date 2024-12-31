@@ -4,14 +4,12 @@ import { ConfigService } from '@app/shared-services/config.service';
 import { ProductGetterService } from '../shared/services/product-getter.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { BasketService } from '@app/shared-services/basket.service';
-import { ScreenTypeService } from '@app/shared-services/screen-type.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PreferencesService } from '@app/shared-services/preferences.service';
 import { Title } from '@angular/platform-browser';
 import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageSourcePipe } from '@app/shared-module/pipes/image-source.pipe';
-import { IProductGalleryFlow } from '../shared/components/product-gallery/product-gallery.component';
 
 @Component({
   selector: 'app-product',
@@ -27,15 +25,14 @@ export class ProductComponent implements OnInit {
   currencyPref = null;
   customQuestions = false;
   commonDocuments = [];
-  screenType = 'mobile';
+  documentList: string[] = [];
+
   siteLang = null;
-  accessoriesFlow: IProductGalleryFlow = null
   private priceElement: ElementRef;
   private slickModal: any;
 
   constructor(private routeInfo: ActivatedRoute, private productGetter: ProductGetterService,
-              screenService: ScreenTypeService,
-              config: ConfigService, private langService: LanguageService,
+              private config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
               private route: Router, private dialog: MatDialog, private imgSourcePipe: ImageSourcePipe) {
@@ -47,16 +44,10 @@ export class ProductComponent implements OnInit {
       next: storeId => this.storeId = storeId
     });
 
-    config.getConfig('pages').subscribe({
-      next: pages => this.commonDocuments = pages.product.documents ? pages.product.documents : []
-    });
 
     prefService.getPreferences().subscribe({
       next: pref => this.currencyPref = pref.currency
     });
-
-    screenService.getScreenTypeUpdate().subscribe({next: state => this.screenType = state})
-
   }
 
   @ViewChild('price') set content(content: ElementRef) {
@@ -94,9 +85,6 @@ export class ProductComponent implements OnInit {
     // will get a callback anytime there is a change in the category path
     params.subscribe(param => {
       const productId = param.get('productId');
-      // Reset variables so product to product navigation does not ave remnants of old artifacts
-      this.product = null;
-      this.accessoriesFlow = null;
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
         this.titleService.setTitle(this.product.Title[this.siteLang]);
@@ -109,26 +97,32 @@ export class ProductComponent implements OnInit {
           this.linkImagesToVariants();
           this.setupVariants();
         }
-        if(this.product.Accessories.length > 0){
-          this.buildAccessoriesFlow(this.product.Accessories)
-        }
+        this.langService.getLang().then(lang => {
+            this.siteLang = lang;
+            for (const doc of this.product.Documents){
+              if (doc.lang === lang){
+                this.documentList.push(doc.id);
+              }
+            }
+
+            this.config.getConfig('pages').subscribe({
+              next: pages => {
+                  if (pages.product.documents){
+                    for (const doc of pages.product.documents){
+                      if (doc.lang === lang){
+                        this.documentList.push(doc.id);
+                      }
+                    }
+                  }
+              }
+            });
+        });
+
       }).catch(() => {
         this.route.navigate(['/']);
       });
     });
 
-    this.langService.getLang().then(lang => this.siteLang = lang);
-  }
-
-  // create a flow object to build gallery of accessoeries attached to product
-  private buildAccessoriesFlow(accessories: string[]): void{
-    this.accessoriesFlow = {
-      title: {
-        en: "Accessories with this item",
-        hu: "Kiegészítők ehhez a termékhez"
-      },
-      items: accessories
-    }
   }
 
   // attach images to variants to be used by view
@@ -186,12 +180,11 @@ export class ProductComponent implements OnInit {
       this.product.Variants.variants.forEach((variant: any, index: number) => {
         variant.options.forEach((option: any) => {
             if (combi.combination[index] === option.name){
-              this.pickedSpec.push(option);
+              this.pickedSpec.push({name: option.name, variantId: null, enteredValue: null});
               if (variant.type === 'group'){
-                // TODO: fix this. Need to actually query for groups
                 const groupKeys = Object.keys(variant.groupInfo);
-                this.pickedSpec[this.pickedSpec.length - 1].chosenVariant =
-                    variant.groupInfo[groupKeys[0]][0];
+                this.pickedSpec[this.pickedSpec.length - 1].variantId =
+                    variant.groupInfo[groupKeys[0]][0].ItemId;
               }
             }
         });
@@ -247,14 +240,14 @@ export class ProductComponent implements OnInit {
 
   // called when a different group of patterns is selected
   onGroupSelectionChange(newOption: any, changeIndex: number): void{
-    this.pickedSpec[changeIndex] = newOption.value;
-    this.pickedSpec[changeIndex].chosenVariant = this.product.Variants.variants[changeIndex].groupInfo[newOption.value.name][0];
+    this.pickedSpec[changeIndex].name = newOption.value;
+    this.pickedSpec[changeIndex].variantId = this.product.Variants.variants[changeIndex].groupInfo[newOption.value.name][0].ItemId;
     this.onVariantSelectionChange();
   }
 
   // called when a pattern is selected
   onPatternSelection(newPattern: any, index: number): void {
-    this.pickedSpec[index].chosenVariant = newPattern;
+    this.pickedSpec[index].variantId = newPattern.ItemId;
     this.onVariantSelectionChange();
   }
 
@@ -301,14 +294,14 @@ export class ProductComponent implements OnInit {
   addToBasket(): void{
     this.basketService.addToBasket(this.product.ItemId, this.pickedSpec).subscribe(
       () => {
-         const msg = {en: 'Item added successfully', hu: 'A termék a kosaradba került', de: 'Artikel erfolgreich hinzugefügt'};
+         const msg = {en: 'Item added successfully', hu: 'A termék a kosaradba került'};
          this.snackBar.open(msg[this.siteLang], '', {
              duration: 2000
          });
       },
       (err) => {
         console.log(err);
-        const msg = {en: 'Error', hu: 'Hiba :-<', de: 'Error :-<'};
+        const msg = {en: 'Error', hu: 'Hiba :-<'};
         this.snackBar.open(msg[this.siteLang], '', {
           duration: 4000
       });
@@ -321,7 +314,7 @@ export class ProductComponent implements OnInit {
     this.prefService.setPreference('currency', this.currencyPref);
   }
 
-  // called when customoer wants to request more customization of an item
+  // called when customer wants to request more customization of an item
   onCustomizeClick(): void{
     let questions = this.product.Metadata.find(item => item.name === `custom_qs_${this.siteLang}`);
     questions = questions || {value: null};
@@ -406,12 +399,12 @@ export class ProductComponent implements OnInit {
               for (const variant of this.product.Variants.variants){
                 for (const option of variant.options){
                   if (combiCombi === option.name){
-                    this.pickedSpec.push(option);
+                    this.pickedSpec.push({name: option.name, enteredValue: null});
                     if (variant.type === 'group'){
-                      // TODO: fix this. Need to actually query for groups
                       const groupKeys = Object.keys(variant.groupInfo);
-                      this.pickedSpec[this.pickedSpec.length - 1].chosenVariant =
-                          variant.groupInfo[groupKeys[0]][0];
+                      this.pickedSpec[this.pickedSpec.length - 1].variantId =
+                          variant.groupInfo[groupKeys[0]][0].ItemId;
+                      break;
                     } // if
                   } // if
                 } // for

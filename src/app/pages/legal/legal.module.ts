@@ -5,6 +5,7 @@ import { LegalRoutingModule } from './legal-routing.module';
 import { LegalComponent } from './legal.component';
 import { SharedModuleModule} from '@app/shared-module/shared-module.module';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CommonModule,
     LegalRoutingModule,
     SharedModuleModule,
-    MatExpansionModule
-  ]
+    MatExpansionModule,
+    SharedModule
+]
 })
 export class LegalModule { }
