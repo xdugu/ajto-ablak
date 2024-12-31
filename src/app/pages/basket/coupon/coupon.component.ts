@@ -36,6 +36,7 @@ export class CouponComponent implements OnInit {
   }
 
   onAddCoupon(){
+    /*
     this.basketService.applyCoupon(this.couponCode).then((res) => this.couponChange.emit(res))
     .catch(() => {
       const dialogData: DialogInterface = {
@@ -46,11 +47,12 @@ export class CouponComponent implements OnInit {
       this.dialog.open(DialogComponent, {
         data: dialogData
       });
-    })
+    }) */
   }
 
-  onRemoveCoupon(){
+  onRemoveCoupon(){ /*
     this.basketService.removeCoupon(this.discountInfo.code).then((res) => this.couponChange.emit(res))
+    */
   }
 
 }
