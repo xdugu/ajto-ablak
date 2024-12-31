@@ -31,22 +31,26 @@ export class ContactComponent implements OnInit {
     success: {
       title: {
         en: 'Request successfully sent',
-        hu: 'Köszönjük'
+        hu: 'Köszönjük',
+        de: 'Danke'
       },
       content: {
         en: 'Thank you. We will reply back soon',
-        hu: 'Köszönjük. Hamarosan válaszolunk'
+        hu: 'Köszönjük. Hamarosan válaszolunk',
+        de: 'Wir werden bald antworten'
       }
     },
 
     failure: {
       title: {
         en: 'Error',
-        hu: 'Valami hiba történt'
+        hu: 'Valami hiba történt',
+        de: ''
       },
       content: {
         en: 'Unfortunately, something went wrong. Please try again later :(',
-        hu: 'Kérjuk, próbáld újra később'
+        hu: 'Kérjuk, próbáld újra később',
+        de: 'Es ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.'
       }
     }
   };

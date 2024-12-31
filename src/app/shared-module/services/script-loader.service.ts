@@ -29,4 +29,12 @@ export class ScriptLoaderService {
       }
     });
   }
+
+  async loadLocalScript(code: string): Promise<void>{
+    if (isPlatformBrowser(this.platformId)) {
+      const script = document.createElement('script');
+      script.innerHTML = code
+      document.head.appendChild(script);
+    }
+  }
 }

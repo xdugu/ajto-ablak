@@ -40,8 +40,8 @@ export class PaypalComponent implements OnInit {
         hu: `A megrendelésről egy automatikus emailt küldünk a megadott email címre. Amennyiben azt nem kapja meg <b>24 órán belül</b>,
           kérjük vegye fel velünk a kapcsolatot!
           Megrendelését hamarosan kézbesítjük!`,
-        de: `Thank you for your order. We will ship your item as soon as we can.
-          Thank you for shopping with us`,
+        de: `Vielen Dank für Ihre Bestellung. Wir werden Ihren Artikel so schnell wie möglich versenden.
+              Vielen Dank für Ihren Einkauf bei uns`,
       }
     }
   };

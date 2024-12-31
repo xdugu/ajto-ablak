@@ -3,7 +3,7 @@
     > 
     <img [appLazyLoad]="imgSrc | imageSource : 1000"
       style="width: 100%; height: auto;" >
-    <h1 class="w3-display-topmiddle w3-center 
+    <h1 *ngIf="flow.title[lang] != '**BLANK**'" class="w3-display-topmiddle w3-center 
                     home-lander-msg w3-animate-opacity"
         style="width: 80%; margin-top: 5%;"
         [style.color]="flow.colour" 

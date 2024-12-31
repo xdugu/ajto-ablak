@@ -6,7 +6,6 @@ import { BasketService, BasketInterface} from '@app/shared-services/basket.servi
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '@app/shared-module/components/dialog/dialog.component';
 import { Title } from '@angular/platform-browser';
 
 @Component({

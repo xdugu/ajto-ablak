@@ -9,7 +9,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/resources/color/
-// generate custom palette here http://mcg.mbitson.com/#!?mcgpalette0=%23e69138&themename=mcgtheme
+// generate custom palette: USE ChatGPT
 /* For use in src/lib/core/theming/_palette.scss */
 $md-primary:  (
     50 : #f1eeec,
@@ -229,3 +229,82 @@ $cream-theme: mat-light-theme($cream-theme-primary, $cream-theme-accent, $cream-
     @include angular-material-color($cream-theme);
 }
 
+
+$brownish-primary: (
+    50: #f4ece6,
+    100: #e1d2c7,
+    200: #d0b7a6,
+    300: #bfa384,
+    400: #b69377,
+    500: #af9075, // Base color
+    600: #9e836a,
+    700: #8d775e,
+    800: #7c6b52,
+    900: #675741,
+    A100: #daf2e9,
+    A200: #b5e5d2,
+    A400: #8fd9bb,
+    A700: #75af9b,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$brownish-secondary: (
+    50: #e6f4f2,
+    100: #c7e4e0,
+    200: #a6d4ce,
+    300: #84c4bb,
+    400: #77b9af,
+    500: #75af9b, // Base color
+    600: #6a9e8c,
+    700: #5e8d7d,
+    800: #527c6e,
+    900: #416354,
+    A100: #e6f7ef,
+    A200: #cceedd,
+    A400: #b3e6cb,
+    A700: #99ddb9,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$brownish-theme-primary: mat-palette($brownish-primary);
+$brownish-theme-accent:  mat-palette($brownish-secondary, 900);
+
+// The warn palette is optional (defaults to red).
+$brownish-theme-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$brownish-theme: mat-light-theme($brownish-theme-primary, $brownish-theme-accent, $brownish-theme-warn);
+
+.brownish-theme{
+    @include angular-material-color($brownish-theme);
+}

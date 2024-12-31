@@ -87,7 +87,7 @@
             },
             "de": {
               "aot": true,
-              "outputPath": "dist/ajto-ablak-hu",
+              "outputPath": "dist/ajto-ablak-de",
               "i18nFile": "src/i18n/messages.de.xlf",
               "i18nFormat": "xlf2",
               "i18nLocale": "de"
