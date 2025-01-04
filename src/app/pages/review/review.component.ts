@@ -19,14 +19,12 @@ export class ReviewComponent implements OnInit {
   customerComments = '';
   preferences: PreferencesInterface = null;
   paymentTypes = null;
-  bucketUrl: string = null;
   lang = null;
 
   constructor(private customerDetailsService: CustomerDetailsService,
               private prefService: PreferencesService,
               private configService: ConfigService,
               private basketService: BasketService,
-              private dialog: MatDialog,
               private route: Router,
               private titleService: Title,
               private langService: LanguageService) { }
@@ -43,10 +41,6 @@ export class ReviewComponent implements OnInit {
       next: paymentTypes => {
         this.paymentTypes = paymentTypes;
       }
-    });
-
-    this.configService.getConfig('imgSrc').subscribe({
-      next: bucketUrl => this.bucketUrl = bucketUrl
     });
 
     this.basketService.getBasket().subscribe({

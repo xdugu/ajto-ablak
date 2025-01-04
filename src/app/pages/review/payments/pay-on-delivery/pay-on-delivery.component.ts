@@ -59,33 +59,34 @@ export class PayOnDeliveryComponent implements OnInit {
   }
 
   triggerPaymentFlow(): void{
-
-    const dialogConfirm = this.dialog.open(DialogComponent, {
-      width: '350px',
-      data: {
-        title: this.messages.title[this.lang],
-        content: this.messages.content[this.lang],
-        buttons: [
-          {
-            id: 'Confirm',
-            text: this.messages.buttons.confirm[this.lang],
-            textColor: 'green',
-          }
-        ]
-      }
-    });
-
-    dialogConfirm.afterClosed().subscribe({
-      next: result => {
-        if (result !== null && result.id === 'Confirm'){
-          this.onPaymentTypeAccepted();
+    this.basketService.startTransaction('payOnDelivery', this.comments).then(() => {
+      const dialogConfirm = this.dialog.open(DialogComponent, {
+        width: '350px',
+        data: {
+          title: this.messages.title[this.lang],
+          content: this.messages.content[this.lang],
+          buttons: [
+            {
+              id: 'Confirm',
+              text: this.messages.buttons.confirm[this.lang],
+              textColor: 'green',
+            }
+          ]
         }
-      }
-    });
+      });
+
+      dialogConfirm.afterClosed().subscribe({
+        next: result => {
+          if (result !== null && result.id === 'Confirm'){
+            this.onPaymentTypeAccepted();
+          }
+        }
+      });
+    })
   }
 
   onPaymentTypeAccepted = () => {
-    this.basketService.placeOrder('payOnDelivery', this.comments, null).then(() => {
+    this.basketService.completeTransaction('payOnDelivery', null).then(() => {
       this.dialog.open(DialogComponent, {
         width: '400px',
         data: {

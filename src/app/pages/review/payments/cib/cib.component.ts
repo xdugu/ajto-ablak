@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { BasketInterface, BasketService } from '@app/shared-services/basket.service';
@@ -86,8 +85,7 @@ export class CibComponent implements OnInit {
               private apiManager: ApiManagerService,
               private configService: ConfigService,
               private dialog: MatDialog,
-              private routeInfo: ActivatedRoute,
-              private sanitizer: DomSanitizer) { }
+              private routeInfo: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.prefService.getPreferences().subscribe({
@@ -116,123 +114,85 @@ export class CibComponent implements OnInit {
     params.subscribe({
       next: param => {
         if (param.PID && param.DATA){
-          const httpParams = new HttpParams().set('storeId', this.storeId);
-          this.apiManager.post(API_MODE.OPEN, API_METHOD.UPDATE, 'transaction', httpParams, {
-            cibResponse: param.DATA,
-            basketId: this.basket.BasketId
-          }).subscribe({
-            next: (res: any) => {
-              const dialog = this.dialog.open(DialogComponent, {
-                width: '400px',
-                data: {
-                  title: null,
-                  content: `
-                    <div>
-                      ${this.messages.paymentSuccessful[this.lang]}
-                    </div>
-                    <span class="important-text"><br>
-                      <b>${this.messages.paymentCodes.transactionId[this.lang]}:</b> ${res.TRID}<br>
-                      <b>${this.messages.paymentCodes.transactionResultCode[this.lang]}:</b> ${res.RC}<br>
-                      <b>${this.messages.paymentCodes.transactionResultText[this.lang]}:</b> ${res.RT}<br>
-                      <b>${this.messages.paymentCodes.total[this.lang]}</b> ${res.AMO}<br>
-                      <b>${this.messages.paymentCodes.authorisationNumber[this.lang]}:</b> ${res.ANUM}<br><br>
-                    </span>
-                  `
-                }
-              });
+          const httpParams = new HttpParams().set('storeId', this.storeId).set('basketId', this.basket.BasketId);
+          this.basketService.completeTransaction('cib', param.DATA).then(res => {
+            const dialog = this.dialog.open(DialogComponent, {
+              width: '400px',
+              data: {
+                title: null,
+                content: `
+                  <div>
+                    ${this.messages.paymentSuccessful[this.lang]}
+                  </div>
+                  <span class="important-text"><br>
+                    <b>${this.messages.paymentCodes.transactionId[this.lang]}:</b> ${res.item.TRID}<br>
+                    <b>${this.messages.paymentCodes.transactionResultCode[this.lang]}:</b> ${res.item.RC}<br>
+                    <b>${this.messages.paymentCodes.transactionResultText[this.lang]}:</b> ${res.item.RT}<br>
+                    <b>${this.messages.paymentCodes.total[this.lang]}</b> ${res.item.AMO}<br>
+                    <b>${this.messages.paymentCodes.authorisationNumber[this.lang]}:</b> ${res.item.ANUM}<br><br>
+                  </span>
+                `
+              }
+            });
 
-              // emit event that transaction is complete
-              dialog.afterClosed().subscribe({
-                next: () => {
-                  this.orderConfirmed.emit();
-                  this.basketService.clearBasket();
-                }
-              });
-            },
-            error: err => {
-              this.dialog.open(DialogComponent, {
-                width: '400px',
-                data: {
-                  title: null,
-                  content: `
-                    <div>
-                      ${this.messages.paymentError[this.lang]}
-                    </div>
-                    <span><br>
-                      <b>${this.messages.paymentCodes.transactionId[this.lang]}:</b> ${err.error.response.TRID}<br>
-                      <b>${this.messages.paymentCodes.transactionResultCode[this.lang]}:</b> ${err.error.response.RC}<br>
-                      <b>${this.messages.paymentCodes.transactionResultText[this.lang]}:</b> ${err.error.response.RT}<br>
-                    </span>
-                  `
-                }
-              });
-            }
-          });
+            // emit event that transaction is complete
+            dialog.afterClosed().subscribe({
+              next: () => {
+                this.orderConfirmed.emit();
+                this.basketService.clearBasket();
+              }
+            });
+          }).catch(err => {
+            this.dialog.open(DialogComponent, {
+              width: '400px',
+              data: {
+                title: null,
+                content: `
+                  <div>
+                    ${this.messages.paymentError[this.lang]}
+                  </div>
+                  <span><br>
+                    <b>${this.messages.paymentCodes.transactionId[this.lang]}:</b> ${err.error.reason.response.TRID}<br>
+                    <b>${this.messages.paymentCodes.transactionResultCode[this.lang]}:</b> ${err.error.reason.response.RC}<br>
+                    <b>${this.messages.paymentCodes.transactionResultText[this.lang]}:</b> ${err.error.reason.response.RT}<br>
+                  </span>
+                `
+              }
+            });
+          })
         }
       }
     });
   }
 
-  onPaymentMethodActivation(): void{
-
-    // get url with no queries
-    let currentUrl = window.location.href;
-    const queryPos = currentUrl.indexOf('?');
-    if (queryPos > 0){
-      currentUrl = currentUrl.substring(0, queryPos);
-    }
-
-    this.customer.countryCode = this.preferences.countryCode;
-    this.customer.lang = this.lang;
-    // create order
-    const orderDetails = {
-      contact: this.customer,
-      currency: this.preferences.currency.chosen,
-      comments: this.comments.length === 0 ? null : this.comments,
-      paymentMethod: 'payBeforeDelivery',
-      paymentType: 'cib',
-      url: currentUrl,
-      deliveryMethod: this.preferences.deliveryMethod,
-    };
-
-    const params = new HttpParams().set('storeId', this.storeId);
-    this.apiManager.post(API_MODE.OPEN, API_METHOD.CREATE, 'transaction', params, {
-      orderDetails,
-      basketId: this.basket.BasketId
-    }).subscribe({
-      next: (res: any) => {
-        const dialog = this.dialog.open(DialogComponent, {
-          width: '350px',
-          data: {
-            title: null,
-            content: this.sanitizer.bypassSecurityTrustHtml(
-              `${this.messages.confirmRedirect[this.lang]}<br>
-                    <p>A Kereskedő / Horváth Patrícia E.V. Székhelyének országa és országkódja: Magyarország (HU)</p>
-                      <img src="assets/cib/CIB_payment_logo.png" alt="cib" style="width:300px"><br>
-                      <img src="assets/cib/${this.lang}/CIB_accepted_cards.png" style="width:300px">
-                    `
-            ),
-            buttons: [
-              {
-                id: 'Confirm',
-                text: this.messages.buttons.confirm[this.lang],
-                textColor: 'green',
-              }
-            ]
-          }
-        });
-
-        dialog.afterClosed().subscribe({
-          next: result => {
-            if (result && result.id === 'Confirm'){
-              window.location.href = res.url;
+  // When use clicks button to start CIB transaction
+  async onPaymentMethodActivation(): Promise<void>{
+      const res = await this.basketService.startTransaction('cib', this.comments);
+      const dialog = this.dialog.open(DialogComponent, {
+        width: '350px',
+        data: {
+          title: null,
+          content: `${this.messages.confirmRedirect[this.lang]}<br>
+                    <img src="assets/cib/CIB_payment_logo.png" alt="cib" style="width:300px"><br>
+                    <img src="assets/cib/${this.lang}/CIB_accepted_cards.png" style="width:300px">
+                  `,
+          buttons: [
+            {
+              id: 'Confirm',
+              text: this.messages.buttons.confirm[this.lang],
+              textColor: 'green',
             }
+          ]
+        }
+      });
+
+      dialog.afterClosed().subscribe({
+        next: result => {
+          if (result && result.id === 'Confirm'){
+            window.location.href = res.item.url;
           }
-        });
-      }
-    });
-
-
+        }
+      });
   }
 
 }

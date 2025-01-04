@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService, BasketInterface } from '@app/shared-services/basket.service';
+import { ProductGetterService } from '../shared/services/product-getter.service';
 import { PreferencesService, PreferencesInterface } from '@app/shared-services/preferences.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
 import { MatSelectChange } from '@angular/material/select';
 import { MatRadioChange } from '@angular/material/radio';
 import { Title } from '@angular/platform-browser';
+import { IBasketItemsEvent } from '../shared/components/basket-items/basket-items.component';
 
 @Component({
   selector: 'app-basket',
@@ -18,15 +20,17 @@ export class BasketComponent implements OnInit {
   bucketUrl: string = null;
   lang = 'hu';
   availableQuantities = ['1', '2', '3', '4', '5'];
+  products: any = null;
+  variants: any = null;
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
               private configService: ConfigService, private langService: LanguageService,
-              titleService: Title) {
+              titleService: Title, private productGetter: ProductGetterService) {
     titleService.setTitle('Basket');
   }
 
   ngOnInit(): void {
-    this.basketService.getBasket().subscribe(basket => {
+    this.basketService.getBasket().subscribe(async (basket) => {
       this.basket = basket;
 
       this.prefService.getPreferences().subscribe(pref => {
@@ -49,34 +53,24 @@ export class BasketComponent implements OnInit {
       });
     });
 
-    this.configService.getConfig('imgSrc').subscribe(url => {
-      this.bucketUrl = url;
-    });
-
     this.langService.getLang().then(lang => {
       this.lang = lang;
     });
   }
 
   // change of quantity
-  onChangeQuantity(event: any, index: number): void{
-    const val = parseInt(event.value, 10);
-
+  onChangeQuantity(event: IBasketItemsEvent): void{
    // call service to update basket
-    this.basketService.changeQuantity(index, val).then(basket => {
+    this.basketService.changeQuantity(event.index, event.newValue as number).then(basket => {
        this.basket = basket;
     });
   }
 
    // remove an item from basket
-  onRemoveItem(index: number): void{
-      this.basketService.removeItem(index).then(basket => {
+  onRemoveItem(event: IBasketItemsEvent): void{
+      this.basketService.removeItem(event.index).then(basket => {
         this.basket = basket;
       });
-  }
-
-  onCouponChange(basket: BasketInterface): void{
-    this.basket = basket;
   }
 
   onCountryChange(event: MatSelectChange): void{
@@ -100,21 +94,6 @@ export class BasketComponent implements OnInit {
     this.prefService.setPreference('currency', this.preferences.currency);
   }
 
-  // to prevent a dom re-draw of the basket list, this function assigns a unique id
-  // to each item in the basket based on a few unique properties of the basket item
-  basketTrackFn(index: number, item: any): string{
-    let finalCombi = '';
-    if (item.hasOwnProperty('Combination')){
-          item.Combination.forEach(combi => {
-              finalCombi += combi.name;
-              if (combi.enteredValue != null){
-                finalCombi += combi.enteredValue;
-              }
-          });
-    }
-
-    return item.ItemId + finalCombi + item.Quantity.toString();
-  }
 
 
 }

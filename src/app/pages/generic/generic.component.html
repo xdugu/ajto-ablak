@@ -1,4 +1,4 @@
-<div *ngIf="doc != null" [appDocument]="doc.id" [storeId]="storeId" [titleRef]="title" [contentRef]="content">
-    <h1 #title></h1>
-    <p #content></p>
+<div *ngIf="docRef != null" >
+    <h1>{{docRef.title}}</h1>
+    <p appDocumentLoader [url]="docRef.contentLink"></p>
 </div>

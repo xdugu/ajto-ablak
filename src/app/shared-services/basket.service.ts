@@ -172,7 +172,9 @@ export class BasketService {
       });
   }
 
-  placeOrder(paymentType: string, comments: string, paymentDetails: any): Promise<any>{
+  // start any financial transaction. Should be called first with a positive response before 
+  // trying to use completeTransaction
+  startTransaction(paymentType: string, comments: string): Promise<any>{
     return new Promise((resolve, reject) => {
       this.prefService.getPreferences().subscribe({
         next: preferences => {
@@ -182,17 +184,60 @@ export class BasketService {
             customer.lang = lang;
 
             const params = new HttpParams().set('basketId', this.basket.BasketId).set('storeId', this.basket.StoreId);
-            this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/order', params, {
+            this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/startTransaction', params, {
               orderDetails: {
                 contact: customer,
                 currency: preferences.currency.chosen.toLowerCase(),
                 paymentMethod: paymentType === 'payOnDelivery' ? 'payOnDelivery' : 'payBeforeDelivery',
                 paymentType,
+                url: this.getCurrentUrl(),
                 deliveryMethod: preferences.deliveryMethod,
                 comments: comments.length === 0 ? null : comments,
-              },
-              additionalData: paymentDetails
+              }
             }).subscribe({
+              next: (data) => {
+                resolve(data);
+                return;
+              },
+              error: err => reject(err)
+            });
+          });
+        },
+        error: err => reject(err)
+      });
+    });
+
+  }
+
+  private getCurrentUrl(): string{
+    let currentUrl = window.location.href;
+    const queryPos = currentUrl.indexOf('?');
+    if (queryPos > 0){
+      currentUrl = currentUrl.substring(0, queryPos);
+    }
+    return currentUrl
+  }
+
+  // complete transaction
+  completeTransaction(paymentType: string, paymentDetails: any): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.prefService.getPreferences().subscribe({
+        next: preferences => {
+          this.customerDetailsService.get().then(customer => {
+            const lang = preferences.lang.chosen;
+            customer.countryCode = preferences.countryCode;
+            customer.lang = lang;
+
+            const order: any = {
+              paymentType
+            }
+            if (paymentDetails){
+              order.additionalData = paymentDetails
+            }
+            const params = new HttpParams().set('basketId', this.basket.BasketId).set('storeId', this.basket.StoreId);
+            this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/completeTransaction', params, 
+             order
+            ).subscribe({
               next: (data) => {
                 this.clearBasket();
                 resolve(data);

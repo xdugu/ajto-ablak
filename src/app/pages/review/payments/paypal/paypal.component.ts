@@ -134,7 +134,7 @@ export class PaypalComponent implements OnInit {
       },
       onApprove: (data, actions) => {
         actions.order.get().then((details: any) => {
-            this.basketService.placeOrder('paypal', this.comments, details).then(() => {
+            this.basketService.completeTransaction('paypal', details).then(() => {
               this.dialog.open(DialogComponent, {
                 width: '400px',
                 data: {
@@ -157,19 +157,15 @@ export class PaypalComponent implements OnInit {
 
     // loop through each item
     for (const item of items){
-      const itemName =  item.Title[lang];
-      let wholeId = item.ItemId;
+      const itemName =  item.ProductId;
+      let wholeId = item.ProductId;
 
-      if (item.Variants.variants.length > 0){
-        for (const combi of  item.Combination){
-          if (combi.hasOwnProperty('chosenVariant')){
-            wholeId += ',' + combi.chosenVariant.Title[lang];
+      for (const combi of item.Combination){
+          if (combi.variantId){
+            wholeId += ',' + combi.variantId;
           }
-          else {
-            wholeId += ',' + combi.text[lang];
-          }
-        }
       }
+
       const price = {value: '', currency_code: currency};
 
       price.value = item.Price[currency.toLowerCase()].toString();
@@ -181,5 +177,4 @@ export class PaypalComponent implements OnInit {
     return paypalItems;
   }
 }
-
 
