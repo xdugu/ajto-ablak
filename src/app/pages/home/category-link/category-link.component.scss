@@ -4,7 +4,8 @@ div{
     width: calc(50% - 4px);
     align-items: center;
     justify-content: center;
-    height: 300px;
+    max-height: 300px;
+    margin-top: 8px;
 }
 
 .mobile{

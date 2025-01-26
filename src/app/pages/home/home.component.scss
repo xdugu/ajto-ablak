@@ -1,9 +1,15 @@
-mat-grid-list{
-    width: 100%;
-    margin: 8px auto;
-}
 
 
-app-category-link + app-category-link{
-    padding-left: 8px;
+@media only screen and (min-width: 600px){
+    app-category-link + app-category-link{
+        padding-left: 8px;
+    }
+
+    app-category-link + app-category-link + app-category-link{
+        padding-left: 0px;
+    }
+
+    app-category-link + app-category-link + app-category-link + app-category-link{
+        padding-left: 8px;
+    }
 }

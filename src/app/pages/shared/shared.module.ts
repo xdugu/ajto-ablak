@@ -42,7 +42,7 @@ export class SharedModule {
   static forRoot(): any{
     return {
       ngModule: SharedModule,
-      providers: [CategoryGetterService, ProductGetterService, BlogGetterService]
+      providers: [CategoryGetterService, ProductGetterService, BlogGetterService, IsCustomPipe]
     };
 }
 }

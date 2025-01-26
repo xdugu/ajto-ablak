@@ -9,6 +9,7 @@ import { LanguageService } from 'app/shared-services/language.service';
 import { PreferencesService } from '@app/shared-services/preferences.service';
 import { SearchService } from '@app/shared-module/services/search.service';
 import { Title } from '@angular/platform-browser';
+import { IsCustomPipe } from '../shared/pipes/is-custom.pipe';
 
 interface CategoryHierarchy extends ProductHierarchy{
   image ?: string;
@@ -28,7 +29,7 @@ export class CategoryComponent implements OnInit {
   bucketUrl: string = null;
   images: null;
   currencyPref = {
-    chosen: null,
+    chosen: "eur",
     available: []
   };
 
@@ -42,7 +43,7 @@ export class CategoryComponent implements OnInit {
               private categoryGetter: CategoryGetterService, configService: ConfigService,
               private screenService: ScreenTypeService, private langService: LanguageService,
               private prefService: PreferencesService, private titleService: Title,
-              private searchService: SearchService) {
+              private searchService: SearchService, private isCustom: IsCustomPipe) {
     configService.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
     });
@@ -87,6 +88,22 @@ export class CategoryComponent implements OnInit {
               if (this.currentHierarchy.sub === null || this.currentHierarchy.sub.length === 0){
                 this.categoryGetter.getCategory(this.category).then(items => {
                   this.categoryItems = items.filter(item => item.Enabled);
+                  this.categoryItems = this.categoryItems.sort((a:any, b: any) => {
+                      if (this.isCustom.transform(a) && this.isCustom.transform(b)){
+                        return 0;
+                      }
+                      else if (this.isCustom.transform(a)){
+                        return 1;
+                      }
+                      else if (this.isCustom.transform(b)){
+                        return -1;
+                      }
+                      
+                      // if both a and b are NOT custom and have a price
+                      const currencyKeys = Object.keys(a.Price)
+                      const validCurrency = currencyKeys.find(item => item !== "original")
+                      return a.Price[validCurrency] - b.Price[validCurrency]                   
+                  })
                 });
               } // if
               else{

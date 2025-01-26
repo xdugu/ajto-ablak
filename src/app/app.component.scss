@@ -12,7 +12,6 @@ mat-sidenav-container{
 
 /* done to prevent flickering of height on changes of views */
 #router-container{
-    padding: 16px !important;
     min-height: 600px !important;
     max-width: 1000px;
 }

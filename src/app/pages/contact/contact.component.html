@@ -1,49 +1,51 @@
-<h1 class="w3-center" i18n="@@ContactUs"> Contact Us </h1>
+<div style="margin: 8px">
+    <h1 class="w3-center" i18n="@@ContactUs"> Contact Us </h1>
 
-<form  #contactForm="ngForm" class="w3-content w3-padding" style="max-width: 800px">  
-    <div *ngIf="user.topic && user.topic !='General'" class="mat-h3">
-        <strong i18n="@@Topic">Topic</strong>: <span>{{user.topic}}</span>
-    </div>
-    <p>
-        <mat-form-field appearance="legacy">
-        <mat-label i18n="@@Name">Name</mat-label>
-        <input matInput required id="name" name="name" type="text"
-                [(ngModel)]="user.name" #name="ngModel">
-        <mat-error [hidden]="name.valid || name.pristine" i18n="@@NameIsRequired">Name is required</mat-error>
-        </mat-form-field>
-    </p>
+    <form  #contactForm="ngForm" class="w3-content w3-padding" style="max-width: 800px">  
+        <div *ngIf="user.topic && user.topic !='General'" class="mat-h3">
+            <strong i18n="@@Topic">Topic</strong>: <span>{{user.topic}}</span>
+        </div>
+        <p>
+            <mat-form-field appearance="legacy">
+            <mat-label i18n="@@Name">Name</mat-label>
+            <input matInput required id="name" name="name" type="text"
+                    [(ngModel)]="user.name" #name="ngModel">
+            <mat-error [hidden]="name.valid || name.pristine" i18n="@@NameIsRequired">Name is required</mat-error>
+            </mat-form-field>
+        </p>
 
-    <p>
-        <mat-form-field appearance="legacy">
-        <mat-label>Email</mat-label>
-        <input matInput required id="email" name="email" type="email"
-                [(ngModel)]="user.email" #email="ngModel">
-        <mat-error [hidden]="email.valid || email.pristine" i18n="@@EmailIsRequired">Email is required</mat-error>
-        </mat-form-field>
-    </p>
+        <p>
+            <mat-form-field appearance="legacy">
+            <mat-label>Email</mat-label>
+            <input matInput required id="email" name="email" type="email"
+                    [(ngModel)]="user.email" #email="ngModel">
+            <mat-error [hidden]="email.valid || email.pristine" i18n="@@EmailIsRequired">Email is required</mat-error>
+            </mat-form-field>
+        </p>
 
-    <p *ngFor="let question of extraQuestions; index as i">
-        <mat-form-field appearance="legacy">
-        <mat-label>{{question}}</mat-label>
-        <input matInput required [id]="question + i.toString()" [name]="question + i.toString()" type="text"
-                [(ngModel)]="user[question]" #model="ngModel">
-        <mat-error [hidden]="model.valid || model.pristine" i18n="@@Required">Required</mat-error>
-        </mat-form-field>
-    </p>
+        <p *ngFor="let question of extraQuestions; index as i">
+            <mat-form-field appearance="legacy">
+            <mat-label>{{question}}</mat-label>
+            <input matInput required [id]="question + i.toString()" [name]="question + i.toString()" type="text"
+                    [(ngModel)]="user[question]" #model="ngModel">
+            <mat-error [hidden]="model.valid || model.pristine" i18n="@@Required">Required</mat-error>
+            </mat-form-field>
+        </p>
 
 
-    <mat-form-field  style="width: 100%">
-        <mat-label><span i18n="@@Comment">Comment</span></mat-label>
-        <textarea
-            name="comments" required [(ngModel)]="user.comments" 
-            matInput row="5" maxlength="500">
-        </textarea>
-        <mat-hint align="end">{{user.comments.length}} / 500</mat-hint>
-    </mat-form-field><br><br>
+        <mat-form-field  style="width: 100%">
+            <mat-label><span i18n="@@Comment">Comment</span></mat-label>
+            <textarea
+                name="comments" required [(ngModel)]="user.comments" 
+                matInput row="5" maxlength="500">
+            </textarea>
+            <mat-hint align="end">{{user.comments.length}} / 500</mat-hint>
+        </mat-form-field><br><br>
 
-    <button mat-raised-button color="primary" 
-            [disabled]="contactForm.invalid"
-            (click)="onRequestSubmit()" i18n="@@SendRequest">Send</button>
+        <button mat-raised-button color="primary" 
+                [disabled]="contactForm.invalid"
+                (click)="onRequestSubmit()" i18n="@@SendRequest">Send</button>
 
-</form>
+    </form>
+</div>
 

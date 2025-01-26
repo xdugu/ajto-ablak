@@ -16,6 +16,7 @@
       </ng-container>
   </ngx-slick-carousel>
 
+  <div style="margin: 8px">
   <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
 
   <ng-container *ngIf="!(product | isCustom)">
@@ -156,24 +157,6 @@
     </mat-expansion-panel>
   </mat-accordion>
   <app-document [documents]="documentList" [storeId]="storeId" [width]="'500px'"></app-document>
-    <!--ng-container *ngFor="let doc of product.Documents">
-      <mat-expansion-panel *ngIf="doc.lang == siteLang" [appDocument]="doc.id" [storeId]="storeId"
-        [titleRef]="title" [contentRef]="content">
-          <mat-expansion-panel-header >
-            <mat-panel-title #title></mat-panel-title>
-          </mat-expansion-panel-header>
-          <div #content></div>
-      </mat-expansion-panel>
-    </ng-container>
-    <ng-container *ngFor="let doc of commonDocuments">
-      <mat-expansion-panel *ngIf="doc.lang == siteLang" [appDocument]="doc.id" [storeId]="storeId"
-        [titleRef]="title" [contentRef]="content">
-          <mat-expansion-panel-header >
-            <mat-panel-title #title></mat-panel-title>
-          </mat-expansion-panel-header>
-          <div #content></div>
-      </mat-expansion-panel>
-    </ng-container>
-  </mat-accordion-->
+
   <div style="height:200px"></div>
-</ng-container>
+</div>
