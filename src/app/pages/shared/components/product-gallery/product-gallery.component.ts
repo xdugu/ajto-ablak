@@ -3,7 +3,7 @@ import { ProductGetterService} from '@app/pages/shared/services/product-getter.s
 import { ConfigService } from '@app/shared-services/config.service';
 
 export interface IProductGalleryFlow{
-  title: { en?: string, hu?: string}
+  title: { en?: string, hu?: string, de?:string}
   items: string[]
 }
 

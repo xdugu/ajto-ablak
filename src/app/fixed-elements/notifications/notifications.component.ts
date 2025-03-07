@@ -4,7 +4,7 @@ import { TokenStorageService } from '@app/shared-services/token-storage.service'
 import { ApiManagerService, API_MODE, API_METHOD } from '@app/shared-services/api-manager.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { LanguageService } from '@app/shared-services/language.service';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent, DialogInterface } from '@app/shared-module/components/dialog/dialog.component';
 
@@ -27,7 +27,8 @@ export interface INotificationServer{
 export interface INotificationStored extends INotificationServer{
   Metadata:{
     lastShown: number,
-    visible: boolean
+    visible: boolean,
+    url: string
   }
 }
 
@@ -40,6 +41,7 @@ export class NotificationsComponent implements OnInit {
   lang = "hu"
   storeId = null
   notifications: INotificationStored[] = []
+  bannerShort = true // set banner height to its lowest by default
   constructor(
     private router: Router,
     private tokenService: TokenStorageService,
@@ -47,6 +49,7 @@ export class NotificationsComponent implements OnInit {
     private configService: ConfigService,
     private langService: LanguageService,
     private dialog: MatDialog,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +64,8 @@ export class NotificationsComponent implements OnInit {
           this.storeId = storeId;
           const httpParams = new HttpParams().set('storeId', storeId);
           this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'notifications', httpParams).subscribe({
-            next: (res: INotificationServer[]) => {
+            next: (res: any) => {
+              res = res.item as INotificationServer[]
               this.notifications = this.updateLocalNotifications(localNotis, res);
               // Save result for later
               this.tokenService.setObj("Notifications", this.notifications)
@@ -79,11 +83,16 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
+  toggleBannerHeight(){
+    this.bannerShort = !this.bannerShort
+
+  }
+
   private updateNotificationVisibility(url: string){
     const path = this.determinePath(url)
     for (const notification of this.notifications){
       const exp = new RegExp(notification.Info.match);
-      if (path.search(exp)>= 0){
+      if (path.search(exp)>= 0 && this.lang === notification.Info.lang.toLowerCase()){
         notification.Metadata.visible = true
         if (notification.Info.type == 'overlay'){
           if(Date.now() - notification.Metadata.lastShown > notification.Info.frequency){
@@ -91,17 +100,28 @@ export class NotificationsComponent implements OnInit {
               const params = new HttpParams().set('storeId', this.storeId).set('documentId', notification.Info.contentRef);
               this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'document', params).subscribe({
                 next: (doc: any) => {
-                  const dialogData: DialogInterface = {
-                    title: doc.Info.title,
-                    content: doc.Info.content,
-                    buttons: []
-                  };
-                  this.dialog.open(DialogComponent, {
-                    data: dialogData
+                  doc = doc.item
+                  this.httpClient.get(doc.contentLink, {responseType: 'text'}).subscribe({
+                    next: (res: any) => {
+                      const dialogData: DialogInterface = {
+                        title: doc.title,
+                        content: res,
+                        buttons: []
+                      };
+                      this.dialog.open(DialogComponent, {
+                        maxHeight: '500px',
+                        data: dialogData
+                      });
+                      notification.Metadata.lastShown = Date.now()
+                      notification.Metadata.url = doc.contentLink
+                      // Save the last updated value
+                      this.tokenService.setObj("Notifications", this.notifications)
+                    },
+                    error: (err) => {
+                      console.log(err);
+                    }
                   });
-                  notification.Metadata.lastShown = Date.now()
-                  // Save the last updated value
-                  this.tokenService.setObj("Notifications", this.notifications)
+                  
                 } // next
               }); // api service call
             }, notification.Info.delay);// timeout
@@ -110,6 +130,12 @@ export class NotificationsComponent implements OnInit {
       }
       else {
         notification.Metadata.visible = false
+        const params = new HttpParams().set('storeId', this.storeId).set('documentId', notification.Info.contentRef);
+        this.apiService.get(API_MODE.OPEN, API_METHOD.GET, 'document', params).subscribe({
+          next: (doc: any) => {
+            notification.Metadata.url = doc.item.contentLink
+          }
+        })
       }
     }
   }
@@ -161,7 +187,8 @@ export class NotificationsComponent implements OnInit {
         const localN = JSON.parse(JSON.stringify(serverN)) as INotificationStored
         localN.Metadata = {
           lastShown: 0,
-          visible: false
+          visible: false,
+          url: null
         }
         localNotis.push(localN)
       }

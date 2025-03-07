@@ -3,10 +3,12 @@
     <!--Menu for hierarchy-->
     <mat-menu #hierarchyMenu="matMenu" yPosition="below">
         <ng-template matMenuContent let-item="item">
-            <a mat-menu-item *ngFor="let child of item.sub"
-                [routerLink]="['category', item.name, child.name]">
-               {{child.text[lang]}}
-            </a>
+            <ng-container *ngFor="let child of item.sub">
+                <a mat-menu-item *ngIf="child.enabled"
+                    [routerLink]="['category', item.name, child.name]">
+                {{child.text[lang]}}
+                </a>
+            </ng-container>
         </ng-template>
     </mat-menu>
 

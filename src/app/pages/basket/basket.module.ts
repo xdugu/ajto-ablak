@@ -16,11 +16,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CouponComponent } from './coupon/coupon.component';
+import { ShippingProviderPipe } from './shipping-provider.pipe';
 
 
 
 @NgModule({
-  declarations: [BasketComponent, CouponComponent],
+  declarations: [BasketComponent, CouponComponent, ShippingProviderPipe],
   imports: [
     CommonModule,
     BasketRoutingModule,

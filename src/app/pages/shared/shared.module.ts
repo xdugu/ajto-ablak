@@ -36,7 +36,7 @@ import { BasketItemsComponent } from './components/basket-items/basket-items.com
     MatInputModule,
     MatFormFieldModule
   ],
-  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe, DocumentComponent, BasketItemsComponent]
+  exports: [CountryCodePipe, IsCustomPipe, StringOfPipe, IndexOfPipe, ProductGalleryComponent, SanitizePipe, DocumentComponent, BasketItemsComponent,  DocumentLoaderDirective]
 })
 export class SharedModule {
   static forRoot(): any{

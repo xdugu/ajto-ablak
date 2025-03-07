@@ -1,0 +1,7 @@
+<p i18n="@@CookieAcceptanceMsg">Do we have your permission to track how you use our site?</p>
+<button mat-button (click)="onTrackingEnabled()" i18n="@@Yes"
+        color="primary">Yes</button>
+<button mat-button (click)="onTrackingDisabled()" i18n="@@No"
+        color="primary">No</button>
+<button mat-button [routerLink]="['legal']" (click)="onMoreInfoRequired()" i18n="Option to click for more info@@MoreInfo"
+        color="primary">More info</button>

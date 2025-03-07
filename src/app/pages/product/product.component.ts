@@ -5,11 +5,13 @@ import { ProductGetterService } from '../shared/services/product-getter.service'
 import { LanguageService } from '@app/shared-services/language.service';
 import { BasketService } from '@app/shared-services/basket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ScreenTypeService } from '@app/shared-services/screen-type.service';
 import { PreferencesService } from '@app/shared-services/preferences.service';
 import { Title } from '@angular/platform-browser';
 import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageSourcePipe } from '@app/shared-module/pipes/image-source.pipe';
+import { IProductGalleryFlow } from '../shared/components/product-gallery/product-gallery.component';
 
 @Component({
   selector: 'app-product',
@@ -24,8 +26,10 @@ export class ProductComponent implements OnInit {
   storeId: string = null;
   currencyPref = null;
   customQuestions = false;
+  screenType = 'mobile';
   commonDocuments = [];
   documentList: string[] = [];
+  accessoriesFlow: IProductGalleryFlow = null
 
   siteLang = null;
   private priceElement: ElementRef;
@@ -35,7 +39,8 @@ export class ProductComponent implements OnInit {
               private config: ConfigService, private langService: LanguageService,
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
-              private route: Router, private dialog: MatDialog, private imgSourcePipe: ImageSourcePipe) {
+              private route: Router, private dialog: MatDialog, private imgSourcePipe: ImageSourcePipe,
+              screenService: ScreenTypeService) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
@@ -48,6 +53,8 @@ export class ProductComponent implements OnInit {
     prefService.getPreferences().subscribe({
       next: pref => this.currencyPref = pref.currency
     });
+
+    screenService.getScreenTypeUpdate().subscribe({next: state => this.screenType = state})
   }
 
   @ViewChild('price') set content(content: ElementRef) {
@@ -87,7 +94,7 @@ export class ProductComponent implements OnInit {
       const productId = param.get('productId');
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
-        this.titleService.setTitle(this.product.Title[this.siteLang]);
+       
         if (this.product.Metadata.findIndex(item => item.name === `custom_qs_${this.siteLang}`) >= 0) {
           this.customQuestions = true;
         }
@@ -97,8 +104,12 @@ export class ProductComponent implements OnInit {
           this.linkImagesToVariants();
           this.setupVariants();
         }
+        if(this.product.Accessories.length > 0){
+          this.buildAccessoriesFlow(this.product.Accessories)
+        }
         this.langService.getLang().then(lang => {
             this.siteLang = lang;
+            this.titleService.setTitle(this.product.Title[lang]);
             for (const doc of this.product.Documents){
               if (doc.lang === lang){
                 this.documentList.push(doc.id);
@@ -123,6 +134,18 @@ export class ProductComponent implements OnInit {
       });
     });
 
+  }
+
+  // create a flow object to build gallery of accessoeries attached to product
+  private buildAccessoriesFlow(accessories: string[]): void{
+    this.accessoriesFlow = {
+      title: {
+        en: "Accessories with this item",
+        hu: "Kiegészítők ehhez a termékhez",
+        de: "Zubehör zu diesem Artikel"
+      },
+      items: accessories
+    }
   }
 
   // attach images to variants to be used by view

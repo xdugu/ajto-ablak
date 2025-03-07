@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
       this.siteLang = lang;
       this.configService.getConfig('general').subscribe({
         next: general => {
-          this.titleService.setTitle(general.storeName);
+          this.titleService.setTitle(`${general.storeName} - ${general.storeDescription[lang]}`);
           this.metaService.updateTag({name: 'description', content: general.storeDescription[lang]});
         }
       });

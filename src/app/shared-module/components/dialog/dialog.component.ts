@@ -17,7 +17,8 @@ interface ButtonOptions{
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html'
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent{
 

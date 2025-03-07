@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { SharedModule } from '@app/pages/shared/shared.module';
 import { SharedModuleModule } from '@app/shared-module/shared-module.module';
 
 import {MatMenuModule} from '@angular/material/menu';
@@ -16,18 +17,21 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { LangUrlPipe } from './footer/lang-url.pipe';
 import { SearchComponent } from './search/search.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { CookieComponent } from './cookie/cookie.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe, SearchComponent, NotificationsComponent],
+  declarations: [HeaderComponent, FooterComponent, SideBarComponent, LangUrlPipe, SearchComponent, NotificationsComponent, CookieComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
+    SharedModule,
     SharedModuleModule,
     MatMenuModule,
     MatToolbarModule,
@@ -39,6 +43,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     FormsModule
   ],
   exports: [HeaderComponent, FooterComponent, SideBarComponent, SearchComponent, NotificationsComponent]

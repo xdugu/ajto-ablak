@@ -1,4 +1,4 @@
-<div *ngIf="preferences != null && basket != null" >
+<div *ngIf="preferences != null && basket != null"  style="margin: 8px">
     <h1 class="w3-center" i18n="Heading for final order review page@@Review">Review</h1>
     <div class="w3-row">
         <div class="w3-col l6">
@@ -58,15 +58,16 @@
                     <app-cib *ngSwitchCase="'cib'" [config]="payment" 
                             (orderConfirmed)="onOrderConfirmed()"
                             [lang]="preferences.lang.chosen"
-                            [comments]="customerComments">
-                    </app-cib> <br>
+                            [comments]="customerComments"
+                            style="margin: 8px">
+                    </app-cib> 
                 </ng-container>
 
                 <ng-container *ngIf="(payment.supportedCurrencies | indexOf : preferences.currency.chosen) >= 0">
                     <app-paypal *ngSwitchCase="'paypal'" [config]="payment" [lang]="preferences.lang.chosen"
                                 (orderConfirmed)="onOrderConfirmed()"
                                 [comments]="customerComments">
-                    </app-paypal><br>
+                    </app-paypal>
                 </ng-container>
 
                 <ng-container *ngIf="(payment.supportedCurrencies | indexOf : preferences.currency.chosen) >= 0">

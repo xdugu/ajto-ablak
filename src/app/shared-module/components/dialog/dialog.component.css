@@ -1,5 +1,4 @@
 
-
 :host ::ng-deep img{
 	max-height: 150px !important;
 	width: auto;
@@ -13,7 +12,3 @@
 	text-align: center;
 }
 
-div {
-	overflow-y: hidden;
-	max-height: 100p\;
-}

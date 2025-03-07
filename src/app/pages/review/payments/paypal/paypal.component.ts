@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ScriptLoaderService } from '@app/shared-module/services/script-loader.service';
 import { BasketInterface, BasketService } from '@app/shared-services/basket.service';
 import { environment } from '../../../../../environments/environment';
@@ -26,6 +26,8 @@ export class PaypalComponent implements OnInit {
   @Input() comments: string = null;
   @Input() lang = 'hu';
   @Output() orderConfirmed = new EventEmitter<any>();
+  @ViewChild('paypalContainer', {static: false}) paypalContainer: ElementRef
+  hideButton = false;
 
   messages = {
     paymentSuccessful: {
@@ -48,7 +50,7 @@ export class PaypalComponent implements OnInit {
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
               private customerDetailsService: CustomerDetailsService,
-              private element: ElementRef, private scriptLoader: ScriptLoaderService,
+              private scriptLoader: ScriptLoaderService,
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -148,7 +150,14 @@ export class PaypalComponent implements OnInit {
 
         });
 
-      }}).render(this.element.nativeElement);
+      },
+      onClick: ()=> {
+        this.basketService.startTransaction('paypal', this.comments).catch(() => {
+          this.hideButton = true;
+        })
+      }
+    
+    }).render(this.paypalContainer.nativeElement);
   }
 
   // creates an array of paypal items from basket items

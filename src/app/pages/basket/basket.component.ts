@@ -8,6 +8,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatRadioChange } from '@angular/material/radio';
 import { Title } from '@angular/platform-browser';
 import { IBasketItemsEvent } from '../shared/components/basket-items/basket-items.component';
+import { SettingsGetterService } from '@app/shared-services/settings-getter.service';
 
 @Component({
   selector: 'app-basket',
@@ -22,10 +23,11 @@ export class BasketComponent implements OnInit {
   availableQuantities = ['1', '2', '3', '4', '5'];
   products: any = null;
   variants: any = null;
+  couriers: any = []
 
   constructor(private basketService: BasketService, private prefService: PreferencesService,
-              private configService: ConfigService, private langService: LanguageService,
-              titleService: Title, private productGetter: ProductGetterService) {
+              private langService: LanguageService, titleService: Title, 
+              private settingsGetter: SettingsGetterService) {
     titleService.setTitle('Basket');
   }
 
@@ -56,6 +58,10 @@ export class BasketComponent implements OnInit {
     this.langService.getLang().then(lang => {
       this.lang = lang;
     });
+
+    this.settingsGetter.getSetting('ShippingProviders').then(
+      (res: any) => this.couriers = res
+    )
   }
 
   // change of quantity
@@ -87,6 +93,10 @@ export class BasketComponent implements OnInit {
   // called when there is a change in the selected courier
   onCourierChange(event: MatRadioChange): void{
     this.prefService.setPreference('deliveryMethod', event.value);
+  }
+
+  onCouponChange(basket: BasketInterface): void{
+    this.basket = basket;
   }
 
   onCurrencyChange(chosen: string): void{

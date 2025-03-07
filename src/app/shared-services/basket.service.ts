@@ -151,6 +151,50 @@ export class BasketService {
     });
   }
 
+  applyCoupon(coupon: string): Promise<BasketInterface>{
+    return new Promise((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe({
+        next: (storeId) => {
+          const params = new HttpParams().set('storeId', storeId).set('basketId', this.basket.BasketId)
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/coupon/add',params , {
+                discountCode: coupon
+            }).subscribe({
+                next: (resp: any) => {
+                      const basket: BasketInterface = resp.item;
+                      this.basketId = basket.BasketId;
+                      this.tokenService.setString('BasketId', this.basketId);
+                      this.basket = basket;
+                        resolve(this.basket);
+                      },
+                error: (err) => reject(err)
+            });
+        }
+      });
+    });
+
+  }
+
+  removeCoupon(coupon: string): Promise<BasketInterface>{
+    return new Promise((resolve, reject) => {
+      this.configService.getConfig('storeId').subscribe({
+        next: (storeId) => {
+          const params = new HttpParams().set('storeId', storeId).set('basketId', this.basket.BasketId)
+          this.apiService.post(API_MODE.OPEN, API_METHOD.UPDATE, 'basket/coupon/remove', params, {}).subscribe({
+                next: (resp: any) => {
+                        const basket: BasketInterface = resp.item;
+                        this.basketId = basket.BasketId;
+                        this.tokenService.setString('BasketId', this.basketId);
+                        this.basket = basket;
+                          resolve(this.basket);
+                      },
+                error: (err) => reject(err)
+            });
+        }
+      });
+    });
+
+  }
+
   // actually performs network request to get basket
   private _getBasket(): void{
       this.configService.getConfig('storeId').subscribe({

@@ -1,7 +1,20 @@
 <ng-container *ngFor="let noti of notifications">
     <ng-container *ngIf="noti.Info.type == 'banner' && lang == noti.Info.lang && noti.Metadata.visible">
-        <div [appDocument]="noti.Info.contentRef" [storeId]="storeId" #content
-            [contentRef]="content" class="w3-padding">
+        <div appDocumentLoader  [urlOrRef]="noti.Info.contentRef" class="w3-padding" 
+            [ngStyle]="{'max-height': bannerShort ? '100px' : '1000px'}">
         </div>
+        <div  class="w3-center">
+            <button (click)="toggleBannerHeight()" mat-button *ngIf="bannerShort">
+                <mat-icon color="primary">
+                    keyboard_arrow_down
+                </mat-icon>
+            </button>
+            <button (click)="toggleBannerHeight()" mat-button *ngIf="!bannerShort">
+                <mat-icon color="primary">
+                    keyboard_arrow_up
+                </mat-icon>
+            </button>
+        </div>
+        
     </ng-container>
 </ng-container>

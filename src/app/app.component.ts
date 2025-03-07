@@ -108,7 +108,10 @@ export class AppComponent {
       // now we have one service worker for all languages
       navigator.serviceWorker.getRegistrations().then((registrations) => {
           for (const registration of registrations) {
-            if (registration.scope.indexOf(`/en`) < 0 && registration.scope.indexOf(`/hu`) < 0){
+            if (
+              registration.scope.indexOf(`/en`) < 0 &&
+              registration.scope.indexOf(`/hu`) < 0 &&
+              registration.scope.indexOf(`/de`) < 0){
                 registration.unregister();
             } // if
           } // for

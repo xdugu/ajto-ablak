@@ -46,6 +46,15 @@
                 [disabled]="contactForm.invalid"
                 (click)="onRequestSubmit()" i18n="@@SendRequest">Send</button>
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <div *ngIf="contactInfo">
+            <a [href]="'tel:' + contactInfo.telephone">Tel: {{contactInfo.telephone}}</a><br>
+            <a [href]="'mailto:' + contactInfo.email">Email: {{contactInfo.email}}</a>
+        </div>
+
     </form>
 </div>
 

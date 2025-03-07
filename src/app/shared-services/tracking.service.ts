@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ConfigService } from './config.service';
 import { TokenStorageService } from './token-storage.service';
 import { ScriptLoaderService } from '@app/shared-module/services/script-loader.service';
+import { ITrackingInfo } from '@app/fixed-elements/cookie/cookie.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,38 +19,40 @@ export class TrackingService {
               private router: Router, @Inject(PLATFORM_ID) private platformId: object,
               scriptLoader: ScriptLoaderService) {
 
-    let trackingId = tokenService.getString('UniqueExperienceId');
-
     if (isPlatformBrowser(this.platformId)) {
+      let trackingId = tokenService.getString('UniqueExperienceId');
+      const trackingInfo: ITrackingInfo | undefined = tokenService.getObj('trackingInfo')
       // Client only code.
       if (trackingId == null){
         trackingId = uuidv4();
         tokenService.setString('UniqueExperienceId', trackingId);
       }
 
-      configService.getConfig('tracking').subscribe({
-        next: tracking => {
-          scriptLoader.loadScript(`https://www.googletagmanager.com/gtag/js?id=${tracking.id}`).then(() => {
+      if(!trackingInfo || (trackingInfo && trackingInfo.trackingEnabled)){
+        configService.getConfig('tracking').subscribe({
+          next: tracking => {
+            scriptLoader.loadScript(`https://www.googletagmanager.com/gtag/js?id=${tracking.id}`, 2000).then(() => {
 
-            gtag('config', tracking.id, {
-              client_storage: 'none',
-              anonymize_ip: true,
-              send_page_view: false,
-              client_id: trackingId,
+              gtag('config', tracking.id, {
+                client_storage: 'none',
+                anonymize_ip: true,
+                send_page_view: false,
+                client_id: trackingId,
+              });
+              this.setupNavigationTracking();
             });
-            this.setupNavigationTracking();
-          });
 
-          if(tracking.fb_id){
-            scriptLoader.loadLocalScript(
-              `!function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', '${tracking.fb_id}'); fbq('track', 'PageView');`
-            )
+            if(tracking.fb_id){
+              scriptLoader.loadLocalScript(
+                `!function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0];
+                  s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                  fbq('init', '${tracking.fb_id}'); fbq('track', 'PageView');`
+              )
+            }
           }
-        }
-      });
+        });
+      }
     }
   }
 

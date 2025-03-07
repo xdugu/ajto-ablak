@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModuleModule } from './shared-module/shared-module.module';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { SettingsGetterService } from './shared-services/settings-getter.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
     SharedPagesModule.SharedModule.forRoot(),
     MatSnackBarModule
   ],
-  providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService, Title, Meta,
+  providers: [ProductHierarchyService, ScreenTypeService, ApiManagerService, Title, Meta, SettingsGetterService,
     ConfigService, LanguageService, TokenStorageService, BasketService, TrackingService, CurrencyPipe],
   bootstrap: [AppComponent]
 })

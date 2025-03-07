@@ -5,6 +5,9 @@ import { PreferencesService } from '@app/shared-services/preferences.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CookieComponent } from '../cookie/cookie.component';
+
 
 @Component({
   selector: 'app-footer',
@@ -22,9 +25,10 @@ export class FooterComponent implements OnInit {
   };
   externalLinks = [];
   paymentTypes = [];
+  contactInfo = null;
 
   constructor(prefService: PreferencesService, configService: ConfigService,
-              router: Router, location: Location,
+              router: Router, location: Location, private snackBar: MatSnackBar,
               @Inject(PLATFORM_ID) private platformId: object,
               @Optional() @Inject('request') private request: any) {
     const subscription = prefService.getPreferences().subscribe({
@@ -58,9 +62,22 @@ export class FooterComponent implements OnInit {
       next: types => this.paymentTypes = types
     });
 
+    configService.getConfig('contact').subscribe({
+      next: contact => this.contactInfo = contact
+    });
+
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    if (isPlatformBrowser(this.platformId)){
+      // only render cookie bar when in browser NOT in server side rendering 
+      setTimeout(
+        () => this.snackBar.openFromComponent(CookieComponent),
+        1500
+      )
+    }
+  }
 
 }

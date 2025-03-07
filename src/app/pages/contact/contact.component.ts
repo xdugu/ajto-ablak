@@ -16,15 +16,15 @@ import { Title } from '@angular/platform-browser';
 export class ContactComponent implements OnInit {
   lang = 'hu';
   extraQuestions = [];
+  storeId
+  contactInfo = null
 
   // model to store user entries
   user = {
       name: null,
       email: null,
       comments: '',
-      requestType: 'Request',
-      topic: 'General',
-      storeId: null
+      topic: 'General'
   };
 
   messages = {
@@ -60,7 +60,11 @@ export class ContactComponent implements OnInit {
               private title: Title, private routeInfo: ActivatedRoute) {
 
     configService.getConfig('storeId').subscribe({
-      next: storeId => this.user.storeId = storeId
+      next: storeId => this.storeId = storeId
+    });
+
+    configService.getConfig('contact').subscribe({
+      next: contact => this.contactInfo = contact
     });
 
     langService.getLang().then(lang => {
@@ -92,13 +96,15 @@ export class ContactComponent implements OnInit {
         }
       }
     });
+
+    
   }
 
   // called when the user submits a request
   onRequestSubmit(): void{
-
+    const params = new HttpParams().set('storeId', this.storeId)
     // send request by post
-    this.apiService.post(API_MODE.OPEN, API_METHOD.CREATE, 'request', new HttpParams(), this.user)
+    this.apiService.post(API_MODE.OPEN, API_METHOD.CREATE, 'customerRequest', params, this.user)
       .subscribe(() => {
         const dialogData: DialogInterface = {
           title: this.messages.success.title[this.lang],

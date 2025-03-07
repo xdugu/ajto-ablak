@@ -4,7 +4,7 @@
     <unit id="ContactUs">
       <notes>
         <note category="location">src/app/fixed-elements/header/header.component.html:48</note>
-        <note category="location">src/app/pages/contact/contact.component.html:1</note>
+        <note category="location">src/app/pages/contact/contact.component.html:2</note>
       </notes>
       <segment>
         <source>Contact us</source>
@@ -31,7 +31,7 @@
       <notes>
         <note category="location">src/app/fixed-elements/side-bar/side-bar.component.html:36</note>
         <note category="location">src/app/fixed-elements/footer/footer.component.html:29,30</note>
-        <note category="location">src/app/pages/legal/legal.component.html:1</note>
+        <note category="location">src/app/pages/legal/legal.component.html:2</note>
       </notes>
       <segment>
         <source> Legal Information </source>
@@ -45,9 +45,27 @@
         <source> Blog </source>
       </segment>
     </unit>
+    <unit id="Delivery">
+      <notes>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:33,34</note>
+        <note category="location">src/app/pages/basket/basket.component.html:56</note>
+        <note category="location">src/app/pages/review/review.component.html:10</note>
+      </notes>
+      <segment>
+        <source> Delivery </source>
+      </segment>
+    </unit>
+    <unit id="Returns">
+      <notes>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:37,38</note>
+      </notes>
+      <segment>
+        <source> Returns </source>
+      </segment>
+    </unit>
     <unit id="1624373425123597262">
       <notes>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:38</note>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:46</note>
         <note category="description">@CardPaymentProvider</note>
       </notes>
       <segment>
@@ -56,7 +74,7 @@
     </unit>
     <unit id="7977905855119269307">
       <notes>
-        <note category="location">src/app/fixed-elements/footer/footer.component.html:44</note>
+        <note category="location">src/app/fixed-elements/footer/footer.component.html:52</note>
         <note category="description">@AcceptedCards</note>
       </notes>
       <segment>
@@ -79,12 +97,140 @@
         <source>View </source>
       </segment>
     </unit>
+    <unit id="CookieAcceptanceMsg">
+      <notes>
+        <note category="location">src/app/fixed-elements/cookie/cookie.component.html:1</note>
+      </notes>
+      <segment>
+        <source>Do we have your permission to track how you use our site?</source>
+      </segment>
+    </unit>
+    <unit id="Yes">
+      <notes>
+        <note category="location">src/app/fixed-elements/cookie/cookie.component.html:3</note>
+      </notes>
+      <segment>
+        <source>Yes</source>
+      </segment>
+    </unit>
+    <unit id="No">
+      <notes>
+        <note category="location">src/app/fixed-elements/cookie/cookie.component.html:5</note>
+      </notes>
+      <segment>
+        <source>No</source>
+      </segment>
+    </unit>
+    <unit id="MoreInfo">
+      <notes>
+        <note category="location">src/app/fixed-elements/cookie/cookie.component.html:7</note>
+        <note category="description">Option to click for more info</note>
+      </notes>
+      <segment>
+        <source>More info</source>
+      </segment>
+    </unit>
+    <unit id="Quantity">
+      <notes>
+        <note category="location">src/app/pages/shared/components/basket-items/basket-items.component.html:49</note>
+      </notes>
+      <segment>
+        <source>Quantity</source>
+      </segment>
+    </unit>
+    <unit id="Remove">
+      <notes>
+        <note category="location">src/app/pages/shared/components/basket-items/basket-items.component.html:34,35</note>
+        <note category="location">src/app/pages/basket/coupon/coupon.component.html:18,19</note>
+        <note category="description">Text to remove from basket</note>
+      </notes>
+      <segment>
+        <source> Remove </source>
+      </segment>
+    </unit>
     <unit id="Close">
       <notes>
         <note category="location">src/app/shared-module/components/dialog/dialog.component.html:9</note>
       </notes>
       <segment>
         <source>Close</source>
+      </segment>
+    </unit>
+    <unit id="Name">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:10</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Name</source>
+      </segment>
+    </unit>
+    <unit id="NameIsRequired">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:13</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
+      </notes>
+      <segment>
+        <source>Name is required</source>
+      </segment>
+    </unit>
+    <unit id="EmailIsRequired">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:22</note>
+        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
+      </notes>
+      <segment>
+        <source>Email is required</source>
+      </segment>
+    </unit>
+    <unit id="Comment">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:37</note>
+      </notes>
+      <segment>
+        <source>Comment</source>
+      </segment>
+    </unit>
+    <unit id="SendRequest">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:47</note>
+      </notes>
+      <segment>
+        <source>Send</source>
+      </segment>
+    </unit>
+    <unit id="Topic">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:6</note>
+      </notes>
+      <segment>
+        <source>Topic</source>
+      </segment>
+    </unit>
+    <unit id="Required">
+      <notes>
+        <note category="location">src/app/pages/contact/contact.component.html:31</note>
+      </notes>
+      <segment>
+        <source>Required</source>
+      </segment>
+    </unit>
+    <unit id="Published">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:9</note>
+      </notes>
+      <segment>
+        <source>Published</source>
+      </segment>
+    </unit>
+    <unit id="ReadMore">
+      <notes>
+        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18,19</note>
+        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:14,15</note>
+        <note category="description">A &apos;read more&apos; button</note>
+      </notes>
+      <segment>
+        <source> Read More </source>
       </segment>
     </unit>
     <unit id="PayByCard">
@@ -113,15 +259,6 @@
         <source>Apply </source>
       </segment>
     </unit>
-    <unit id="Remove">
-      <notes>
-        <note category="location">src/app/pages/basket/coupon/coupon.component.html:18,19</note>
-        <note category="location">src/app/pages/basket/basket.component.html:40,41</note>
-      </notes>
-      <segment>
-        <source>Remove </source>
-      </segment>
-    </unit>
     <unit id="Blog">
       <notes>
         <note category="location">src/app/pages/home/blog-list/blog-list.component.html:1</note>
@@ -130,19 +267,9 @@
         <source>Blog</source>
       </segment>
     </unit>
-    <unit id="ReadMore">
-      <notes>
-        <note category="location">src/app/pages/home/blog-list/blog-list.component.html:14,15</note>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:18,19</note>
-        <note category="description">A &apos;read more&apos; button</note>
-      </notes>
-      <segment>
-        <source> Read More </source>
-      </segment>
-    </unit>
     <unit id="ProductDescription">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:147,148</note>
+        <note category="location">src/app/pages/product/product.component.html:153,154</note>
       </notes>
       <segment>
         <source> Description </source>
@@ -150,7 +277,7 @@
     </unit>
     <unit id="AddToBasket">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:39,40</note>
+        <note category="location">src/app/pages/product/product.component.html:40,41</note>
       </notes>
       <segment>
         <source> Add To Basket </source>
@@ -158,8 +285,8 @@
     </unit>
     <unit id="OutOfStock">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:42</note>
-        <note category="location">src/app/pages/product/product.component.html:67</note>
+        <note category="location">src/app/pages/product/product.component.html:43</note>
+        <note category="location">src/app/pages/product/product.component.html:68</note>
       </notes>
       <segment>
         <source>Out Of Stock</source>
@@ -167,7 +294,7 @@
     </unit>
     <unit id="WouldLikeToCustomize">
       <notes>
-        <note category="location">src/app/pages/product/product.component.html:49,50</note>
+        <note category="location">src/app/pages/product/product.component.html:50,51</note>
       </notes>
       <segment>
         <source> I would like to customize this item </source>
@@ -189,18 +316,9 @@
         <source>Your basket is empty</source>
       </segment>
     </unit>
-    <unit id="Quantity">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:55</note>
-        <note category="location">src/app/pages/review/review.component.html:37</note>
-      </notes>
-      <segment>
-        <source>Quantity</source>
-      </segment>
-    </unit>
     <unit id="SelectCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:68</note>
+        <note category="location">src/app/pages/basket/basket.component.html:23</note>
         <note category="description">Static text to tell customer to select country</note>
       </notes>
       <segment>
@@ -209,7 +327,7 @@
     </unit>
     <unit id="ChooseCountry">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:71,72</note>
+        <note category="location">src/app/pages/basket/basket.component.html:26,27</note>
         <note category="description">First option of country chooser</note>
       </notes>
       <segment>
@@ -218,7 +336,7 @@
     </unit>
     <unit id="ChooseCourier">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:83</note>
+        <note category="location">src/app/pages/basket/basket.component.html:38</note>
       </notes>
       <segment>
         <source>Choose a courier:</source>
@@ -226,26 +344,17 @@
     </unit>
     <unit id="Subtotal">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:96</note>
-        <note category="location">src/app/pages/review/review.component.html:43</note>
+        <note category="location">src/app/pages/basket/basket.component.html:51</note>
+        <note category="location">src/app/pages/review/review.component.html:16</note>
       </notes>
       <segment>
         <source>Subtotal:</source>
       </segment>
     </unit>
-    <unit id="Delivery">
-      <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:97</note>
-        <note category="location">src/app/pages/review/review.component.html:44</note>
-      </notes>
-      <segment>
-        <source>Delivery:</source>
-      </segment>
-    </unit>
     <unit id="Total">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:102</note>
-        <note category="location">src/app/pages/review/review.component.html:49</note>
+        <note category="location">src/app/pages/basket/basket.component.html:57</note>
+        <note category="location">src/app/pages/review/review.component.html:17</note>
       </notes>
       <segment>
         <source>Total:</source>
@@ -253,7 +362,7 @@
     </unit>
     <unit id="ProceedToCheckout">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:103</note>
+        <note category="location">src/app/pages/basket/basket.component.html:58</note>
       </notes>
       <segment>
         <source> Proceed to checkout</source>
@@ -261,8 +370,8 @@
     </unit>
     <unit id="Discount">
       <notes>
-        <note category="location">src/app/pages/basket/basket.component.html:99</note>
-        <note category="location">src/app/pages/review/review.component.html:46</note>
+        <note category="location">src/app/pages/basket/basket.component.html:53</note>
+        <note category="location">src/app/pages/review/review.component.html:12</note>
       </notes>
       <segment>
         <source>Discount:</source>
@@ -275,33 +384,6 @@
       </notes>
       <segment>
         <source>Contact Information</source>
-      </segment>
-    </unit>
-    <unit id="Name">
-      <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:9</note>
-        <note category="location">src/app/pages/contact/contact.component.html:9</note>
-      </notes>
-      <segment>
-        <source>Name</source>
-      </segment>
-    </unit>
-    <unit id="NameIsRequired">
-      <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:13</note>
-        <note category="location">src/app/pages/contact/contact.component.html:12</note>
-      </notes>
-      <segment>
-        <source>Name is required</source>
-      </segment>
-    </unit>
-    <unit id="EmailIsRequired">
-      <notes>
-        <note category="location">src/app/pages/checkout/checkout.component.html:22</note>
-        <note category="location">src/app/pages/contact/contact.component.html:21</note>
-      </notes>
-      <segment>
-        <source>Email is required</source>
       </segment>
     </unit>
     <unit id="PhoneNumber">
@@ -438,7 +520,7 @@
     </unit>
     <unit id="LeaveComment">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:80</note>
+        <note category="location">src/app/pages/review/review.component.html:48</note>
         <note category="description">Prompt to leave a comment</note>
       </notes>
       <segment>
@@ -447,7 +529,7 @@
     </unit>
     <unit id="OrderDetails">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:55</note>
+        <note category="location">src/app/pages/review/review.component.html:23</note>
       </notes>
       <segment>
         <source>Order Details</source>
@@ -455,51 +537,11 @@
     </unit>
     <unit id="PostTo">
       <notes>
-        <note category="location">src/app/pages/review/review.component.html:68</note>
+        <note category="location">src/app/pages/review/review.component.html:36</note>
         <note category="description">where to post package</note>
       </notes>
       <segment>
         <source>Post To:</source>
-      </segment>
-    </unit>
-    <unit id="Published">
-      <notes>
-        <note category="location">src/app/pages/blogs/blog-lists/blog-lists.component.html:9</note>
-      </notes>
-      <segment>
-        <source>Published</source>
-      </segment>
-    </unit>
-    <unit id="Comment">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:36</note>
-      </notes>
-      <segment>
-        <source>Comment</source>
-      </segment>
-    </unit>
-    <unit id="SendRequest">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:46</note>
-      </notes>
-      <segment>
-        <source>Send</source>
-      </segment>
-    </unit>
-    <unit id="Topic">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:5</note>
-      </notes>
-      <segment>
-        <source>Topic</source>
-      </segment>
-    </unit>
-    <unit id="Required">
-      <notes>
-        <note category="location">src/app/pages/contact/contact.component.html:30</note>
-      </notes>
-      <segment>
-        <source>Required</source>
       </segment>
     </unit>
   </file>

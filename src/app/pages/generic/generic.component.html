@@ -1,4 +1,4 @@
 <div *ngIf="docRef != null" style="margin: 8px;">
     <h1>{{docRef.title}}</h1>
-    <p appDocumentLoader [url]="docRef.contentLink"></p>
+    <p appDocumentLoader [urlOrRef]="docRef.contentLink"></p>
 </div>
