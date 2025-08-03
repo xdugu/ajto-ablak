@@ -31,11 +31,21 @@
                         </div>
                         <div class="w3-center">
                             <b>{{product.Title[siteLang]}}</b><br>
-                            <span class="price" *ngIf="currencyPref != null">
+                            <ng-container *ngFor="let meta of product.Metadata">
+                                <span *ngIf="!meta.hide">{{meta.value}}<br></span>
+                            </ng-container>
+                            <ng-container *ngIf="!(product | isCustom) && currencyPref != null">
+                                <div *ngIf="product.Price.original.discountEnabled" class="w3-center"
+                                    style="text-decoration: line-through;">
+                                    {{ product.Price.original[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}
+                                </div>
+                                <div class="w3-center price">{{product.Price[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}</div>
+                            </ng-container>
+                            <!-- <span class="price" *ngIf="currencyPref != null">
                                 <span *ngIf="!(product | isCustom)">
                                     {{product.Price[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}
                                 </span>
-                            </span>
+                            </span> -->
                         </div>
                     </a>
                 </mat-grid-tile>

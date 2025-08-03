@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent, DialogInterface} from '@app/shared-module/components/dialog/dialog.component';
 import { Title } from '@angular/platform-browser';
+import { TrackingService } from '@app/shared-services/tracking.service';
 
 @Component({
   selector: 'app-contact',
@@ -57,7 +58,7 @@ export class ContactComponent implements OnInit {
 
   constructor(configService: ConfigService, private apiService: ApiManagerService,
               private dialog: MatDialog, private router: Router, langService: LanguageService,
-              private title: Title, private routeInfo: ActivatedRoute) {
+              private title: Title, private routeInfo: ActivatedRoute, private trackingService: TrackingService) {
 
     configService.getConfig('storeId').subscribe({
       next: storeId => this.storeId = storeId
@@ -132,6 +133,8 @@ export class ContactComponent implements OnInit {
         });
 
       });
+
+      this.trackingService.requestSubmissionEvent()
   }
 
 }

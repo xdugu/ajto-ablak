@@ -36,6 +36,7 @@
     "@angular/service-worker": "~10.2.0",
     "@nguniversal/express-engine": "^10.1.0",
     "@ngx-i18nsupport/tooling": "^8.0.3",
+    "@paypal/paypal-js": "^8.2.0",
     "aws-sdk": "^2.916.0",
     "aws-serverless-express-edge": "^1.1.1",
     "component": "^1.1.0",

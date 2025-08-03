@@ -9,11 +9,29 @@ import { Router, NavigationEnd } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 
 declare let gtag;
+declare let fbq;
+
+// Decorator to catch all errors when tracking
+function catchErrors( target: any, propertyKey: string, descriptor: PropertyDescriptor){
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function (...args: any[]) {
+    try{
+      return originalMethod.apply(this, args);
+    }
+    catch(err){
+      console.info(err)
+    }
+  };
+
+  return descriptor;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrackingService {
+  private fb_tracking_enabled = false;
 
   constructor(configService: ConfigService, tokenService: TokenStorageService,
               private router: Router, @Inject(PLATFORM_ID) private platformId: object,
@@ -29,6 +47,7 @@ export class TrackingService {
       }
 
       if(!trackingInfo || (trackingInfo && trackingInfo.trackingEnabled)){
+        this.fb_tracking_enabled = true;
         configService.getConfig('tracking').subscribe({
           next: tracking => {
             scriptLoader.loadScript(`https://www.googletagmanager.com/gtag/js?id=${tracking.id}`, 2000).then(() => {
@@ -56,6 +75,33 @@ export class TrackingService {
     }
   }
 
+  @catchErrors
+  addToBasketEvent(productId: string){
+      if(this.fb_tracking_enabled){
+        fbq('track', 'AddToCart')
+      }
+  }
+
+  @catchErrors
+  customiseClickEvent(productId: string){
+    if(this.fb_tracking_enabled){
+      fbq('track', 'CustomizeProduct')
+    }
+  }
+
+  @catchErrors
+  requestSubmissionEvent(){
+    if(this.fb_tracking_enabled){
+      fbq('track', 'Lead');
+    }
+  }
+
+  @catchErrors
+  purchaseComplete(total: number, currency: string){
+    if(this.fb_tracking_enabled){
+      fbq('track', 'Purchase', {value: total.toFixed(2), currency});
+    }
+  }
 
 
   // sets up navigation tracking subscription

@@ -4,7 +4,8 @@
 <div mat-dialog-content [innerHtml]="data.content"></div>
 <div mat-dialog-actions>
   <ng-container *ngFor="let button of data.buttons">
-    <button mat-button [mat-dialog-close]="button">{{button.text}}</button>
+    <button mat-button [mat-dialog-close]="button" 
+      [style]="{'color': button.textColor ? button.textColor: 'black'}">{{button.text}}</button>
   </ng-container>
   <button mat-button [mat-dialog-close]="null" i18n="@@Close">Close</button>
 </div>

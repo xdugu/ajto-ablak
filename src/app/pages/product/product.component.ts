@@ -12,6 +12,7 @@ import { DialogComponent, DialogInterface} from '@app/shared-module/components/d
 import { MatDialog } from '@angular/material/dialog';
 import { ImageSourcePipe } from '@app/shared-module/pipes/image-source.pipe';
 import { IProductGalleryFlow } from '../shared/components/product-gallery/product-gallery.component';
+import { TrackingService } from '@app/shared-services/tracking.service';
 
 @Component({
   selector: 'app-product',
@@ -22,7 +23,8 @@ export class ProductComponent implements OnInit {
   carouselHeight: number;
   product = null;
   bucketUrl = null;
-  pickedSpec = [];
+  pickedSpec = []; // contains the spec what the customer picks
+  optionsPricing = []; // contains info on the pricing when an options is selected
   storeId: string = null;
   currencyPref = null;
   customQuestions = false;
@@ -40,7 +42,7 @@ export class ProductComponent implements OnInit {
               private basketService: BasketService, private snackBar: MatSnackBar,
               private prefService: PreferencesService, private titleService: Title,
               private route: Router, private dialog: MatDialog, private imgSourcePipe: ImageSourcePipe,
-              screenService: ScreenTypeService) {
+              screenService: ScreenTypeService, private trackingService: TrackingService) {
 
     config.getConfig('imgSrc').subscribe({
       next: res => this.bucketUrl = res
@@ -88,10 +90,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     const params = this.routeInfo.paramMap;
+    this.documentList = []
 
-    // will get a callback anytime there is a change in the category path
+    // will get a callback anytime there is a change in the product path
     params.subscribe(param => {
       const productId = param.get('productId');
+      this.documentList = []
       this.productGetter.getProduct(productId).then(res => {
         this.product = res;
        
@@ -169,9 +173,59 @@ export class ProductComponent implements OnInit {
     }
 
   }
+
+  // Given a string of variants return the matching combinations
+  private filterCombinations(combis, variantFilter: string[]){
+    variantFilter.forEach((variant, index) => {
+      combis = combis.filter((combi)=> {
+        if (variant){
+          if(combi.combination[index] == variant){
+            return true;
+          }
+          return false
+        }
+        return true;
+      })
+    })
+    return combis;
+  }
+
+  // returns the cheapest combination from list
+  private cheapestCombination(combis){
+     return combis.reduce((combi, cheapestCombi) => {
+          if(combi.price[this.currencyPref.chosen.toLowerCase()] < cheapestCombi.price[this.currencyPref.chosen.toLowerCase()]){
+            return combi;
+          }
+            return cheapestCombi;
+          }, combis[0])
+  }
+
+  // Returns an array of strings coresponding to the chosen spec
+  private getPickedSpecOptions(){
+    return this.pickedSpec.reduce((pV, cV) => {
+          pV.push(cV.name)
+          return pV
+        }, [])
+  }
+
+  // Function that constatnly updates price options whenuser is selecting a vraitn
+  private updateOptionsPricing(){
+    this.optionsPricing = []
+    this.product.Variants.variants.forEach((variant, index) => {
+      const subOptions = []
+      for(const option of variant.options){
+        const candidateVariants = this.getPickedSpecOptions()
+        candidateVariants[index] = option.name
+        const matchingCombis = this.filterCombinations(this.product.Variants.combinations,candidateVariants)
+        subOptions.push(this.cheapestCombination(matchingCombis).price)
+      }
+      this.optionsPricing.push(subOptions)
+    })
+  }
+
   // setup variant
   private async setupVariants(): Promise<void>{
-
+    this.pickedSpec = []
     for (const variant of this.product.Variants.variants){
       variant.groupInfo = {};
       if (variant.type === 'group'){
@@ -184,37 +238,15 @@ export class ProductComponent implements OnInit {
 
     if (this.product.Variants.variants.length > 0){
 
-      // pre-choose the first combination in list
-      const findFirstValid = (candidate) => {
-        if (this.product.TrackStock){
-          return !candidate.disabled && candidate.quantity > 0;
-        }
-        return !candidate.disabled;
-      };
-
-      let combi = this.product.Variants.combinations.find(findFirstValid);
-
-      // in case none are valid, choose the first option
-      if (combi === undefined){
-        combi = this.product.Variants.combinations[0];
+      for(const _ of this.product.Variants.variants){
+        this.pickedSpec.push({name: null, variantId: null, enteredValue: null})
       }
 
-      // now loop through each variant to pick right combi
-      this.product.Variants.variants.forEach((variant: any, index: number) => {
-        variant.options.forEach((option: any) => {
-            if (combi.combination[index] === option.name){
-              this.pickedSpec.push({name: option.name, variantId: null, enteredValue: null});
-              if (variant.type === 'group'){
-                const groupKeys = Object.keys(variant.groupInfo);
-                this.pickedSpec[this.pickedSpec.length - 1].variantId =
-                    variant.groupInfo[groupKeys[0]][0].ItemId;
-              }
-            }
-        });
-      });
-
-      this.product.Price = Object.assign(this.product.Price, combi.price);
-      this.product.Quantity = combi.quantity;
+      this.updateOptionsPricing()
+      const finalCombi = this.cheapestCombination(this.product.Variants.combinations)
+      
+      this.product.Price = Object.assign(this.product.Price, finalCombi.price);
+      this.product.Quantity = finalCombi.quantity;
     }
 
     this.determineSelectableItems();
@@ -228,9 +260,10 @@ export class ProductComponent implements OnInit {
                             this.product.Images.list[currentSlideIndex].width) + 30;
   }
 
+
   private updateProductPrice(): void{
     if (this.product.Variants.variants.length > 0){
-      const combi = this.getCombinationFromPickedSpec();
+      const combi = this.cheapestCombination(this.filterCombinations(this.product.Variants.combinations, this.getPickedSpecOptions()))
       const prevPrice = this.product.Price[this.currencyPref.chosen.toLowerCase()];
 
       // only need to scroll or update price if there is a difference between the current
@@ -245,7 +278,7 @@ export class ProductComponent implements OnInit {
 
   // called to update main image shown after combination change
   private updateImageFromVariantChange(): void{
-    const combi = this.getCombinationFromPickedSpec();
+    const combi = this.cheapestCombination(this.filterCombinations(this.product.Variants.combinations, this.getPickedSpecOptions()))
     if (combi.linkedImage){
       const imagePosition = this.product.Images.list.findIndex(image => image.name === combi.linkedImage);
       if (imagePosition >= 0){
@@ -258,13 +291,14 @@ export class ProductComponent implements OnInit {
   onVariantSelectionChange(): void{
     this.determineSelectableItems();
     this.updateProductPrice();
+    this.updateOptionsPricing();
     this.updateImageFromVariantChange();
   }
 
   // called when a different group of patterns is selected
   onGroupSelectionChange(newOption: any, changeIndex: number): void{
     this.pickedSpec[changeIndex].name = newOption.value;
-    this.pickedSpec[changeIndex].variantId = this.product.Variants.variants[changeIndex].groupInfo[newOption.value.name][0].ItemId;
+    this.pickedSpec[changeIndex].variantId = this.product.Variants.variants[changeIndex].groupInfo[newOption.value][0].ItemId;
     this.onVariantSelectionChange();
   }
 
@@ -274,17 +308,6 @@ export class ProductComponent implements OnInit {
     this.onVariantSelectionChange();
   }
 
-  // returns the combination pointed to by 'pickedSpec'
-  private getCombinationFromPickedSpec(): any{
-    const chosenArray = [];
-    this.pickedSpec.forEach((variant) => {
-      chosenArray.push(variant.name);
-    });
-    function combiMatches(myCombi: any): boolean{
-      return JSON.stringify(myCombi.combination) === JSON.stringify(chosenArray);
-    }
-    return  this.product.Variants.combinations.find(combiMatches);
-  }
 
   showSelectedPatternOverlay(pattern: any): void{
     const imageLink = this.imgSourcePipe.transform(this.bucketUrl + pattern.Images.path + pattern.Images.list[0].name, 300);
@@ -330,6 +353,7 @@ export class ProductComponent implements OnInit {
       });
       }
     );
+    this.trackingService.addToBasketEvent(this.product.ItemId)
  }
 
   onCurrencyChange(chosen: string): void{
@@ -344,6 +368,7 @@ export class ProductComponent implements OnInit {
 
     this.route.navigate(['contact'],
         {queryParams: {topic: this.product.Title[this.siteLang], questions: questions.value}});
+    this.trackingService.customiseClickEvent(this.product.ItemId)
   }
 
   // gets combi that starts with something
@@ -393,10 +418,7 @@ export class ProductComponent implements OnInit {
 
   // checks if the current selection by user is valid. if not, determines the closest to what the customer wants
   validateAndCorrectSelection(): void{
-    const currentCombi = this.pickedSpec.reduce((accum, elem) => {
-      accum.push(elem.name);
-      return accum;
-    }, []);
+    const currentCombi = this.getPickedSpecOptions()
 
     const isValidCombi = (myCombi): boolean => {
       if (this.product.TrackStock){
@@ -407,7 +429,7 @@ export class ProductComponent implements OnInit {
       }
     };
 
-    const combi = this.product.Variants.combinations.find(elem => elem.combination.join() === currentCombi.join());
+    const combi = this.cheapestCombination(this.filterCombinations(this.product.Variants.combinations, currentCombi));
 
     if (!isValidCombi(combi)){
       // find a valid combination

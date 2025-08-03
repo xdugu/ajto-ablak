@@ -20,7 +20,7 @@
   <h2 class="w3-margin-top">{{product.Title[siteLang]}}</h2>
 
   <ng-container *ngIf="!(product | isCustom)">
-    <div *ngIf="product.Price.original.discountEnabled && product.Quantity > 0" 
+    <div *ngIf="product.Price.original.discountEnabled" 
           style="text-decoration: line-through;">
           {{ product.Price.original[currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}}
     </div>
@@ -57,22 +57,27 @@
       <ng-container *ngFor="let variant of product.Variants.variants; index as i">
         <!-- Individual selections-->
         <ng-container *ngIf="variant.type === 'individual'">
-          <mat-form-field *ngIf="!variant.hasAttachedImage else hasAttachedImage">
-            <mat-label>{{variant.text[siteLang]}}</mat-label>
-            <mat-select matNativeControl [(value)]="pickedSpec[i].name" 
-                (selectionChange)="onVariantSelectionChange()" [name]="variant.name">
-              <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option.name" 
-                [disabled]="!option.isSelectable">
-                {{option.text[siteLang]}}
-                <span *ngIf="product.TrackStock && !option.isSelectable">
-                  (<span i18n="@@OutOfStock">Out Of Stock</span>)
-                </span>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <ng-container *ngIf="i == 0 || pickedSpec[i-1].name">
+              <mat-form-field *ngIf="!variant.hasAttachedImage else hasAttachedImage" >
+                <mat-label>{{variant.text[siteLang]}}</mat-label>
+                <mat-select matNativeControl [(ngModel)]="pickedSpec[i].name" #model="ngModel"
+                    (selectionChange)="onVariantSelectionChange()" [name]="variant.name" required>
+                  <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option.name" >
+                    {{option.text[siteLang]}}
+                    <ng-template #individualPriceOptions>
+                      ({{optionsPricing[i][subIndex][currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}})
+                    </ng-template> 
+                    <span *ngIf="product.TrackStock && !option.isSelectable; else individualPriceOptions">
+                      (<span i18n="@@OutOfStock">Out Of Stock</span>)
+                    </span>
+                  </mat-option>
+                </mat-select>
+                <mat-error [hidden]="model.valid || model.pristine" i18n="@@Required">Required</mat-error>
+              </mat-form-field>
+            </ng-container>
           <ng-template #hasAttachedImage>
 						<div style="width:100%;padding:0;white-space:nowrap;overflow-x:auto;">
-							<span *ngFor="let option of variant.options" class="w3-display-container">
+							<span *ngFor="let option of variant.options;" class="w3-display-container">
                 <ng-container *ngIf="option.isSelectable">
                   <img class="w3-circle hoverable" [appLazyLoad]="bucketUrl + product.Images.path + option.linkedImage | imageSource : 100" 
                         [ngClass]="{'selected': pickedSpec[i].name === option.name}"
@@ -86,20 +91,20 @@
                 </ng-container>	
 							</span>
 						</div>
-						<!--div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
-              {{pickedSpec[i].text[siteLang]}}
-						</div-->
+						<div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
+              {{pickedSpec[i].name}}
+						</div>
 					</ng-template>
         </ng-container>
 
         <!-- Grouped selections -->
-        <ng-container *ngIf="variant.type === 'group'">
+        <ng-container *ngIf="variant.type === 'group' && (i == 0 || pickedSpec[i-1].name)">
           <mat-form-field>
             <mat-label>{{variant.text[siteLang]}}</mat-label>
             <mat-select matNativeControl [value]="pickedSpec[i].name" [name]="variant.name"
                         (selectionChange)="onGroupSelectionChange($event, i)" required>
               <mat-option *ngFor="let option of variant.options; index as subIndex" [value]="option.name" >
-                {{option.text[siteLang]}}
+                {{option.text[siteLang]}}  ({{optionsPricing[i][subIndex][currencyPref.chosen.toLowerCase()] | appCurrency : currencyPref.chosen}})
               </mat-option>
             </mat-select>
           </mat-form-field><br>
@@ -117,10 +122,7 @@
                         zoom_in
                   </span>	
             </span>
-          </div>
-          <!--div  *ngIf="pickedSpec.length > 0" class="w3-margin-top my-theme-primary">
-            {{pickedSpec[i].chosenVariant.Title[siteLang]}}
-          </div--><br>
+          </div><br>
         </ng-container>
 
         <!-- Extra inputs to be entered by user-->

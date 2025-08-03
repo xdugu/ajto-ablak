@@ -6,6 +6,7 @@ import { PreferencesService, PreferencesInterface} from '@app/shared-services/pr
 import { ApiManagerService, API_METHOD, API_MODE } from '@app/shared-services/api-manager.service';
 import { ConfigService } from '@app/shared-services/config.service';
 import { HttpParams } from '@angular/common/http';
+import { TrackingService } from './tracking.service';
 
 export interface BasketInterface{
   BasketId: string;
@@ -40,7 +41,7 @@ export class BasketService {
 
   constructor(private tokenService: TokenStorageService, private apiService: ApiManagerService,
               private configService: ConfigService, private customerDetailsService: CustomerDetailsService,
-              private prefService: PreferencesService) {
+              private prefService: PreferencesService, private trackingService: TrackingService) {
     this.basketId = tokenService.getString('BasketId');
   }
 
@@ -283,8 +284,12 @@ export class BasketService {
              order
             ).subscribe({
               next: (data) => {
-                this.clearBasket();
                 resolve(data);
+                this.trackingService.purchaseComplete(
+                  this.basket.Costs[preferences.countryCode][preferences.deliveryMethod][preferences.paymentMethod].total[preferences.currency.chosen.toLowerCase()],
+                  preferences.currency.chosen.toUpperCase()
+                )
+                this.clearBasket();
                 return;
               },
               error: err => reject(err)

@@ -1,3 +1,4 @@
+
 div{
     overflow-y: hidden;
     display: inline-flex;
@@ -17,8 +18,13 @@ div{
     padding: 5%;
     transition: padding linear 0.5s;
     border: 3px solid black;
+    border-radius: 25px;
 }
 
 .home-category-text:hover{
-    padding: 15%;
+    padding: 10%;
+}
+
+#main-container{
+    border-radius: 10px;
 }

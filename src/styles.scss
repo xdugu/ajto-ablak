@@ -79,6 +79,10 @@ a {
     color: mat-color($warn);
   }
 
+  .my-background-primary{
+    background-color: mat-color($primary);
+  }
+
   .slick-prev:before, .slick-next:before{
     color: mat-color($primary);
     font-size: 25px;

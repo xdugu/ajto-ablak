@@ -6,8 +6,9 @@ import { CustomerDetailsInterface, CustomerDetailsService } from '@app/shared-se
 import { PreferencesService, PreferencesInterface} from '@app/shared-services/preferences.service';
 import { DialogComponent} from '@app/shared-module/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { loadScript, PayPalNamespace } from "@paypal/paypal-js";
 
-declare var paypal;
+//declare var paypal;
 
 interface PaypalConfigInterface{
   name: string;
@@ -59,26 +60,32 @@ export class PaypalComponent implements OnInit {
         this.customerDetailsService.get().then((customer: CustomerDetailsInterface) => {
           this.prefService.getPreferences().subscribe((preferences: PreferencesInterface) => {
             const token = environment.production ? this.config.tokens.live : this.config.tokens.test;
-
-            // check if paypal is already loaded
-            try {
-              if (paypal){
-                this.createPaypalObject(basket, customer, preferences);
-              }
-            }
-            catch (err) {
-              const disabledFeatures = this.config.disabledFeatures[0];
-              this.scriptLoader.loadScript(`https://www.paypal.com/sdk/js?client-id=${token}&currency=${preferences.currency.chosen.toUpperCase()}&disable-funding=${disabledFeatures}`, 1000)
-                .then(() => this.createPaypalObject(basket, customer, preferences));
-            }
+            const disabledFeatures = this.config.disabledFeatures[0];
+            loadScript({clientId: token, currency: preferences.currency.chosen.toUpperCase(), disableFunding: disabledFeatures})
+              .then((paypal: PayPalNamespace) => {
+                  this.createPaypalObject(paypal, basket, customer, preferences )
+              })
           });
         });
       }
     });
   }
 
-  private createPaypalObject = (basket: BasketInterface, customer: CustomerDetailsInterface,
+  private createPaypalObject = (paypal: PayPalNamespace, basket: BasketInterface, customer: CustomerDetailsInterface,
                                 preferences: PreferencesInterface) => {
+    const countryCodeToNumbers = {
+      "HU": "36",
+      "DE": "49",
+      "AT": "43",
+      "SK": "421",
+      "RO": "40",
+      "NL": "31",
+      "BE": "32",
+      "PO": "48",
+      "FR": "33",
+      "BG": "359"
+
+    }
     paypal.Buttons({
       createOrder: (data, actions) => {
         return actions.order.create({
@@ -86,10 +93,12 @@ export class PaypalComponent implements OnInit {
             email_address:  customer.email,
             phone: {
               phone_number: {
-                national_number: customer.number
+                  national_number: customer.number,
+                  country_code: countryCodeToNumbers[preferences.countryCode] ? countryCodeToNumbers[preferences.countryCode] : "36"
                 }
             }
           },
+          intent: "CAPTURE",
           purchase_units: [{
             amount: {
               currency_code: preferences.currency.chosen,
@@ -116,9 +125,6 @@ export class PaypalComponent implements OnInit {
             items: this.getPaypalBasketItems(basket.Items, preferences.currency.chosen, preferences.lang.chosen),
             description: `${basket.BasketId} Order`,
             custom_id: basket.BasketId,
-            payment_options: {
-              allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
-            },
             soft_descriptor: basket.BasketId,
             shipping: {
               name: {full_name: customer.firstName},
@@ -131,10 +137,9 @@ export class PaypalComponent implements OnInit {
               }
             }
         }]
-        // note_to_payer: 'Contact us at infodomelepcso@gmail.com for any questions on your order.'
         });
       },
-      onApprove: (data, actions) => {
+      onApprove: async (data, actions) => {
         actions.order.get().then((details: any) => {
             this.basketService.completeTransaction('paypal', details).then(() => {
               this.dialog.open(DialogComponent, {
